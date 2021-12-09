@@ -14,6 +14,7 @@ div,span{
   -ms-user-select:none;/*IE10*/
   -khtml-user-select:none;/*早期浏览器*/
   user-select:none;
+  font-family: Microsoft YaHei;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -51,3 +52,12 @@ code {
   justify-content: flex-start;
 }
 .back{background: rgba($color: #000000, $alpha: 0.3);}
+.color1{
+  color: #363636;
+}
+.color2{
+  color: #999999;
+}
+.color3{
+  color: #666666;
+}
