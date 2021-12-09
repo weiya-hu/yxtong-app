@@ -1,0 +1,53 @@
+@import '~antd/dist/antd.css';
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+//取消双击选中文字
+div,span{
+  -moz-user-select:none;/*火狐*/
+  -webkit-user-select:none;/*webkit浏览器*/
+  -ms-user-select:none;/*IE10*/
+  -khtml-user-select:none;/*早期浏览器*/
+  user-select:none;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.fleximg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+      width: 100%;
+  }
+}
+.fleximgtop{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  img{
+      width: 100%;
+  }
+}
+.flexl{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flexb{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flexll{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.back{background: rgba($color: #000000, $alpha: 0.3);}

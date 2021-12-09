@@ -1,0 +1,103 @@
+#register{
+    background: #F4F4F4;
+    height: 1080px;
+    .marg{
+        margin: 20px 0;
+    }
+    .content{
+        width: 900px;
+        margin: 0 auto;
+        padding-top: 100px;
+        .logoimg{
+            width: 250px;
+            margin:0 0 80px;
+        }
+        .forget{
+            background: #ffffff;
+            padding-bottom: 50px;
+            .forgettitle{
+                height: 90px;
+                background: #304F97;
+                font-family: PingFangSC-Semibold;
+                font-size: 26px;
+                color: #FFFFFF;
+                text-align: center;
+                line-height: 90px;
+                font-weight: 600;
+            }
+            .forgetform{
+                width: 380px;
+                margin: 50px auto 0;
+                .forgetnextbt{
+                    width: 380px;
+                    height: 52px;
+                    background: #304F97;
+                    font-family: PingFangSC-Semibold;
+                    font-size: 16px;
+                    color: #FFFFFF;
+                    text-align: center;
+                    line-height: 16px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    .warn{
+        position: relative;
+        top: -10px;
+        >div{
+            width:12px;
+            margin-right: 8px;
+        }
+        >span{
+            font-family: PingFangSC-Regular;
+            font-size: 10px;
+            color: #D00000;
+        }
+    }
+    .warnnext{
+        position: relative;
+        top: -6px;
+        background: #FFF4F4;
+        width: 100%;
+        padding: 8px 16px;
+        margin: 6px 0;
+        >div{
+            width:12px;
+            margin-right: 8px;
+            img{
+                vertical-align:middle;
+                position: relative;
+                top: -4px;
+            }
+        }
+        >span{
+            font-family: PingFangSC-Regular;
+            font-size: 10px;
+            color: #D00000;
+        }
+    }
+   .agree{
+       margin: 20px 0 0;
+       cursor: pointer;
+       >div{
+           width: 14px;
+           margin-right: 9px;
+           img{
+            vertical-align:middle;
+            position: relative;
+            top: -3px;
+           }
+       }
+       span{
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #363636;
+       }
+       Link{
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #304F97;
+       }
+   }
+}

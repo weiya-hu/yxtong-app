@@ -1,0 +1,200 @@
+.phone{
+    height: 52px;
+    width: 100%;
+    background: #F4F4F4;
+    padding:0 16px ;
+    position: relative;
+    .phoneselectpre{
+        position: absolute;
+        top: 16px;
+        left: 16px;
+    }
+    .phoneselect{
+        width: 74px;
+        height: 14px;
+        overflow: hidden;
+        opacity: 0;
+       
+    }
+    .countrycode{
+        .countrycodetxt{
+            width: 36px;
+            text-align: left;
+            height: 14px;
+            line-height: 14px;
+            font-weight: 400;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #363636;
+        }
+        .downselectimg{
+            width: 12px;
+        }
+        .line{
+            width: 1px;
+            height: 14px;
+            background: #363636;
+            margin-left: 8px;
+        }
+        .ant-form-item{
+            margin: 0 0 0 12px;
+            input{
+                padding: 0;
+                border: none;
+                background: #F4F4F4;
+            }
+            input::-webkit-input-placeholder { 
+            /* WebKit browsers */ 
+                font-size: 14px;
+                color: #BBBBBB;
+                letter-spacing: 0;
+                font-weight: 400; 
+            } 
+            input:focus{
+                border: none;
+                outline:none;
+            }
+            .ant-input:focus {
+                border: none;
+                border-bottom: 1px solid white !important;
+                box-shadow: none;
+            }
+        }
+        
+    }
+
+}
+.height{
+    height: 46px !important;
+}
+#mobileYZM{
+    .yzmTXT{
+        font-size: 14px;
+        color: #363636;
+        line-height: 14px;
+        font-weight: 400;
+        font-family: PingFangSC-Regular;
+    }
+    .ant-form-item{
+        margin: 0 0 0 27px;
+        input{
+            padding: 0;
+            border: none;
+            background: #F4F4F4;
+            width: 100px;
+        }
+        input::-webkit-input-placeholder { 
+        /* WebKit browsers */ 
+            font-size: 14px;
+            color: #BBBBBB;
+            letter-spacing: 0;
+            font-weight: 400; 
+        } 
+        input:focus{
+            border: none;
+            outline:none;
+        }
+        .ant-input:focus {
+            border: none;
+            border-bottom: 1px solid white !important;
+            box-shadow: none;
+        }
+    }
+    .getyzmTXT{
+        font-family: PingFangSC-Medium;
+        font-size: 14px;
+        color: #304F97;
+        font-weight: 500;
+        line-height: 14px;
+        height: 14px;
+        cursor: pointer;
+    }
+    .getyzmTXTtime{
+        color: #999999;
+    }
+}
+
+#userName{
+    .ant-form-item{
+        margin: 0 0 0 20px;
+        input{
+            padding: 0;
+            border: none;
+            background: #F4F4F4;
+        }
+        input::-webkit-input-placeholder { 
+        /* WebKit browsers */ 
+            font-size: 14px;
+            color: #BBBBBB;
+            letter-spacing: 0;
+            font-weight: 400; 
+        } 
+        input:focus{
+            border: none;
+            outline:none;
+        }
+        .ant-input:focus {
+            border: none;
+            border-bottom: 1px solid white !important;
+            box-shadow: none;
+        }
+    }
+}
+#passwordRegister{
+    .ant-form-item{
+        margin: 0 0 0 14px;
+        input{
+            padding: 0;
+            border: none;
+            background: #F4F4F4;
+        }
+        input::-webkit-input-placeholder { 
+        /* WebKit browsers */ 
+            font-size: 14px;
+            color: #BBBBBB;
+            letter-spacing: 0;
+            font-weight: 400; 
+        } 
+        input:focus{
+            border: none;
+            outline:none;
+        }
+        .ant-input:focus {
+            border: none;
+            border-bottom: 1px solid white !important;
+            box-shadow: none;
+        }
+    }
+}
+#inviteCode{
+    .ant-form-item{
+        margin: 0 0 0 27px;
+        input{
+            padding: 0;
+            border: none;
+            background: #F4F4F4;
+        }
+        input::-webkit-input-placeholder { 
+        /* WebKit browsers */ 
+            font-size: 14px;
+            color: #BBBBBB;
+            letter-spacing: 0;
+            font-weight: 400; 
+        } 
+        input:focus{
+            border: none;
+            outline:none;
+        }
+        .ant-input:focus {
+            border: none;
+            border-bottom: 1px solid white !important;
+            box-shadow: none;
+        }
+    }
+    .filling{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #BBBBBB;
+        font-weight: 400;
+    }
+}
