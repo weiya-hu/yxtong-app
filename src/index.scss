@@ -7,7 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-//取消双击选中文字
+//取消双击选中文字，字体为微软雅黑
 div,span{
   -moz-user-select:none;/*火狐*/
   -webkit-user-select:none;/*webkit浏览器*/
@@ -15,6 +15,24 @@ div,span{
   -khtml-user-select:none;/*早期浏览器*/
   user-select:none;
   font-family: Microsoft YaHei;
+  color: #363636;
+  font-size: 14px;
+}
+.position{
+  position: relative;
+}
+.cursor{
+  cursor: pointer;
+}
+.width{
+  width: 1200px;
+  margin: 0 auto;
+}
+.bold{
+  font-weight: 600;
+}
+.font12{
+  font-size: 12px;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -41,10 +59,20 @@ code {
   justify-content: flex-start;
   align-items: center;
 }
+.flexr{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 .flexb{
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.flexbl{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .flexll{
   display: flex;
@@ -56,8 +84,9 @@ code {
   color: #363636;
 }
 .color2{
-  color: #999999;
-}
-.color3{
   color: #666666;
 }
+.color3{
+  color: #999999;
+}
+.colorw{color: #FFFFFF;}

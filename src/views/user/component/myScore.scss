@@ -1,0 +1,21 @@
+.myscore{
+    width: 100%;
+    background: #FFFFFF;
+    height: 76px;
+    padding: 20px ;
+    .todayscorepre{
+        font-size: 16px;
+        margin-right: 42px;
+        .todayscore{
+            color: #304F97;
+        }
+        .scoremoney{
+            color: #999999;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+    }
+}
+.padding{
+    padding: 20px 30px;
+}
