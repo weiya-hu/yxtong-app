@@ -5,7 +5,7 @@ import './profit.scss'
 import MyScore from "./component/myScore";
 
 let dataSource = []
-for(let i=0;i<20;i++){
+for(let i=0;i<10;i++){
     dataSource.push(
         {
             key: i,

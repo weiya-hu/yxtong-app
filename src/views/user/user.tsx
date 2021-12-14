@@ -2,6 +2,7 @@ import { Component } from 'react'
 import './user.scss'
 import MyTask from './myTask'
 import Profit from './profit'
+import Writing from './writing'
 
 import logoimg from '../../public/images/logo.png'
 import homeimg from '../../public/images/user/home.png'
@@ -15,7 +16,9 @@ import phoneimg from '../../public/images/user/phone.png'
 export default class User extends Component {
     state={
         nav:['我的任务','我的收益','创作中心','我的消息','设置'],
-        navActiveIndex:1,//导航active的下标
+        aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
+        navActiveIndex:2,//导航active的下标
+        asideActive:0,//侧边栏active的下标
         exitActive:false,//退出按钮是否hover
         exitNone:true,//退出登录是否显示
     }
@@ -29,6 +32,7 @@ export default class User extends Component {
 
     render(){
         let nav = this.state.nav,navActiveIndex = this.state.navActiveIndex,exitActive = this.state.exitActive
+        let aside = this.state.aside,asideActive = navActiveIndex === 2?this.state.asideActive:0
         return <div id='user' onClick={()=>{this.setState({exitNone:true})}}>
           <div className='flextop'>
             <div className='usertop '>
@@ -73,21 +77,33 @@ export default class User extends Component {
           </div>
           <div className='content'>
             <div className='flexbl width'>
-              <div className='userinfo'>
-                <div className='headerimg fleximg position'>
-                  <img src={headerimg} alt="header" />
-                  <div className='userlevel fleximg'><span>LV.1</span></div>
+              <div>
+                <div className='userinfo'>
+                  <div className='headerimg fleximg position'>
+                    <img src={headerimg} alt="header" />
+                    <div className='userlevel fleximg'><span>LV.1</span></div>
+                  </div>
+                  <div className='userphone'>1234567910</div>
+                  <div className='fleximg'>
+                    <div className='fleximg realnamedimg'><img src={realnamedimg} alt="realnamed" /></div>
+                    <div className='fleximg phoneimg'><img src={phoneimg} alt="realnamed" /></div>
+                  </div>
                 </div>
-                <div className='userphone'>1234567910</div>
-                <div className='fleximg'>
-                  <div className='fleximg realnamedimg'><img src={realnamedimg} alt="realnamed" /></div>
-                  <div className='fleximg phoneimg'><img src={phoneimg} alt="realnamed" /></div>
+                <div className='aside'>
+                  {aside[navActiveIndex].map((item,index)=>(
+                    <div 
+                      className={asideActive === index?'aside-active':'' }
+                      onClick={()=>{this.setState({asideActive:index})}}
+                      >{item}</div>
+                  ))}
                 </div>
               </div>
+              
               <div className='usermain'>
                 {
                   navActiveIndex === 0 ? <MyTask /> :
-                  navActiveIndex === 1 && <Profit />
+                  navActiveIndex === 1 ? <Profit /> :
+                  navActiveIndex === 2 && <Writing />
                 }
                 
               </div>

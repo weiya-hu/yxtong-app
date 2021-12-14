@@ -88,7 +88,7 @@
 
     }
     .content{
-      padding-top: 110px;
+      padding: 110px 0 20px;
       margin-top: 10px;
       .userinfo{
         background: #FFFFFF;
@@ -128,10 +128,33 @@
         }
         .phoneimg{width: 8px;}
       }
+      .aside{
+        margin-top: 10px;
+        >div{
+          width: 260px;
+          height: 52px;
+          background: #FFFFFF;
+          padding: 0 30px;
+          line-height: 52px;
+        }
+        .aside-active{
+          font-weight: 600;
+          position: relative;
+        }
+        .aside-active::before{
+          content: '';
+          display: inline-block;
+          width: 3px;
+          height: 20px;
+          background: #304F97;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+      }
       .usermain{
         width: 930px;
-
-        
       }
       
       

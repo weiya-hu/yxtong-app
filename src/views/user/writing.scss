@@ -1,0 +1,112 @@
+.writing{
+    .top{
+        background: #FFFFFF;
+        height: 78px;
+        padding: 0 30px;
+        .writing-txt{
+            font-size: 18px;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+        .writing-buttton{
+            width: 170px;
+            height: 40px;
+            background: #304F97;
+            border-radius: 2px;
+            color: #FFFFFF;
+            margin-right: 20px;
+        }
+        .preview-button{
+            width: 170px;
+            height: 40px;
+            background: #FFFFFF;
+            border: 1px solid #DCDCDC;
+            border-radius: 2px;
+        }
+    }
+    .cover{
+        width: 100%;
+        padding: 30px;
+        height: 240px;
+        background: #FFFFFF;
+        margin-top: 10px;
+        .cover-txt{
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .cover-button{
+            width: 220px;
+            height: 140px;
+            background: #F4F4F4;
+            margin-top: 22px;
+            padding: 44px 0;
+            text-align: center;
+            .addimg{
+                width: 26px;
+                margin: 0 auto 10px;
+            }
+        }
+    }
+    .title{
+        padding: 30px;
+        height: 152px;
+        background: #FFFFFF;
+        margin-top: 10px;
+        .title-txt{
+            margin-bottom: 22px;
+        }
+        .caution{
+            font-size: 12px;
+            color: #999999;
+            margin-left: 12px;
+        }
+        .title-item{
+            background: #F4F4F4;
+            border-radius: 2px;
+            width: 790px;
+            height: 52px;
+            padding: 0 20px;
+            margin-right:24px;
+            input{
+                padding: 0;
+                border: none;
+                background: #F4F4F4;
+                width: 100%;
+                font-size: 14px;
+                color: #363636;
+            }
+            input::-webkit-input-placeholder { 
+            /* WebKit browsers */ 
+                font-size: 14px;
+                color: #BBBBBB;
+                letter-spacing: 0;
+                font-weight: 400; 
+            } 
+            input:focus{
+                border: none;
+                outline:none;
+            }
+            .ant-input:focus {
+                border: none;
+                border-bottom: 1px solid white !important;
+                box-shadow: none;
+            }
+            
+        }
+        .warnimg{
+            width: 12px;
+            margin-right: 8px;
+        }
+        .warn-message{
+            font-size: 12px;
+            color: #D00000;
+        }
+    }
+    .text{
+        width: 930px;
+        height: 450px;
+        background: #FFFFFF;
+        padding: 30px;
+        margin-top: 10px;
+    }
+ }
