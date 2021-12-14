@@ -104,9 +104,11 @@
     }
     .text{
         width: 930px;
-        height: 450px;
         background: #FFFFFF;
         padding: 30px;
         margin-top: 10px;
+        .editor{
+            margin-top: 22px;
+        }
     }
  }

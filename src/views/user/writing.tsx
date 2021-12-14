@@ -1,5 +1,9 @@
+// @ts-nocheck
 import { Component } from 'react'
 import './writing.scss'
+import { Editor } from '@tinymce/tinymce-react'
+import tinymce from 'tinymce/tinymce';
+
 
 import addimg from '../../public/images/user/add.png'
 import warnimg from '../../public/images/warn.png'
@@ -10,6 +14,7 @@ export default class Writing extends Component{
     }
     render(){
         let titleMessage=this.state.titleMessage
+        let templateStr='jfgsdhgfshfsj'
         return(
             <div className='writing'>
                 <div className='top flexb'>
@@ -50,6 +55,30 @@ export default class Writing extends Component{
                 </div>
                 <div className='text'>
                     <div className='font16 bold'>文章内容</div>
+                    <div className='editor'>
+                        <Editor
+                            initialValue={templateStr}
+                            id={"tincyEditor"}
+                            tinymceScriptSrc={'../../../tinymce/js/tinymce/tinymce.min.js'}
+                            apiKey="rh24uyb3hr53u33vfied8hxssd4gtwuk8y4k3oh6szi5el3k"
+                            init={{
+                                language: 'zh_CN',
+                                width: 790,
+                                min_height: 350,
+                                font_formats:"微软雅黑='微软雅黑';宋体='宋体';黑体='黑体';仿宋='仿宋';楷体='楷体';隶书='隶书';幼圆='幼圆';Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings",
+                                plugins: 'preview searchreplace autolink directionality visualblocks visualchars fullscreen image link template code codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount imagetools textpattern help emoticons autosave autoresize formatpainter',
+                                toolbar: 'styleselect | fontsizeselect | forecolor backcolor bold italic underline strikethrough link image | code undo redo restoredraft | fontselect | cut copy paste pastetext | alignleft aligncenter alignright alignjustify outdent indent | bullist numlist | blockquote subscript superscript removeformat | table media charmap emoticons hr pagebreak insertdatetime print preview | fullscreen | bdmap indent2em lineheight formatpainter axupimgs',
+                                fontsize_formats: '12px 14px 16px 18px 24px 36px 48px 56px 72px',
+                                branding: false, // 水印“Powered by TinyMCE”
+                                menubar: false, // 最上方的菜单
+                                statusbar: true, // 底部的状态栏
+                                convert_urls: false,//去除URL转换
+                                plugin_preview_width: "930", // 预览宽度
+                                images_upload_handler: (blobInfo, success, failure)=>{}}}
+                            onEditorChange={this.EditorChange}
+                        />
+
+                    </div>
                 </div>
             </div>
         )
