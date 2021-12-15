@@ -1,0 +1,29 @@
+.data-analysis{
+    .back{
+        background: #FFFFFF;
+        padding: 30px;
+    }
+    .mtop{
+        margin-top: 10px;
+    }
+    .data-analysis-back-item{
+        margin-top: 22px;
+    }
+    .data-title{
+        margin-top: 22px;
+        .day-name{
+            font-size: 12px;
+            color: #999999;
+            width: 80px;
+            height: 32px;
+            background: #FFFFFF;
+            border: 1px solid #DCDCDC;
+            margin-right: 16px;
+        }
+        .day-name-active{
+            background: #304F97;
+            color: #FFFFFF;
+        }
+    }
+    
+}

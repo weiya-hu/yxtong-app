@@ -1,0 +1,24 @@
+.article-list{
+    background: #FFFFFF;
+    width: 930px;
+    padding: 23px 30px 30px;
+    position: relative;
+    .content-txt{
+        font-size: 18px;
+        font-weight: 600;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+    .list-item{
+        margin-top: 49px;
+    }
+    .paginations{
+        position: relative;
+        background: #F4F4F4;
+        width: 930px;
+        left: -30px;
+        top: 30px;
+        padding: 10px 0;
+    }
+}

@@ -93,14 +93,7 @@
             }
             
         }
-        .warnimg{
-            width: 12px;
-            margin-right: 8px;
-        }
-        .warn-message{
-            font-size: 12px;
-            color: #D00000;
-        }
+        
     }
     .text{
         width: 930px;
@@ -110,5 +103,18 @@
         .editor{
             margin-top: 22px;
         }
+        .text-message{
+            position: absolute;
+            top: 11px;
+            right: 0px;
+        }
+    }
+    .warnimg{
+        width: 12px;
+        margin-right: 8px;
+    }
+    .warn-message{
+        font-size: 12px;
+        color: #D00000;
     }
  }

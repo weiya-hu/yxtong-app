@@ -3,6 +3,8 @@ import './user.scss'
 import MyTask from './myTask'
 import Profit from './profit'
 import Writing from './writing'
+import ArticleList from './articleList'
+import DataAnalysis from './dataAnalysis'
 
 import logoimg from '../../public/images/logo.png'
 import homeimg from '../../public/images/user/home.png'
@@ -18,7 +20,7 @@ export default class User extends Component {
         nav:['我的任务','我的收益','创作中心','我的消息','设置'],
         aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
         navActiveIndex:2,//导航active的下标
-        asideActive:0,//侧边栏active的下标
+        asideActive:2,//侧边栏active的下标
         exitActive:false,//退出按钮是否hover
         exitNone:true,//退出登录是否显示
     }
@@ -103,7 +105,9 @@ export default class User extends Component {
                 {
                   navActiveIndex === 0 ? <MyTask /> :
                   navActiveIndex === 1 ? <Profit /> :
-                  navActiveIndex === 2 && <Writing />
+                  (navActiveIndex === 2 && asideActive === 0)? <Writing />:
+                  (navActiveIndex === 2 && asideActive === 1) ? <ArticleList />:
+                  (navActiveIndex === 2 && asideActive === 2) && <DataAnalysis />
                 }
                 
               </div>

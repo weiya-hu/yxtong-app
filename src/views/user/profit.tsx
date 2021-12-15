@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Component } from "react";
-import { Table } from 'antd'
+import { Table, Pagination } from 'antd'
 import './profit.scss'
 import MyScore from "./component/myScore";
 
@@ -44,7 +44,8 @@ export default class Profit extends Component{
         super(props)
     }
     state={
-
+        current:1,//分页当前页
+        pageSize:5,//每页条数
     }
     render(){
         return(
@@ -62,8 +63,14 @@ export default class Profit extends Component{
                         showHeader={false} 
                         dataSource={dataSource} 
                         columns={columns} 
+                        pagination={false}
                     />
+                    <div className='flexr pagination paginations'>
+                        <Pagination total={dataSource.length} current={this.state.current} pageSize={this.state.pageSize} size='small'/>
+                    </div>
                 </div>
+
+                
             </div>
         )
     }

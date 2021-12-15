@@ -1,12 +1,14 @@
 @import '~antd/dist/antd.css';
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#root{height: 100%;background: #F4F4F4;}
 //取消双击选中文字，字体为微软雅黑
 div,span{
   -moz-user-select:none;/*火狐*/
@@ -34,7 +36,7 @@ div,span{
 .font12{
   font-size: 12px;
 }
-.font12{
+.font16{
   font-size: 16px;
 }
 code {
@@ -82,6 +84,12 @@ code {
   align-items: flex-start;
   justify-content: flex-start;
 }
+.flexcbl{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 .back{background: rgba($color: #000000, $alpha: 0.3);}
 .color1{
   color: #363636;
@@ -93,3 +101,31 @@ code {
   color: #999999;
 }
 .colorw{color: #FFFFFF;}
+.pagination{
+  .ant-pagination-item-active{
+      border-color: #ff8800;
+      background:#ff8800;
+      a{
+          color: #ffffff;
+      }
+  }
+  
+  .ant-pagination-item a:hover{
+      color: #ff8800;
+  }
+  .ant-pagination-item-active a:hover{
+      color: #ffffff;
+  }
+  .ant-pagination-prev:hover .anticon-left{
+      color: #ff8800;
+  }
+  .ant-pagination-next:hover .anticon-right{
+      color: #ff8800;
+  }
+  .anticon-right:hover{
+      color: #ff8800;
+  }
+  .anticon-left:hover{
+      color: #ff8800;
+  }
+}

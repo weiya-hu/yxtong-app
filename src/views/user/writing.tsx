@@ -10,11 +10,12 @@ import warnimg from '../../public/images/warn.png'
 
 export default class Writing extends Component{
     state={
-        titleMessage:''
+        titleMessage:'',//标题的错误message
+        textMessage:'必填项',//文章的错误message
     }
     render(){
-        let titleMessage=this.state.titleMessage
-        let templateStr='jfgsdhgfshfsj'
+        let titleMessage=this.state.titleMessage,textMessage=this.state.textMessage
+        let templateStr=''
         return(
             <div className='writing'>
                 <div className='top flexb'>
@@ -55,7 +56,7 @@ export default class Writing extends Component{
                 </div>
                 <div className='text'>
                     <div className='font16 bold'>文章内容</div>
-                    <div className='editor'>
+                    <div className='editor position'>
                         <Editor
                             initialValue={templateStr}
                             id={"tincyEditor"}
@@ -77,7 +78,12 @@ export default class Writing extends Component{
                                 images_upload_handler: (blobInfo, success, failure)=>{}}}
                             onEditorChange={this.EditorChange}
                         />
-
+                        {textMessage && 
+                            <div className='flexl text-message'>
+                                <div className='warnimg fleximg'><img src={warnimg} alt="warning" /></div>
+                                <div className='warn-message'>{textMessage}</div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
