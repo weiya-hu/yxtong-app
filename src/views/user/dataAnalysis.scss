@@ -24,6 +24,40 @@
             background: #304F97;
             color: #FFFFFF;
         }
+        .data-title-overview-item{
+            margin-left: 20px;
+            >div{
+                font-size: 12px;
+            }
+        }
+        .selectimg{
+            width: 14px;
+            margin-right: 8px;
+        }
     }
-    
+    .score_detailed{
+        margin-top: 22px
+    }
+    .ant-table-thead > tr>th{
+        background: #304F97;
+        color: #FFFFFF;
+        font-size: 14px;
+        .ant-table-column-title{
+            color: #FFFFFF;
+            font-size: 14px;
+            
+        }
+        .ant-table-column-sorter{
+            span{
+                color: #6B88CB;
+            }
+            
+        }
+    }
+    .ant-table-thead th.ant-table-column-has-sorters:hover {
+        background: rgba(48, 79, 151, 1);
+    }
+    .ant-tooltip-open{
+        overflow: hidden;
+    }
 }
