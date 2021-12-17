@@ -20,6 +20,7 @@ const Register = loadable(() => import('../views/login/register'), {
 const User = loadable(() => import('../views/user/user'), {
     LoadingComponent: Loading,
 })
+const News = loadable(()=> import('../views/news/news'))
  
  
 class IRouter extends React.Component {
@@ -30,6 +31,7 @@ class IRouter extends React.Component {
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/user" exact component={User} />
+                    <Route path="/news" component={News} />
                     <Route path="/" exact component={Home} />
  
                     {/* 404页面 */}

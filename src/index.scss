@@ -39,10 +39,13 @@ div,span{
 .font16{
   font-size: 16px;
 }
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.top10{
+  margin-top: 10px;
 }
+// code {
+//   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+//     monospace;
+// }
 .fleximg{
   display: flex;
   justify-content: center;

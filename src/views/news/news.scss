@@ -1,0 +1,18 @@
+#news{
+    height: 300px;
+    .news-main{
+        width: 886px;
+        background: #FFFFFF;
+        padding: 0 20px;
+        .news-type{
+            height: 54px;
+            border-bottom: 1px solid #F4F4F4;
+            .news-type-item{
+                font-size: 16px;
+                margin-right: 40px;
+                
+            }
+        }
+    }
+    
+}
