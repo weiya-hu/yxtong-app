@@ -77,6 +77,11 @@ div,span{
   justify-content: space-between;
   align-items: center;
 }
+.flexa{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .flexbl{
   display: flex;
   justify-content: space-between;
@@ -92,6 +97,12 @@ div,span{
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+}
+.fleximgc{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .back{background: rgba($color: #000000, $alpha: 0.3);}
 .color1{
