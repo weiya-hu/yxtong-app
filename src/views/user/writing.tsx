@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { Component } from 'react'
 import './writing.scss'
 import { Editor } from '@tinymce/tinymce-react'
@@ -12,6 +12,9 @@ export default class Writing extends Component{
     state={
         titleMessage:'',//标题的错误message
         textMessage:'必填项',//文章的错误message
+    }
+    EditorChange=(val)=>{
+        
     }
     render(){
         let titleMessage=this.state.titleMessage,textMessage=this.state.textMessage

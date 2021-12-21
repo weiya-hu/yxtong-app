@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 import { Component } from 'react';
 import './newsListItem.scss';
 
@@ -10,7 +10,22 @@ import readimg from '../../../../public/images/user/read.png'
 import addSmallimg from '../../../../public/images/user/addSmall.png'
 import gouimg from '../../../../public/images/user/gou.png'
 
-export default class NewsListItem extends Component{
+interface item{
+  title:string
+  content:string
+  time:string
+  read:number,
+  from:string
+  star:boolean,
+  share :boolean,
+  follow:boolean,
+}
+
+interface NewsListItemState{
+  item:item
+}
+
+export default class NewsListItem extends Component<NewsListItemState>{
   render(){
     let item = this.props.item
     return(

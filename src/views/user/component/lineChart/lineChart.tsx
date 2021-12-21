@@ -36,7 +36,11 @@ echarts.use([
   CanvasRenderer
 ]);
 
-export default class LineCharts extends Component{
+interface LineChartsState{
+    data:[number,number][]
+}
+
+export default class LineCharts extends Component<LineChartsState>{
     constructor(props){
         super(props)
         this.chart=null

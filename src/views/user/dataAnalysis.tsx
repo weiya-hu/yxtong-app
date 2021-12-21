@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { Component } from "react";
 import { Table, Pagination ,ConfigProvider  } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
@@ -28,21 +28,21 @@ const columns = [
     {
         title: '时间',
         dataIndex: 'time',
-        align:'center',
+        align:'center' as 'center',
         width:200
     },
     {
       title: '阅读（播放）数',
       dataIndex: 'read',
       sorter: (a, b) => a.read - b.read,
-      align:'center',
+      align:'center' as 'center',
       width:175
     },
     ,
     {
       title: '收藏数',
       dataIndex: 'collect',
-      align:'center',
+      align:'center' as 'center',
       width:175,
       sorter: (a, b) => a.collect - b.collect,
     },
@@ -50,7 +50,7 @@ const columns = [
     {
       title: '分享数',
       dataIndex: 'share',
-      align:'center',
+      align:'center' as 'center',
       width:175,
       sorter: (a, b) => a.share - b.share,
     },
@@ -58,7 +58,7 @@ const columns = [
     {
       title: '评论数',
       dataIndex: 'comment',
-      align:'center',
+      align:'center' as 'center',
       width:175,
       sorter: (a, b) => a.comment - b.comment,
     }

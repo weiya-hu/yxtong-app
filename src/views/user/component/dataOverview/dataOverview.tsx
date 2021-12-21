@@ -1,9 +1,18 @@
-// @ts-nocheck
+
 import { Component } from 'react'
 import './dataOverview.scss'
 import upimg from '../../../../public/images/user/up.png'
 
-export default class DataOverview extends Component {
+type DataOverviewState={
+    item:{
+        num:number;
+        yesterday:number;
+    };
+    txt:string
+    
+}
+
+export default class DataOverview extends Component<DataOverviewState> {
     render(){
         let item = this.props.item;
         return <div className='overview-item flexcbl'>

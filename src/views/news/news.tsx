@@ -1,7 +1,6 @@
-//@ts-nocheck
+
 import { Component } from 'react'
 import { List, message, Avatar, Skeleton, Divider } from 'antd';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import './news.scss'
 import Header from './component/header/header'
 import NewsListItem from './component/newsListItem/newsListItem'
@@ -21,6 +20,7 @@ export default class News extends Component{
   }
   loadMoreData=()=>{
     setTimeout(()=>{
+      let ary=[]
       for(let i=0;i<7;i++){
         let itm={
           title:'国民党终于拿出一铁证，“台湾属于中国”响彻岛内！',
@@ -73,7 +73,11 @@ export default class News extends Component{
     return (
       <div id='news' onClick={()=>{this.setState({exitNone:true})}}>
         <div>
-          <Header isLogin={isLogin} exitNone={exitNone} exitNoneFlag={(val)=>{this.setState({exitNone:val})}}/>  
+          <Header 
+            isLogin={isLogin} 
+            exitNone={exitNone} 
+            exitNoneFlag={(val)=>{this.setState({exitNone:val})}}
+          />  
         </div> 
         <div className='width top10 flexbl'>
           <div className='news-main'>

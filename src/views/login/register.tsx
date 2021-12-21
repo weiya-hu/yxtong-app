@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { Component } from 'react'
 import './register.scss'
 import { Form , Button} from 'antd';
@@ -59,7 +59,8 @@ export default class Register extends Component {
         }      
     }
     componentDidMount(){
-        let pathname = this.props.location.pathname.split('/')
+        let { location } = this.props as { location }
+        let pathname = location.pathname.split('/')
         this.setState({isForget:pathname[2]})
     }
     render(){

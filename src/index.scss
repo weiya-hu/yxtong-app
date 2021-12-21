@@ -104,7 +104,10 @@ div,span{
   justify-content: space-between;
   align-items: center;
 }
-.back{background: rgba($color: #000000, $alpha: 0.3);}
+.back{
+  background: rgba($color: #000000, $alpha: 0.3);
+  // height: 100vh;
+}
 .color1{
   color: #363636;
 }

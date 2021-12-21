@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { Component } from "react";
 import { Table, Pagination } from 'antd'
 import './profit.scss'
@@ -20,21 +20,21 @@ const columns = [
         title: '时间',
         dataIndex: 'time',
         key: 'time',
-        align:'center',
+        align:'center' as 'center',
         width:290
     },
     {
         title: '积分',
         dataIndex: 'score',
         key: 'score',
-        align:'center',
+        align:'center' as 'center',
         width:290
     },
     {
         title: '明细',
         dataIndex: 'detail',
         key: 'detail',
-        align:'center',
+        align:'center' as 'center',
         width:290,
         
     },

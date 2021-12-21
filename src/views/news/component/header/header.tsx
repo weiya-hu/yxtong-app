@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 import { Component} from 'react'
 import './header.scss'
 
@@ -6,7 +6,13 @@ import headerimg from '../../../../public/images/user/header.png'
 import exitimg from '../../../../public/images/user/exit.png'
 import exitactiveimg from '../../../../public/images/user/exitactive.png'
 
-export default class Header extends Component{
+interface HeaderState{
+  isLogin:boolean;
+  exitNone:boolean;
+  exitNoneFlag:(val:boolean)=>void
+}
+
+export default class Header extends Component<HeaderState>{
   state={
     links:['药智网','产业大脑','药智资讯','药智人才','专利通','药智汇','药智通','智慧大讲堂','论坛交流','俱乐部','海外智通','药智谷','药智搜','PDI峰会'],
     exitActive:false,//退出按钮是否hover
