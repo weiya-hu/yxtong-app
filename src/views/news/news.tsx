@@ -1,24 +1,26 @@
-
+//@ts-nocheck
 import { Component } from 'react'
-import { List, message, Avatar, Skeleton, Divider } from 'antd';
 import './news.scss'
 import Header from './component/header/header'
 import NewsListItem from './component/newsListItem/newsListItem'
+import NewsNav from './component/newsNav/newsNav';
+import FollowButton from './component/followButton/followButton';
 
 import writeimg from '../../public/images/user/write.png'
 import exchangeimg from '../../public/images/user/exchange.png'
-import addSmallimg from '../../public/images/user/addSmall.png'
-import gouimg from '../../public/images/user/gou.png'
+
 export default class News extends Component{
   state={
     isLogin:true,//是否登录了
     exitNone:true,//退出登录是否显示
-    newsType:['关注','推荐','热榜','抗疫','健康','小说','娱乐','美食','财经','更多'],
     newsTypeActive:0,
     mayInterestList:[],
-    newsList:[]
+    newsList:[],
+    scrollHeight: 100,
+    hasMore: true,// 判断接口是否还有数据，通过接口设置
   }
   loadMoreData=()=>{
+    let array=this.state.newsList
     setTimeout(()=>{
       let ary=[]
       for(let i=0;i<7;i++){
@@ -35,11 +37,32 @@ export default class News extends Component{
         ary.push(itm)
       }
       this.setState({
-        newsList:ary
+        newsList:array.concat(ary) 
       })
     },500)
   }
+  handleScroll=()=>{
+    const {hasMore} = this.state;
+    if(!hasMore){
+        return;
+    }
+    //下面是判断页面滚动到底部的逻辑
+    console.log(this.scrollDom.scrollTop,this.scrollDom.clientHeight,this.scrollDom.scrollHeight)
+    if(this.scrollDom.scrollTop + this.scrollDom.clientHeight >= this.scrollDom.scrollHeight){
+     
+      console.log('hahah ')
+        this.loadMoreData()
+    }
+  }
+  newsIndexChange=(val)=>{
+    this.setState({newsTypeActive:val})
+  }
   componentDidMount(){
+    this.setState({
+      scrollHeight: window.innerHeight 
+  })
+
+
     let arr =[],ary=[]
     for(let i=0;i<7;i++){
       let item={
@@ -64,53 +87,95 @@ export default class News extends Component{
       newsList:ary
     })
     console.log(this.state.mayInterestList,arr)
+
+    const el = document.querySelector('.news-list')
+    const offsetHeight = el.offsetHeight
+    console.log(el)
+    el.onscroll = () => {
+      console.log(88)
+      const scrollTop = el.scrollTop
+      const scrollHeight = el.scrollHeight
+      if (offsetHeight + scrollTop - scrollHeight >= 500) {
+        // 需要执行的代码
+        console.log('已滚动到底部')
+        // 调用list 原本的数据请求函数
+        // this.handleInfiniteOnLoad()
+      }
+    }
   }
   render(){
-    let isLogin=this.state.isLogin,exitNone=this.state.exitNone,newsType=this.state.newsType;
+    let isLogin=this.state.isLogin,exitNone=this.state.exitNone;
     let newsTypeActive = this.state.newsTypeActive,mayInterestList=this.state.mayInterestList;
     let newsList=this.state.newsList
-    console.log(mayInterestList)
+    let scrollHeight = this.state.scrollHeight;
     return (
-      <div id='news' onClick={()=>{this.setState({exitNone:true})}}>
-        <div>
+      <div id='news' onClick={()=>{this.setState({exitNone:true})}} ref={body=>this.scrollDom = body} style={{height: scrollHeight}}
+      onScroll={this.handleScroll.bind(this)}>
+        <div className='news-header'>
           <Header 
             isLogin={isLogin} 
             exitNone={exitNone} 
-            exitNoneFlag={(val)=>{this.setState({exitNone:val})}}
+            exitNoneFlag={(val)=>{this.setState({exitNone:val})}}           
           />  
         </div> 
-        <div className='width top10 flexbl'>
-          <div className='news-main'>
-            <div className='news-type flexl'>
-              {newsType.map((item,index)=>(
-              <div 
-                key = {index}
-                className={newsTypeActive === index ?'news-type-item news-type-item-active':'news-type-item'}
-                onClick={()=>{this.setState({newsTypeActive:index})}}
-              >{item}</div>))}
+        <div className='news-down'>
+          <div className='news-down-top'></div>
+          <div className='width flexbl position'>
+            <div className='news-main'>
+              <NewsNav newsIndexChange={this.newsIndexChange} />
             </div>
-            <div className='may-interest'>
-              <div className='may-interest-title flexb'>
-                <div className='may-interest-title-txt'>您可能感兴趣</div>
-                <div className='flexr'>
-                  <div className='exchangeimg fleximg'><img src={exchangeimg} alt="exchangeimg" /></div>
-                  <div className='color3'>换一换</div>
+            <div className='userinfo'>  
+              <div className='bold'>作者名</div>
+              <div className='writeimg fleximg'><img src={writeimg} alt="write" /></div>
+              <div className='font12'>写文章</div>
+              <div className='hr'></div>
+              <div className='flexa'>
+                <div className='fleximgc'>
+                  <div className='font12'>今日阅读</div>
+                  <div className='today-read'>200</div>
+                  <div className='yeterday-profit'>昨日阅读 <span>8</span></div>
+                </div>
+                <div className='fleximgc'>
+                  <div className='font12'>今日分享</div>
+                  <div className='today-read'>200</div>
+                  <div className='yeterday-profit'>昨日分享 <span>8</span></div>
+                </div>
+                <div className='fleximgc'>
+                  <div className='font12'>今日收益</div>
+                  <div className='today-read'>200</div>
+                  <div className='yeterday-profit'>昨日收益 <span >8</span></div>
                 </div>
               </div>
-              <div className='may-interest-list flexb'>
-                {mayInterestList.map((item,index)=>(
-                  <div className='may-interest-item fleximgc' key={index}>
-                    <div className='fleximg writeimg'><img src={writeimg} alt="cover" /></div>
-                    <div >{item.name}</div>
-                    <div className={item.follow?' interest-button-gray fleximg':'fleximg interest-button'}>
-                      <div className='followimg fleximg'><img src={item.follow?gouimg:addSmallimg} alt="follow" /></div>
-                      <span>{item.follow?'已关注':'关注'}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <div className='button fleximg'>进入内容中心</div>
             </div>
-            <div className='news-list'>
+          </div>
+        </div>
+        <div className='width flexbl'>
+          <div className='news-main'>
+            {newsTypeActive === 0 &&
+              <div className='may-interest'>
+                <div className='may-interest-title flexb'>
+                  <div className='may-interest-title-txt'>您可能感兴趣</div>
+                  <div className='flexr'>
+                    <div className='exchangeimg fleximg'><img src={exchangeimg} alt="exchangeimg" /></div>
+                    <div className='color3'>换一换</div>
+                  </div>
+                </div>
+                <div className='may-interest-list flexb'>
+                  {mayInterestList.map((item,index)=>(
+                    <div className='may-interest-item fleximgc' key={index}>
+                      <div className='fleximg writeimg'><img src={writeimg} alt="cover" /></div>
+                      <div >{item.name}</div>
+                      <div>
+                        <FollowButton item={item}/>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            }
+            
+            <div className='news-list'  >
               {newsList.map((item,index)=>(
                 <div>
                   <NewsListItem item={item}/>
@@ -118,31 +183,7 @@ export default class News extends Component{
               ))}
             </div>
           </div>
-          <div className='userinfo'>  
-            <div className='bold'>作者名</div>
-            <div className='writeimg fleximg'><img src={writeimg} alt="write" /></div>
-            <div className='font12'>写文章</div>
-            <div className='hr'></div>
-            <div className='flexa'>
-              <div className='fleximgc'>
-                <div className='font12'>今日阅读</div>
-                <div className='today-read'>200</div>
-                <div className='yeterday-profit'>昨日阅读 <span>8</span></div>
-              </div>
-              <div className='fleximgc'>
-                <div className='font12'>今日分享</div>
-                <div className='today-read'>200</div>
-                <div className='yeterday-profit'>昨日分享 <span>8</span></div>
-              </div>
-              <div className='fleximgc'>
-                <div className='font12'>今日收益</div>
-                <div className='today-read'>200</div>
-                <div className='yeterday-profit'>昨日收益 <span >8</span></div>
-              </div>
-            </div>
-            <div className='button fleximg'>进入内容中心</div>
           </div>
-        </div>
       </div>
     )
   }

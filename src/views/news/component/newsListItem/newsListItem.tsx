@@ -1,14 +1,13 @@
 
 import { Component } from 'react';
 import './newsListItem.scss';
+import FollowButton from '../followButton/followButton';
 
 import shareimg from '../../../../public/images/user/share.png'
 import shareActiveimg from '../../../../public/images/user/shareActive.png'
 import starimg from '../../../../public/images/user/star.png'
 import starActiveimg from '../../../../public/images/user/starActive.png'
 import readimg from '../../../../public/images/user/read.png'
-import addSmallimg from '../../../../public/images/user/addSmall.png'
-import gouimg from '../../../../public/images/user/gou.png'
 
 interface item{
   title:string
@@ -52,9 +51,8 @@ export default class NewsListItem extends Component<NewsListItemState>{
                 <div className='fleximg readimg'><img src={readimg} alt="read" /></div>
                 <span className='color3'>{item.read}</span>
               </div>
-              <div className={item.follow?' interest-button-gray fleximg':'fleximg interest-button'}>
-                <div className='followimg fleximg'><img src={item.follow?gouimg:addSmallimg} alt="follow" /></div>
-                <span>{item.follow?'已关注':'关注'}</span>
+              <div>
+                <FollowButton item={item}/>
               </div>
             </div>
           </div>

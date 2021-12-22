@@ -1,0 +1,17 @@
+.news-type{
+    height: 54px;
+    width: 100%;
+    border-bottom: 1px solid #F4F4F4;
+
+    .news-type-item{
+        font-size: 16px;
+        margin-right: 40px;
+        border: 3px solid rgba(0,0,0,0);
+        line-height: 48px;
+    }
+    .news-type-item-active{
+        border-bottom:3px solid #304F97;
+        color: #304F97;
+        font-weight: 600;
+    }
+}

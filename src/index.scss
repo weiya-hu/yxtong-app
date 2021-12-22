@@ -1,4 +1,7 @@
 @import '~antd/dist/antd.css';
+html{
+  overflow-y: hidden;
+}
 body {
   margin: 0;
   padding: 0;
@@ -8,7 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-#root{height: 100%;background: #F4F4F4;}
+#root{background: #F4F4F4;}
 //取消双击选中文字，字体为微软雅黑
 div,span{
   -moz-user-select:none;/*火狐*/

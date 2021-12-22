@@ -1,0 +1,29 @@
+.interest-button{
+    width: 68px;
+    height: 28px;
+    background: #FFFFFF;
+    border: 1px solid #304F97;
+    >span{
+        font-size: 12px;
+        color: #304F97;
+    }
+    .followimg{
+      width: 8px;
+      margin-right: 4px;
+    }
+    
+}
+.interest-button-gray{
+  width: 70px;
+  height: 28px;
+  background: #FFFFFF;
+  border: 1px solid #DCDCDC;
+  .followimg{
+    width: 14px;
+    margin-right: 4px;
+  }
+  >span{
+    font-size: 12px;
+    color: #999999;
+  }
+}
