@@ -117,7 +117,11 @@ export default class User extends Component {
                       edit={(val)=>{this.setState({asideActive:val})}}
                       articleDetail={(val)=>{this.setState({isArticleDetail:val})}}
                     />:
-                  (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 1) && <ArticleDetail />
+                  (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 1) && 
+                  <div className='usermain-ArticleDetail'>
+                    <ArticleDetail />
+                  </div>
+                   
                 }
                 
               </div>

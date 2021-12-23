@@ -1,0 +1,21 @@
+.AuthorHotArticleItem{
+    background: #FFFFFF;
+    width: 100%;
+    margin-bottom: 24px;
+    .coverimg{
+        width: 110px;
+        height: 70px;
+        overflow: hidden;
+    }
+    .author-title{
+        width: 185px;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .article-detail{
+        height: 70px;
+    }
+}
