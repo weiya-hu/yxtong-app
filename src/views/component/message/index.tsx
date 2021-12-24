@@ -30,7 +30,7 @@ export const MessageContainer = () => {
   }
 
   useEffect(() => {
-    if (lists.length > 10) {
+    if (lists.length > 0) {
       lists.shift();
     }
   }, [lists])
@@ -86,12 +86,12 @@ export default $message;
 
 // 挂载容器到页面
 const createMessage = () => {
-  let el = document.getElementById('#message-wrap');
+  let el = document.getElementById('#pop-login');
   // 这一步是必要的的，因为在执行到这里的时候，页面还没有挂载，所以获取不到el节点
   if (!el) {
       el = document.createElement('div')
-      el.className = 'message-wrap'
-      el.id = 'message-wrap'
+      el.className = 'pop-login'
+      el.id = 'pop-login'
       document.body.append(el)
   }
   ReactDOM.render( <MessageContainer />, el);

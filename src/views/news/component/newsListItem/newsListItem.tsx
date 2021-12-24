@@ -2,11 +2,11 @@
 import { Component } from 'react';
 import './newsListItem.scss';
 import FollowButton from '../followButton/followButton';
+import Collect from '../collect/collect';
+import Share from '../share/share';
 
 import shareimg from '../../../../public/images/user/share.png'
 import shareActiveimg from '../../../../public/images/user/shareActive.png'
-import starimg from '../../../../public/images/user/star.png'
-import starActiveimg from '../../../../public/images/user/starActive.png'
 import readimg from '../../../../public/images/user/read.png'
 
 interface item{
@@ -40,12 +40,10 @@ export default class NewsListItem extends Component<NewsListItemState>{
             <div className='flexr'>
               <div className='color3'>{item.time}</div>
               <div className='flexl share'>
-                <div className='fleximg shareimg'><img src={item.share?shareActiveimg:shareimg} alt="share" /></div>
-                <span className={item.share?'share-active':'color3'}>分享</span>
+                <Share css='justify' />
               </div>
               <div className='flexl star'>
-                <div className='fleximg starimg'><img src={item.star?starActiveimg:starimg} alt="star" /></div>
-                <span className={item.star?'star-active':'color3'}>收藏</span>
+                <Collect css='justify' collect={item.star}/>
               </div>
               <div className='flexl'>
                 <div className='fleximg readimg'><img src={readimg} alt="read" /></div>

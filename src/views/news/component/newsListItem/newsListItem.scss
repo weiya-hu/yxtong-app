@@ -12,30 +12,14 @@
         .news-list-item-bottom{
           width: 100%;
           .share{
-            margin: 0 20px;
-            .shareimg{
-              width: 16px;
-              margin-right: 6px;
-            }
-            .share-active{
-              color: #304F97;
-              font-weight: 500;
-            }
+            margin: 0 16px;
           }
           .star{
-            margin: 0 20px 0 0;
-            .starimg{
-              width: 16px;
-              margin-right: 6px;
-            }
-            .star-active{
-              color: #FF8800;
-              font-weight: 500;
-            }
+            margin: 0 16px 0 0;
           }
           .readimg{
-            width: 16px;
-            margin-right: 6px;
+            width: 14px;
+            margin-right: 4px;
           }
         }
     }

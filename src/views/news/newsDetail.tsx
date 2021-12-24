@@ -6,6 +6,7 @@ import ArticleDetail from '../user/articleDetail';
 import FollowButton from './component/followButton/followButton';
 import AuthorHotArticleItem from './component/authorHotArticleItem/authorHotArticleItem';
 import Collect from './component/collect/collect';
+import Share from './component/share/share';
 
 import toimg from'../../public/images/user/to.png'
 import commentBlackimg from '../../public/images/user/commentBlack.png'
@@ -68,10 +69,12 @@ export default class NewsDetail extends Component {
                     </div>
                     <div className='newsDetail-share-hr'></div>
                     <div className='collect'>
-                        <Collect collectChange={this.collectChange} collect={articleINfo.collect} css='align'/>
+                        <Collect collect={articleINfo.collect} css='align'/>
                     </div>
                     <div className='newsDetail-share-hr'></div>
-                    <div className='share'></div>
+                    <div className='share'>
+                        <Share css='align' />
+                    </div>
                 </div>
                 <div className='newsDetail-article'>
                     <div>

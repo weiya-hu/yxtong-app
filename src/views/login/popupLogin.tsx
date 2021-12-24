@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import * as ReactDOM from 'react-dom';
 import './popupLogin.scss'
 import { Form , Button} from 'antd';
 import InputComponent from './component/inputComponent';
@@ -117,3 +118,16 @@ export default class PopupLogin extends Component {
     }
     
 }
+// 挂载容器到页面
+const createMessage = () => {
+    let el = document.getElementById('#message-wrap');
+    // 这一步是必要的的，因为在执行到这里的时候，页面还没有挂载，所以获取不到el节点
+    if (!el) {
+        el = document.createElement('div')
+        el.className = 'message-wrap'
+        el.id = 'message-wrap'
+        document.body.append(el)
+    }
+    ReactDOM.render( <PopupLogin />, el);
+  }
+  createMessage();

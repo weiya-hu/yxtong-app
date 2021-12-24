@@ -1,5 +1,7 @@
+
 import { Component } from 'react'
-import PopupLogin from './login/popupLogin'
+import * as ReactDOM from 'react-dom';
+import $PopupLogin from './login/popupLogin'
 import {doLogin} from '../service/login'
 
 
@@ -14,11 +16,14 @@ export default class Home extends Component {
         console.log(res)
     }
     componentDidMount(){
+        // $PopupLogin
         // this.getinfo()
+        // let el = document.getElementById('#home');
+        // ReactDOM.render( <PopupLogin />,el);
     }
     render(){
-        return <div className='fleximg back'>
-            <PopupLogin />
+        return <div id='home' className='fleximg back'>
+            {/* <PopupLogin /> */}
         </div>
     }
    

@@ -2,32 +2,42 @@
 .message-wrap{
     position: fixed;
     left: 50%;
-    top: 60px;
-    transform: translate(-50%);
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
     z-index: 1000;
-    .message{
-      height: 34px;
-      min-width: 180px;
-      padding: 0px 10px;
-      font-size: 12px;
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      border-radius: 4px;
-      box-shadow: 0 0 8px #ddd;
-      border: 1px solid #eee;
-      span{
-        color: #FFFFFF;
-      }
+    // .message{
+    //   height: 34px;
+    //   min-width: 180px;
+    //   padding: 0px 10px;
+    //   font-size: 12px;
+    //   margin-top: 20px;
+    //   display: flex;
+    //   align-items: center;
+    //   border-radius: 4px;
+    //   box-shadow: 0 0 8px #ddd;
+    //   border: 1px solid #eee;
+    //   span{
+    //     color: #FFFFFF;
+    //   }
       
-      .icon {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        margin-right: 6px;
-      }
-    }
+    //   .icon {
+    //     width: 10px;
+    //     height: 10px;
+    //     border-radius: 50%;
+    //     margin-right: 6px;
+    //   }
+    // }
     .info {
+      padding: 16px;
+      // height: 46px;
+      background: rgba(0,0,0,0.75);
+      border-radius: 2px;
+        >span{
+          font-size: 14px;
+          color: #FFFFFF;
+          line-height: 14px;
+          white-space: nowrap;
+        }
         color: #5a98e9;
         >.icon{
           background: #5a98e9;

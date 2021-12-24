@@ -16,7 +16,7 @@ export default class News extends Component{
     newsTypeActive:0,
     mayInterestList:[],
     newsList:[],
-    scrollHeight: 100,
+    scrollHeight: 0,
     hasMore: true,// 判断接口是否还有数据，通过接口设置
   }
   loadMoreData=()=>{
@@ -47,10 +47,8 @@ export default class News extends Component{
         return;
     }
     //下面是判断页面滚动到底部的逻辑
-    console.log(this.scrollDom.scrollTop,this.scrollDom.clientHeight,this.scrollDom.scrollHeight)
-    if(this.scrollDom.scrollTop + this.scrollDom.clientHeight >= this.scrollDom.scrollHeight){
-     
-      console.log('hahah ')
+    console.log(this.scrollDom.scrollTop+this.scrollDom.clientHeight,this.scrollDom.scrollHeight)
+    if(this.scrollDom.scrollTop + this.scrollDom.clientHeight+1 >= this.scrollDom.scrollHeight){
         this.loadMoreData()
     }
   }
