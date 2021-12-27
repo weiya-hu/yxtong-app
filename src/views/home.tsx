@@ -1,11 +1,13 @@
 
 import { Component } from 'react'
-import * as ReactDOM from 'react-dom';
-import $PopupLogin from './login/popupLogin'
+import PopupLogin from './login/popupLogin'
 import {doLogin} from '../service/login'
 
 
 export default class Home extends Component {
+    state={
+        popupLoginShow:false
+    }
     getinfo=async()=>{
         let data = {
             username: 'admin',
@@ -16,14 +18,23 @@ export default class Home extends Component {
         console.log(res)
     }
     componentDidMount(){
-        // $PopupLogin
-        // this.getinfo()
-        // let el = document.getElementById('#home');
-        // ReactDOM.render( <PopupLogin />,el);
+    }
+    login=()=>{
+        this.setState({
+            popupLoginShow:!this.state.popupLoginShow
+        })
     }
     render(){
-        return <div id='home' className='fleximg back'>
-            {/* <PopupLogin /> */}
+        let {popupLoginShow}=this.state
+        return <div id='home'>
+            <div onClick={this.login}>去登录</div>
+            {popupLoginShow &&
+                <div className='block'>
+                    <PopupLogin show={(val)=>this.setState({popupLoginShow:val})}/>
+                </div>
+
+            }
+            
         </div>
     }
    

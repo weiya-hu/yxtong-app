@@ -32,20 +32,22 @@ const NewsDetail = loadable(()=> import('../views/news/newsDetail'), {
 class IRouter extends React.Component {
     render() {
         return (
-            <Router>
-                <Switch>
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/user" exact component={User} />
-                    <Route path="/news" component={News} />
-                    <Route path="/newsDetail" component={NewsDetail} />
-                    <Route path="/" exact component={Home} />
- 
-                    {/* 404页面 */}
-                    <Route path="*" component={NotFound} />
-                </Switch>
- 
-            </Router>
+            <div>
+                <Router>
+                    <Switch>
+                        <Route path="/login" component={Login} />
+                        <Route path="/register/:name" component={Register} />
+                        <Route path="/user" exact component={User} />
+                        <Route path="/news" component={News} />
+                        <Route path="/newsDetail" component={NewsDetail} />
+                        <Route extra path="/" exact component={Home} />
+    
+                        {/* 404页面 */}
+                        <Route path="*" component={NotFound} />
+                    </Switch>
+    
+                </Router>
+            </div>
         )
     }
 }
