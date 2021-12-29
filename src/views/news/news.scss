@@ -1,6 +1,6 @@
 #news{
     overflow-y: auto;
-    padding-top: 100px;
+    padding: 100px 0 20px;
     .news-header{
         width: calc( 100% - 17px);
         position: fixed;
@@ -24,6 +24,7 @@
         width: 886px;
         background: #FFFFFF;
         padding: 0 20px;
+        
         .may-interest{
             border-bottom: 1px solid #F4F4F4; 
             padding: 26px 0 28px;
@@ -79,6 +80,14 @@
                 }
             }
         }
+        .news-loading{
+            height: 60px;
+            .loadingimg{
+                width: 12px;
+                margin-right: 8px;
+                animation: rotation 1s linear infinite;
+            }
+        }
     }
     .userinfo{
         width: 304px;
@@ -120,4 +129,12 @@
             margin-top: 25px;
         }
     }
+    @keyframes rotation {
+        from {
+            transform: rotate(360deg);
+        }
+        to {
+            transform: rotate(0deg);
+        }
+    } 
 }

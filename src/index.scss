@@ -1,6 +1,6 @@
 @import '~antd/dist/antd.css';
 html{
-  overflow: auto;
+  
 }
 body {
   margin: 0;
@@ -10,9 +10,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow:hidden;
+  
 }
-#root{background: #F4F4F4;overflow: auto;}
+#root{background: #F4F4F4;height: 100%;}
 //取消双击选中文字，字体为微软雅黑
 div,span{
   -moz-user-select:none;/*火狐*/
@@ -46,10 +46,6 @@ div,span{
 .top10{
   margin-top: 10px;
 }
-// code {
-//   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-//     monospace;
-// }
 .fleximg{
   display: flex;
   justify-content: center;

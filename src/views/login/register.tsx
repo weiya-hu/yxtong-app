@@ -61,7 +61,7 @@ export default class Register extends Component {
     componentDidMount(){
         let { location } = this.props as { location }
         let pathname = location.pathname.split('/')
-        this.setState({isForget:pathname[2]})
+        this.setState({isForget:pathname[3]})
     }
     render(){
         let isForget = this.state.isForget,warnMessage=this.state.warnMessage,registermessage=this.state.registermessage

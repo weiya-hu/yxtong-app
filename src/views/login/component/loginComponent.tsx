@@ -92,9 +92,9 @@ export default class LoginComponent extends Component {
                 </Form>
                 {loginSwitch?
                     <div className='forget flexb'>
-                        <Link to='/register/forget'><span>忘记密码？</span></Link>
+                        <Link to='/APP/register/forget'><span>忘记密码？</span></Link>
                         
-                        <Link to='/register/register'><span>免费注册</span></Link>
+                        <Link to='/APP/register/register'><span>免费注册</span></Link>
                     </div>:
                     <div></div>
                 }

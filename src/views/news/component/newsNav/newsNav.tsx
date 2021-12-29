@@ -21,6 +21,7 @@ export default class NewsNav extends Component<NewsNavState> {
                     onClick={()=>{
                         this.setState({newsTypeActive:index})
                         this.props.newsIndexChange(index)
+                        
                     }}
                 >{item}</div>))}
             </div>

@@ -1,5 +1,5 @@
 .interest-button{
-    width: 68px;
+    width: 70px;
     height: 28px;
     background: #FFFFFF;
     border: 1px solid #304F97;
@@ -24,6 +24,32 @@
   }
   >span{
     font-size: 12px;
+    color: #999999;
+  }
+}
+.big-interest-button{
+  width: 130px;
+  height: 40px;
+  background: #304F97;
+  border-radius: 2px;
+  .followimg{
+    width: 14px;
+    margin-right: 8px;
+  }
+  >span{
+    color: #FFFFFF;
+  }
+}
+.big-interest-button-gray{
+  width: 130px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #DCDCDC;
+  .followimg{
+    width: 14px;
+    margin-right: 8px;
+  }
+  >span{
     color: #999999;
   }
 }

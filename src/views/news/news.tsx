@@ -8,6 +8,7 @@ import FollowButton from './component/followButton/followButton';
 
 import writeimg from '../../public/images/user/write.png'
 import exchangeimg from '../../public/images/user/exchange.png'
+import loadingimg from '../../public/images/user/loading.png'
 
 export default class News extends Component{
   state={
@@ -50,10 +51,12 @@ export default class News extends Component{
     console.log(this.scrollDom.scrollTop+this.scrollDom.clientHeight,this.scrollDom.scrollHeight)
     if(this.scrollDom.scrollTop + this.scrollDom.clientHeight+1 >= this.scrollDom.scrollHeight){
         this.loadMoreData()
+        
     }
   }
   newsIndexChange=(val)=>{
     this.setState({newsTypeActive:val})
+    this.scrollDom.scrollTo(0, 0);
   }
   componentDidMount(){
     this.setState({
@@ -85,29 +88,11 @@ export default class News extends Component{
       newsList:ary
     })
     console.log(this.state.mayInterestList,arr)
-
-    const el = document.querySelector('.news-list')
-    const offsetHeight = el.offsetHeight
-    console.log(el)
-    el.onscroll = () => {
-      console.log(88)
-      const scrollTop = el.scrollTop
-      const scrollHeight = el.scrollHeight
-      if (offsetHeight + scrollTop - scrollHeight >= 500) {
-        // 需要执行的代码
-        console.log('已滚动到底部')
-        // 调用list 原本的数据请求函数
-        // this.handleInfiniteOnLoad()
-      }
-    }
   }
   render(){
-    let isLogin=this.state.isLogin,exitNone=this.state.exitNone;
-    let newsTypeActive = this.state.newsTypeActive,mayInterestList=this.state.mayInterestList;
-    let newsList=this.state.newsList
-    let scrollHeight = this.state.scrollHeight;
+    const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,scrollHeight,hasMore}=this.state
     return (
-      <div id='news' onClick={()=>{this.setState({exitNone:true})}} ref={body=>this.scrollDom = body} style={{height: scrollHeight}}
+      <div id='news' onClick={()=>{this.setState({exitNone:true})}} ref={body=>this.scrollDom = body} style={{height: scrollHeight-1}}
       onScroll={this.handleScroll.bind(this)}>
         <div className='news-header'>
           <Header 
@@ -149,7 +134,7 @@ export default class News extends Component{
           </div>
         </div>
         <div className='width flexbl'>
-          <div className='news-main'>
+          <div className='news-main news-position-left'>
             {newsTypeActive === 0 &&
               <div className='may-interest'>
                 <div className='may-interest-title flexb'>
@@ -180,8 +165,17 @@ export default class News extends Component{
                 </div>
               ))}
             </div>
+            {hasMore?(
+              <div className='fleximg news-loading'>
+                <div className='fleximg loadingimg'><img src={loadingimg} alt="loading" /></div>
+                <div className='font12 color3'>正在获取更多内容</div>
+              </div>): (
+              <div className='fleximg news-loading'>
+              <div className='font12 color3'>没有更多内容了</div>
+              </div>)
+            } 
           </div>
-          </div>
+        </div>
       </div>
     )
   }
