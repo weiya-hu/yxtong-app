@@ -2,7 +2,7 @@
   "name": "yxt-cp-app",
   "version": "0.1.0",
   "private": true,
-  "homepage":"/dist",
+  "homepage":"/",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
