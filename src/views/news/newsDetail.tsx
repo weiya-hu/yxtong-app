@@ -7,6 +7,8 @@ import FollowButton from './component/followButton/followButton';
 import AuthorHotArticleItem from './component/authorHotArticleItem/authorHotArticleItem';
 import Collect from './component/collect/collect';
 import Share from './component/share/share';
+import Report from './component/report/report';
+import Comment from './component/comment/comment';
 
 import toimg from'../../public/images/user/to.png'
 import commentBlackimg from '../../public/images/user/commentBlack.png'
@@ -83,6 +85,13 @@ export default class NewsDetail extends Component {
                     <div className='newsDetail-article-detail'>
                         <ArticleDetail />
                     </div>
+                    <div className='Report-div'>
+                        <Report />
+                    </div>
+                    <div>
+                        <Comment />
+                    </div>
+
                 </div>
                 <div className='newsDetail-author'>
                     <div className='newsDetail-author-info'>
@@ -96,7 +105,7 @@ export default class NewsDetail extends Component {
                         </div>
                         <div>
                             {authorHotList.map((item,index)=>(
-                                <div><AuthorHotArticleItem item={item}/></div>
+                                <div key={index}><AuthorHotArticleItem item={item}/></div>
                             ))}
                         </div>
                         <div className='fleximg more' >
@@ -110,7 +119,7 @@ export default class NewsDetail extends Component {
                     <div className='read-rank'>
                         <div className='read-rank-title'>每日阅读榜</div>
                         {readRank.map((item,index)=>(
-                            <div className='flexb read-rank-item'>
+                            <div key={index} className='flexb read-rank-item'>
                                 <div className={index<=2?'rank-num-active':'rank-num'}>{index + 1}</div>
                                 <div className='read-rank-title-txt'>{item.title}</div>
                             </div>

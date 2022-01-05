@@ -13,7 +13,7 @@ export default class NewsNav extends Component<NewsNavState> {
     render(){
         let newsType=this.state.newsType,newsTypeActive=this.state.newsTypeActive
         return( 
-            <div className='news-type flexl'>
+            <div className='news-type flexl' >
                 {newsType.map((item,index)=>(
                 <div 
                     key = {index}
@@ -21,7 +21,7 @@ export default class NewsNav extends Component<NewsNavState> {
                     onClick={()=>{
                         this.setState({newsTypeActive:index})
                         this.props.newsIndexChange(index)
-                        
+                        window.scrollTo (0,0);
                     }}
                 >{item}</div>))}
             </div>

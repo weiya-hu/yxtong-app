@@ -4,7 +4,7 @@
  import axios from "axios";
 
  axios.defaults.timeout = 10000;
- axios.defaults.baseURL = "http://dev.yxtong.com/";
+ axios.defaults.baseURL = "/";
 
 
  
@@ -58,6 +58,7 @@
      axios.get(url, {
          params: params,
        }).then((response) => {
+         console.log(url)
          landing(url, params, response.data);
          resolve(response.data);
        })
@@ -219,6 +220,7 @@
   * @param data
   */
  function landing(url, params, data) {
+   console.log(url)
    if (data.code === -1) {
    }
  }

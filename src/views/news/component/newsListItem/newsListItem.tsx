@@ -13,24 +13,25 @@ interface item{
   title:string
   content:string
   time:string
-  read:number,
+  read:number
   from:string
-  star:boolean,
-  share :boolean,
-  follow:boolean,
+  star:boolean
+  share :boolean
+  follow:boolean
 }
 
 interface NewsListItemState{
   item:item
+  size?:string
 }
 
 export default class NewsListItem extends Component<NewsListItemState>{
   render(){
-    let item = this.props.item
+    let {item,size} = this.props
     return(
       <div className='news-list-item flexb'>
         <div className='fleximg coverimg'><img src={readimg} alt="cover" /></div>
-        <div className='flexcbl news-list-item-right'>
+        <div className={size==='big'?'flexcbl news-list-item-right  news-list-item-right-big':'flexcbl news-list-item-right'} >
           <div>
             <div className='title'>{item.title}</div>
             <div className='item-content'>{item.content}</div>
@@ -50,7 +51,7 @@ export default class NewsListItem extends Component<NewsListItemState>{
                 <span className='color3'>{item.read}</span>
               </div>
               <div>
-                <FollowButton item={item}/>
+                {!(size==='big') && <FollowButton item={item}/>}                
               </div>
             </div>
           </div>

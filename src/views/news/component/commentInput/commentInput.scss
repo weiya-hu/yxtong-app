@@ -1,0 +1,23 @@
+.CommentInput-component{
+    .comment-txt{
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 600;
+    }
+    .unlogin-input{
+        width: 736px;
+        height: 100px;
+        background: #F4F4F4;
+        margin: 20px 0 16px;
+        >span{
+            color: #304F97;
+            margin: 0 4px;
+        }
+    }
+    .comment-button{
+        width: 76px;
+        height: 30px;
+        background: #304F97;
+        color: #FFFFFF;
+    }
+}

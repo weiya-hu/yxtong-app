@@ -14,10 +14,11 @@ export default class Home extends Component {
             passwd: '123',
             code: 'hjkj'
         }
-        const res =await doLogin(data)
+        const res =await doLogin()
         console.log(res)
     }
     componentDidMount(){
+        this.getinfo()
     }
     login=()=>{
         this.setState({

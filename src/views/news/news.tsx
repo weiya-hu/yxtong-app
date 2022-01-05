@@ -5,10 +5,12 @@ import Header from './component/header/header'
 import NewsListItem from './component/newsListItem/newsListItem'
 import NewsNav from './component/newsNav/newsNav';
 import FollowButton from './component/followButton/followButton';
+import MoreTxt from './component/moreTxt/moreTxt';
+import {util} from '../../utils/news'
 
 import writeimg from '../../public/images/user/write.png'
 import exchangeimg from '../../public/images/user/exchange.png'
-import loadingimg from '../../public/images/user/loading.png'
+
 
 export default class News extends Component{
   state={
@@ -17,7 +19,6 @@ export default class News extends Component{
     newsTypeActive:0,
     mayInterestList:[],
     newsList:[],
-    scrollHeight: 0,
     hasMore: true,// 判断接口是否还有数据，通过接口设置
   }
   loadMoreData=()=>{
@@ -42,28 +43,26 @@ export default class News extends Component{
       })
     },500)
   }
-  handleScroll=()=>{
+  // 页面滚动
+  handleScroll = () => {
     const {hasMore} = this.state;
     if(!hasMore){
         return;
     }
-    //下面是判断页面滚动到底部的逻辑
-    console.log(this.scrollDom.scrollTop+this.scrollDom.clientHeight,this.scrollDom.scrollHeight)
-    if(this.scrollDom.scrollTop + this.scrollDom.clientHeight+1 >= this.scrollDom.scrollHeight){
-        this.loadMoreData()
-        
+    if(util.getIsTOBottom() < 10){
+      // 解除绑定
+      window.removeEventListener('scroll', this.handleScroll ,false);
+      // 在这里发送请求
+      this.loadMoreData()
+      // 并在请求到数据后重新开启监听
+      setTimeout(()=>window.addEventListener('scroll', this.handleScroll, false), 300)
     }
   }
   newsIndexChange=(val)=>{
     this.setState({newsTypeActive:val})
-    this.scrollDom.scrollTo(0, 0);
   }
   componentDidMount(){
-    this.setState({
-      scrollHeight: window.innerHeight 
-  })
-
-
+    window.addEventListener('scroll', this.handleScroll, false)
     let arr =[],ary=[]
     for(let i=0;i<7;i++){
       let item={
@@ -87,13 +86,14 @@ export default class News extends Component{
       mayInterestList:arr,
       newsList:ary
     })
-    console.log(this.state.mayInterestList,arr)
+  }
+  componentWillUnmount(): void {
+    window.removeEventListener('scroll', this.handleScroll)
   }
   render(){
-    const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,scrollHeight,hasMore}=this.state
+    const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,hasMore}=this.state
     return (
-      <div id='news' onClick={()=>{this.setState({exitNone:true})}} ref={body=>this.scrollDom = body} style={{height: scrollHeight-1}}
-      onScroll={this.handleScroll.bind(this)}>
+      <div id='news' onClick={()=>{this.setState({exitNone:true})}}>
         <div className='news-header'>
           <Header 
             isLogin={isLogin} 
@@ -160,20 +160,12 @@ export default class News extends Component{
             
             <div className='news-list'  >
               {newsList.map((item,index)=>(
-                <div>
+                <div key={index}>
                   <NewsListItem item={item}/>
                 </div>
               ))}
             </div>
-            {hasMore?(
-              <div className='fleximg news-loading'>
-                <div className='fleximg loadingimg'><img src={loadingimg} alt="loading" /></div>
-                <div className='font12 color3'>正在获取更多内容</div>
-              </div>): (
-              <div className='fleximg news-loading'>
-              <div className='font12 color3'>没有更多内容了</div>
-              </div>)
-            } 
+              <MoreTxt hasMore={hasMore}/>
           </div>
         </div>
       </div>
