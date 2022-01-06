@@ -86,12 +86,12 @@ export default $message;
 
 // 挂载容器到页面
 const createMessage = () => {
-  let el = document.getElementById('#pop-login');
+  let el = document.getElementById('#message-wrap');
   // 这一步是必要的的，因为在执行到这里的时候，页面还没有挂载，所以获取不到el节点
   if (!el) {
       el = document.createElement('div')
-      el.className = 'pop-login'
-      el.id = 'pop-login'
+      el.className = 'message-wrap'
+      el.id = 'message-wrap'
       document.body.append(el)
   }
   ReactDOM.render( <MessageContainer />, el);

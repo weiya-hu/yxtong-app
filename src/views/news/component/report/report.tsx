@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import './report.scss'
 import PopupLogin from '../../../login/popupLogin'
+import { getUser } from '../../../../service/login'
 
 import reportimg from '../../../../public/images/user/report.png'
 import chaBlackimg from '../../../../public/images/user/chaBlack.png'
@@ -14,9 +15,10 @@ export default class Report extends Component {
         reportShow:false,
         loginShow:false,
     }
-    isLogin=()=>{
+    report=async()=>{
+        const res =await getUser()
         document.body.style.overflow='hidden'
-        if(1){//如果登录了
+        if(res.status){//如果登录了
             this.reportEdit()
         }else{//没有登录
             this.setState({
@@ -35,7 +37,7 @@ export default class Report extends Component {
     render(){
         const {reports,reportActive,reportShow,loginShow } =this.state
         return <div className='flexr report-component'>
-            <div className='flexr' onClick={this.isLogin}>
+            <div className='flexr' onClick={this.report}>
                 <div className='fleximg reportimg'>
                     <img src={reportimg} alt="report" />
                 </div>

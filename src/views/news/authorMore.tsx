@@ -78,6 +78,9 @@ export default class AuthorMore extends Component{
     componentWillUnmount(): void {
         window.removeEventListener('scroll', this.handleScroll)
 
+          localStorage.setItem('historyUrl','app/newsauthormore');
+
+
     }
     render(){
         const {isLogin,exitNone,types,typeActiveIndex,newsList,hasMore}=this.state

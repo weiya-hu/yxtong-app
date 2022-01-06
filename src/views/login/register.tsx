@@ -15,7 +15,7 @@ export default class Register extends Component {
     state={
         isForget:'',//模式选择，是忘记密码还是注册，候选值有forget,next,register
         warnMessage:'',//input框验证错误
-        registermessage:'密码最小长度6个字，最大长度16个字；必须包含字母、数字、不能和用户名相同',
+        registermessage:'密码长度在6~18之间,不能只是数字或字母',
         inviteCode:'',//邀请码默认值
         agree:false,//是否阅读并同意协议的默认值
     }

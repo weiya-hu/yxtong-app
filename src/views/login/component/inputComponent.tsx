@@ -1,10 +1,14 @@
 import { Component } from 'react'
 import './inputComponent.scss'
-import { Form, Input, Select} from 'antd'
+import { Form, Select} from 'antd'
+import {areaNum} from '../../../public/js/areaNum'
 import downselectimg from '../../../public/images/downselect.png'
 import openimg from '../../../public/images/open.png'
 import closeimg from '../../../public/images/close.png'
 import { util } from '../../../utils/user'
+import {sendSms} from '../../../service/login'
+
+import message from '../../component/message/index'
 
 const { Option } = Select;
 //五个参数，name：组件的标识，formName：表单name，和后端传的数据名有关，title：组件前面的label，可传可不传，在登录密码、确认密码这两个中必传，defaultValue一般指邀请码的默认值
@@ -20,6 +24,7 @@ export default class InputComponent extends Component<any> {
         YZMtxt:'获取验证码',//后面会切换为重获验证码
         password:'',//用于切换密码框的input为password或者text时的赋值
         ispassword:true,//用于切换密码框的input为password或者text
+        mobileInput:''
 
     }
     selectChange=(val,option)=>{
@@ -27,33 +32,47 @@ export default class InputComponent extends Component<any> {
         this.setState({
             countryCode:val
         })
+        this.props.Acode(val)
     }
-    getYZm=()=>{
-        let flag = true
-        this.setState({
-            getYZMflag:flag,
-            
-        })
-        if(flag){
-            //接口，获取接口发验证码
-            //           
-            let timer = setInterval(()=>{                
-                let num = this.state.mobileYZMnum
-                if(num>1){
-                    this.setState({
-                        mobileYZMnum:num - 1
-                    })
-                }else{
-                    flag = false
-                    this.setState({
-                        getYZMflag:flag,
-                        mobileYZMnum:120,
-                        YZMtxt:'重获验证码'
-                    })
-                    clearInterval(timer)
-                }                 
-            },1000)
+    getYZm=async()=>{
+        let {mobileValue,acode}=this.props
+        let msg = util.validate_mobile(mobileValue)
+        if(msg){
+            this.props.GETFalseMessage(msg)
+        }else{
+            let flag = true
+            this.setState({
+                getYZMflag:flag,
+            })
+            if(flag){
+                //接口，获取接口发验证码     
+                let timer = setInterval(()=>{                
+                    let num = this.state.mobileYZMnum
+                    if(num>1){
+                        this.setState({
+                            mobileYZMnum:num - 1
+                        })
+                    }else{
+                        flag = false
+                        this.setState({
+                            getYZMflag:flag,
+                            mobileYZMnum:120,
+                            YZMtxt:'重获验证码'
+                        })
+                        clearInterval(timer)
+                    }                 
+                },1000)
+                let data={
+                    acode:'+'+acode,
+                    mobile:mobileValue
+                }
+                const res =  await sendSms(data)   
+                // if(res.status){
+                //     message.info(res.message)
+                // }
+            }
         }
+        
     }
     inputBlur=(e,name)=>{
         const value = e.target.value
@@ -78,14 +97,15 @@ export default class InputComponent extends Component<any> {
         this.setState({password : e.target.value})
     }
     render(){
-        let component,name=this.props.name,formName= this.props.formName, ispassword=this.state.ispassword,title = this.props.title,defaultValue=this.props.defaultValue
-        let height = this.props.height
+        let component
+        const {name,formName,title,defaultValue,height}=this.props;
+        const {ispassword,countryCode}=this.state;
         switch(name){
             case 'mobile':
                 component =(
                     <div className={height?'phone flexl height':'phone flexl'}  >    
                         <div className='flexl countrycode'>
-                            <div className='countrycodetxt'>+{this.state.countryCode}</div>
+                            <div className='countrycodetxt'>+{countryCode}</div>
                             <div className='fleximg downselectimg'>
                                 <img src={downselectimg}/>
                             </div>
@@ -96,7 +116,7 @@ export default class InputComponent extends Component<any> {
                                 <input 
                                     autoComplete='off'  
                                     // value = { this.state.mobileInput} 
-                                    // onChange={(e)=>{this.setState({mobileInput :e.target.value })}} 
+                                    onChange={(e)=>{this.setState({mobileInput :e.target.value });this.props.MobileValue(e.target.value)}} 
                                     type="tel" 
                                     placeholder='请输入手机号' 
                                     onBlur={(e)=>{this.inputBlur(e,name)}}
@@ -104,10 +124,10 @@ export default class InputComponent extends Component<any> {
                             </Form.Item>
                         </div>
                         <div className='phoneselectpre '>
-                            <Form.Item name="countryCode">
+                            <Form.Item name="acode" initialValue={countryCode}>
                                 <Select className='phoneselect' onChange={(val,option)=>{this.selectChange(val,option)}}>
-                                    <Option value="86">中国 +86</Option>
-                                    <Option value="123">美国</Option>
+                                    {areaNum.map((item,index)=><Option key={index} value={item.tel}>{item.name}</Option>)}
+                                                                     
                                 </Select>  
                             </Form.Item>                      
                         </div>            

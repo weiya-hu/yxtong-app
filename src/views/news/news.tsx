@@ -89,6 +89,7 @@ export default class News extends Component{
   }
   componentWillUnmount(): void {
     window.removeEventListener('scroll', this.handleScroll)
+    localStorage.setItem('historyUrl','app/news');
   }
   render(){
     const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,hasMore}=this.state

@@ -27,7 +27,7 @@
         line-height: 40px;
     }
     .news-login-line{
-        width: 1px;
+        width: 0px;
         height: 12px;
         background: #999999;
         margin: 0 12px;
@@ -59,6 +59,8 @@
         width: 70px;
         text-overflow:ellipsis;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
     }
     .exitimg{
         width: 14px;

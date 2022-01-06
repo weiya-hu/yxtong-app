@@ -2,6 +2,8 @@
  * 网络请求配置
  */
  import axios from "axios";
+ import message from '../views/component/message/index'
+import { AxisPointerComponent } from "echarts/components";
 
  axios.defaults.timeout = 10000;
  axios.defaults.baseURL = "/";
@@ -13,12 +15,12 @@
   */
  axios.interceptors.request.use(
    (config) => {
-      let token = window.localStorage.getItem("accessToken")
+      let token = window.localStorage.getItem("token")
      config.data = JSON.stringify(config.data);
     if(token){
         config.headers = {
             "Content-Type": "application/json",
-            "accessToken": token
+            "Authorization": token
           };
     }else{
         config.headers = {
@@ -54,15 +56,14 @@
   * @returns {Promise}
   */
  export function get(url, params = {}) {
-   return new Promise((resolve, reject) => {
+   return new Promise<API.IResult>((resolve, reject) => {
      axios.get(url, {
          params: params,
        }).then((response) => {
-         console.log(url)
-         landing(url, params, response.data);
          resolve(response.data);
        })
        .catch((error) => {
+        message.info(error.data.message)
          reject(error);
        });
    });
@@ -76,13 +77,14 @@
   */
  
  export function post(url, data) {
-   return new Promise((resolve, reject) => {
+   return new Promise<API.IResult>((resolve, reject) => {
      axios.post(url, data).then(
        (response) => {
          //关闭进度条
          resolve(response.data);
        },
        (err) => {
+        message.info(err.data.message)
          reject(err);
        }
      );

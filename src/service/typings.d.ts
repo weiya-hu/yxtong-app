@@ -1,6 +1,6 @@
 declare namespace API {
     type IResult<T = any> = {
-        status: boolean
+        status: number
         errno?: number
         message: string
         body: T
@@ -8,42 +8,25 @@ declare namespace API {
     /**
      * 登陆参数
      */
-    type IDoLoginParams = {
-        username: string
-        passwd: string
-        code: string
+    type UserLogin = {
+        type:number
+        mobile:string
+        acode:string
+        captcha?:string
+        sms?:string
+        pass?:string
     }
     // 后台用户类型
     type IBgUser = {
-        accumulat: number
-        address: string
-        balance: number
-        birth: number
-        channel_id: number
-        city: string
-        consumed: number
-        create_ip: string
-        district: string
+        acode: string
         email: string
-        idcard: string
-        integral: number
-        layer_path: string
-        level: number
-        province: string
-        real_name: string
-        referer_url: string
-        update_time: number
-        upper_id: number
-        act: string
-        create_time: number
         head: string
         id: number
-        status: string
-        name: string
-        member_name: string
-        channel_name: string
-        mobile: string
         invite_code: string
+        mobile: string
+        name: string
+        real_name: string
+        status: number
     }
     //企业信息
     type COmpany = {

@@ -51,6 +51,9 @@ export default class NewsDetail extends Component {
             readRank:arr
         })
     }
+    componentWillUnmount(): void {
+        localStorage.setItem('historyUrl','app/newsdetail');
+    }
     render(){
         let isLogin=this.state.isLogin,exitNone=this.state.exitNone;
         let articleINfo=this.state.articleINfo;

@@ -5,6 +5,7 @@ import { Form , Button} from 'antd';
 import InputComponent from './component/inputComponent';
 import { util } from '../../utils/user'
 import {BrowserRouter as Router, Link } from 'react-router-dom';
+import {token,dologin,captcha} from '../../service/login'
 
 import weiboimg from '../../public/images/weibo.png'
 import qqimg from '../../public/images/QQ.png'
@@ -20,32 +21,48 @@ interface PopupLoginState{
 export default class PopupLogin extends Component<PopupLoginState> {
     state={
         loginSwitch:0,
-        warnMessage:''
+        warnMessage:'',
+        mobileValue:'',
+        acode:'86'
      }
-     submit=(value)=>{
+     submit=async(value)=>{
         console.log(value)
-        let swtch = Object.keys(value)[1],message
-        if(swtch === 'countryCode'){    
-            let mobile = util.validate_mobile(value.mobile)     
-            message = mobile?mobile:util.validate_yzm(value.mobileYZM)    
-            value.countryCode = value.countryCode?value.countryCode:'86'
+        let {loginSwitch} = this.state,message
+        if(loginSwitch){    
+            let username = util.validate_mobile(value.mobile)
+            message = username?username:util.validate_password(value.pass) 
+            
         }else{
-            let username = util.validate_mobile(value.userName)
-            message = username?username:util.validate_password(value.password) 
+            let mobile = util.validate_mobile(value.mobile)     
+            message = mobile?mobile:util.validate_yzm(value.sms)    
         }
         this.setState({warnMessage:message})
+        value.acode && (value.acode='+'+value.acode)
         if(!message){
-            console.log('ok')
-            console.log(value)
-            //接口，登录
+            let data:API.UserLogin = {
+                type:loginSwitch?2:1,
+                ...value,
+            }
+            const res = await dologin(data)
+            if(res.status){
+                localStorage.setItem('token',res.body);
+
+            }
         }
     }
     close=()=>{
         this.props.show(false)
     }
+    componentDidMount=async()=>{
+        let tokens =localStorage.getItem('token')
+        if(!tokens){
+            const res = await token()
+            localStorage.setItem('token',res.body)
+        }  
+    }
     render(){
         // let loginSwitch = this.state.loginSwitch,warnMessage=this.state.warnMessage
-        let {loginSwitch,warnMessage}=this.state
+        let {loginSwitch,warnMessage,mobileValue,acode}=this.state
         return (
             <div className='popuplogin-item fleximg' id='popuplogin-item'>0
                 <div className='flexll popuplogin'>
@@ -73,19 +90,40 @@ export default class PopupLogin extends Component<PopupLoginState> {
                                 {!loginSwitch?(
                                     <div >
                                         <div className='marg'>
-                                            <InputComponent  GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobile' name='mobile' height='short'/>
+                                            <InputComponent  
+                                                GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                                formName='mobile' 
+                                                name='mobile' 
+                                                height='short'
+                                                MobileValue={(val)=>{this.setState({mobileValue:val})}} 
+                                                Acode={(val)=>{this.setState({acode:val})}}
+                                            />
                                         </div>   
                                         <div className='marg'>
-                                            <InputComponent  GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobile' name='mobileYZM' height='short'/>
+                                            <InputComponent  
+                                                GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                                formName='sms' 
+                                                name='mobileYZM' 
+                                                height='short'
+                                                mobileValue={mobileValue}
+                                                acode={acode}
+                                            />
                                         </div>
                                 </div>
                             ):(
                                 <div>
                                     <div className='marg'>
-                                        <InputComponent  GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='userName' name='userName' height='short'/>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='mobile' 
+                                        name='mobile' 
+                                        height='short'
+                                        MobileValue={(val)=>{this.setState({mobileValue:val})}} 
+                                        Acode={(val)=>{this.setState({acode:val})}}
+                                    />
                                     </div>   
                                     <div className='marg'>
-                                        <InputComponent  GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='password' name='password' height='short'/>
+                                        <InputComponent  GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='pass' name='password' height='short'/>
                                     </div>                                
                                 </div>
                             )}
@@ -100,9 +138,9 @@ export default class PopupLogin extends Component<PopupLoginState> {
                         </Form>
                         {loginSwitch ?
                             <div className='forget flexb'>
-                                <Link to='/register/forget'><span>忘记密码？</span></Link>
+                                <Link to='/app/register/forget'><span>忘记密码？</span></Link>
                                 
-                                <Link to='/register/register'><span>免费注册</span></Link>
+                                <Link to='/app/register/register'><span>免费注册</span></Link>
                             </div>:
                             <div></div>
                         }

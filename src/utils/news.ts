@@ -1,3 +1,4 @@
+import { getUser } from "../service/login";
 export const util = {
     getScrollTop : () => {
         var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
@@ -32,5 +33,8 @@ export const util = {
     },
     getIsTOBottom:()=>{
         return util.getScrollHeight() - util.getScrollTop() - util.getWindowHeight()
+    },
+    islogin:async()=>{
+        return await getUser()
     }
 }
