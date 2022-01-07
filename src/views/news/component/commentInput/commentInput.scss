@@ -14,10 +14,58 @@
             margin: 0 4px;
         }
     }
+    .login-textarea{
+        width: 736px;
+        height: 100px;
+        margin: 20px 0 16px;
+        textarea{
+            background: #F4F4F4;
+            padding: 20px;
+            border: none;
+            resize:none;
+            outline: none;
+        }
+        .ant-input:focus{
+            border-color: rgba(0,0,0,0);
+            box-shadow: 0 0 0 0 rgba(0,0,0,0);
+        }
+        .ant-input-textarea-show-count::after{
+            font-size: 12px;
+            color: #999999;
+            position: relative;
+            top: 12px;
+        }
+    }
+    .login-textare-small{
+        height: 120px;
+        margin: 20px 0 16px;
+        textarea{
+            background: #F4F4F4;
+            padding: 20px;
+            border: none;
+            resize:none;
+            outline: none;
+        }
+        .ant-input:focus{
+            border-color: rgba(0,0,0,0);
+            box-shadow: 0 0 0 0 rgba(0,0,0,0);
+        }
+        .ant-input-textarea-show-count::after{
+            font-size: 12px;
+            color: #999999;
+            position: relative;
+            top: 12px;
+        }
+    }
     .comment-button{
         width: 76px;
         height: 30px;
         background: #304F97;
         color: #FFFFFF;
+    }
+    .drawer-pre{
+        .ant-drawer-header{
+            display: none;
+        }
     }
 }

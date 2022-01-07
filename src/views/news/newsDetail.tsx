@@ -36,6 +36,14 @@ export default class NewsDetail extends Component {
             articleINfo:articleINfo
         })
     }
+    scrollToAnchor = (anchorName) => {
+        if (anchorName) {
+            // 找到锚点
+            let anchorElement = document.getElementById(anchorName);
+            // 如果对应id的锚点存在，就跳转到锚点
+            if(anchorElement) { anchorElement.scrollIntoView({ behavior: 'smooth'}); }
+        }
+      }
     componentDidMount(){
         let arr=[]
         for(let i=0;i<5;i++){
@@ -55,43 +63,59 @@ export default class NewsDetail extends Component {
         localStorage.setItem('historyUrl','app/newsdetail');
     }
     render(){
-        let isLogin=this.state.isLogin,exitNone=this.state.exitNone;
-        let articleINfo=this.state.articleINfo;
-        let author = this.state.author,authorHotList=this.state.authorHotList,readRank=this.state.readRank;
+        let {isLogin,exitNone,articleINfo,author,authorHotList,readRank}=this.state
+
         return <div className='newsDetail'  onClick={()=>{this.setState({exitNone:true})}}>
-            <div>
+            <div className='header-pre'>
                 <Header 
                     isLogin={isLogin} 
                     exitNone={exitNone} 
                     exitNoneFlag={(val)=>{this.setState({exitNone:val})}} 
                 />
             </div>
-            <div className='flexbl top10 width'>
-                <div className='newsDetail-share'>
-                    <div className='comment fleximgc'>
-                        <div className='fleximg commentBlackimg'><img src={commentBlackimg} alt="comment" /></div>
-                        <div className='font12'>22</div>
+            <div className='newsDetail-cont-fixed'>
+                <div className='newsDetail-cont-fixed-line'></div>
+                <div  className='flexll width'>
+                    <div className='newsDetail-share newsDetail-share-mright'>
+                        <a onClick={() => this.scrollToAnchor('comment')}>
+                            <div className='comment fleximgc'>
+                                <div className='fleximg commentBlackimg'><img src={commentBlackimg} alt="comment" /></div>
+                                <div className='font12'>22</div>
+                            </div>
+                            </a> 
+                        <div className='newsDetail-share-hr'></div>
+                        <div className='collect'>
+                            <Collect collect={articleINfo.collect} css='align'/>
+                        </div>
+                        <div className='newsDetail-share-hr'></div>
+                        <div className='share'>
+                            <Share css='align' />
+                        </div>
                     </div>
-                    <div className='newsDetail-share-hr'></div>
-                    <div className='collect'>
-                        <Collect collect={articleINfo.collect} css='align'/>
-                    </div>
-                    <div className='newsDetail-share-hr'></div>
-                    <div className='share'>
-                        <Share css='align' />
+                    <div className='newsDetail-article newsDetail-article-padding'>
+                        <div>
+                            <NewsNav newsIndexChange={()=>{}}/>
+                        </div>
                     </div>
                 </div>
+            </div>
+            
+            <div className='flexbl top10 width newsDetail-cont'>
+                <div className='newsDetail-cont-left'>
+                    
+                </div>
                 <div className='newsDetail-article'>
-                    <div>
-                        <NewsNav newsIndexChange={()=>{}}/>
-                    </div>
+                    
                     <div className='newsDetail-article-detail'>
                         <ArticleDetail />
                     </div>
-                    <div className='Report-div'>
+                    <div className='Report-div' id='comment'>
                         <Report />
                     </div>
-                    <div>
+                    <div style={{height:"0px",width:'100px'}}>
+
+                    </div>
+                    <div >
                         <Comment />
                     </div>
 
@@ -127,7 +151,6 @@ export default class NewsDetail extends Component {
                                 <div className='read-rank-title-txt'>{item.title}</div>
                             </div>
                         ))
-
                         }
                     </div>
                 </div>

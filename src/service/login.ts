@@ -1,7 +1,7 @@
 import {get, post} from '../utils/request'
 
 export const token = (): Promise<API.IResult> => {
-    return get('login/token')
+    return get('user/public/token')
 }
 
 export const dologin =(data):Promise<API.IResult>=>{
@@ -17,5 +17,5 @@ export const sendSms =(data):Promise<API.IResult>=>{
 }
 
 export const getUser =():Promise<API.IResult>=>{
-    return  get('login/get-user')
+    return  get('user/get-userr')
 }

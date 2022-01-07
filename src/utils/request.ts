@@ -6,7 +6,7 @@
 import { AxisPointerComponent } from "echarts/components";
 
  axios.defaults.timeout = 10000;
- axios.defaults.baseURL = "/";
+ axios.defaults.baseURL = "/api";
 
 
  
@@ -63,7 +63,7 @@ import { AxisPointerComponent } from "echarts/components";
          resolve(response.data);
        })
        .catch((error) => {
-        message.info(error.data.message)
+        message.info(error)
          reject(error);
        });
    });

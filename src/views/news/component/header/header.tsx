@@ -2,6 +2,7 @@
 import { Component} from 'react'
 import './header.scss'
 import { getUser } from '../../../../service/login'
+import PopupLogin from '../../../login/popupLogin'
 
 import headerimg from '../../../../public/images/user/header.png'
 import exitimg from '../../../../public/images/user/exit.png'
@@ -19,6 +20,7 @@ interface HeaderState{
   exitActive:boolean
   exitNone:boolean
   userInfo:API.IBgUser | any
+  loginShow:boolean
 }
 
 
@@ -27,7 +29,8 @@ export default class Header extends Component<HeaderProps,HeaderState>{
     links:['药智网','产业大脑','药智资讯','药智人才','专利通','药智汇','药智通','智慧大讲堂','论坛交流','俱乐部','海外智通','药智谷','药智搜','PDI峰会'],
     exitActive:false,//退出按钮是否hover
     exitNone:true,//退出登录是否显示
-    userInfo:null
+    userInfo:null,
+    loginShow:false
   }
   exitloginpre=(e)=>{
     e.stopPropagation()
@@ -38,19 +41,19 @@ export default class Header extends Component<HeaderProps,HeaderState>{
   }
   componentDidMount=async()=>{
       let userInfo =JSON.parse(localStorage.getItem('userInfo')) 
-      let isLogin =  localStorage.getItem('isLogin')
-      if(!isLogin){
-        const res= await getUser()
-        if(res.status){
-          localStorage.setItem('userInfo',JSON.stringify(res.body))
-          localStorage.setItem('isLogin','1')
-          userInfo = res.body
-        }
-      }
+      // let isLogin =  localStorage.getItem('isLogin')
+      // if(!isLogin){
+      //   const res= await getUser()
+      //   if(res.status){
+      //     localStorage.setItem('userInfo',JSON.stringify(res.body))
+      //     localStorage.setItem('isLogin','1')
+      //     userInfo = res.body
+      //   }
+      // }
       this.setState({userInfo:userInfo})
   }
   render(){
-    let {links,exitActive,userInfo}=this.state
+    let {links,exitActive,userInfo,loginShow}=this.state
     let {exitNone}=this.props
     return (
       <div className='header' onClick={this.exitloginpre}>
@@ -83,13 +86,14 @@ export default class Header extends Component<HeaderProps,HeaderState>{
               </div>
             </div>
           ):(<div className='flexr'>
-              <div className='news-login'>登录</div>
+              <div className='news-login' onClick={()=>{this.setState({loginShow:true})}}>登录</div>
               <div className='news-login-line'></div>
               <div className='colorw'>注册</div>
             </div>
           )}  
         </div>
         <div className='invite '>你好，欢迎登录康州数智官网！</div>
+        {loginShow &&  <PopupLogin show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}/>} 
       </div>
     )
   }
