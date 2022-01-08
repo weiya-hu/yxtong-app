@@ -16,7 +16,6 @@ import commentBlackimg from '../../public/images/user/commentBlack.png'
 export default class NewsDetail extends Component {
     state={
         isLogin:true,//是否登录了
-        exitNone:true,//退出登录是否显示
         author:{
             name:'央视新闻',
             follow:false
@@ -59,19 +58,12 @@ export default class NewsDetail extends Component {
             readRank:arr
         })
     }
-    componentWillUnmount(): void {
-        localStorage.setItem('historyUrl','app/newsdetail');
-    }
     render(){
-        let {isLogin,exitNone,articleINfo,author,authorHotList,readRank}=this.state
+        let {isLogin,articleINfo,author,authorHotList,readRank}=this.state
 
-        return <div className='newsDetail'  onClick={()=>{this.setState({exitNone:true})}}>
+        return <div className='newsDetail'>
             <div className='header-pre'>
-                <Header 
-                    isLogin={isLogin} 
-                    exitNone={exitNone} 
-                    exitNoneFlag={(val)=>{this.setState({exitNone:val})}} 
-                />
+                <Header />
             </div>
             <div className='newsDetail-cont-fixed'>
                 <div className='newsDetail-cont-fixed-line'></div>

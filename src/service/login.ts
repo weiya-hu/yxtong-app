@@ -9,13 +9,21 @@ export const dologin =(data):Promise<API.IResult>=>{
 }
 
 export const captcha  =():Promise<API.IResult>=>{
-    return  get('login/captcha')
+    return  get('user/public/captcha')
 }
 
 export const sendSms =(data):Promise<API.IResult>=>{
     return  post('login/send-sms',data)
 }
 
+export const sendSmsreg =(data):Promise<API.IResult>=>{
+    return  post('login/send-sms-reg',data)
+}
+
 export const getUser =():Promise<API.IResult>=>{
-    return  get('user/get-userr')
+    return  get('user/get-user')
+}
+
+export const doreg =(data):Promise<API.IResult>=>{
+    return  post('/login/doreg',data)
 }

@@ -109,6 +109,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.11",
     "axios": "^0.24.0",
     "node-sass": "^6.0.1"
   },

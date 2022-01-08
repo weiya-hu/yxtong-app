@@ -1,6 +1,5 @@
 export const util ={
     validate_mobile:(mobile)=>{
-        console.log(mobile)
         if(mobile){
             let pattern={mobile: /^(((13[0-9])|(14[5-7])|(15[0-9])|(17[0-9])|(18[0-9]))+\d{8})$/ };
             if(!pattern.mobile.test(mobile)){
@@ -12,15 +11,27 @@ export const util ={
         }
         
     },
-    validate_yzm:(val)=>{
+    validate_captcha:(val)=>{
         if(val){
-            let pattern={yzm: /^\w{6}$/ };
-            if(!pattern.yzm.test(val)){
+            let pattern={captcha: /^\w{5}$/ };
+            if(!pattern.captcha.test(val)){
                 return '验证码格式输入不正确';
             }
             return "";
         }else{
             return '验证码不能为空'
+        }
+        
+    },
+    validate_yzm:(val)=>{
+        if(val){
+            let pattern={yzm: /^\w{6}$/ };
+            if(!pattern.yzm.test(val)){
+                return '短信验证码格式输入不正确';
+            }
+            return "";
+        }else{
+            return '短信验证码不能为空'
         }
         
     },

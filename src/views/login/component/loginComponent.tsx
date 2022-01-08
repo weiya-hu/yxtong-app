@@ -1,10 +1,13 @@
+//@ts-nocheck
 import React,{ Component } from 'react'
 import './loginComponent.scss'
 import { Form , Button} from 'antd';
 import InputComponent from './inputComponent';
 import { util } from '../../../utils/user'
 import { Link } from 'react-router-dom';
-import {token,dologin,captcha} from '../../../service/login'
+import {dologin} from '../../../service/login'
+import $message from '../../component/message';
+
 
 import weiboimg from '../../../public/images/weibo.png'
 import qqimg from '../../../public/images/QQ.png'
@@ -16,20 +19,34 @@ export default class LoginComponent extends Component {
        loginSwitch:0,
        warnMessage:'',
        mobileValue:'',
-       acode:'86'
+       acode:'86',
+       captchaShow:false,
     }
-    formRef = React.createRef()
     
     submit=async(value)=>{
         console.log(value)
         let {loginSwitch} = this.state,message
         if(loginSwitch){    
             let username = util.validate_mobile(value.mobile)
-            message = username?username:util.validate_password(value.pass) 
+           
+            if(value.captcha){
+                let captcha =  util.validate_captcha(value.captcha)
+                message = username?username:captcha?captcha:util.validate_password(value.pass) 
+            }else{
+                 message = username?username:util.validate_password(value.pass) 
+            }
+           
             
         }else{
-            let mobile = util.validate_mobile(value.mobile)     
-            message = mobile?mobile:util.validate_yzm(value.sms)    
+            let mobile = util.validate_mobile(value.mobile)  
+            
+            if(value.captcha){
+                let captcha =  util.validate_captcha(value.captcha)
+                message = mobile?mobile:captcha?captcha:util.validate_yzm(value.sms)   
+            }else{
+                message = mobile?mobile:util.validate_yzm(value.sms)
+            }
+                
         }
         this.setState({warnMessage:message})
         value.acode && (value.acode='+'+value.acode)
@@ -40,22 +57,21 @@ export default class LoginComponent extends Component {
             }
             const res = await dologin(data)
             if(res.status){
-                localStorage.setItem('token',res.body);
-
+                localStorage.setItem('accessToken',res.body);
+                window.history.back(-1);
+            }else{
+                if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
+                    this.setState({captchaShow:true})
+                }
             }
+                $message.info(res.message)    
         }
     }
 
-    componentDidMount=async()=>{
-        let tokens =localStorage.getItem('token')
-        if(!tokens){
-            const res = await token()
-            localStorage.setItem('token',res.body)
-        }        
-    }
+
     
     render(){
-        let {loginSwitch,warnMessage,mobileValue,acode} = this.state
+        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow} = this.state
         return(
             <div id='logincomponent'>
                 <div className='loginswitch flexl'>
@@ -71,7 +87,6 @@ export default class LoginComponent extends Component {
                     </div>
                 </div>
                 <Form
-                    // ref={this.formRef}
                     className=" topForm"
                     onFinish={this.submit}
                     onFinishFailed={this.submit}
@@ -87,6 +102,14 @@ export default class LoginComponent extends Component {
                                         Acode={(val)=>{this.setState({acode:val})}}
                                     />
                                 </div>
+                                {captchaShow && <div className='marg'>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='captcha' 
+                                        name='captcha' 
+                                    />
+                                </div>
+                                }                                  
                                 <div className='marg'>
                                     <InputComponent 
                                         GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
@@ -109,6 +132,14 @@ export default class LoginComponent extends Component {
                                 />
                                 {/* <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobile' name='userName'/> */}
                             </div>
+                            {captchaShow && <div className='marg'>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='captcha' 
+                                        name='captcha' 
+                                    />
+                                </div>
+                            }
                             <div className='marg'>
                                 <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='pass' name='password'/>
                             </div>                                        

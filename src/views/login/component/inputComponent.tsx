@@ -6,7 +6,7 @@ import downselectimg from '../../../public/images/downselect.png'
 import openimg from '../../../public/images/open.png'
 import closeimg from '../../../public/images/close.png'
 import { util } from '../../../utils/user'
-import {sendSms} from '../../../service/login'
+import {sendSms,sendSmsreg,captcha} from '../../../service/login'
 
 import message from '../../component/message/index'
 
@@ -24,7 +24,8 @@ export default class InputComponent extends Component<any> {
         YZMtxt:'获取验证码',//后面会切换为重获验证码
         password:'',//用于切换密码框的input为password或者text时的赋值
         ispassword:true,//用于切换密码框的input为password或者text
-        mobileInput:''
+        mobileInput:'',
+        captcha:''
 
     }
     selectChange=(val,option)=>{
@@ -35,7 +36,7 @@ export default class InputComponent extends Component<any> {
         this.props.Acode(val)
     }
     getYZm=async()=>{
-        let {mobileValue,acode}=this.props
+        let {mobileValue,acode,type}=this.props
         let msg = util.validate_mobile(mobileValue)
         if(msg){
             this.props.GETFalseMessage(msg)
@@ -66,10 +67,11 @@ export default class InputComponent extends Component<any> {
                     acode:'+'+acode,
                     mobile:mobileValue
                 }
-                const res =  await sendSms(data)   
-                // if(res.status){
-                //     message.info(res.message)
-                // }
+
+                const res =  type==='register'?await sendSmsreg(data): await sendSms(data)
+                if(res.status){
+                    message.info(res.message)
+                }
             }
         }
         
@@ -90,16 +92,26 @@ export default class InputComponent extends Component<any> {
             case 'passwordRegister':
                 message = util.validate_passwordRegister(value)
                 break;
+            case 'captcha':
+                message = util.validate_captcha(value)
+                break;
         }
         this.props.GETFalseMessage(message)
     }
     passwordChange=(e)=>{
         this.setState({password : e.target.value})
     }
+    getCaptcha=async()=>{
+        const res= await captcha()
+        res.status && this.setState({captcha:res.body})
+    }
+    componentDidMount=()=>{
+        this.getCaptcha()
+    }
     render(){
         let component
         const {name,formName,title,defaultValue,height}=this.props;
-        const {ispassword,countryCode}=this.state;
+        const {ispassword,countryCode,captcha}=this.state;
         switch(name){
             case 'mobile':
                 component =(
@@ -157,127 +169,146 @@ export default class InputComponent extends Component<any> {
                     </div>
                 )
                 break;
-                case 'userName':
-                    component = (
-                        <div id='userName'  className={height?'phone flexl height':'phone flexl'}>
+            case 'captcha':
+                component = (
+                    <div  id='capture' className={height?'height flexb':'flexb'}>
+                        <div  className='capture phone flexb'>
+                            <Form.Item name={formName}>
+                                <input 
+                                    autoComplete='off' 
+                                    // value = { this.state.YZMinput } 
+                                    // onChange={(e)=>{this.setState({YZMinput :e.target.value })}} 
+                                    type="text" 
+                                    placeholder='请输入验证码' 
+                                    onBlur={(e)=>{this.inputBlur(e,name)}}
+                                />
+                            </Form.Item>
+                        </div>
+                        <div className='fleximg captchaimg' onClick={ this.getCaptcha}><img src={captcha} alt="captcha" /></div>
+                    </div>
+                )
+                break;
+            case 'userName':
+                component = (
+                    <div id='userName'  className={height?'phone flexl height':'phone flexl'}>
+                        <div className='flexl'>
+                            <div className='yzmTXT'>{title?title:'账户'}</div>
+                            <Form.Item name={formName}>
+                                <input 
+                                    autoComplete='off' 
+                                    type="tel" 
+                                    placeholder='请输入手机号' 
+                                    onBlur={(e)=>{this.inputBlur(e,'mobile')}}
+                                />
+                            </Form.Item>
+                        </div>                          
+                    </div>
+                )
+                break;
+            case 'password':
+                component = (
+                    <div id='userName'  className={height?'phone flexb height':'phone flexb'}>
+
                             <div className='flexl'>
-                                <div className='yzmTXT'>{title?title:'账户'}</div>
+                                <div className='yzmTXT'>{title?title:'密码'}</div>
                                 <Form.Item name={formName}>
+                                    {ispassword?
+                                        <input 
+                                            autoComplete='off' 
+                                            type="password" 
+                                            onBlur={(e)=>{this.inputBlur(e,name)}}
+                                            value={this.state.password} onChange={this.passwordChange} 
+                                            placeholder='请输入密码' 
+                                        />:
+                                        <input 
+                                            autoComplete='off' 
+                                            type="text" 
+                                            value={this.state.password} 
+                                            onBlur={(e)=>{this.inputBlur(e,name)}}
+                                            onChange={this.passwordChange} 
+                                            placeholder='请输入密码' 
+                                        />
+                                    }
+                                </Form.Item>
+                            </div>                                
+                            <div>
+                                {ispassword?
+                                    <img src={closeimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="close" />:
+                                    <img src={openimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="open" />   
+                                }
+                            </div>                       
+                    </div>
+                )
+                break;
+            case 'passwordRegister':       
+                component = (
+                    <div id='passwordRegister'  className={height?'phone flexb height':'phone flexb'}>
+                        <div className='flexl'>
+                            <div className='yzmTXT'>{title?title:'登录密码'}</div>
+                            <Form.Item name={formName}>
+                                {ispassword?
                                     <input 
                                         autoComplete='off' 
-                                        type="tel" 
-                                        placeholder='请输入手机号' 
-                                        onBlur={(e)=>{this.inputBlur(e,'mobile')}}
+                                        type="password" 
+                                        onBlur={(e)=>{this.inputBlur(e,name)}}
+                                        value={this.state.password} onChange={this.passwordChange} 
+                                        placeholder='请输入密码' 
+                                    />:
+                                    <input 
+                                        autoComplete='off' 
+                                        type="text" 
+                                        value={this.state.password} 
+                                        onBlur={(e)=>{this.inputBlur(e,name)}}
+                                        onChange={this.passwordChange} 
+                                        placeholder='请输入密码' 
                                     />
-                                </Form.Item>
-                            </div>                          
-                        </div>
-                    )
-                    break;
-                case 'password':
-                    component = (
-                        <div id='userName'  className={height?'phone flexb height':'phone flexb'}>
-
-                                <div className='flexl'>
-                                    <div className='yzmTXT'>{title?title:'密码'}</div>
-                                    <Form.Item name={formName}>
-                                        {ispassword?
-                                            <input 
-                                                autoComplete='off' 
-                                                type="password" 
-                                                onBlur={(e)=>{this.inputBlur(e,name)}}
-                                                value={this.state.password} onChange={this.passwordChange} 
-                                                placeholder='请输入密码' 
-                                            />:
-                                            <input 
-                                                autoComplete='off' 
-                                                type="text" 
-                                                value={this.state.password} 
-                                                onBlur={(e)=>{this.inputBlur(e,name)}}
-                                                onChange={this.passwordChange} 
-                                                placeholder='请输入密码' 
-                                            />
-                                        }
-                                    </Form.Item>
-                                </div>                                
-                                <div>
-                                    {ispassword?
-                                        <img src={closeimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="close" />:
-                                        <img src={openimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="open" />   
-                                    }
-                                </div>                       
-                        </div>
-                    )
-                    break;
-                case 'passwordRegister':       
-                    component = (
-                        <div id='passwordRegister'  className={height?'phone flexb height':'phone flexb'}>
-                            <div className='flexl'>
-                                <div className='yzmTXT'>{title?title:'登录密码'}</div>
-                                <Form.Item name={formName}>
-                                    {ispassword?
-                                        <input 
-                                            autoComplete='off' 
-                                            type="password" 
-                                            onBlur={(e)=>{this.inputBlur(e,name)}}
-                                            value={this.state.password} onChange={this.passwordChange} 
-                                            placeholder='请输入密码' 
-                                        />:
-                                        <input 
-                                            autoComplete='off' 
-                                            type="text" 
-                                            value={this.state.password} 
-                                            onBlur={(e)=>{this.inputBlur(e,name)}}
-                                            onChange={this.passwordChange} 
-                                            placeholder='请输入密码' 
-                                        />
-                                    }
-                                </Form.Item>
-                            </div>                                
-                        <div>
-                            {ispassword?
-                                <img src={closeimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="close" />:
-                                <img src={openimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="open" />   
-                            }
-                        </div>                       
-                    </div>
-                    )
-                    break;
-                case 'passwordSure':
-                    component = (
-                        <div id='userName'  className={height?'phone flexb height':'phone flexb'}>
-                            <div className='flexl'>
-                                <div className='yzmTXT'>{title?title:'登录密码'}</div>
-                                <Form.Item name={formName}>
-                                    {ispassword?
-                                        <input 
-                                            autoComplete='off' 
-                                            type="password" 
-                                            onBlur={(e)=>{this.inputBlur(e,name)}}
-                                            value={this.state.password} onChange={this.passwordChange} 
-                                            placeholder='请输入密码' 
-                                        />:
-                                        <input 
-                                            autoComplete='off' 
-                                            type="text" 
-                                            value={this.state.password} 
-                                            onBlur={(e)=>{this.inputBlur(e,name)}}
-                                            onChange={this.passwordChange} 
-                                            placeholder='请输入密码' 
-                                        />
-                                    }
-                                </Form.Item>
-                            </div>                                
-                        <div>
-                            {ispassword?
-                                <img src={closeimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="close" />:
-                                <img src={openimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="open" />   
-                            }
-                        </div>                       
-                    </div>
-                    )
-                    break;
-                case 'inviteCode':
+                                }
+                            </Form.Item>
+                        </div>                                
+                    <div>
+                        {ispassword?
+                            <img src={closeimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="close" />:
+                            <img src={openimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="open" />   
+                        }
+                    </div>                       
+                </div>
+                )
+                break;
+            case 'passwordSure':
+                component = (
+                    <div id='userName'  className={height?'phone flexb height':'phone flexb'}>
+                        <div className='flexl'>
+                            <div className='yzmTXT'>{title?title:'登录密码'}</div>
+                            <Form.Item name={formName}>
+                                {ispassword?
+                                    <input 
+                                        autoComplete='off' 
+                                        type="password" 
+                                        onBlur={(e)=>{this.inputBlur(e,name)}}
+                                        value={this.state.password} onChange={this.passwordChange} 
+                                        placeholder='请输入密码' 
+                                    />:
+                                    <input 
+                                        autoComplete='off' 
+                                        type="text" 
+                                        value={this.state.password} 
+                                        onBlur={(e)=>{this.inputBlur(e,name)}}
+                                        onChange={this.passwordChange} 
+                                        placeholder='请输入密码' 
+                                    />
+                                }
+                            </Form.Item>
+                        </div>                                
+                    <div>
+                        {ispassword?
+                            <img src={closeimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="close" />:
+                            <img src={openimg} onClick={()=>{this.setState({ispassword:!this.state.ispassword})}} alt="open" />   
+                        }
+                    </div>                       
+                </div>
+                )
+                break;
+            case 'inviteCode':
                     console.log(defaultValue)
                     component = (
                         <div id='inviteCode'  className={height?'phone flexb height':'phone flexb'}>

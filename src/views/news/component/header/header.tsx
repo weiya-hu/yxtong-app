@@ -3,17 +3,12 @@ import { Component} from 'react'
 import './header.scss'
 import { getUser } from '../../../../service/login'
 import PopupLogin from '../../../login/popupLogin'
+import { Link } from 'react-router-dom';
 
 import headerimg from '../../../../public/images/user/header.png'
 import exitimg from '../../../../public/images/user/exit.png'
 import exitactiveimg from '../../../../public/images/user/exitactive.png'
 
-
-interface HeaderProps{
-  isLogin:boolean;
-  exitNone:boolean;
-  exitNoneFlag:(val:boolean)=>void
-}
  
 interface HeaderState{
   links:string[]
@@ -24,39 +19,36 @@ interface HeaderState{
 }
 
 
-export default class Header extends Component<HeaderProps,HeaderState>{
+export default class Header extends Component<any,HeaderState>{
   state={
     links:['药智网','产业大脑','药智资讯','药智人才','专利通','药智汇','药智通','智慧大讲堂','论坛交流','俱乐部','海外智通','药智谷','药智搜','PDI峰会'],
     exitActive:false,//退出按钮是否hover
-    exitNone:true,//退出登录是否显示
+    exitNone:false,//退出登录是否显示
     userInfo:null,
     loginShow:false
   }
-  exitloginpre=(e)=>{
-    e.stopPropagation()
-    this.props.exitNoneFlag(!this.props.exitNone)
-  }
+  //退出登录
   exitlogin=(e)=>{
     e.stopPropagation()
+
   }
+
   componentDidMount=async()=>{
-      let userInfo =JSON.parse(localStorage.getItem('userInfo')) 
-      // let isLogin =  localStorage.getItem('isLogin')
-      // if(!isLogin){
-      //   const res= await getUser()
-      //   if(res.status){
-      //     localStorage.setItem('userInfo',JSON.stringify(res.body))
-      //     localStorage.setItem('isLogin','1')
-      //     userInfo = res.body
-      //   }
-      // }
-      this.setState({userInfo:userInfo})
+      let isLogin =  localStorage.getItem('isLogin')
+      if(isLogin){
+        const res= await getUser()
+        if(res.status){
+          localStorage.setItem('userInfo',JSON.stringify(res.body))
+          this.setState({userInfo:res.body})
+        }else{
+          localStorage.setItem('isLogin','0')
+        }
+      }
   }
   render(){
-    let {links,exitActive,userInfo,loginShow}=this.state
-    let {exitNone}=this.props
+    let {links,exitActive,userInfo,loginShow,exitNone}=this.state
     return (
-      <div className='header' onClick={this.exitloginpre}>
+      <div className='header' >
         <div className='width flexb'>
           <div className='linkspre'>
             <div className='flexl links'>
@@ -66,14 +58,19 @@ export default class Header extends Component<HeaderProps,HeaderState>{
           {userInfo?(
             <div className='flexr'>
               <div className='colorw position'>消息
-                <div className='message-num fleximg'><span>99</span></div>
+                {/* <div className='message-num fleximg'><span>99</span></div> */}
               </div>
               <div className='news-login-line'></div>
-              <div className='flexr position'  onClick={this.exitloginpre}>
+              <Link to='/APP/user'>
+              <div className='flexr position user-login'  
+                onClick={()=>{}}
+                onMouseEnter ={()=>{this.setState({exitNone:true})}} 
+                onMouseLeave ={()=>{this.setState({exitNone:false})}} 
+              >
                 <div className='fleximg headerimg'><img src={headerimg} alt="header" /></div>
                 <div className='name'>{userInfo.name}</div>
                 <div 
-                  className={exitNone?'fleximg exitnone exit':'fleximg exit'}
+                  className={exitNone?'fleximg  exit':'fleximg exitnone exit'}
                   onClick={this.exitlogin}
                   onMouseEnter ={()=>{this.setState({exitActive:true})}} 
                   onMouseLeave ={()=>{this.setState({exitActive:false})}} 
@@ -81,9 +78,11 @@ export default class Header extends Component<HeaderProps,HeaderState>{
                   <div className='fleximg exitimg'>
                     <img src={exitActive?exitactiveimg:exitimg} alt="exit" />
                   </div>
-                  <span className={exitActive?'color':''}>退出</span>
+                  <Link to='/APP/login'> <span className={exitActive?'color':''}>退出</span></Link>
+                  <div className='posi-more'></div>
                 </div>
               </div>
+              </Link>
             </div>
           ):(<div className='flexr'>
               <div className='news-login' onClick={()=>{this.setState({loginShow:true})}}>登录</div>

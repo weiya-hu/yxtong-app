@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import Router from './router/index'
 import reportWebVitals from './reportWebVitals';
+import {util} from './utils/news'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,3 +16,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+util.firstToken()

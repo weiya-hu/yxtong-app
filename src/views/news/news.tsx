@@ -15,7 +15,6 @@ import exchangeimg from '../../public/images/user/exchange.png'
 export default class News extends Component{
   state={
     isLogin:true,//是否登录了
-    exitNone:true,//退出登录是否显示
     newsTypeActive:0,
     mayInterestList:[],
     newsList:[],
@@ -94,13 +93,9 @@ export default class News extends Component{
   render(){
     const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,hasMore}=this.state
     return (
-      <div id='news' onClick={()=>{this.setState({exitNone:true})}}>
+      <div id='news'>
         <div className='news-header'>
-          <Header 
-            isLogin={isLogin} 
-            exitNone={exitNone} 
-            exitNoneFlag={(val)=>{this.setState({exitNone:val})}}           
-          />  
+          <Header />  
         </div> 
         <div className='news-down'>
           <div className='news-down-top'></div>

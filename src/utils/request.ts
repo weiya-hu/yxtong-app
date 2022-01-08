@@ -14,9 +14,11 @@ import { AxisPointerComponent } from "echarts/components";
   * http request 拦截器
   */
  axios.interceptors.request.use(
-   (config) => {
-      let token = window.localStorage.getItem("token")
+   (config) => {   
      config.data = JSON.stringify(config.data);
+     let accessToken = window.localStorage.getItem("accessToken")
+      let firstToken = window.localStorage.getItem("firstToken")
+      let token =accessToken?accessToken:firstToken
     if(token){
         config.headers = {
             "Content-Type": "application/json",

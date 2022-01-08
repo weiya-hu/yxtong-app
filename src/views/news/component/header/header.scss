@@ -26,6 +26,7 @@
         color: #FF8800;
         line-height: 40px;
     }
+    
     .news-login-line{
         width: 0px;
         height: 12px;
@@ -65,8 +66,8 @@
     .exitimg{
         width: 14px;
         margin-right: 8px;
-      }
-      .exit{
+    }
+    .exit{
         position: absolute;
         right: 0;
         bottom: -44px;
@@ -74,18 +75,26 @@
         height: 36px;
         border: 1px solid #DCDCDC;
         background: #FFFFFF;
-
+       
         .color{
-          color: #FFFFFF;
+            color: #FFFFFF;
         }
-      }
-      .exit:hover{
+        .posi-more{
+            width: 83px;
+            height: 20px;
+            position: absolute;
+            top: -10px;
+            left: 0;
+            // background: red;
+        }
+    }
+    .exit:hover{
         background: #304F97;
         border: none;
-      }
-      .exitnone{
+    }
+    .exitnone{
         display: none;
-      }
+    }
 }
 
 @media screen and ( max-width: 1692px ){

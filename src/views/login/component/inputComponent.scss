@@ -64,6 +64,9 @@
     }
 
 }
+.capture{
+    width: 250px;
+}
 .height{
     height: 46px !important;
 }
@@ -113,7 +116,36 @@
         color: #999999;
     }
 }
-
+#capture{
+    .ant-form-item{
+        margin: 0;
+        input{
+            padding: 0;
+            border: none;
+            background: #F4F4F4;
+            width: 100px;
+        }
+        input::-webkit-input-placeholder { 
+        /* WebKit browsers */ 
+            font-size: 14px;
+            color: #BBBBBB;
+            letter-spacing: 0;
+            font-weight: 400; 
+        } 
+        input:focus{
+            border: none;
+            outline:none;
+        }
+        .ant-input:focus {
+            border: none;
+            border-bottom: 1px solid white !important;
+            box-shadow: none;
+        }
+    }
+    .captchaimg{
+        width: 120px;
+    }
+}
 #userName{
     .ant-form-item{
         margin: 0 0 0 41px;

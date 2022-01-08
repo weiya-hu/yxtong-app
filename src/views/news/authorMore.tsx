@@ -11,7 +11,6 @@ import topimg from '../../public/images/user/top.jpg'
 export default class AuthorMore extends Component{
     state={
         isLogin:true,//是否登录了
-        exitNone:true,//退出登录是否显示
         types:['全部','文章','视频'],
         typeActiveIndex:0,
         newsList:[],
@@ -83,15 +82,11 @@ export default class AuthorMore extends Component{
 
     }
     render(){
-        const {isLogin,exitNone,types,typeActiveIndex,newsList,hasMore}=this.state
+        const {isLogin,types,typeActiveIndex,newsList,hasMore}=this.state
         return(
-            <div className='authorMore'  onClick={()=>{this.setState({exitNone:true})}}>
+            <div className='authorMore'>
                 <div className='more-header'>
-                    <Header 
-                        isLogin={isLogin} 
-                        exitNone={exitNone} 
-                        exitNoneFlag={(val)=>{this.setState({exitNone:val})}}
-                    />
+                    <Header />
                     <div className='blank-div'></div>
                     <div className='more-types-pre fleximg'>
                         

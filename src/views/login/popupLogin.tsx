@@ -5,7 +5,8 @@ import { Form , Button} from 'antd';
 import InputComponent from './component/inputComponent';
 import { util } from '../../utils/user'
 import {BrowserRouter as Router, Link } from 'react-router-dom';
-import {token,dologin,captcha} from '../../service/login'
+import {dologin} from '../../service/login'
+import $message from '../component/message';
 
 import weiboimg from '../../public/images/weibo.png'
 import qqimg from '../../public/images/QQ.png'
@@ -23,18 +24,29 @@ export default class PopupLogin extends Component<PopupLoginState> {
         loginSwitch:0,
         warnMessage:'',
         mobileValue:'',
-        acode:'86'
+        acode:'86',
+        captchaShow:false,
      }
      submit=async(value)=>{
         console.log(value)
         let {loginSwitch} = this.state,message
         if(loginSwitch){    
             let username = util.validate_mobile(value.mobile)
-            message = username?username:util.validate_password(value.pass) 
+            if(value.captcha){
+                let captcha =  util.validate_captcha(value.captcha)
+                message = username?username:captcha?captcha:util.validate_password(value.pass) 
+            }else{
+                message = username?username:util.validate_password(value.pass) 
+            }
             
         }else{
             let mobile = util.validate_mobile(value.mobile)     
-            message = mobile?mobile:util.validate_yzm(value.sms)    
+            if(value.captcha){
+                let captcha =  util.validate_captcha(value.captcha)
+                message = mobile?mobile:captcha?captcha:util.validate_yzm(value.sms)   
+            }else{
+                message = mobile?mobile:util.validate_yzm(value.sms)
+            }
         }
         this.setState({warnMessage:message})
         value.acode && (value.acode='+'+value.acode)
@@ -45,24 +57,22 @@ export default class PopupLogin extends Component<PopupLoginState> {
             }
             const res = await dologin(data)
             if(res.status){
-                localStorage.setItem('token',res.body);
-
+                localStorage.setItem('accessToken',res.body);
+                window.location.href = window.location.href
+            }else{
+                if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
+                    this.setState({captchaShow:true})
+                }
             }
+                $message.info(res.message)
         }
     }
     close=()=>{
         this.props.show(false)
     }
-    componentDidMount=async()=>{
-        let tokens =localStorage.getItem('token')
-        if(!tokens){
-            const res = await token()
-            localStorage.setItem('token',res.body)
-        }  
-    }
+    
     render(){
-        // let loginSwitch = this.state.loginSwitch,warnMessage=this.state.warnMessage
-        let {loginSwitch,warnMessage,mobileValue,acode}=this.state
+        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow}=this.state
         return (
             <div className='popuplogin-item fleximg' id='popuplogin-item'>0
                 <div className='flexll popuplogin'>
@@ -98,7 +108,16 @@ export default class PopupLogin extends Component<PopupLoginState> {
                                                 MobileValue={(val)=>{this.setState({mobileValue:val})}} 
                                                 Acode={(val)=>{this.setState({acode:val})}}
                                             />
-                                        </div>   
+                                        </div> 
+                                        {captchaShow && <div className='marg'>
+                                            <InputComponent 
+                                                GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                                height='short'
+                                                formName='captcha' 
+                                                name='captcha' 
+                                            />
+                                        </div>
+                                        }        
                                         <div className='marg'>
                                             <InputComponent  
                                                 GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
@@ -122,6 +141,15 @@ export default class PopupLogin extends Component<PopupLoginState> {
                                         Acode={(val)=>{this.setState({acode:val})}}
                                     />
                                     </div>   
+                                    {captchaShow && <div className='marg'>
+                                            <InputComponent 
+                                                GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                                height='short'
+                                                formName='captcha' 
+                                                name='captcha' 
+                                            />
+                                        </div>
+                                        }  
                                     <div className='marg'>
                                         <InputComponent  GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='pass' name='password' height='short'/>
                                     </div>                                
