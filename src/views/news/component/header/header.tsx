@@ -34,14 +34,12 @@ export default class Header extends Component<any,HeaderState>{
   }
 
   componentDidMount=async()=>{
-      let isLogin =  localStorage.getItem('isLogin')
-      if(isLogin){
+    let accessToken = localStorage.getItem('accessToken')
+      if(accessToken){
         const res= await getUser()
         if(res.status){
           localStorage.setItem('userInfo',JSON.stringify(res.body))
           this.setState({userInfo:res.body})
-        }else{
-          localStorage.setItem('isLogin','0')
         }
       }
   }

@@ -5,7 +5,7 @@ import { Form , Button} from 'antd';
 import InputComponent from './inputComponent';
 import { util } from '../../../utils/user'
 import { Link } from 'react-router-dom';
-import {dologin} from '../../../service/login'
+import {dologin,token} from '../../../service/login'
 import $message from '../../component/message';
 
 
@@ -57,17 +57,30 @@ export default class LoginComponent extends Component {
             }
             const res = await dologin(data)
             if(res.status){
-                localStorage.setItem('accessToken',res.body);
                 window.history.back(-1);
             }else{
-                if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
+                if(res.errno === 10403){
+                    let tokenRes = await token()
+                   
+                    if(tokenRes.status){
+                        localStorage.setItem('firstToken',res.body)
+                        const dologinRes = await dologin(data)
+                        if(dologinRes.status){
+                            window.history.back(-1);
+                        }
+                        $message.info(res.message)
+                    }
+                }else if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
                     this.setState({captchaShow:true})
                 }
+                $message.info(res.message)
             }
-                $message.info(res.message)    
+                    
         }
     }
+    componentDidMount(){
 
+    }
 
     
     render(){

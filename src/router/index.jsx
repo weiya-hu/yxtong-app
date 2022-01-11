@@ -31,6 +31,9 @@ const NewsDetail = loadable(()=> import('../views/news/newsDetail'), {
 const NewsAuthorMore = loadable(()=> import('../views/news/authorMore'), {
     LoadingComponent: Loading,
 })
+const Develop = loadable(() => import('../views/develop.tsx'), {
+    LoadingComponent: Loading,
+})
  
  
 class IRouter extends React.Component {
@@ -39,16 +42,18 @@ class IRouter extends React.Component {
             <div>
                 <Router>
                     <Switch>
-                        <Route path="/App/login" component={Login} />
-                        <Route path="/App/register/:name" component={Register} />
-                        <Route path="/App/user" exact component={User} />
-                        <Route path="/App/news" component={News} />
-                        <Route path="/App/newsDetail" component={NewsDetail} />
-                        <Route path="/App/newsAuthorMore" component={NewsAuthorMore} />
-                        <Route extra path="/App" exact component={Home} />
-    
+                        <Route path="/app/login" component={Login} />
+                        <Route path="/app/register/:name" component={Register} />
+                        <Route path="/app/user" exact component={User} />
+                        <Route path="/app/news" component={News} />
+                        <Route path="/app/newsDetail" component={NewsDetail} />
+                        <Route path="/app/newsAuthorMore" component={NewsAuthorMore} />
+                        <Route extra path="/app" exact component={Home} />
+                        {/* 开发中 */}
+                        <Route path="/app/develop" component={Develop} />
                         {/* 404页面 */}
                         <Route path="*" component={NotFound} />
+                        
                     </Switch>
     
                 </Router>

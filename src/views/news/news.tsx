@@ -7,6 +7,7 @@ import NewsNav from './component/newsNav/newsNav';
 import FollowButton from './component/followButton/followButton';
 import MoreTxt from './component/moreTxt/moreTxt';
 import {util} from '../../utils/news'
+import {newsNewsList,newsAList} from '../../service/news'
 
 import writeimg from '../../public/images/user/write.png'
 import exchangeimg from '../../public/images/user/exchange.png'
@@ -15,10 +16,12 @@ import exchangeimg from '../../public/images/user/exchange.png'
 export default class News extends Component{
   state={
     isLogin:true,//是否登录了
-    newsTypeActive:0,
+    newsTypeActive:0,//新闻类型的默认值
     mayInterestList:[],
     newsList:[],
     hasMore: true,// 判断接口是否还有数据，通过接口设置
+    interestPage:1,
+    interestSize:7
   }
   loadMoreData=()=>{
     let array=this.state.newsList
@@ -57,8 +60,37 @@ export default class News extends Component{
       setTimeout(()=>window.addEventListener('scroll', this.handleScroll, false), 300)
     }
   }
-  newsIndexChange=(val)=>{
+  //根据新闻类型获取新闻列表
+  newsIndexChange=(val,item)=>{
+    if(val === 0){
+      this.getFavorlist()
+    }
     this.setState({newsTypeActive:val})
+    this.getNewslist(item.id)
+  }
+  //获取新闻列表
+  getNewslist=async(id)=>{
+      const rest = await newsNewsList({type_id:id})
+      if(rest.status){
+        this.setState({
+          newsList:res.body
+        })
+      }
+      
+  }
+  getFavorlist=async()=>{
+    const {interestPage,interestSize}=this.state
+    let data={
+      current:interestPage,
+      size:interestSize
+    }
+    const res = await newsAList(data)
+    if(res.status){
+      this.setState({
+        mayInterestList:res.body.body,
+        interestPage:interestPage +1
+      })
+    }
   }
   componentDidMount(){
     window.addEventListener('scroll', this.handleScroll, false)
@@ -85,10 +117,11 @@ export default class News extends Component{
       mayInterestList:arr,
       newsList:ary
     })
+
+
   }
   componentWillUnmount(): void {
     window.removeEventListener('scroll', this.handleScroll)
-    localStorage.setItem('historyUrl','app/news');
   }
   render(){
     const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,hasMore}=this.state
@@ -101,7 +134,7 @@ export default class News extends Component{
           <div className='news-down-top'></div>
           <div className='width flexbl position'>
             <div className='news-main'>
-              <NewsNav newsIndexChange={this.newsIndexChange} />
+              <NewsNav newsTypeActive={newsTypeActive} newsIndexChange={this.newsIndexChange} />
             </div>
             <div className='userinfo'>  
               <div className='bold'>作者名</div>
@@ -135,12 +168,12 @@ export default class News extends Component{
               <div className='may-interest'>
                 <div className='may-interest-title flexb'>
                   <div className='may-interest-title-txt'>您可能感兴趣</div>
-                  <div className='flexr'>
+                  <div className='flexr' onClick={this.getFavorlist}>
                     <div className='exchangeimg fleximg'><img src={exchangeimg} alt="exchangeimg" /></div>
                     <div className='color3'>换一换</div>
                   </div>
                 </div>
-                <div className='may-interest-list flexb'>
+                <div className='may-interest-list flexl'>
                   {mayInterestList.map((item,index)=>(
                     <div className='may-interest-item fleximgc' key={index}>
                       <div className='fleximg writeimg'><img src={writeimg} alt="cover" /></div>

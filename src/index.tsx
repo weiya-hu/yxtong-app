@@ -5,12 +5,15 @@ import Router from './router/index'
 import reportWebVitals from './reportWebVitals';
 import {util} from './utils/news'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Router />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// util.firstToken().then(()=>{
+  ReactDOM.render(
+    <React.StrictMode>
+      <Router />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+// })
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

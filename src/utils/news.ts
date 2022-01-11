@@ -35,7 +35,10 @@ export const util = {
         return util.getScrollHeight() - util.getScrollTop() - util.getWindowHeight()
     },
     firstToken:async()=>{
-        const res = await token()
-        localStorage.setItem('firstToken',res.body)
+        let firstToken =localStorage.getItem('firstToken')
+        if(!firstToken){
+            const res = await token()
+            localStorage.setItem('firstToken',res.body)
+        } 
     }
 }

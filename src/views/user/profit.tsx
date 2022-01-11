@@ -1,32 +1,23 @@
-
+//@ts-nocheck
 import { Component } from "react";
 import { Table, Pagination } from 'antd'
 import './profit.scss'
+import moment from 'moment'
 import MyScore from "./component/myScore";
+import {integralRecord} from '../../service/user'
 
-let dataSource = []
-for(let i=0;i<10;i++){
-    dataSource.push(
-        {
-            key: i,
-            time: '2020-02-18 16:12:23',
-            score: 32,
-            detail: '下载PDF文档',
-          },
-    )
-}
 const columns = [
     {
         title: '时间',
-        dataIndex: 'time',
-        key: 'time',
+        dataIndex: 'create_time',
+        key: 'create_time',
         align:'center' as 'center',
         width:290
     },
     {
         title: '积分',
-        dataIndex: 'score',
-        key: 'score',
+        dataIndex: 'value',
+        key: 'value',
         align:'center' as 'center',
         width:290
     },
@@ -39,15 +30,45 @@ const columns = [
         
     },
 ];
+
 export default class Profit extends Component{
     constructor(props){
         super(props)
     }
     state={
         current:1,//分页当前页
-        pageSize:5,//每页条数
+        pageSize:10,//每页条数
+        profitList:[],
+        profit:{}
+    }
+    getList=async(current,size)=>{
+        let data={
+            current: current,
+            size: size
+        }
+        const res = await integralRecord(data)
+        if(res.status){
+            let {records} = res.body
+            if(records.length) {
+                for(let i=0;i<records.length;i++){
+                    records[i].create_time=moment(records[i].create_time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            } 
+            this.setState({
+                profitList:records,
+                profit:res.body,
+                current:current,//分页当前页
+                pageSize:size,
+            })
+        }
+    }
+    componentDidMount=async()=>{
+        let {current,pageSize}=this.state
+        this.getList(current,pageSize)
+        
     }
     render(){
+        let {profitList,profit,current,pageSize} =this.state
         return(
             <div className='profit'>
                 <MyScore size='big' />
@@ -61,12 +82,18 @@ export default class Profit extends Component{
                         rowClassName={(record,index)=>index%2 === 1?'row-active':''}
                         size='middle' 
                         showHeader={false} 
-                        dataSource={dataSource} 
+                        dataSource={profitList} 
                         columns={columns} 
                         pagination={false}
                     />
                     <div className='flexr pagination paginations'>
-                        <Pagination total={dataSource.length} current={this.state.current} pageSize={this.state.pageSize} size='small'/>
+                        <Pagination 
+                            onChange={this.getList}
+                            total={profit.total} 
+                            current={current} 
+                            pageSize={pageSize} 
+                            size='small'
+                        />
                     </div>
                 </div>
 

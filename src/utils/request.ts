@@ -16,13 +16,13 @@ import { AxisPointerComponent } from "echarts/components";
  axios.interceptors.request.use(
    (config) => {   
      config.data = JSON.stringify(config.data);
-     let accessToken = window.localStorage.getItem("accessToken")
+    //  let accessToken = window.localStorage.getItem("accessToken")
       let firstToken = window.localStorage.getItem("firstToken")
-      let token =accessToken?accessToken:firstToken
-    if(token){
+      // let token =accessToken?accessToken:firstToken
+    if(firstToken){
         config.headers = {
             "Content-Type": "application/json",
-            "Authorization": token
+            "Authorization": firstToken
           };
     }else{
         config.headers = {
@@ -41,8 +41,10 @@ import { AxisPointerComponent } from "echarts/components";
   */
  axios.interceptors.response.use(
    (response) => {
-     if (response.data.errCode === 2) {
-       console.log("过期");
+     if (response.data.errno === 10620) {
+       console.log("登录状态过期");
+       window.location.href='/app/login'
+       message.info('登录状态过期，请再次登录')
      }
      return response;
    },

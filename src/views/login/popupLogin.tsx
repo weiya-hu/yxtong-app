@@ -70,7 +70,9 @@ export default class PopupLogin extends Component<PopupLoginState> {
     close=()=>{
         this.props.show(false)
     }
-    
+    componentDidMount(){
+        localStorage.removeItem('accessToken')
+    }
     render(){
         let {loginSwitch,warnMessage,mobileValue,acode,captchaShow}=this.state
         return (

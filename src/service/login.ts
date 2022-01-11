@@ -21,7 +21,7 @@ export const sendSmsreg =(data):Promise<API.IResult>=>{
 }
 
 export const getUser =():Promise<API.IResult>=>{
-    return  get('user/get-user')
+    return  get('user/public/get-user')
 }
 
 export const doreg =(data):Promise<API.IResult>=>{
