@@ -57,8 +57,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
             }
             const res = await dologin(data)
             if(res.status){
-                localStorage.setItem('accessToken',res.body);
-                window.location.href = window.location.href
+                window.location.href = ('/')
             }else{
                 if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
                     this.setState({captchaShow:true})
@@ -71,7 +70,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
         this.props.show(false)
     }
     componentDidMount(){
-        localStorage.removeItem('accessToken')
+
     }
     render(){
         let {loginSwitch,warnMessage,mobileValue,acode,captchaShow}=this.state

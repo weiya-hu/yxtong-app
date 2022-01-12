@@ -3,7 +3,7 @@ import { Component} from 'react'
 import './header.scss'
 import { getUser } from '../../../../service/login'
 import PopupLogin from '../../../login/popupLogin'
-import { Link } from 'react-router-dom';
+import { Link,withRouter } from 'react-router-dom';
 
 import headerimg from '../../../../public/images/user/header.png'
 import exitimg from '../../../../public/images/user/exit.png'
@@ -19,7 +19,7 @@ interface HeaderState{
 }
 
 
-export default class Header extends Component<any,HeaderState>{
+class Header extends Component<any,HeaderState>{
   state={
     links:['药智网','产业大脑','药智资讯','药智人才','专利通','药智汇','药智通','智慧大讲堂','论坛交流','俱乐部','海外智通','药智谷','药智搜','PDI峰会'],
     exitActive:false,//退出按钮是否hover
@@ -30,18 +30,19 @@ export default class Header extends Component<any,HeaderState>{
   //退出登录
   exitlogin=(e)=>{
     e.stopPropagation()
+    this.props.history.push('/app/login?url=/app/news')
 
   }
-
+  tologin=()=>{
+    this.props.history.push('/app/login?url=/app/news')
+  }
   componentDidMount=async()=>{
-    let accessToken = localStorage.getItem('accessToken')
-      if(accessToken){
         const res= await getUser()
         if(res.status){
           localStorage.setItem('userInfo',JSON.stringify(res.body))
           this.setState({userInfo:res.body})
         }
-      }
+      
   }
   render(){
     let {links,exitActive,userInfo,loginShow,exitNone}=this.state
@@ -59,9 +60,9 @@ export default class Header extends Component<any,HeaderState>{
                 {/* <div className='message-num fleximg'><span>99</span></div> */}
               </div>
               <div className='news-login-line'></div>
-              <Link to='/APP/user'>
+              {/* <Link to='/app/user'> */}
               <div className='flexr position user-login'  
-                onClick={()=>{}}
+                onClick={()=>{this.props.history.push('/app/user')}}
                 onMouseEnter ={()=>{this.setState({exitNone:true})}} 
                 onMouseLeave ={()=>{this.setState({exitNone:false})}} 
               >
@@ -76,14 +77,16 @@ export default class Header extends Component<any,HeaderState>{
                   <div className='fleximg exitimg'>
                     <img src={exitActive?exitactiveimg:exitimg} alt="exit" />
                   </div>
-                  <Link to='/APP/login'> <span className={exitActive?'color':''}>退出</span></Link>
+                  <span className={exitActive?'color':''}>退出</span>
                   <div className='posi-more'></div>
                 </div>
               </div>
-              </Link>
+              {/* </Link> */}
             </div>
           ):(<div className='flexr'>
-              <div className='news-login' onClick={()=>{this.setState({loginShow:true})}}>登录</div>
+              {/* <div className='news-login' onClick={()=>{this.setState({loginShow:true})}}>登录</div> */}
+              <div className='news-login' onClick={ this.tologin}>登录</div>
+
               <div className='news-login-line'></div>
               <div className='colorw'>注册</div>
             </div>
@@ -95,3 +98,4 @@ export default class Header extends Component<any,HeaderState>{
     )
   }
 }
+export default withRouter(Header)

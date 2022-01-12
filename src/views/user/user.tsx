@@ -55,7 +55,7 @@ export default class User extends Component {
         let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag} = this.state
         let asideActive = navActiveIndex === 2?this.state.asideActive:0
         if(loginFlag){
-          return <Redirect to='/app/login' />;
+          return <Redirect to='/app/login?url=/app/user' />;
         }
         return <div id='user' onClick={()=>{this.setState({exitNone:true})}}>
           <div className='flextop'>
@@ -68,7 +68,7 @@ export default class User extends Component {
                     <div className='flexr cursor position' onClick={this.exitloginpre}>
                       <div className='headerimg fleximgtop'><img src={headerimg} alt="username" /></div>
                       <span className='colorw user-name'>{userInfo.name}</span>
-                      <Link to='/APP/login'>
+                      <Link to='/app/login?url=/app/user'>
                         <div 
                           className={this.state.exitNone?'fleximg exitnone exit':'fleximg exit'}
                           onClick={this.exitlogin}

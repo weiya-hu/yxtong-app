@@ -21,7 +21,9 @@ export default class News extends Component{
     newsList:[],
     hasMore: true,// 判断接口是否还有数据，通过接口设置
     interestPage:1,
-    interestSize:7
+    interestSize:7,
+    newsPage:1,
+    newsSize:10
   }
   loadMoreData=()=>{
     let array=this.state.newsList
@@ -70,10 +72,16 @@ export default class News extends Component{
   }
   //获取新闻列表
   getNewslist=async(id)=>{
-      const rest = await newsNewsList({type_id:id})
+    let {newsPage,newsSize} =this.state
+    let data={
+      current:newsPage,
+      size:newsSize,
+      typeId:id
+    }
+      const rest = await newsNewsList(data)
       if(rest.status){
         this.setState({
-          newsList:res.body
+          newsList:rest.body
         })
       }
       
@@ -87,7 +95,7 @@ export default class News extends Component{
     const res = await newsAList(data)
     if(res.status){
       this.setState({
-        mayInterestList:res.body.body,
+        mayInterestList:res.body,
         interestPage:interestPage +1
       })
     }

@@ -56,24 +56,35 @@ export default class LoginComponent extends Component {
                 ...value,
             }
             const res = await dologin(data)
+            let url =window.location.search
             if(res.status){
-                window.history.back(-1);
+                if(url){
+                    window.location.href=url.split('=')[1]
+                }else{
+                    window.location.href='/'
+                }
+                $message.info(res.message)
             }else{
                 if(res.errno === 10403){
-                    let tokenRes = await token()
-                   
+                    let tokenRes = await token()                  
                     if(tokenRes.status){
                         localStorage.setItem('firstToken',res.body)
                         const dologinRes = await dologin(data)
                         if(dologinRes.status){
-                            window.history.back(-1);
+                            if(url){
+                                window.location.href=url.split('=')[1]
+                            }else{
+                                window.location.href='/'
+                            }
                         }
                         $message.info(res.message)
                     }
                 }else if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
                     this.setState({captchaShow:true})
+                }else{
+                    $message.info(res.message)
                 }
-                $message.info(res.message)
+                
             }
                     
         }
@@ -81,7 +92,9 @@ export default class LoginComponent extends Component {
     componentDidMount(){
 
     }
-
+    componentDidCatch(){
+        
+    }
     
     render(){
         let {loginSwitch,warnMessage,mobileValue,acode,captchaShow} = this.state

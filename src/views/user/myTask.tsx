@@ -20,7 +20,6 @@ import dianimg from '../../public/images/user/dian.png'
 
 import emailimg from '../../public/images/user/email.png'
 import chaimg from '../../public/images/user/cha.png'
-import Item from "antd/lib/list/Item";
 
 export default class MyTask extends Component{
     state={
@@ -34,7 +33,7 @@ export default class MyTask extends Component{
          signInfo:{},
          signInfoAll:{},
          isSignIn:null,
-         tasks:[]
+         tasks:[],
     }
     doperfect=(val)=>{
       console.log(val)
@@ -101,7 +100,7 @@ export default class MyTask extends Component{
         }
     }
     render(){
-      let {signInTitle,signInfo,signArr,signInfoAll,isSignIn,signinSuccess,tasks} = this.state
+      let {signInTitle,signInfo,signArr,signInfoAll,isSignIn,signinSuccess,tasks,img,imgtxt} = this.state
        return(
           <div className='myTask flexbl'>
              <div className='myTask-son'>
@@ -147,6 +146,8 @@ export default class MyTask extends Component{
                      {item.events.map((val,indx)=><div className='flexb task-item' key={indx}>
                            <div className='flexl'>
                               <div className='fleximg emailimg'><img src={emailimg} alt="email" /></div>
+                              {/* <div className='fleximg emailimg'><img src={img[imgtxt]} alt="email" /></div> */}
+
                               <Task title={val.name} score={`+${val.value}积分`} />
                            </div>
                            <div>
