@@ -41,6 +41,7 @@ import { AxisPointerComponent } from "echarts/components";
    (response) => {
      if (response.data.errno === 10620) {
        console.log("登录状态过期");
+       localStorage.removeItem('userInfo')
        window.location.href='/app/login?url='+window.location.pathname
        message.info('登录状态过期，请再次登录')
      }

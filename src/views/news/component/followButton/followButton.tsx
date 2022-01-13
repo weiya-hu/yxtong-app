@@ -1,51 +1,55 @@
 import { Component } from 'react'
 import './followButton.scss'
+import PopupLogin from '../../../login/popupLogin'
 
 import addSmallimg from '../../../../public/images/user/addSmall.png'
 import addBigimg from '../../../../public/images/user/addBig.png'
 import gouimg from '../../../../public/images/user/gou.png'
 
 interface FollowButtonItem{
-    name?:string,
-    follow:boolean,
-    title?:string
-    content?:string
-    time?:string
-    read?:number,
-    from?:string
-    star?:boolean,
-    share ?:boolean,
+    is_attention:string | null
 }
 
-interface FollowButtonState{
-    item:FollowButtonItem,
-    size?:string
+interface FollowButtonProps{
+    item?:FollowButtonItem,
+    size?:string,
+    userInfo?:(val)=>void
 }
 
-export default class FollowButton extends Component<FollowButtonState> {
+export default class FollowButton extends Component<FollowButtonProps> {
     state={
-        item:this.props.item
+        item:this.props.item,
+        loginShow:false
     }
-    follow=()=>{
+    follow=(event)=>{
+        event.stopPropagation() 
         setTimeout(()=>{
             let {item} =this.state
-            item.follow=!item.follow
+            item.is_attention=!item.is_attention?'1':null
             this.setState({item:item})
-        },1000)
+        },100)
     }
     render(){
-        const {item} = this.state,{size}=this.props
+        const {item,loginShow} = this.state,{size}=this.props
         return size==='big'?(
             // size='big'
-            <div onClick={this.follow} className={item.follow?'big-interest-button-gray fleximg':'fleximg big-interest-button'}>
-                <div className='followimg fleximg'><img src={item.follow?gouimg:addBigimg} alt="add" /></div>
-                <span>{item.follow?'已关注':'关注'}</span>
+            <div onClick={this.follow} className={item.is_attention?'big-interest-button-gray fleximg':'fleximg big-interest-button'}>
+                <div className='followimg fleximg'><img src={item.is_attention?gouimg:addBigimg} alt="add" /></div>
+                <span>{item.is_attention?'已关注':'关注'}</span>
+                {loginShow &&  <PopupLogin 
+                    show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}
+                    userInfo={(val)=>{this.setState({userInfo:val});this.props.userInfo(val)}}
+                />} 
             </div>
             ): (
             // size='small'或者没传size
-            <div onClick={this.follow} className={item.follow?' interest-button-gray fleximg':'fleximg interest-button'}>
-                <div className='followimg fleximg'><img src={item.follow?gouimg:addSmallimg} alt="follow" /></div>
-                <span>{item.follow?'已关注':'关注'}</span>
+            <div onClick={this.follow} className={item.is_attention?' interest-button-gray fleximg':'fleximg interest-button'}>
+                <div className='followimg fleximg'><img src={item.is_attention?gouimg:addSmallimg} alt="is_attention" /></div>
+                <span>{item.is_attention?'已关注':'关注'}</span>
+                {loginShow &&  <PopupLogin 
+                    show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}
+                    userInfo={(val)=>{this.setState({userInfo:val});this.props.userInfo(val)}}
+                />} 
             </div>
             
             )

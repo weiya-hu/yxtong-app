@@ -3,32 +3,39 @@ import './comment.scss'
 import CommentInput from '../commentInput/commentInput'
 import CommentListItem from '../commentListItem/commentListItem';
 import { Divider, Drawer} from 'antd';
+import {commentList} from '../../../../service/news'
 
 import chaimg from '../../../../public/images/cha.png'
 import toimg from '../../../../public/images/user/to.png'
 
-export default class Comment extends Component {
+interface CommentProps{
+    newsId:string
+}
+
+export default class Comment extends Component<CommentProps> {
     state={
         drawerShow:false,
         commentList:[],
-        total:10
+        total:10,
+        current:1,
+        size:20
     }
     drawerClose=()=>{
         this.setState({drawerShow:false})
     }
-    componentDidMount() {
-        let arr=[]
-        for(let i=0;i<10;i++){
-            let item={
-                name:'可爱啊的小灰灰',
-                comment:'再说第二弹，商圈断绝的痕迹啊贺卡活动空间啊很大客户的空间啊安科技活动看哈好的空东莞房价还是过分的话就是的环境股份技术股份手动滑稽过分的话就是间啊啥的空间啊',
-                time:'8小时前',
-                favor:i*31,
-                isfavor: i%2?true:false
-            }
-            arr.push(item)
+    getComment=async()=>{
+        let id = window.location.search.split('=')[1]
+        let {current,size}=this.state
+        let data={
+            newsId:id,
+            current:current,
+            size:size
         }
-        this.setState({commentList:arr})
+        let res =await commentList(data)
+        this.setState({commentList:res.body.records,total:res.body.total})
+    }
+    componentDidMount() {
+        this.getComment()
     }
     render(){
         const {drawerShow,commentList,total} =this.state

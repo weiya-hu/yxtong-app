@@ -12,6 +12,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   
 }
+iframe{
+  display: none !important;
+}
 #root{background: #F4F4F4;height: 100%;}
 //取消双击选中文字，字体为微软雅黑
 div,span{

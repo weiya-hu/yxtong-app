@@ -5,7 +5,7 @@ import { Form , Button} from 'antd';
 import InputComponent from './inputComponent';
 import { util } from '../../../utils/user'
 import { Link } from 'react-router-dom';
-import {dologin,token} from '../../../service/login'
+import {dologin,token,getUser} from '../../../service/login'
 import $message from '../../component/message';
 
 
@@ -58,6 +58,8 @@ export default class LoginComponent extends Component {
             const res = await dologin(data)
             let url =window.location.search
             if(res.status){
+                let userInfoRes= await getUser()
+                localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body) )
                 if(url){
                     window.location.href=url.split('=')[1]
                 }else{
@@ -65,19 +67,21 @@ export default class LoginComponent extends Component {
                 }
                 $message.info(res.message)
             }else{
-                if(res.errno === 10403){
+                if(res.errno === 10403 || res.errno === 10401){
                     let tokenRes = await token()                  
                     if(tokenRes.status){
                         localStorage.setItem('firstToken',res.body)
-                        const dologinRes = await dologin(data)
+                        let dologinRes = await dologin(data)
                         if(dologinRes.status){
+                            let userInfoRes= await getUser()
+                            localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body))
                             if(url){
                                 window.location.href=url.split('=')[1]
                             }else{
                                 window.location.href='/'
                             }
                         }
-                        $message.info(res.message)
+                        $message.info(dologinRes.message)
                     }
                 }else if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
                     this.setState({captchaShow:true})

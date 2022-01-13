@@ -23,29 +23,12 @@ export default class News extends Component{
     interestPage:1,
     interestSize:7,
     newsPage:1,
-    newsSize:10
+    newsSize:3,
+    userInfo:null,
+    newsTypeId:null
   }
   loadMoreData=()=>{
-    let array=this.state.newsList
-    setTimeout(()=>{
-      let ary=[]
-      for(let i=0;i<7;i++){
-        let itm={
-          title:'国民党终于拿出一铁证，“台湾属于中国”响彻岛内！',
-          content:'今年9月份，前台湾地区领导人马英九在参加一场新书发布会接受媒体采访时，拿出了台湾属于中国的铁证，当时，马英九表示，《开罗宣言》中明确指出，“日本盗窃中国的领土，例如东北三省，台湾等等',
-          time:'2021年9月23日',
-          read:3029,
-          from:'小米网',
-          star:i%3 === 0,
-          share :i%2 ===0,
-          follow:i%3 === 0,
-        }
-        ary.push(itm)
-      }
-      this.setState({
-        newsList:array.concat(ary) 
-      })
-    },500)
+    this.getNewslist(this.state.newsTypeId)
   }
   // 页面滚动
   handleScroll = () => {
@@ -63,16 +46,39 @@ export default class News extends Component{
     }
   }
   //根据新闻类型获取新闻列表
-  newsIndexChange=(val,item)=>{
+  newsIndexChange=(val,item,flag)=>{
+    if(flag){
+      this.setState({
+        newsTypeActive:val,
+        newsPage:1,
+        newsTypeId:item.id,
+        newsList:[]
+      },()=>{this.getNewslist(item.id)})
+      
+    }else{
+      let param = this.props.location.query
+      if(param){
+        this.getNewslist(param.item.id)
+        this.setState({newsTypeActive:param.index})
+      }else{
+        this.getNewslist(item.id)
+      }
+    }
     if(val === 0){
       this.getFavorlist()
     }
-    this.setState({newsTypeActive:val})
-    this.getNewslist(item.id)
+  }
+  getInfo=()=>{
+    let param = this.props.location.query
+    if(param){
+      this.newsIndexChange(param.index,param.item)
+    }else{
+
+    }
   }
   //获取新闻列表
   getNewslist=async(id)=>{
-    let {newsPage,newsSize} =this.state
+    let {newsPage,newsSize,newsList} =this.state
     let data={
       current:newsPage,
       size:newsSize,
@@ -81,10 +87,18 @@ export default class News extends Component{
       const rest = await newsNewsList(data)
       if(rest.status){
         this.setState({
-          newsList:rest.body
+          newsList:newsList.concat(rest.body.newsList),
+          hasMore:rest.body.total>newsPage*newsSize,
+          newsPage:newsPage+1
         })
       }
       
+  }
+  //跳转新闻详情页
+  toNewsDetail=(item)=>{
+    console.log(item)
+    this.props.history.push( { pathname : '/app/newsdetail/?id='+item.id})
+   
   }
   getFavorlist=async()=>{
     const {interestPage,interestSize}=this.state
@@ -95,41 +109,21 @@ export default class News extends Component{
     const res = await newsAList(data)
     if(res.status){
       this.setState({
-        mayInterestList:res.body,
-        interestPage:interestPage +1
+        mayInterestList:res.body.attList
       })
     }
   }
+
   componentDidMount(){
     window.addEventListener('scroll', this.handleScroll, false)
-    let arr =[],ary=[]
-    for(let i=0;i<7;i++){
-      let item={
-        name:'封面新闻',
-        follow:i%3 === 0,
-      }
-      let itm={
-        title:'马英九发声后，国民党终于拿出一铁证，“台湾属于中国”响彻岛内！',
-        content:'今年9月份，前台湾地区领导人马英九在参加一场新书发布会接受媒体采访时，拿出了台湾属于中国的铁证，当时，马英九表示，《开罗宣言》中明确指出，“日本盗窃中国的领土，例如东北三省，台湾等等',
-        time:'2021年9月23日',
-        read:3029,
-        from:'小米网',
-        star:i%3 === 0,
-        share :i%2 ===0,
-        follow:i%3 === 0,
-      }
-      arr.push(item)
-      ary.push(itm)
-    }
-    this.setState({
-      mayInterestList:arr,
-      newsList:ary
-    })
-
+    console.log(this.props.location.query)
 
   }
   componentWillUnmount(): void {
     window.removeEventListener('scroll', this.handleScroll)
+    this.setState = (state,callback)=>{
+      return;
+    }
   }
   render(){
     const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,hasMore}=this.state
@@ -145,7 +139,7 @@ export default class News extends Component{
               <NewsNav newsTypeActive={newsTypeActive} newsIndexChange={this.newsIndexChange} />
             </div>
             <div className='userinfo'>  
-              <div className='bold'>作者名</div>
+              <div className='bold'>创作中心</div>
               <div className='writeimg fleximg'><img src={writeimg} alt="write" /></div>
               <div className='font12'>写文章</div>
               <div className='hr'></div>
@@ -184,10 +178,10 @@ export default class News extends Component{
                 <div className='may-interest-list flexl'>
                   {mayInterestList.map((item,index)=>(
                     <div className='may-interest-item fleximgc' key={index}>
-                      <div className='fleximg writeimg'><img src={writeimg} alt="cover" /></div>
+                      <div className='fleximg writeimg'><img src={item.head_url} alt="header" /></div>
                       <div >{item.name}</div>
                       <div>
-                        <FollowButton item={item}/>
+                        <FollowButton item={item} />
                       </div>
                     </div>
                   ))}
@@ -197,7 +191,7 @@ export default class News extends Component{
             
             <div className='news-list'  >
               {newsList.map((item,index)=>(
-                <div key={index}>
+                <div key={index} onClick={()=>this.toNewsDetail(item)}>
                   <NewsListItem item={item}/>
                 </div>
               ))}

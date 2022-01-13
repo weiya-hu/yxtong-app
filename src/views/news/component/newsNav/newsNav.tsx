@@ -5,6 +5,7 @@ import {newsTypeList} from '../../../../service/news'
 
 interface NewsNavState{
     newsIndexChange:(val:number)=>void
+    newsTypeActive:number
 }
 
 export default class NewsNav extends Component<NewsNavState> {
@@ -19,7 +20,7 @@ export default class NewsNav extends Component<NewsNavState> {
             this.setState({
                 newsType:res.body
             })
-            this.props.newsIndexChange(newsTypeActive,res.body[newsTypeActive])
+            this.props.newsIndexChange(newsTypeActive,res.body[newsTypeActive],0)
         }
     }
     render(){
@@ -32,7 +33,7 @@ export default class NewsNav extends Component<NewsNavState> {
                     className={newsTypeActive === index ?'news-type-item news-type-item-active':'news-type-item'}
                     onClick={()=>{
                         this.setState({newsTypeActive:index})
-                        this.props.newsIndexChange(index,item)
+                        this.props.newsIndexChange(index,item,1)
                         window.scrollTo (0,0);
                     }}
                 >{item.name}</div>))}

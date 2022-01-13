@@ -6,11 +6,11 @@ import favorActiveimg from '../../../../public/images/user/favorActive.png'
 
 interface CommentListItemProps{
     item:{
-        name:string,
-        comment:string,
-        time:string,
-        favor:number,
-        isfavor:boolean
+        username:string,
+        content:string,
+        update_time:number,
+        favor_num:number,
+        is_favor:boolean
     }
 }
 export default class Favorbutton extends Component<CommentListItemProps> {
@@ -19,7 +19,7 @@ export default class Favorbutton extends Component<CommentListItemProps> {
     }
     favor=()=>{
         let item=JSON.parse(JSON.stringify(this.state.item)) 
-        item.isfavor=!item.isfavor
+        item.is_favor=!item.is_favor
         this.setState({
             item:item
         })
@@ -30,8 +30,8 @@ export default class Favorbutton extends Component<CommentListItemProps> {
             <div 
                 className='fleximg favorimg'
                 onClick={this.favor}
-            ><img src={item.isfavor?favorActiveimg:favorimg} alt="favor" /></div>
-            <div className={item.isfavor?'font12 favorcolor':'font12 color3'}>{item.favor}</div>
+            ><img src={item.is_favor?favorActiveimg:favorimg} alt="favor" /></div>
+            <div className={item.is_favor?'font12 favorcolor':'font12 color3'}>{item.favor_num}</div>
         </div>
     }
     

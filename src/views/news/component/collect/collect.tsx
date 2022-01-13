@@ -16,7 +16,8 @@ export default class Collect extends Component<CollectState> {
     state={
         collect:this.props.collect
     }
-    collectChange=()=>{
+    collectChange=(e)=>{
+        e.stopPropagation() 
         //调收藏接口成功后
         let collect = JSON.parse(JSON.stringify(this.state.collect))
         this.setState({

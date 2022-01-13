@@ -46,8 +46,8 @@ class IRouter extends React.Component {
                         <Route path="/app/register/:name" component={Register} />
                         <Route path="/app/user" exact component={User} />
                         <Route path="/app/news" component={News} />
-                        <Route path="/app/newsDetail" component={NewsDetail} />
-                        <Route path="/app/newsAuthorMore" component={NewsAuthorMore} />
+                        <Route path="/app/newsdetail" component={NewsDetail} />
+                        <Route path="/app/newsauthormore" component={NewsAuthorMore} />
                         <Route extra path="/app" exact component={Home} />
                         {/* 开发中 */}
                         <Route path="/app/develop" component={Develop} />

@@ -29,8 +29,8 @@ export default class MyTask extends Component{
            {name:'连续7天',signInImg:gift7img},
            {name:'连续14天',signInImg:gift14img},
            {name:'连续30天',signInImg:gift30img}],
-           giftTitleIndex:-1,
-         signInfo:{},
+         //   giftTitleIndex:-1,
+         signInfo:{giftTitleIndex:-2},
          signInfoAll:{},
          isSignIn:null,
          tasks:[],
@@ -40,7 +40,10 @@ export default class MyTask extends Component{
     }
     getSign=(num,str)=>{
       let item
-      if(num<=6 && num >=1){
+      // if(num ===0){
+      //    item={index:num-1,start:1,giftIndex:6,giftTitleIndex:-1,score:str.sevenDay.value,daily:str.daily.value}
+      // }
+      if(num<=6 && num >=0){
          item={index:num-1,start:1,giftIndex:6,giftTitleIndex:-1,score:str.sevenDay.value,daily:str.daily.value}
       }
       if(num === 7){
@@ -71,12 +74,12 @@ export default class MyTask extends Component{
        const {isSignIn,signInfoAll} = this.state
        if(!isSignIn){
          const res = await signIn()
-         if(res.body.isSuccess){
+         if(res.body.is_success){
             let item = this.getSign(signInfoAll.contDay+1,signInfoAll)
             this.setState({
                signInfo:item,
                signinSuccess:res.body.value,
-               isSignIn:res.body.isSuccess
+               isSignIn:res.body.is_success
             })
          }
          res && $message.info(res.message)
@@ -114,8 +117,8 @@ export default class MyTask extends Component{
                      <div className="myTask-gift flexr">
                         {signInTitle.map((item,index)=><div key={index} className="flexl">
                               <div className="fleximgc">
-                                 <div className={signInfo.giftTitleIndex>=index?'font12':'font12 color3'}>{item.name}</div>
-                                 <div className="fleximg giftimg"><img src={signInfo.giftTitleIndex>=index?item.signInImg:giftimg} alt="gift" /></div>
+                                 <div className={this.state.signInfo.giftTitleIndex>=index?'font12':'font12 color3'}>{item.name}</div>
+                                 <div className="fleximg giftimg"><img src={this.state.signInfo.giftTitleIndex>=index?item.signInImg:giftimg} alt="gift" /></div>
                               </div>
                               {index<=1 && <div className="fleximg dianimg"><img src={dianimg} alt="and" /></div>}
                            </div>

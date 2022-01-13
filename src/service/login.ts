@@ -25,5 +25,10 @@ export const getUser =():Promise<API.IResult>=>{
 }
 
 export const doreg =(data):Promise<API.IResult>=>{
-    return  post('/login/doreg',data)
+    return  post('login/doreg',data)
+}
+
+
+export const loginOut =():Promise<API.IResult>=>{
+    return  get('login/login-out')
 }

@@ -5,7 +5,7 @@ import { Form , Button} from 'antd';
 import InputComponent from './component/inputComponent';
 import { util } from '../../utils/user'
 import {BrowserRouter as Router, Link } from 'react-router-dom';
-import {dologin} from '../../service/login'
+import {dologin,getUser,token} from '../../service/login'
 import $message from '../component/message';
 
 import weiboimg from '../../public/images/weibo.png'
@@ -17,6 +17,7 @@ import chaimg from '../../public/images/cha.png'
 
 interface PopupLoginState{
     show?:(val:boolean)=>void
+    userInfo?:(val:boolean)=>void
 }
 
 export default class PopupLogin extends Component<PopupLoginState> {
@@ -57,13 +58,31 @@ export default class PopupLogin extends Component<PopupLoginState> {
             }
             const res = await dologin(data)
             if(res.status){
-                window.location.href = ('/')
+                let result = await getUser()
+               if(result.status){
+                    localStorage.setItem('userInfo',JSON.stringify(result.body))
+               } 
+                this.close()
             }else{
-                if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
+                if(res.errno === 10403 || res.errno === 10401){
+                    let tokenRes = await token()                  
+                    if(tokenRes.status){
+                        localStorage.setItem('firstToken',res.body)
+                        let dologinRes = await dologin(data)
+                        if(dologinRes.status){
+                            let userInfoRes= await getUser()
+                            if(userInfoRes.status){
+                                localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body))
+                           } 
+                            this.close()
+                        }
+                        $message.info(dologinRes.message)
+                    }
+                }else if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
                     this.setState({captchaShow:true})
                 }
             }
-                $message.info(res.message)
+             $message.info(res.message)
         }
     }
     close=()=>{

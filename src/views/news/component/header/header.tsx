@@ -3,7 +3,8 @@ import { Component} from 'react'
 import './header.scss'
 import { getUser } from '../../../../service/login'
 import PopupLogin from '../../../login/popupLogin'
-import { Link,withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { loginOut } from '../../../../service/login';
 
 import headerimg from '../../../../public/images/user/header.png'
 import exitimg from '../../../../public/images/user/exit.png'
@@ -28,21 +29,23 @@ class Header extends Component<any,HeaderState>{
     loginShow:false
   }
   //退出登录
-  exitlogin=(e)=>{
+  exitlogin=async(e)=>{
     e.stopPropagation()
-    this.props.history.push('/app/login?url=/app/news')
-
+    let res = await loginOut()
+    if(res.status){
+      this.props.history.push('/app/login?url=/app/news')
+      localStorage.removeItem('userInfo')
+    }
+    
   }
   tologin=()=>{
     this.props.history.push('/app/login?url=/app/news')
   }
-  componentDidMount=async()=>{
-        const res= await getUser()
-        if(res.status){
-          localStorage.setItem('userInfo',JSON.stringify(res.body))
-          this.setState({userInfo:res.body})
-        }
-      
+  componentDidMount=()=>{
+    let userInfo=JSON.parse(localStorage.getItem('userInfo')) 
+    if(userInfo){
+      this.setState({userInfo:userInfo})
+    }
   }
   render(){
     let {links,exitActive,userInfo,loginShow,exitNone}=this.state
@@ -60,7 +63,6 @@ class Header extends Component<any,HeaderState>{
                 {/* <div className='message-num fleximg'><span>99</span></div> */}
               </div>
               <div className='news-login-line'></div>
-              {/* <Link to='/app/user'> */}
               <div className='flexr position user-login'  
                 onClick={()=>{this.props.history.push('/app/user')}}
                 onMouseEnter ={()=>{this.setState({exitNone:true})}} 
@@ -81,7 +83,6 @@ class Header extends Component<any,HeaderState>{
                   <div className='posi-more'></div>
                 </div>
               </div>
-              {/* </Link> */}
             </div>
           ):(<div className='flexr'>
               {/* <div className='news-login' onClick={()=>{this.setState({loginShow:true})}}>登录</div> */}
@@ -93,7 +94,10 @@ class Header extends Component<any,HeaderState>{
           )}  
         </div>
         <div className='invite '>你好，欢迎登录康州数智官网！</div>
-        {loginShow &&  <PopupLogin show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}/>} 
+        {loginShow &&  <PopupLogin 
+            show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}
+            userInfo={(val)=>{this.setState({userInfo:val});this.props.userInfo(val)}}
+        />} 
       </div>
     )
   }

@@ -8,8 +8,9 @@ import ArticleList from './articleList'
 import DataAnalysis from './dataAnalysis'
 import ArticleDetail from './articleDetail'
 import {userMycenterInfo} from '../../service/user'
+import {loginOut } from '../../service/login'
 import { getUser } from '../../service/login'
-import { Link,Redirect } from 'react-router-dom';
+import { Link,Redirect ,withRouter} from 'react-router-dom';
 
 import logoimg from '../../public/images/logo.png'
 import homeimg from '../../public/images/user/home.png'
@@ -19,7 +20,7 @@ import headerimg from '../../public/images/user/header.png'
 import realnamedimg from '../../public/images/user/realnamed.png'
 import phoneimg from '../../public/images/user/phone.png'
 
-export default class User extends Component {
+class User extends Component {
     state={
         nav:['我的任务','我的收益','创作中心','我的消息','设置'],
         aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
@@ -35,8 +36,14 @@ export default class User extends Component {
       e.stopPropagation()
       this.setState({exitNone:!this.state.exitNone})
     }
-    exitlogin=(e)=>{
+    exitlogin=async(e)=>{
       e.stopPropagation()
+      let res = await loginOut()
+      if(res.status){
+        this.props.history.push('/app/login?url=/app/user')
+        localStorage.removeItem('userInfo')
+      }
+      
     }
     componentDidMount=async()=>{
       const result = await getUser()
@@ -44,6 +51,7 @@ export default class User extends Component {
         this.setState({
           userInfo:result.body
         })
+        localStorage.setItem('userInfo',JSON.stringify(result.body))
       }else{
         this.setState({
           loginFlag:true
@@ -68,7 +76,6 @@ export default class User extends Component {
                     <div className='flexr cursor position' onClick={this.exitloginpre}>
                       <div className='headerimg fleximgtop'><img src={headerimg} alt="username" /></div>
                       <span className='colorw user-name'>{userInfo.name}</span>
-                      <Link to='/app/login?url=/app/user'>
                         <div 
                           className={this.state.exitNone?'fleximg exitnone exit':'fleximg exit'}
                           onClick={this.exitlogin}
@@ -79,7 +86,6 @@ export default class User extends Component {
                           </div>
                           <span className={exitActive?'color':''}>退出</span>
                         </div>
-                      </Link>
                     </div>
                 </div>
             </div>
@@ -101,6 +107,7 @@ export default class User extends Component {
                 </div>
             </div>
           </div>
+          <div></div>
           <div className='content'>
             <div className='flexbl width'>
               <div>
@@ -153,3 +160,4 @@ export default class User extends Component {
     }
     
 }
+export default withRouter(User);

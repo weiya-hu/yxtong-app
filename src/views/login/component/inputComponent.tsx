@@ -17,6 +17,7 @@ export default class InputComponent extends Component<any> {
     constructor(props){
         super( props)    
     }
+    userInputRef = null
     state={
         countryCode:'86',//国家区号的默认值
         getYZMflag:false,//获取验证码的开关，为true后才能获取验证码，到时候后为FALSE关闭
@@ -107,6 +108,7 @@ export default class InputComponent extends Component<any> {
     }
     componentDidMount=()=>{
         this.getCaptcha()
+        this.userInputRef?.focus()
     }
     render(){
         let component
@@ -116,6 +118,14 @@ export default class InputComponent extends Component<any> {
             case 'mobile':
                 component =(
                     <div className={height?'phone flexl height':'phone flexl'}  >    
+                        <div className='phoneselectpre '>
+                            <Form.Item name="acode" initialValue={countryCode}>
+                                <Select className='phoneselect' onChange={(val,option)=>{this.selectChange(val,option)}}>
+                                    {areaNum.map((item,index)=><Option key={index} value={item.tel}>{item.name}</Option>)}
+                                                                     
+                                </Select>  
+                            </Form.Item>                      
+                        </div> 
                         <div className='flexl countrycode'>
                             <div className='countrycodetxt'>+{countryCode}</div>
                             <div className='fleximg downselectimg'>
@@ -131,18 +141,14 @@ export default class InputComponent extends Component<any> {
                                     onChange={(e)=>{this.setState({mobileInput :e.target.value });this.props.MobileValue(e.target.value)}} 
                                     type="tel" 
                                     placeholder='请输入手机号' 
+                                    ref={(ref) => {
+                                        this.userInputRef = ref
+                                    }}
                                     onBlur={(e)=>{this.inputBlur(e,name)}}
                                 />
                             </Form.Item>
                         </div>
-                        <div className='phoneselectpre '>
-                            <Form.Item name="acode" initialValue={countryCode}>
-                                <Select className='phoneselect' onChange={(val,option)=>{this.selectChange(val,option)}}>
-                                    {areaNum.map((item,index)=><Option key={index} value={item.tel}>{item.name}</Option>)}
-                                                                     
-                                </Select>  
-                            </Form.Item>                      
-                        </div>            
+                                   
                     </div>
                 )
                 break;

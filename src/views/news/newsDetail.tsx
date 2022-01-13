@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Component } from 'react'
 import './newsDetail.scss'
 import Header from './component/header/header'
@@ -9,12 +10,14 @@ import Collect from './component/collect/collect';
 import Share from './component/share/share';
 import Report from './component/report/report';
 import Comment from './component/comment/comment';
+import {newsDetail,newsReadList,newsWorksList} from '../../service/news'
 
 import toimg from'../../public/images/user/to.png'
 import commentBlackimg from '../../public/images/user/commentBlack.png'
 
 export default class NewsDetail extends Component {
     state={
+        newsTypeActive:0,
         isLogin:true,//是否登录了
         author:{
             name:'央视新闻',
@@ -26,7 +29,11 @@ export default class NewsDetail extends Component {
             comment:22,
             collect:false,
             share:false
-        }
+        },
+        newsDetail:null,
+        newsProps:this.props.location.query,
+        newsId:null,
+        hotArticleList:{}
     }
     collectChange=(val)=>{
         let articleINfo=JSON.parse(JSON.stringify(this.state.articleINfo)) 
@@ -35,6 +42,7 @@ export default class NewsDetail extends Component {
             articleINfo:articleINfo
         })
     }
+    //跳到锚点
     scrollToAnchor = (anchorName) => {
         if (anchorName) {
             // 找到锚点
@@ -43,23 +51,51 @@ export default class NewsDetail extends Component {
             if(anchorElement) { anchorElement.scrollIntoView({ behavior: 'smooth'}); }
         }
       }
-    componentDidMount(){
-        let arr=[]
-        for(let i=0;i<5;i++){
-            let item={
-                title:'马英九发声后，国民党终于拿出一铁证，“台湾属于中国”响彻岛内！',
-                read:65,
-                time:'一小时前'
-            }
-            arr.push(item)
+      //获取新闻详情
+    getNewsDetail=async()=>{
+        let id = window.location.search.split('=')[1]
+        this.setState({newsId:id})
+        let data={
+            newsId:id
         }
-        this.setState({
-            authorHotList:arr,
-            readRank:arr
+        let res =await newsDetail(data)
+        if(res.status){
+            this.setState({
+                newsDetail:res.body
+            })
+        }
+    }
+    //每日阅读榜
+    newsReadLists=async () => {
+        let res = await newsReadList({current:1,size:5})
+        res.status && this.setState({
+            readRank:res.body.readList
         })
     }
+    //作者信息和作品列表
+    getHotArticleList=async () => {
+        //to do list,creatorId
+        let res = await newsWorksList({creatorId:1,current:1,size:5})
+        res.status && this.setState({
+            hotArticleList:res.body
+        })
+    }
+    //跳转作者作品页
+    toNewsAuthor=()=>{
+        //to do list,creatorId
+        this.props.history.push('/app/newsauthormore/?creatorId='+1)
+    }
+    //点击nav跳转新闻列表
+    navChange=(val,item,flag)=>{
+        flag && this.props.history.push({ pathname : '/app/news' , query : {index : val,item:item}})
+    }
+    componentDidMount(){
+        this.getNewsDetail()
+        this.newsReadLists()
+        this.getHotArticleList()
+    }
     render(){
-        let {isLogin,articleINfo,author,authorHotList,readRank}=this.state
+        let {newsTypeActive,articleINfo,author,authorHotList,readRank,newsDetail,hotArticleList}=this.state
 
         return <div className='newsDetail'>
             <div className='header-pre'>
@@ -72,7 +108,7 @@ export default class NewsDetail extends Component {
                         <a onClick={() => this.scrollToAnchor('comment')}>
                             <div className='comment fleximgc'>
                                 <div className='fleximg commentBlackimg'><img src={commentBlackimg} alt="comment" /></div>
-                                <div className='font12'>22</div>
+                                <div className='font12'>{newsDetail?newsDetail.commented:''}</div>
                             </div>
                             </a> 
                         <div className='newsDetail-share-hr'></div>
@@ -86,7 +122,7 @@ export default class NewsDetail extends Component {
                     </div>
                     <div className='newsDetail-article newsDetail-article-padding'>
                         <div>
-                            <NewsNav newsIndexChange={()=>{}}/>
+                            <NewsNav newsTypeActive={newsTypeActive} newsIndexChange={this.navChange}/>
                         </div>
                     </div>
                 </div>
@@ -99,7 +135,7 @@ export default class NewsDetail extends Component {
                 <div className='newsDetail-article'>
                     
                     <div className='newsDetail-article-detail'>
-                        <ArticleDetail />
+                        <ArticleDetail newsDetail={newsDetail}/>
                     </div>
                     <div className='Report-div' id='comment'>
                         <Report />
@@ -108,33 +144,33 @@ export default class NewsDetail extends Component {
 
                     </div>
                     <div >
-                        <Comment />
+                        <Comment/>
                     </div>
 
                 </div>
                 <div className='newsDetail-author'>
                     <div className='newsDetail-author-info'>
                         <div className='newsDetail-author-info-top fleximgc'>
-                            <div className='authorimg fleximg'><img src="" alt="author" /></div>
-                            <div className=''>{author.name}</div>
+                            <div className='authorimg fleximg'><img src={newsDetail} alt="author" /></div>
+                            <div className=''>{hotArticleList.creatorName}</div>
                             <div><FollowButton item={author}/></div>
                         </div>
                         <div className='hot'>
                             <div>TA的热门作品</div>
                         </div>
                         <div>
-                            {authorHotList.map((item,index)=>(
+                            {hotArticleList.worksList && hotArticleList.worksList.map((item,index)=>(
                                 <div key={index}><AuthorHotArticleItem item={item}/></div>
                             ))}
                         </div>
-                        <div className='fleximg more' >
+                        <div className='fleximg more' onClick={this.toNewsAuthor}>
                             <div>查看更多</div>
                             <div className='toimg fleximg'><img src={toimg} alt="to" /></div>
                         </div>
                     </div>
-                    <div className='fleximg advertisementimg'>
+                    {/* <div className='fleximg advertisementimg'>
                         <img src="advertisement" alt="advertisement" />
-                    </div>
+                    </div> */}
                     <div className='read-rank'>
                         <div className='read-rank-title'>每日阅读榜</div>
                         {readRank.map((item,index)=>(
