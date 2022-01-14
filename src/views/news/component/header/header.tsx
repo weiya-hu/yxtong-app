@@ -12,7 +12,7 @@ import exitactiveimg from '../../../../public/images/user/exitactive.png'
 
  
 interface HeaderState{
-  links:string[]
+  links:{}[]
   exitActive:boolean
   exitNone:boolean
   userInfo:API.IBgUser | any
@@ -22,7 +22,20 @@ interface HeaderState{
 
 class Header extends Component<any,HeaderState>{
   state={
-    links:['药智网','产业大脑','药智资讯','药智人才','专利通','药智汇','药智通','智慧大讲堂','论坛交流','俱乐部','海外智通','药智谷','药智搜','PDI峰会'],
+    links:[
+       {name:'药智人才',link:'https://job.yaozh.com/'},
+       {name:'专利通',link:'https://patent.yaozh.com/'},
+       {name:'药智咨询',link:'https://report.yaozh.com/'},
+       {name:'药智汇',link:'https://www.yaozh.com/zhihui/?yaozh'},
+       {name:'药智通',link:'https://s.yaozh.com'},
+       {name:'药智大讲堂',link:'https://edu.yaozh.com/'},
+       {name:'产业大脑',link:'https://aiyun.yaozh.com/'},
+       {name:'论坛交流',link:'https://bbs.yaozh.com'},
+       {name:'俱乐部',link:'https://club.yaozh.com/'},
+       {name:'海外智通',link:'https://www.yaohaiwai.com/'},
+       {name:'药智谷',link:'https://gu.yaozh.com/'},
+       {name:'药智搜',link:'https://nav.yaozh.com/'}
+    ],
     exitActive:false,//退出按钮是否hover
     exitNone:false,//退出登录是否显示
     userInfo:null,
@@ -54,7 +67,7 @@ class Header extends Component<any,HeaderState>{
         <div className='width flexb'>
           <div className='linkspre'>
             <div className='flexl links'>
-              {links.map((item,index)=><a className='link-item' key={index}>{item}</a>)}
+              {links.map((item,index)=><a target="_blank" href={item.link} className='link-item' key={index}>{item.name}</a>)}
             </div>
           </div>
           {userInfo?(

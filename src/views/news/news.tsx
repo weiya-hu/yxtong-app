@@ -110,7 +110,7 @@ export default class News extends Component{
     const res = await newsAList(data)
     if(res.status){
       this.setState({
-        mayInterestList:res.body.attList
+        mayInterestList:res.body.interestList
       })
     }
   }

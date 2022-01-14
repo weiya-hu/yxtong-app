@@ -26,7 +26,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
         warnMessage:'',
         mobileValue:'',
         acode:'86',
-        captchaShow:false,
+        captchaShow:false
      }
      submit=async(value)=>{
         console.log(value)
@@ -63,6 +63,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
                     localStorage.setItem('userInfo',JSON.stringify(result.body))
                } 
                 this.close()
+                location.reload();
             }else{
                 if(res.errno === 10403 || res.errno === 10401){
                     let tokenRes = await token()                  
@@ -75,6 +76,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
                                 localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body))
                            } 
                             this.close()
+                            location.reload();
                         }
                         $message.info(dologinRes.message)
                     }

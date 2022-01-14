@@ -11,7 +11,8 @@ interface CommentListItemProps{
         content:string,
         update_time:number,
         favor_num:number,
-        is_favor:boolean
+        is_favor:boolean,
+        head_url:string
     }
     size:string
 }
@@ -23,7 +24,7 @@ export default class CommentListItem extends Component<CommentListItemProps> {
     render(){
         const {item,size }=this.props
         return <div className='flexbl comment-list-item'>
-            <div className='fleximg headerimg'><img src={favorimg} alt="header" /></div>
+            <div className='fleximg headerimg'><img src={item.head_url} alt="header" /></div>
             <div className={size==='big'?'flexcbl comment-list-item-right':'flexcbl comment-list-item-right comment-list-item-right-small'}>
                 <div className='flexb comment-list-item-right-top'>
                      <div className='font16 bold'>{item.username}</div>

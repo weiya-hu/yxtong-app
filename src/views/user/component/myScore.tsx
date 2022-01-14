@@ -45,7 +45,6 @@ export default class MyScore extends Component<any> {
                             <span className='todayscore bold'>{userInfo.accumulat}</span>
                             <span className='scoremoney'>约{userInfo.balance}元</span>
                         </div>
-                        
                     </div>
                     <div>
                         <CommonButton onclicked={this.exchangeScore} isBefore={true} wordBefore='立即兑换' wordAfter='已兑换'/>

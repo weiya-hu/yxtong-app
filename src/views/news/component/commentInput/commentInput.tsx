@@ -1,6 +1,6 @@
 import { Divider } from 'antd'
 import { Component } from 'react'
-import { getUser } from '../../../../service/login'
+import { subComment } from '../../../../service/news'
 import PopupLogin from '../../../login/popupLogin'
 import './commentInput.scss'
 import { Input } from 'antd';
@@ -10,28 +10,37 @@ const { TextArea } = Input;
 
 interface CommentInputState{
     size:string
+    comment:(val:string)=>void
 }
 
 export default class CommentInput extends Component<CommentInputState> {
     state={
-        isLogin:true,
+        isLogin:localStorage.getItem('userInfo'),
         loginShow:false,
+        comment:''
     }
-    textChange=()=>{
-
+    textChange=(e)=>{
+        this.setState({comment : e.target.value})
     }
-
-    componentDidMount=async()=>{
-        // const res = await getUser()
-        // if(res.status){//如果登录了
-        //     this.setState({isLogin:true})
+    commentBt=async()=>{
+        console.log(554546)
+        let id = window.location.search.split('=')[1]
+        let data={
+            "content": this.state.comment,
+            "news_id": id
+        }
+        const res =await subComment(data)
+        if(res.status){
+            this.props.comment(this.state.comment)
+            this.setState({comment:''})
             
-        // }else{//没有登录
-        //     this.setState({isLogin:false})
-        // }
+        }
+    }
+    componentDidMount=async()=>{
+      
     }
     render(){
-        const {isLogin,loginShow}=this.state
+        const {isLogin,loginShow,comment}=this.state
         const {size}=this.props
         return <div className='CommentInput-component'>
             <div className='comment-txt'>评论</div>
@@ -54,13 +63,14 @@ export default class CommentInput extends Component<CommentInputState> {
                     maxLength={150} 
                     style={{ height: 100 ,background: '#F4F4F4'}} 
                     onChange={this.textChange} 
+                    value={comment}
                 />
             </div>:<div className='unlogin-input fleximg'>
             {/* 没有登录大size */}
                 请先<span onClick={()=>{this.setState({loginShow:true});document.body.style.overflow='hidden'}}>登录</span>在做评论~
             </div>
             }
-            <div className='comment-button fleximg'>评论</div>
+            <div className='comment-button fleximg' onClick={this.commentBt}>评论</div>
             {loginShow && <PopupLogin show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}/>}
             
         </div>

@@ -45,6 +45,9 @@ class User extends Component {
       }
       
     }
+    toIndex=()=>{
+      window.location.href='/'
+    }
     componentDidMount=async()=>{
       const result = await getUser()
       if(result.status){
@@ -69,7 +72,7 @@ class User extends Component {
           <div className='flextop'>
             <div className='usertop '>
                 <div className='flexb'>
-                    <div className='flexl cursor'>
+                    <div className='flexl cursor' onClick={this.toIndex}>
                       <div className='homeimg fleximgtop'><img src={homeimg} alt="home" /></div>
                       <span className='colorw'>返回官网首页</span>
                     </div>

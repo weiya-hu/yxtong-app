@@ -37,3 +37,9 @@ export const newsReadList =(data):Promise<API.IResult>=>{
 export const newsWorksList =(data):Promise<API.IResult>=>{
     return  get('news/public/worksList',data)
 }
+
+//评论
+
+export const subComment =(data):Promise<API.IResult>=>{
+    return  get('news/subComment',data)
+}

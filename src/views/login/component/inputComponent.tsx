@@ -107,7 +107,7 @@ export default class InputComponent extends Component<any> {
         res.status && this.setState({captcha:res.body})
     }
     componentDidMount=()=>{
-        this.getCaptcha()
+        this.props.name==='captcha' && this.getCaptcha()
         this.userInputRef?.focus()
     }
     render(){

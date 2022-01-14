@@ -34,6 +34,23 @@ export default class Comment extends Component<CommentProps> {
         let res =await commentList(data)
         this.setState({commentList:res.body.records,total:res.body.total})
     }
+    //评论后
+    commented=(val)=>{
+        let userInfo=JSON.parse(JSON.stringify(localStorage.getItem('userInfo')))
+        let commentList =JSON.parse(JSON.stringify(this.state.commentList)) 
+        let item={
+            comment_id: 0,
+            content: val,
+            favor_num: 0,
+            head_url: "",
+            is_favor: '0',
+            uid: 0,
+            update_time: new Date(),
+            username: userInfo.name
+        }
+        commentList.unshift(item)
+        this.setState({commentList:commentList})
+    }
     componentDidMount() {
         this.getComment()
     }
@@ -42,7 +59,7 @@ export default class Comment extends Component<CommentProps> {
         let commentListSmall=JSON.parse(JSON.stringify(commentList)).splice(0,2)
         return <div className='comment-component'>
             <div>
-                <CommentInput size='big'/>
+                <CommentInput size='big' comment={(val)=>{this.commented(val)}}/>
             </div>
             <div className='comment-component-comment'>
                 {commentListSmall.map((item,index)=><div key={index} className='comment-list'>
@@ -70,7 +87,7 @@ export default class Comment extends Component<CommentProps> {
                     contentWrapperStyle={{width: '506px'}}
                 >
                     <div className='position'>
-                        <CommentInput size='small'/>
+                        <CommentInput size='small' comment={(val)=>{this.commented(val)}}/>
                         <div className='fleximg chaimg' onClick={this.drawerClose}><img src={chaimg} alt="close" /></div>
                     </div>
                     <div className='comment-component-comment'>

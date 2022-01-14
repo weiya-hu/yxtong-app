@@ -30,7 +30,6 @@ export default class MyTask extends Component{
            {name:'连续7天',signInImg:gift7img},
            {name:'连续14天',signInImg:gift14img},
            {name:'连续30天',signInImg:gift30img}],
-         //   giftTitleIndex:-1,
          signInfo:{giftTitleIndex:-2},
          signInfoAll:{},
          isSignIn:null,
@@ -74,21 +73,21 @@ export default class MyTask extends Component{
     signIn=async()=>{
        const {isSignIn,signInfoAll} = this.state
        if(!isSignIn){
-         const res = await signIn()
-         if(res.body.is_success){
+         // const res = await signIn()
+         if(1){
             let item = this.getSign(signInfoAll.contDay+1,signInfoAll)
             this.setState({
                signInfo:item,
-               signinSuccess:res.body.value,
-               isSignIn:res.body.is_success
+               signinSuccess:5,
+               isSignIn:true
             })
          }
-         res && $message.info(res.message)
+         // res && $message.info(res.message)
        }
     }
     componentDidMount=async()=>{
         const res =await signInInfo()
-        const rest = await tasks()
+      //   const rest = await tasks()
         if(res.status){
            let item=this.getSign(res.body.contDay,res.body)
            this.setState({
@@ -97,20 +96,30 @@ export default class MyTask extends Component{
              isSignIn:res.body.isSignIn
            })
         }
-        if(rest.status){
-         this.setState({
-            tasks:rest.body
-         })
-        }
-      //   const result = await userTasks()
-      //   if(result.status){
-      //       const tasks=result.body.tasks
-      //       let arr=[],ary=[]
-      //       // for(let i=0;i<tasks.length;i++){
-
-      //       //    if(tasks[i].limit_type === )
-      //       // }
+      //   if(rest.status){
+      //    this.setState({
+      //       tasks:rest.body
+      //    })
       //   }
+        const result = await userTasks()
+        if(result.status){
+            const tasks=result.body.tasks
+            let arr=[],ary=[],limitType=tasks[0].limit_type
+            for(let i=0;i<tasks.length;i++){
+               if(tasks[i].limit_type === limitType){
+                  arr.push(tasks[i])
+               }else {
+                  ary.push(arr)
+                  arr=[]
+                  arr.push(tasks[i])
+                  limitType=tasks[i].limit_type
+               }
+               if(i === tasks.length-1){
+                  ary.push(arr)
+               }
+            }
+            this.setState({tasks:ary})
+         }
     }
     render(){
       let {signInTitle,signInfo,signArr,signInfoAll,isSignIn,signinSuccess,tasks,img,imgtxt} = this.state
@@ -152,15 +161,14 @@ export default class MyTask extends Component{
                   <div 
                      onClick={this.signIn}
                      className={isSignIn?'signined-button fleximg':'signin-button fleximg'}
-                  >{isSignIn?`已连续签到${signInfoAll.contDay}天`:'签到'}</div>
+                  >{isSignIn?`已连续签到${signInfoAll.contDay+1}天`:'签到'}</div>
                </div>
                {tasks.map((item,index)=><div className='task' key={index}>
-                  <div className='task-title'>{item.type_name}</div>
-                     {item.events.map((val,indx)=><div className='flexb task-item' key={indx}>
+                  <div className='task-title'>{item[0].limit_type ===0?'新手任务积分':item[0].limit_type ===1?'每日赚积分':'任务赚积分'}</div>
+                     {item.map((val,indx)=><div className='flexb task-item' key={indx}>
                            <div className='flexl'>
-                              <div className='fleximg emailimg'><img src={emailimg} alt="email" /></div>
-                              {/* <div className='fleximg emailimg'><img src={img[imgtxt]} alt="email" /></div> */}
-
+                              <div className='fleximg emailimg'><img src={imgs[val.tag]} alt="email" /></div>
+                              
                               <Task title={val.name} score={`+${val.value}积分`} />
                            </div>
                            <div>
@@ -181,7 +189,7 @@ export default class MyTask extends Component{
                   <div 
                      onClick={()=>{this.setState({signinSuccess:false})}}
                      className='chaimg fleximg'
-                     ><img src={imgs.bindbank} alt="cha" /></div>
+                     ><img src={chaimg} alt="cha" /></div>
                   <div>
                      <div className='signin-success'>签到成功</div>
                      <div className='signin-score'>恭喜您，获得{signinSuccess}积分</div>

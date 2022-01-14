@@ -89,6 +89,7 @@ export default class NewsDetail extends Component {
     navChange=(val,item,flag)=>{
         flag && this.props.history.push({ pathname : '/app/news' , query : {index : val,item:item}})
     }
+    
     componentDidMount(){
         this.getNewsDetail()
         this.newsReadLists()
@@ -144,14 +145,14 @@ export default class NewsDetail extends Component {
 
                     </div>
                     <div >
-                        <Comment/>
+                        <Comment />
                     </div>
 
                 </div>
                 <div className='newsDetail-author'>
                     <div className='newsDetail-author-info'>
                         <div className='newsDetail-author-info-top fleximgc'>
-                            <div className='authorimg fleximg'><img src={newsDetail} alt="author" /></div>
+                            <div className='authorimg fleximg'><img src={newsDetail?newsDetail.head_url:''} alt="author" /></div>
                             <div className=''>{hotArticleList.creatorName}</div>
                             <div><FollowButton item={author}/></div>
                         </div>

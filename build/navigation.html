@@ -4,18 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>药智器械 - 行业导航</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="icon" href="static/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="static/css/common.css" />
+    <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
 </head>
 
+<!-- <body onload="load_data()"> -->
+
 <body>
+
+
     <div class="topbar">
         <div class="wrapper">
             <div class="topbar-left">
+                <span>你好，欢迎登陆康洲数智官网！</span>
                 <a target="_blank" href="https://job.yaozh.com/">药智人才</a>
                 <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
                 <a target="_blank" href="https://report.yaozh.com/">药智咨询</a>
@@ -30,6 +37,7 @@
                 <a target="_blank" href="https://nav.yaozh.com/">药智搜</a>
             </div>
             <div class="topbar-right">
+
                 <a class="active" target="_blank" href="/app/login">登录</a>
                 <span class="split">|</span>
                 <a target="_blank" href="/app/register/register">注册</a>
@@ -37,6 +45,14 @@
             	<a target="_blank" href="//www-dev.yaozh.com/member/">用户名称</a>
             	<i class="fa"></i> 退出</a>
             	-->
+            </div>
+            <div class="topbar-login">
+
+                <div class="info-messages">消息</div>
+                <div class="info-numbers"><span>0</span></div>
+                <div class="info-avatar"><img src="static/images/psc.png" alt=""></div>
+                <div class="info-username">阳光之下</div>
+                <div class="info-quit"><img src="static/images/icon-quit.png" alt=""><span>退出</span></div>
             </div>
         </div>
     </div>
@@ -54,7 +70,7 @@
                         <div class="navchild">
                             <ul>
                                 <li class=""><a href="marketing.html">智能APP营销<br>机器人矩阵系统</a></li>
-                                <li><a href="developmenting.html">企业名片<br>SCRM系统</a></li>
+                                <li><a href="/developmenting.html">企业名片<br>SCRM系统</a></li>
                                 <li><a href="developmenting.html">智能短信<br>SMS系统</a></li>
                                 <li><a href="developmenting.html">智能E-mail<br>营销系统</a></li>
                                 <li><a href="developmenting.html">无感营销系统</a></li>
@@ -65,7 +81,7 @@
                         </div>
                     </li>
                     <li><a href="sales.html">药智营销通</a></li>
-                    <li><a href="vipdata.html">药智医械通</a></li>
+                    <li><a href="vipdata.html">药智器械通</a></li>
                     <li><a href="attract.html">商务合作</a></li>
                     <li><a href="/app/news">资讯中心</a></li>
                     <li>
@@ -82,12 +98,173 @@
                     </li>
                     <li><a href="help.html">帮助中心</a></li>
                     <li><a href="navigation.html">行业导航</a></li>
+
                 </ul>
+
+            </div>
+            <div class="header-phone">
+                <img src="static/images/header-phone.png" alt="">
+                <span>咨询电话：</span>
+                <span>400-890-9020</span>
             </div>
         </div>
     </div>
 
     <script>
+        // // 退出按钮
+
+        $('.topbar-login').mousemove(function() {
+
+            $('.info-quit').slideDown('nomal', function() {
+                console.log('滑动显示动画结束了');
+            });
+        })
+    </script>
+
+    <script>
+        function getUser() {
+            const token = localStorage.getItem('firstToken')
+            const isLogin = localStorage.getItem('isLogin')
+            if (token) {
+                $.ajax({
+                    method: 'get',
+                    headers: {
+                        Authorization: token
+                    },
+                    url: "/api/user/my-center/info",
+                    dataType: "json",
+                    success: function(res) {
+                        if (res.status == 1) { //本地有token并且token登录了就是已登录
+                            console.log(res.body);
+                            console.log(123)
+                            const avatar = ("<div><img  <span>{res.name}</span></div>")
+
+
+                        } else {
+                            // window.location.href = '/login/dologin'
+                        }
+                    }
+                })
+            } else {
+                // window.location.href = '/login/dologin'
+            }
+
+        }
+        $(document).ready(function() {
+            console.log(1);
+            getUser()
+                // isLogin()
+        })
+
+        // 判断是否登录
+        function isLogin() {
+            $.ajax({
+                method: 'get',
+                url: "/api/login/dologin",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res)
+                    if (status) {
+                        console.log("已登录")
+                        $.ajax({
+                            method: 'get',
+                            url: "/api/login/login-out",
+                            dataType: "json",
+                            success: function(res) {
+                                console.log(res)
+                                if (status) {
+                                    console.log('退出失败')
+                                } else {
+                                    console.log('退出成功')
+                                }
+                            }
+                        })
+                    } else {
+                        console.log("未登录")
+                            // const avatar = "<div style='border:1px solid #f30;width:200px;height:100px;'></div>";
+                            // $('.topbar-right').append(avatar)
+                            // $('.topbar-right').html('111').css('color', ' #ccc')
+                        $('.topbar-right').html("<div style='border:1px solid #f30;width:150px;height:40px;'>退出</div>").css('color', ' #ccc')
+                    }
+                }
+            })
+        }
+
+
+
+
+        // function getUser() {
+        //     $.ajax({
+        //         method: 'get',
+        //         url: "/api/user/public/token",
+        //         dataType: "json",
+        //         success: function(res) {
+        //             console.log(res)
+        //             console.log('token', res.body)
+        //             if (res.status == 1) {
+        // $.ajax({
+        //     method: 'get',
+        //     headers: {
+        //         Authorization: res.body,
+        //     },
+        //     url: "/api/user/public/get-user",
+        //     dataType: "json",
+        //     success: function(res) {
+        //         console.log(res)
+        //         console.log(111)
+        //     }
+        // })
+
+        //             }
+        //         }
+        //     })
+        // }
+
+
+
+        // 登录
+        //用户登录
+        // function ulogin() {
+        //     //获取用户名和密码,登录成功以后，把用户名存储在session里面，然后显示在首页里面
+        //     var username = $("#uusername").val();
+        //     var password = $("#password").val();
+        //     $.ajax({
+        //         method: 'post',
+        //         url: "/login/dologin",
+        //         dataType: "text",
+        //         data: {
+        //             username: username,
+        //             password: password
+        //         },
+        //         success: function(res) {
+        //             //提示注册成功
+        //             if (res == "success") {
+        //                 //关闭模态框
+        //                 $("#close_lo").click();
+        //                 //把用户名密码存储在session里面，首页显示用户名称
+        //                 localStorage.setItem("username", username);
+        //                 load_data();
+        //             } else {
+        //                 alert("用户名或者密码输入错误，请重新输入");
+        //                 $("#password").val('');
+        //             }
+        //         }
+        //     })
+        // }
+
+
+        //页面刚加载的时候，开始判断，如果有用户名，就显示在页面上，如果没有用户名的话，就显示登录名称
+        // function load_data() {
+        //     var theme = localStorage.getItem("username");
+        //     if (theme == null || theme == "") {
+        //         $("#cue").show();
+        //         $("#uname").html('');
+        //     } else {
+        //         $("#cue").hide();
+        //         $("#uname").html(theme);
+        //     }
+
+        // }
     </script>
 <link rel="stylesheet" type="text/css" href="static/css/navigation.css" />
 
@@ -791,7 +968,7 @@
     <div class="wrapper clearfix">
         <div class="item-contact">
             <img class="logo" src="static/images/logo-bottom.png" alt="药智器械">
-            <div class="phone">400-890-9020</div>
+            <div class="phone">400-805-6906</div>
             <div class="qq">2081288520</div>
             <div class="email">szyxtong@qq.com</div>
         </div>
@@ -819,8 +996,15 @@
             <dd><a target="_blank" href="###">下载中心</a></dd>
         </dl>
         <div class="item-qrcode">
-            <img width="128" height="128" src="static/images/qrcode_for_gh_2c6575169f75_860.jpg" alt="">
-            <div>扫一扫关注药智器械</div>
+            <div class="qrcode-1">
+                <img width="110" height="110" src="static/images/qr1.png" alt="">
+                <div>扫一扫关注药智器械</div>
+            </div>
+            <div class="qrcode-1">
+                <img width="110" height="110" src="static/images/qr2.png" alt="">
+                <div>扫一扫加入客服群</div>
+            </div>
+
         </div>
     </div>
 </div>

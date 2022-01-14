@@ -649,23 +649,24 @@
   background-position: left top;
 }
 
-.help-down .unable-weixi {
+.help-down .content-tips-wechat {
   display: none;
+  z-index: 11;
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 400px;
-  height: 376px;
+  width: 280px;
+  height: 390px;
   background: #FFFFFF;
   border-radius: 4px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
-.help-down .unable-weixi .tips-title {
+.help-down .content-tips-wechat .tips-title {
   position: relative;
-  top: 40px;
-  left: 160px;
+  top: 30px;
+  left: 100px;
   width: 80px;
   height: 20px;
   font-family: PingFangSC-Semibold;
@@ -677,40 +678,40 @@
   font-weight: 600;
 }
 
-.help-down .unable-weixi .tips-prompt {
+.help-down .content-tips-wechat .tips-prompt {
   position: relative;
-  left: 46px;
-  top: 60px;
-  width: 308px;
-  height: 24px;
+  left: 50px;
+  top: 70px;
+  width: 180px;
+  height: 12px;
   font-family: PingFangSC-Regular;
-  font-size: 14px;
+  font-size: 12px;
   color: #666666;
   letter-spacing: 0;
   text-align: center;
-  line-height: 24px;
+  line-height: 12px;
   font-weight: 400;
 }
 
-.help-down .unable-weixi img {
+.help-down .content-tips-wechat img {
   position: relative;
-  top: 98px;
-  left: 130px;
-  width: 130px;
-  height: 130px;
+  top: 55px;
+  left: 50px;
+  width: 180px;
+  height: 180px;
 }
 
-.help-down .unable-weixi .tips-bottom {
+.help-down .content-tips-wechat .tips-bottom {
   position: relative;
-  top: 120px;
-  left: 130px;
+  top: 100px;
+  left: 76px;
   width: 128px;
   height: 42px;
   background: #304F97;
   border-radius: 4px;
 }
 
-.help-down .unable-weixi .tips-bottom .tips-know {
+.help-down .content-tips-wechat .tips-bottom .tips-know {
   position: relative;
   top: 15px;
   left: 30px;
