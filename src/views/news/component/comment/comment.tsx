@@ -36,7 +36,8 @@ export default class Comment extends Component<CommentProps> {
     }
     //评论后
     commented=(val)=>{
-        let userInfo=JSON.parse(JSON.stringify(localStorage.getItem('userInfo')))
+        console.log(val)
+        let userInfo=JSON.parse(localStorage.getItem('userInfo'))
         let commentList =JSON.parse(JSON.stringify(this.state.commentList)) 
         let item={
             comment_id: 0,
@@ -49,7 +50,8 @@ export default class Comment extends Component<CommentProps> {
             username: userInfo.name
         }
         commentList.unshift(item)
-        this.setState({commentList:commentList})
+        this.setState({commentList:commentList,total:this.state.total+1})
+        
     }
     componentDidMount() {
         this.getComment()
@@ -91,7 +93,7 @@ export default class Comment extends Component<CommentProps> {
                         <div className='fleximg chaimg' onClick={this.drawerClose}><img src={chaimg} alt="close" /></div>
                     </div>
                     <div className='comment-component-comment'>
-                        {commentList.map((item,index)=><div key={index} className='comment-list'>
+                        {commentList.map((item,index)=><div key={item.comment_id} className='comment-list'>
                             <CommentListItem item={item} size='small'/>
                         </div> )}
                     </div>

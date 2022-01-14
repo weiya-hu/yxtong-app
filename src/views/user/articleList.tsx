@@ -15,6 +15,7 @@ interface ArticleItemState{
 interface ArticleListState{
   edit:(val:number)=>void
   articleDetail:(val:number)=>void
+  dataAnalysis:(val:number)=>void
 }
 
 export default class ArticleList extends Component<ArticleListState>{
@@ -55,7 +56,7 @@ export default class ArticleList extends Component<ArticleListState>{
               //传回来的val是true则asideActive是0，跳转编辑页面
               edit={(val:boolean)=>{this.props.edit(val?0:1)}} 
               //传回来的val是true则asideActive是2，跳转数据分析页面
-              dataAnalysis={(val)=>{this.setState({asideActive:val?2:1})}} 
+              dataAnalysis={(val)=>{this.setState({asideActive:val?2:1});this.props.dataAnalysis(val?2:1)}} 
               //传回来的val是true则isArticleDetail是1，跳转文章详情页面
               articleDetail={(val)=>{this.props.articleDetail(val?1:0)}}
             />

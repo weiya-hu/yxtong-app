@@ -29,12 +29,12 @@ export default class CommentInput extends Component<CommentInputState> {
             "content": this.state.comment,
             "news_id": id
         }
-        const res =await subComment(data)
-        if(res.status){
+        // const res =await subComment(data)
+        // if(res.status){
             this.props.comment(this.state.comment)
             this.setState({comment:''})
             
-        }
+        // }
     }
     componentDidMount=async()=>{
       

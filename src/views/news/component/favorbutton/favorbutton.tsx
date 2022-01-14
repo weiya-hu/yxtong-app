@@ -10,7 +10,7 @@ interface CommentListItemProps{
         content:string,
         update_time:number,
         favor_num:number,
-        is_favor:boolean
+        is_favor:string
     }
 }
 export default class Favorbutton extends Component<CommentListItemProps> {
@@ -19,10 +19,12 @@ export default class Favorbutton extends Component<CommentListItemProps> {
     }
     favor=()=>{
         let item=JSON.parse(JSON.stringify(this.state.item)) 
-        item.is_favor=!item.is_favor
+        item.is_favor=item.is_favor === '1'?'0':'1';
+        item.favor_num=item.is_favor === '1'?item.favor_num+1:item.favor_num-1
         this.setState({
             item:item
         })
+        
     }
     render(){
         const {item}=this.state
@@ -30,8 +32,8 @@ export default class Favorbutton extends Component<CommentListItemProps> {
             <div 
                 className='fleximg favorimg'
                 onClick={this.favor}
-            ><img src={item.is_favor?favorActiveimg:favorimg} alt="favor" /></div>
-            <div className={item.is_favor?'font12 favorcolor':'font12 color3'}>{item.favor_num}</div>
+            ><img src={item.is_favor==='1'?favorActiveimg:favorimg} alt="favor" /></div>
+            <div className={item.is_favor==='1'?'font12 favorcolor':'font12 color3'}>{item.favor_num>0 && item.favor_num}</div>
         </div>
     }
     

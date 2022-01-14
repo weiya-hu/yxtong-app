@@ -161,7 +161,7 @@ export default class News extends Component{
                   <div className='yeterday-profit'>昨日收益 <span >8</span></div>
                 </div>
               </div>
-              <div className='button fleximg'>进入内容中心</div>
+              <div className='button fleximg' onClick={()=>{this.props.history.push({pathname:'/app/user',query :[2,1]}) }}>进入内容中心</div>
             </div>
           </div>
         </div>

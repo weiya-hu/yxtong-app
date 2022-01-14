@@ -167,12 +167,12 @@ export default class MyTask extends Component{
                   <div className='task-title'>{item[0].limit_type ===0?'新手任务积分':item[0].limit_type ===1?'每日赚积分':'任务赚积分'}</div>
                      {item.map((val,indx)=><div className='flexb task-item' key={indx}>
                            <div className='flexl'>
-                              <div className='fleximg emailimg'><img src={imgs[val.tag]} alt="email" /></div>
+                              <div className='fleximg emailimg'><img src={imgs[val.tag].img} alt={val.tag} /></div>
                               
                               <Task title={val.name} score={`+${val.value}积分`} />
                            </div>
                            <div>
-                              <CommonButton onclicked={this.doperfect} isBefore={!val.finish} wordBefore='去完成' wordAfter='已完成'/>
+                              <CommonButton onclicked={this.doperfect} isBefore={!val.finish} wordBefore={imgs[val.tag].beforeText} wordAfter='已完成'/>
                            </div>
                         </div> 
                      )}

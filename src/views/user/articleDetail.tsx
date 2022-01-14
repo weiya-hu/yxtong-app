@@ -15,16 +15,17 @@ interface ArticleDetailProps{
 }
 export default class ArticleDetail extends Component<ArticleDetailProps>{
     state={
-        // detail:{
-        //     title:'兴证全球谢治宇：电商15%的增速相比社零4%的增长，人具有显著优势，传统线下胜者为王，711全家初显成色',
-        //     time:'2021年9月23日 09:25',
-        //     from:'原创',
-        //     read:2039
-        // },
+        detail:{
+            title:'马英九发声后，国民党终于拿出一铁证，“台湾属于中国”响彻岛内！',
+            create_time:1641520819085,
+            creator_name:'原创',
+            readed:2039,
+            content:'今年9月份，前台湾地区领导人马英九在参加一场新书发布会接受媒体采访时，拿出了台湾属于中国的铁证，当时，马英九表示，《开罗宣言》中明确指出，“日本盗窃中国的领土，例如东北三省，台湾等等'
+        },
         newsDetail:this.props.newsDetail
     }
     render(): ReactNode {
-        let {newsDetail} = this.props
+        let newsDetail= this.props.newsDetail?this.props.newsDetail:this.state.detail
         return(
             newsDetail && <div className='articleDetail'>
                 <div className='title'>{newsDetail.title}</div>

@@ -11,8 +11,9 @@ interface CommentListItemProps{
         content:string,
         update_time:number,
         favor_num:number,
-        is_favor:boolean,
-        head_url:string
+        is_favor:string,
+        head_url:string,
+        comment_id:number
     }
     size:string
 }
@@ -29,7 +30,7 @@ export default class CommentListItem extends Component<CommentListItemProps> {
                 <div className='flexb comment-list-item-right-top'>
                      <div className='font16 bold'>{item.username}</div>
                      <div>
-                          <FavorButton item={item}/>
+                          <FavorButton item={item} key={item.comment_id}/>
                      </div>
                 </div>
                 <div className='comment-text'>{item.content}</div>

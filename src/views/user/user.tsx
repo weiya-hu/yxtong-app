@@ -49,6 +49,13 @@ class User extends Component {
       window.location.href='/'
     }
     componentDidMount=async()=>{
+      let local=this.props.location
+      if(local.query){
+        this.setState({
+          navActiveIndex:local.query[0],
+          asideActive:local.query[1]
+        })
+      }
       const result = await getUser()
       if(result.status){
         this.setState({
@@ -147,6 +154,7 @@ class User extends Component {
                   (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 0) ? 
                     <ArticleList 
                       edit={(val)=>{this.setState({asideActive:val})}}
+                      dataAnalysis={(val)=>{this.setState({asideActive:val})}}
                       articleDetail={(val)=>{this.setState({isArticleDetail:val})}}
                     />:
                   (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 1) && 

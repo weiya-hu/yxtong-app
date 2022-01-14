@@ -43,7 +43,7 @@ export default class ArticleItem extends Component<ArticleItemState> {
                   <div className='editimg fleximg'><img src={editimg} alt="editButton" /></div>
                   <div>编辑</div>
                 </div>
-                <div className='fleximg article-item-button'>
+                <div className='fleximg article-item-button' onClick={()=>{this.props.dataAnalysis(true)}}>
                   <div className='editimg fleximg'><img src={dataimg} alt="dataButton" /></div>
                   <div>数据</div>
                 </div>
