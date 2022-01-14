@@ -14,7 +14,7 @@ export default class NewsNav extends Component<NewsNavState> {
         newsTypeActive:this.props.newsTypeActive,
     }
     componentDidMount=async()=>{  
-        const   {newsTypeActive}=this.state
+        const   {newsTypeActive}=this.props
         const res = await newsTypeList()
         if(res.status){
             this.setState({

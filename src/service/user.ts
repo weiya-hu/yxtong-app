@@ -22,3 +22,9 @@ export const signIn =():Promise<API.IResult>=>{
 export const tasks =():Promise<API.IResult>=>{
     return  get('user/my-center/tasks')
 }
+
+//获取用户签到和所有任务
+
+export const userTasks =():Promise<API.IResult>=>{
+    return  get('user/tasks')
+}

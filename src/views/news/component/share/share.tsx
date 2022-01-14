@@ -27,6 +27,7 @@ export default class Share extends Component<ShareState> {
                     onMouseEnter ={()=>{this.setState({shareActive:true})}} 
                     onMouseLeave ={()=>{this.setState({shareActive:false})}}
                     className='position share-item-pre'
+                    onClick={(e)=>e.stopPropagation()}
                 >
             {prop.css === 'align'?( <div className='fleximgc share-item'>
                 <div className='fleximg shareimg'><img src={shareActive?shareActive20img:shareBlackimg} alt="share" /></div>

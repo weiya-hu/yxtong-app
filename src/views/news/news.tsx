@@ -60,6 +60,7 @@ export default class News extends Component{
       if(param){
         this.getNewslist(param.item.id)
         this.setState({newsTypeActive:param.index})
+        console.log(this.state.newsTypeActive)
       }else{
         this.getNewslist(item.id)
       }

@@ -4,8 +4,9 @@ import './myTask.scss'
 import MyScore from './component/myScore'
 import CommonButton from './component/commonButton'
 import Task from './component/task'
-import { signInInfo,signIn,tasks } from "../../service/user";
+import { signInInfo,signIn,tasks,userTasks } from "../../service/user";
 import $message from "../component/message/index";
+import {imgs} from '../../utils/taskImg'
 
 import signinimg from '../../public/images/user/signin.png'
 import signinedimg from '../../public/images/user/signined.png'
@@ -101,6 +102,15 @@ export default class MyTask extends Component{
             tasks:rest.body
          })
         }
+      //   const result = await userTasks()
+      //   if(result.status){
+      //       const tasks=result.body.tasks
+      //       let arr=[],ary=[]
+      //       // for(let i=0;i<tasks.length;i++){
+
+      //       //    if(tasks[i].limit_type === )
+      //       // }
+      //   }
     }
     render(){
       let {signInTitle,signInfo,signArr,signInfoAll,isSignIn,signinSuccess,tasks,img,imgtxt} = this.state
@@ -171,7 +181,7 @@ export default class MyTask extends Component{
                   <div 
                      onClick={()=>{this.setState({signinSuccess:false})}}
                      className='chaimg fleximg'
-                     ><img src={chaimg} alt="cha" /></div>
+                     ><img src={imgs.bindbank} alt="cha" /></div>
                   <div>
                      <div className='signin-success'>签到成功</div>
                      <div className='signin-score'>恭喜您，获得{signinSuccess}积分</div>

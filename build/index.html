@@ -1,1 +1,506 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>React App</title><link href="/static/css/8.2c884d71.chunk.css" rel="stylesheet"><link href="/static/css/main.6b36e4be.chunk.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script>!function(e){function t(t){for(var n,o,u=t[0],f=t[1],i=t[2],d=0,s=[];d<u.length;d++)o=u[d],Object.prototype.hasOwnProperty.call(a,o)&&a[o]&&s.push(a[o][0]),a[o]=0;for(n in f)Object.prototype.hasOwnProperty.call(f,n)&&(e[n]=f[n]);for(l&&l(t);s.length;)s.shift()();return c.push.apply(c,i||[]),r()}function r(){for(var e,t=0;t<c.length;t++){for(var r=c[t],n=!0,o=1;o<r.length;o++){var f=r[o];0!==a[f]&&(n=!1)}n&&(c.splice(t--,1),e=u(u.s=r[0]))}return e}var n={},o={6:0},a={6:0},c=[];function u(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,u),r.l=!0,r.exports}u.e=function(e){var t=[];o[e]?t.push(o[e]):0!==o[e]&&{2:1,3:1,9:1,10:1,11:1,12:1,13:1,14:1,15:1}[e]&&t.push(o[e]=new Promise((function(t,r){for(var n="static/css/"+({}[e]||e)+"."+{0:"31d6cfe0",1:"31d6cfe0",2:"c858a944",3:"1a08ddcf",4:"31d6cfe0",7:"31d6cfe0",9:"3e7a3568",10:"3e617515",11:"021e2eed",12:"9f1e283c",13:"1cb0f65c",14:"ffd85e56",15:"f7fb35b5",16:"31d6cfe0",17:"31d6cfe0",18:"31d6cfe0"}[e]+".chunk.css",a=u.p+n,c=document.getElementsByTagName("link"),f=0;f<c.length;f++){var i=(l=c[f]).getAttribute("data-href")||l.getAttribute("href");if("stylesheet"===l.rel&&(i===n||i===a))return t()}var d=document.getElementsByTagName("style");for(f=0;f<d.length;f++){var l;if((i=(l=d[f]).getAttribute("data-href"))===n||i===a)return t()}var s=document.createElement("link");s.rel="stylesheet",s.type="text/css",s.onload=t,s.onerror=function(t){var n=t&&t.target&&t.target.src||a,c=new Error("Loading CSS chunk "+e+" failed.\n("+n+")");c.code="CSS_CHUNK_LOAD_FAILED",c.request=n,delete o[e],s.parentNode.removeChild(s),r(c)},s.href=a,document.getElementsByTagName("head")[0].appendChild(s)})).then((function(){o[e]=0})));var r=a[e];if(0!==r)if(r)t.push(r[2]);else{var n=new Promise((function(t,n){r=a[e]=[t,n]}));t.push(r[2]=n);var c,f=document.createElement("script");f.charset="utf-8",f.timeout=120,u.nc&&f.setAttribute("nonce",u.nc),f.src=function(e){return u.p+"static/js/"+({}[e]||e)+"."+{0:"27d9d5ea",1:"3dae86d4",2:"07f122c4",3:"a3577653",4:"7adfccc7",7:"1f2f7365",9:"81e1ff56",10:"c39df2c5",11:"a2a43b8b",12:"a67d6779",13:"0b6805ea",14:"edc82295",15:"3482682d",16:"4d5339ca",17:"92297103",18:"073462d6"}[e]+".chunk.js"}(e);var i=new Error;c=function(t){f.onerror=f.onload=null,clearTimeout(d);var r=a[e];if(0!==r){if(r){var n=t&&("load"===t.type?"missing":t.type),o=t&&t.target&&t.target.src;i.message="Loading chunk "+e+" failed.\n("+n+": "+o+")",i.name="ChunkLoadError",i.type=n,i.request=o,r[1](i)}a[e]=void 0}};var d=setTimeout((function(){c({type:"timeout",target:f})}),12e4);f.onerror=f.onload=c,document.head.appendChild(f)}return Promise.all(t)},u.m=e,u.c=n,u.d=function(e,t,r){u.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},u.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},u.t=function(e,t){if(1&t&&(e=u(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(u.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var n in e)u.d(r,n,function(t){return e[t]}.bind(null,n));return r},u.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return u.d(t,"a",t),t},u.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},u.p="/",u.oe=function(e){throw console.error(e),e};var f=this["webpackJsonpyxt-cp-app"]=this["webpackJsonpyxt-cp-app"]||[],i=f.push.bind(f);f.push=t,f=f.slice();for(var d=0;d<f.length;d++)t(f[d]);var l=i;r()}([])</script><script src="/static/js/8.12921a33.chunk.js"></script><script src="/static/js/main.c1603c46.chunk.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>药智器械 - 行业导航</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="icon" href="static/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="static/css/common.css" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="wrapper">
+            <div class="topbar-left">
+                <a target="_blank" href="https://job.yaozh.com/">药智人才</a>
+                <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
+                <a target="_blank" href="https://report.yaozh.com/">药智咨询</a>
+                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">药智汇</a>
+                <a target="_blank" href="https://s.yaozh.com">药智通</a>
+                <a target="_blank" href="https://edu.yaozh.com/">药智大讲堂</a>
+                <a target="_blank" href="https://aiyun.yaozh.com/">产业大脑</a>
+                <a target="_blank" href="https://bbs.yaozh.com">论坛交流</a>
+                <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
+                <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
+                <a target="_blank" href="https://gu.yaozh.com/ ">药智谷</a>
+                <a target="_blank" href="https://nav.yaozh.com/">药智搜</a>
+            </div>
+            <div class="topbar-right">
+                <a class="active" target="_blank" href="/app/login">登录</a>
+                <span class="split">|</span>
+                <a target="_blank" href="/app/register/register">注册</a>
+                <!--
+            	<a target="_blank" href="//www-dev.yaozh.com/member/">用户名称</a>
+            	<i class="fa"></i> 退出</a>
+            	-->
+            </div>
+        </div>
+    </div>
+
+    <div class="navs">
+        <div class="wrapper">
+            <a class="logo" href="/">
+                <img src="static/images/logo.png" title="药智器械">
+            </a>
+            <div class="navbar" id="navbar">
+                <ul>
+                    <li class="active"><a href="index.html">首页</a></li>
+                    <li>
+                        <a href="product.html">产品与服务</a>
+                        <div class="navchild">
+                            <ul>
+                                <li class=""><a href="marketing.html">智能APP营销<br>机器人矩阵系统</a></li>
+                                <li><a href="developmenting.html">企业名片<br>SCRM系统</a></li>
+                                <li><a href="developmenting.html">智能短信<br>SMS系统</a></li>
+                                <li><a href="developmenting.html">智能E-mail<br>营销系统</a></li>
+                                <li><a href="developmenting.html">无感营销系统</a></li>
+                                <li><a href="developmenting.html">智能电话机器人<br>营销系统</a></li>
+                                <li><a href="developmenting.html">企业网站<br>建设运营服务</a></li>
+                                <li><a href="developmenting.html">药智网<br>站内广告投放</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="sales.html">药智营销通</a></li>
+                    <li><a href="vipdata.html">药智医械通</a></li>
+                    <li><a href="attract.html">商务合作</a></li>
+                    <li><a href="/app/news">资讯中心</a></li>
+                    <li>
+                        <a href="member.html">会员中心</a>
+                        <div class="navchild2">
+                            <ul>
+                                <li><a href="member_news.html?id=1">通知公告</a></li>
+                                <li><a href="benefits.html">VIP权益</a></li>
+                                <li><a href="spread.html">我要推广</a></li>
+                                <li><a href="material.html">营销素材</a></li>
+                                <li><a href="member.html#feedback">客户反馈</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="help.html">帮助中心</a></li>
+                    <li><a href="navigation.html">行业导航</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    </script>
+<link rel="stylesheet" type="text/css" href="static/css/index.css" />
+
+<div id="container">
+    <div class="index-swiper">
+        <div class="swiper-wrapper" id="index-top-swiper">
+            <div class="swiper-wrapper">
+                <!-- <a href="product.html" class="swiper-slide" style="background-image: url(static/images/index_1.jpg);"></a> -->
+                <div class="swiper-slide swiper-video">
+                    <video class="index-about-video" poster="static/images/index_1.jpg" preload="auto" controls="controls" loop="loop">
+						<source src="static/video/sunzong.mp4" type="video/mp4">您的浏览器不支持 video 标签。
+			        </video>
+                </div>
+                <a href="product.html" class="swiper-slide" style="background-image: url(static/images/index_2.jpg);"></a>
+                <a href="product.html" class="swiper-slide" style="background-image: url(static/images/index_3.jpg);"></a>
+                <a href="product.html" class="swiper-slide" style="background-image: url(static/images/index_4.jpg);"></a>
+                <a href="product.html" class="swiper-slide" style="background-image: url(static/images/index_5.png);"></a>
+            </div>
+            <div class="swiper-pagination index-top-swiper-pagination"></div>
+            <div class="swiper-button-next swiper-button-white index-top-swiper-button-next"></div>
+            <div class="swiper-button-prev swiper-button-white index-top-swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="index-about">
+        <div class="index-tit">
+            <h2 class="wow fadeInUp">关于康洲数智</h2>
+            <p class="wow fadeInDown">ABOUT THE COMPANY</p>
+        </div>
+        <div class="subtitle">康洲数智科技（重庆）有限公司是药智网旗下专注于提供企业数智化解决方案的战略子公司。康洲数智致力于通过大数据、人工智能、云计算、5G等数字技术赋能产业发展，帮助中小企业实现数字化转型。我们提供了面向各个垂直行业的数智化营销SaaS集成平台——数智营销通，为客户提供涵盖营销全链条的数智化平台服务。同时也为医疗及大健康领域的企业提供完整的产业链数据服务。</div>
+        <div class="wrapper clearfix">
+            <div class="index-about-left wow bounceInLeft">
+                <div class="item">
+                    <div class="inner">
+                        <em></em>
+                        <h4>定位</h4>
+                        <p>康洲数智是药智网旗下战略品牌，致力于通过大数据、人工智能等技术为中小企业提供数智化解决方案。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="inner">
+                        <em></em>
+                        <h4>使命</h4>
+                        <p>打造集数据服务+内容生产+业务赋能+产业转型四位一体的综合服务供应商。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="inner">
+                        <em></em>
+                        <h4>愿景</h4>
+                        <p>成为行业领先的数智化赋能SaaS平台。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="inner">
+                        <em></em>
+                        <h4>价值观</h4>
+                        <p>共享、互惠、创造</p>
+                    </div>
+                </div>
+            </div>
+            <div class="index-about-right  wow bounceInRight">
+                <video class="index-about-video" poster="uploads/index-about-video-cover.png" preload="auto" controls="controls">
+					<source src="static/video/sunzong.mp4" type="video/mp4">您的浏览器不支持 video 标签。
+		        </video>
+            </div>
+        </div>
+    </div>
+
+    <div class="index-point">
+        <div class="index-tit white">
+            <h2 class="wow fadeInUp">产品卖点</h2>
+            <p class="wow fadeInDown">PRODUCT SELLING POINT</p>
+        </div>
+        <div class="subtitle">国内领先： 医疗器械数据库产品涵括最完整；大数据智能营销技术/产品/服务最先进；<br>医疗行业-提供完整的智能商业解决方案，生态级产品</div>
+        <div class="wrapper relative">
+            <div class="img">
+                <div class="circular wow bounceIn" data-wow-delay=".6s">
+                    <span>全智能<br>自动营销</span>
+                </div>
+            </div>
+            <div class="item item-1 wow bounceInLeft" data-wow-delay="0.2s">
+                <h4>精准采集</h4>
+                <p>医疗行业最完整齐备的从研发、注册、生产到市场、目标客户全产业链条数据库的高效采集工具</p>
+            </div>
+            <div class="item item-2 wow bounceInRight" data-wow-delay="0.4s">
+                <h4>全面推广</h4>
+                <p>采用多平台矩阵、 全自动化、智能化、大数据化、同时顺应4G-5G的发展， 顺应万物互联-物联网时代的多种营销推广方式</p>
+                <div class="lst">
+                    <div>大数据智能App营销机器人矩阵系统</div>
+                    <div>智能企业名片系统-智慧云-药智SCRM</div>
+                    <div>智能无感营销系统</div>
+                    <div>智能E-mail营销系统</div>
+                    <div>智能短信营销系统</div>
+                    <div>智能电话销售机器人</div>
+                    <div>官网建设/Seo/Sem</div>
+                    <div>药智网-站内广告投放</div>
+                </div>
+            </div>
+            <div class="item item-3 wow bounceInLeft" data-wow-delay="0.6s">
+                <h4>精算匹配</h4>
+                <p>对于B端/C端客户的画像、标签分析， 为B端客户提供精准客户匹配</p>
+            </div>
+            <div class="item item-4 wow bounceInRight" data-wow-delay="0.8s">
+                <h4>智能客服</h4>
+                <p>智能客户互动，全天候全通路秒级响应服务</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="index-advantage">
+        <div class="index-tit">
+            <h2 class="wow fadeInUp">我们的优势</h2>
+            <p class="wow fadeInDown">OUR ADVANTAGE</p>
+        </div>
+        <div class="wrapper">
+            <div class="lst">
+                <div class="item wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="img">
+                        <h4>海量数据</h4>
+                    </div>
+                    <div class="text">
+                        <p>对于B端/C端客户的画像、标签分析， 为B端客户提供精准客户匹配</p>
+                    </div>
+                </div>
+                <div class="item wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="img">
+                        <h4>技术领先</h4>
+                    </div>
+                    <div class="text">
+                        <p>大数据智能营销技术/产品/服务/最先进；医疗行业-提供最完整的智能商业解决方案</p>
+                    </div>
+                </div>
+                <div class="item wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="img">
+                        <h4>政府资源</h4>
+                    </div>
+                    <div class="text">
+                        <p>拥有非常充沛的社会及政府资源</p>
+                    </div>
+                </div>
+                <div class="item wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="img">
+                        <h4>成本优势</h4>
+                    </div>
+                    <div class="text">
+                        <p>超高性价比，快速获客，实现增长</p>
+                    </div>
+                </div>
+                <div class="item wow fadeInUp" data-wow-delay=".9s">
+                    <div class="img">
+                        <h4>完整生态链</h4>
+                    </div>
+                    <div class="text">
+                        <p>全总段数据覆盖，全方位工具数据库，全领域信息服务平台</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="index-news">
+        <div class="index-tit white">
+            <h2 class="wow fadeInUp">相关动态</h2>
+            <p class="wow fadeInDown">RELATED NEWS</p>
+        </div>
+        <div class="subtitle">
+            <!-- 企业的数字化营销事业部，为您节省大量人力成本 -->
+        </div>
+
+        <div class="wrapper">
+            <div class="lst clearfix wow fadeInUp" id="dynamic">
+                <div class="item" data-did="did1">
+                    <div class="img">
+                        <a target="_blank" href="###"><img src="uploads/index-news-1.png" width="100%" alt=""></a>
+                    </div>
+                    <div class="con">
+                        <h3><a target="_blank" href="###">国家不得不发展，企业不得不标配的“云计算”</a></h3>
+                        <div class="bar">
+                            <span class="items">07.24</span> 行业新闻
+                            <em class="icon-view"></em> 336
+                            <em class="icon-zan"></em> 46
+                            <em class="icon-wx"></em> 2596
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did2">
+                    <div class="img">
+                        <a target="_blank" href="###"><img src="uploads/index-news-2.png" width="100%" alt=""></a>
+                    </div>
+                    <div class="con">
+                        <h3><a target="_blank" href="dynamic_1.html">2021新药融资金额TOP榜发布！细分领域“龙头”霸榜</a></h3>
+                        <div class="bar">
+                            <span class="items">07.24</span> 行业新闻
+                            <em class="icon-view"></em> 336
+                            <em class="icon-zan"></em> 46
+                            <em class="icon-wx"></em> 3651
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did3">
+                    <div class="img">
+                        <a target="_blank" href="###"><img src="uploads/index-news-3.png" width="100%" alt=""></a>
+                    </div>
+                    <div class="con">
+                        <h3><a target="_blank" href="###">听说了吗，2022药智居然准备这样做了！</a></h3>
+                        <div class="bar">
+                            <span class="items">07.24</span> 行业新闻
+                            <em class="icon-view"></em> 336
+                            <em class="icon-zan"></em> 46
+                            <em class="icon-wx"></em> 2759
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did4">
+                    <div class="img">
+                        <a target="_blank" href="###"><img src="uploads/index-news-4.png" width="100%" alt=""></a>
+                    </div>
+                    <div class="con">
+                        <h3><a target="_blank" href="###">宝剑锋从磨砺出！祝贺药智网跻身国家中小企业公共服务示范平台！</a></h3>
+                        <div class="bar">
+                            <span class="items">07.24</span> 行业新闻
+                            <em class="icon-view"></em> 336
+                            <em class="icon-zan"></em> 46
+                            <em class="icon-wx"></em> 1753
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did5">
+                    <div class="img">
+                        <a target="_blank" href="###"><img src="uploads/index-news-5.png" width="100%" alt=""></a>
+                    </div>
+                    <div class="con">
+                        <h3><a target="_blank" href="###">《2021年中国医药健康行业投融资分析报告》</a></h3>
+                        <div class="bar">
+                            <span class="items">07.24</span> 行业新闻
+                            <em class="icon-view"></em> 336
+                            <em class="icon-zan"></em> 46
+                            <em class="icon-wx"></em> 2555
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did6">
+                    <div class="img">
+                        <a target="_blank" href="###"><img src="uploads/index-news-6.png" width="100%" alt=""></a>
+                    </div>
+                    <div class="con">
+                        <h3><a target="_blank" href="###">2021年数字营销趋势和预测</a></h3>
+                        <div class="bar">
+                            <span class="items">07.24</span> 行业新闻
+                            <em class="icon-view"></em> 336
+                            <em class="icon-zan"></em> 46
+                            <em class="icon-wx"></em> 2788
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="more">
+                <a class="btn-index-more" href="developmenting.html">了解更多</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="index-customer">
+        <div class="wrapper relative">
+            <div class="index-tit">
+                <h2 class="wow fadeInUp">合作客户</h2>
+                <p class="wow fadeInDown">CORPORATE CLIENT</p>
+            </div>
+            <div class="map">
+                <div class="point"></div>
+                <div class="point"></div>
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+            <div class="lst">
+                <div class="item">
+                    <strong>400</strong>
+                    <span>生产类企业</span>
+                </div>
+                <div class="item">
+                    <strong>240</strong>
+                    <span>加工类企业</span>
+                </div>
+                <div class="item">
+                    <strong>560</strong>
+                    <span>销售类企业</span>
+                </div>
+                <div class="item">
+                    <strong>320</strong>
+                    <span>其他企业</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="index-flink">
+        <div class="wrapper">
+            <div class="lst clearfix">
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.1.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.2.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.3.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.4.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.5.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.6.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.11.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/26.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.13.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.16.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.17.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.1.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.21.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.22.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/27.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.15.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.10.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.16.png" alt=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-navs">
+    <div class="wrapper clearfix">
+        <div class="item-contact">
+            <img class="logo" src="static/images/logo-bottom.png" alt="药智器械">
+            <div class="phone">400-890-9020</div>
+            <div class="qq">2081288520</div>
+            <div class="email">szyxtong@qq.com</div>
+        </div>
+        <dl>
+            <dt>商务合作</dt>
+            <dd><a target="_blank" href="attract.html">产品及服务价格</a></dd>
+            <dd><a target="_blank" href="attract.html">招商加盟</a></dd>
+            <dd><a target="_blank" href="attract.html">项目合作</a></dd>
+            <dd><a target="_blank" href="attract.html">广告投放</a></dd>
+        </dl>
+
+        <dl>
+            <dt>会员中心</dt>
+            <dd><a target="_blank" href="member.html">VIP权限</a></dd>
+            <dd><a target="_blank" href="member.html">我要推广</a></dd>
+            <dd><a target="_blank" href="member.html">营销素材</a></dd>
+            <dd><a target="_blank" href="member.html">客户反馈</a></dd>
+        </dl>
+
+        <dl>
+            <dt>帮助中心</dt>
+            <dd><a target="_blank" href="###">医药知识库</a></dd>
+            <dd><a target="_blank" href="###">常见问题</a></dd>
+            <dd><a target="_blank" href="###">用户手册</a></dd>
+            <dd><a target="_blank" href="###">下载中心</a></dd>
+        </dl>
+        <div class="item-qrcode">
+            <img width="128" height="128" src="static/images/qrcode_for_gh_2c6575169f75_860.jpg" alt="">
+            <div>扫一扫关注药智器械</div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper clearfix">
+        <div class="footer-navs">
+            <a href="###">首页</a>
+            <span class="split"></span>
+            <a href="product.html">产品与服务</a>
+            <a href="sales.html">药智营销通</a>
+            <a href="vipdata.html">药智医械通</a>
+            <!-- <a href="vipdata.html">医械数据通</a> -->
+            <span class="split"></span>
+            <!-- <a target="_blank" href="developmenting.html">器械商城</a>
+			<a target="_blank" href="https://job.yaozh.com/">求职招聘</a>
+			<span class="split"></span> -->
+            <a href="attract.html">商务合作</a>
+            <a href="developmenting.html">新闻中心</a>
+            <span class="split"></span>
+            <a href="member.html">会员中心</a>
+            <a href="help.html">帮助中心</a>
+            <span class="split"></span>
+            <a href="navigation.html">行业导航</a>
+        </div>
+        <div class="footer-navs2">
+            <a target="_blank" href="index.html">免责声明</a>
+            <a target="_blank" href="index.html">更新日志</a>
+            <a target="_blank" href="index.html">技术支持</a>
+        </div>
+        <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
+    </div>
+</div>
+<!-- 
+<div class="right-sidebar">
+    <a class="right-sidebar-qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1261826768&site=qq&menu=yes">
+        <span>在线咨询</span>
+    </a>
+    <a href="" class="right-sidebar-top"><span>返回顶部</span></a>
+</div> -->
+<script src="static/lib/vendor.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/lib/swiper/4.4.6/swiper.min.js"></script>
+<script src="static/js/index.js"></script>
+<script>
+    //静态演示用，绑程序时删除 star
+    document.title = '药智器械 - 首页';
+    $('#navbar>ul').children('li').eq(0).addClass('active').siblings().removeClass();
+    //静态演示用，绑程序时删除 end
+
+    $('#dynamic>.item').click(function(e) {
+        if ($(this).attr('data-did')) {
+            let did = $(this).attr('data-did').substring(3)
+            window.location.href = 'member_newsdetail.html?did=' + did
+        }
+    })
+</script>
+
+</body>
+
+</html>
