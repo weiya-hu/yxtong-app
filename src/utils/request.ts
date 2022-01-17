@@ -3,6 +3,7 @@
  */
  import axios from "axios";
  import message from '../views/component/message/index'
+ import {token} from '../service/login'
 import { AxisPointerComponent } from "echarts/components";
 
  axios.defaults.timeout = 10000;
@@ -45,10 +46,19 @@ import { AxisPointerComponent } from "echarts/components";
        window.location.href='/app/login?url='+window.location.pathname
        message.info('登录状态过期，请再次登录')
      }
+     if(response.data.errno === 10403){
+        token().then(res=>{
+          if(res.status){
+            localStorage.setItem('firstToken',res.body)
+            window.location.reload()
+          }
+        })
+     }
      return response;
    },
    (error) => {
      console.log("请求出错：", error);
+     message.info( error)
    }
  );
  

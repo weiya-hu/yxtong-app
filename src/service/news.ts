@@ -39,7 +39,21 @@ export const newsWorksList =(data):Promise<API.IResult>=>{
 }
 
 //评论
-
 export const subComment =(data):Promise<API.IResult>=>{
     return  get('news/subComment',data)
+}
+
+//关注
+export const doAttention =(data):Promise<API.IResult>=>{
+    return  post('news/attention',data)
+}
+
+//收藏
+export const doCollect =(data):Promise<API.IResult>=>{
+    return  post('news/collect',data)
+}
+
+//举报
+export const sureReport =(data):Promise<API.IResult>=>{
+    return  post('news/report',data)
 }

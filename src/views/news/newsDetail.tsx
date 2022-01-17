@@ -14,6 +14,7 @@ import {newsDetail,newsReadList,newsWorksList} from '../../service/news'
 
 import toimg from'../../public/images/user/to.png'
 import commentBlackimg from '../../public/images/user/commentBlack.png'
+import headerimg from '../../public/images/user/header.png'
 
 export default class NewsDetail extends Component {
     state={
@@ -26,11 +27,11 @@ export default class NewsDetail extends Component {
         authorHotList:[],//作者热门作品
         readRank:[],//每日阅读榜
         articleINfo:{
-            comment:22,
+            comment:0,
             collect:false,
             share:false
         },
-        newsDetail:null,
+        newsDetail:{},
         newsProps:this.props.location.query,
         newsId:null,
         hotArticleList:{}
@@ -52,8 +53,10 @@ export default class NewsDetail extends Component {
         }
       }
       //获取新闻详情
-    getNewsDetail=async()=>{
-        let id = window.location.search.split('=')[1]
+    getNewsDetail=async(id)=>{
+        if(!id){
+            id = window.location.search.split('=')[1]
+        }
         this.setState({newsId:id})
         let data={
             newsId:id
@@ -83,13 +86,17 @@ export default class NewsDetail extends Component {
     //跳转作者作品页
     toNewsAuthor=()=>{
         //to do list,creatorId
-        this.props.history.push('/app/newsauthormore/?creatorId='+1)
+        let {newsDetail} =this.state
+        this.props.history.push('/app/newsauthormore/?creatorId='+newsDetail.creator_id)
     }
     //点击nav跳转新闻列表
     navChange=(val,item,flag)=>{
         flag && this.props.history.push({ pathname : '/app/news' , query : {index : val,item:item}})
     }
-    
+    //详情页文章切换
+    articleChange=(id)=>{
+        this.getNewsDetail(id)
+    }
     componentDidMount(){
         this.getNewsDetail()
         this.newsReadLists()
@@ -114,7 +121,7 @@ export default class NewsDetail extends Component {
                             </a> 
                         <div className='newsDetail-share-hr'></div>
                         <div className='collect'>
-                            <Collect collect={articleINfo.collect} css='align'/>
+                            <Collect item={newsDetail} css='align'  key={newsDetail.creator_id}/>
                         </div>
                         <div className='newsDetail-share-hr'></div>
                         <div className='share'>
@@ -152,16 +159,19 @@ export default class NewsDetail extends Component {
                 <div className='newsDetail-author'>
                     <div className='newsDetail-author-info'>
                         <div className='newsDetail-author-info-top fleximgc'>
-                            <div className='authorimg fleximg'><img src={newsDetail?newsDetail.head_url:''} alt="author" /></div>
+                            <div className='authorimg fleximg'><img src={newsDetail.head_ur?newsDetail.head_url:headerimg} alt="author" onError={(e) => { e.target.src = headerimg }}/></div>
                             <div className=''>{hotArticleList.creatorName}</div>
-                            <div><FollowButton item={author}/></div>
+                            <div><FollowButton item={newsDetail} key={newsDetail.creator_id}/></div>
                         </div>
                         <div className='hot'>
                             <div>TA的热门作品</div>
                         </div>
                         <div>
                             {hotArticleList.worksList && hotArticleList.worksList.map((item,index)=>(
-                                <div key={index}><AuthorHotArticleItem item={item}/></div>
+                                <div 
+                                    key={index}
+                                    onClick={()=>{this.articleChange(item.id)}}
+                                ><AuthorHotArticleItem item={item}/></div>
                             ))}
                         </div>
                         <div className='fleximg more' onClick={this.toNewsAuthor}>

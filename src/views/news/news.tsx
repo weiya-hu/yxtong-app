@@ -11,6 +11,7 @@ import {newsNewsList,newsAList} from '../../service/news'
 
 import writeimg from '../../public/images/user/write.png'
 import exchangeimg from '../../public/images/user/exchange.png'
+import headerimg from '../../public/images/user/header.png'
 
 
 export default class News extends Component{
@@ -23,9 +24,10 @@ export default class News extends Component{
     interestPage:1,
     interestSize:7,
     newsPage:1,
-    newsSize:3,
+    newsSize:5,
     userInfo:null,
-    newsTypeId:null
+    newsTypeId:null,
+    exchangeRotate:false,//换一换旋转的图标是否转动
   }
   loadMoreData=()=>{
     this.getNewslist(this.state.newsTypeId)
@@ -88,7 +90,7 @@ export default class News extends Component{
       const rest = await newsNewsList(data)
       if(rest.status){
         this.setState({
-          newsList:newsList.concat(rest.body.newsList),
+          newsList:newsList.concat(rest.body.records),
           hasMore:rest.body.total>newsPage*newsSize,
           newsPage:newsPage+1
         })
@@ -103,6 +105,7 @@ export default class News extends Component{
   }
   getFavorlist=async()=>{
     const {interestPage,interestSize}=this.state
+    this.setState({exchangeRotate:true})
     let data={
       current:interestPage,
       size:interestSize
@@ -110,7 +113,8 @@ export default class News extends Component{
     const res = await newsAList(data)
     if(res.status){
       this.setState({
-        mayInterestList:res.body.interestList
+        mayInterestList:res.body.interestList,
+        exchangeRotate:false
       })
     }
   }
@@ -127,7 +131,7 @@ export default class News extends Component{
     }
   }
   render(){
-    const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,hasMore}=this.state
+    const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate}=this.state
     return (
       <div id='news'>
         <div className='news-header'>
@@ -172,14 +176,16 @@ export default class News extends Component{
                 <div className='may-interest-title flexb'>
                   <div className='may-interest-title-txt'>您可能感兴趣</div>
                   <div className='flexr' onClick={this.getFavorlist}>
-                    <div className='exchangeimg fleximg'><img src={exchangeimg} alt="exchangeimg" /></div>
+                    <div className={exchangeRotate?'exchangeimg fleximg exchange-rotate':'exchangeimg fleximg'}>
+                      <img src={exchangeimg} alt="exchangeimg" />
+                    </div>
                     <div className='color3'>换一换</div>
                   </div>
                 </div>
                 <div className='may-interest-list flexl'>
                   {mayInterestList.map((item,index)=>(
                     <div className='may-interest-item fleximgc' key={index}>
-                      <div className='fleximg writeimg'><img src={item.head_url} alt="header" /></div>
+                      <div className='fleximg writeimg'><img src={item.head_url?item.head_url:headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
                       <div >{item.name}</div>
                       <div>
                         <FollowButton item={item} />

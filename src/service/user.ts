@@ -28,3 +28,12 @@ export const tasks =():Promise<API.IResult>=>{
 export const userTasks =():Promise<API.IResult>=>{
     return  get('user/tasks')
 }
+//数据分析数据总览
+export const dataScreening =(data):Promise<API.IResult>=>{
+    return  get('news/writing/dataScreening',data)
+}
+//用户管理
+
+export const contentList =(data):Promise<API.IResult>=>{
+    return  get('news/writing/contentList',data)
+}

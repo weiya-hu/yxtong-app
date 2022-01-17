@@ -3,19 +3,15 @@ import { Component } from 'react'
 import CommonButton from './commonButton'
 import { userMycenterInfo } from '../../../service/user'
 import './myScore.scss'
-import {Redirect} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 //一个参数size，对应组件的大小，small\big
-export default class MyScore extends Component<any> {
+class MyScore extends Component<any> {
     state={
         userInfo:{},
-        developFlag:false
     }
     exchangeScore=(val)=>{
-        console.log(val)
-        this.setState({
-            developFlag:true
-          })
+        this.props.history.push('/developmenting.html')
     }
     componentDidMount=async()=>{
         //接口，获取积分
@@ -27,11 +23,8 @@ export default class MyScore extends Component<any> {
           }
     }
     render(){
-        let {userInfo,developFlag} = this.state
+        let {userInfo} = this.state
         const {size} = this.props
-        if(developFlag){
-            return <Redirect to={{ pathname: "/app/develop" }} />;
-        }
         return <div>
             {size === 'big'?(
                 <div className='myscore flexb padding'>
@@ -81,3 +74,4 @@ export default class MyScore extends Component<any> {
     }
     
 }
+export default withRouter(MyScore);

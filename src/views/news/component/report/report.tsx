@@ -2,6 +2,8 @@ import { Component } from 'react'
 import './report.scss'
 import PopupLogin from '../../../login/popupLogin'
 import { getUser } from '../../../../service/login'
+import {sureReport} from '../../../../service/news'
+import $message from '../../../component/message'
 
 import reportimg from '../../../../public/images/user/report.png'
 import chaBlackimg from '../../../../public/images/user/chaBlack.png'
@@ -15,6 +17,7 @@ export default class Report extends Component {
         reportShow:false,
         loginShow:false,
     }
+    //点击举报反馈
     report=async()=>{
         const res =await getUser()
         document.body.style.overflow='hidden'
@@ -26,6 +29,7 @@ export default class Report extends Component {
             })
         }
     }
+    //取消举报
     reportEdit=()=>{
         let {reportShow}=this.state
         if(reportShow){
@@ -33,6 +37,19 @@ export default class Report extends Component {
         }
         this.setState({reportShow:!reportShow})
         
+    }
+    //确认举报按钮
+    reportSure=async()=>{
+        const {reportActive,reports} =this.state
+        let data={
+            "content": reports[reportActive],
+            "news_id":window.location.search.split('=')[1]
+        }
+        const res = await sureReport(data)
+        if(res.status){
+            $message.info(res.message)
+            this.reportEdit()
+        }
     }
     render(){
         const {reports,reportActive,reportShow,loginShow } =this.state
@@ -65,7 +82,7 @@ export default class Report extends Component {
                     </div>
                     <div className='flexr report-frame-item-button'>
                         <div onClick={this.reportEdit} className='edit-button fleximg'>取消</div>
-                        <div className='sure-button fleximg'>确认</div>
+                        <div onClick={this.reportSure} className='sure-button fleximg'>确认</div>
                     </div>
                 </div>
             </div>

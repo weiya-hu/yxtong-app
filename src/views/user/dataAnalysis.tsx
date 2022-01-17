@@ -5,6 +5,7 @@ import zhCN from 'antd/lib/locale/zh_CN'
 import './dataAnalysis.scss'
 import DataOverview from "./component/dataOverview/dataOverview";
 import LineCharts from "./component/lineChart/lineChart";
+import {dataScreening} from '../../service/user'
 
 import selectimg from '../../public/images/user/select.png'
 import unselectimg from '../../public/images/user/unselect.png'
@@ -92,6 +93,14 @@ export default class DataAnalysis extends Component{
     setOption=()=>{
 
     }
+    getDataScreening=async()=>{
+      let analysisId=sessionStorage.getItem('analysisId'),data={};
+      if(analysisId){
+        data={newsId:analysisId}
+      }
+      const res = await dataScreening(data)
+      console.log(res)
+    }
     componentDidMount(){
       let arr=[]
       for(let i=0;i<7;i++){
@@ -100,6 +109,7 @@ export default class DataAnalysis extends Component{
       }
       console.log(arr)
       this.setState({chartData:arr})
+      this.getDataScreening()
     }
     render(){
       let overViewTxt=this.state.overViewTxt,dayName=this.state.dayName,overViewTxts=this.state.overViewTxts

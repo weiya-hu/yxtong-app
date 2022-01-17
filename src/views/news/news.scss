@@ -38,6 +38,9 @@
                     width: 14px;
                     margin-right: 6px;
                 }
+                .exchange-rotate{
+                    animation: rotation-back 1s linear infinite;
+                }
             }
             .may-interest-list{
                 .may-interest-item{
@@ -109,4 +112,12 @@
             transform: rotate(0deg);
         }
     } 
+    @keyframes rotation-back {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
 }

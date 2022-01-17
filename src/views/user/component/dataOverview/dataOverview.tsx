@@ -22,7 +22,7 @@ export default class DataOverview extends Component<DataOverviewState> {
                 <div className='flexr font12 color2'>
                     昨日：
                     <div className='flexl'>
-                        <div className='fleximg upimg'><img src={upimg} alt="up" /></div>
+                        {/* <div className='fleximg upimg'><img src={upimg} alt="up" /></div> */}
                         <span className='yesterday'>{item.yesterday}</span>
                     </div>
                 </div>

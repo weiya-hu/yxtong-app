@@ -16,7 +16,7 @@ export default class Comment extends Component<CommentProps> {
     state={
         drawerShow:false,
         commentList:[],
-        total:10,
+        total:0,
         current:1,
         size:20
     }

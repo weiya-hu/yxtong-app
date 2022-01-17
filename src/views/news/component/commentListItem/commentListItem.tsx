@@ -1,9 +1,10 @@
+//@ts-nocheck
 import { Component } from 'react'
 import './commentListItem.scss'
 import FavorButton from '../favorbutton/favorbutton'
 import moment from 'moment'
 
-import favorimg from '../../../../public/images/user/favor.png'
+import headerimg from '../../../../public/images/user/header.png'
 
 interface CommentListItemProps{
     item:{
@@ -25,7 +26,7 @@ export default class CommentListItem extends Component<CommentListItemProps> {
     render(){
         const {item,size }=this.props
         return <div className='flexbl comment-list-item'>
-            <div className='fleximg headerimg'><img src={item.head_url} alt="header" /></div>
+            <div className='fleximg headerimg'><img src={item.head_url?item.head_url:headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
             <div className={size==='big'?'flexcbl comment-list-item-right':'flexcbl comment-list-item-right comment-list-item-right-small'}>
                 <div className='flexb comment-list-item-right-top'>
                      <div className='font16 bold'>{item.username}</div>

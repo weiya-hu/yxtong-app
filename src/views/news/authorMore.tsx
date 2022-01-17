@@ -8,7 +8,7 @@ import MoreTxt from './component/moreTxt/moreTxt'
 import {util} from '../../utils/news'
 import {newsWorksList } from '../../service/news'
 
-import topimg from '../../public/images/user/top.jpg'
+import headerimg from '../../public/images/user/header.png'
 
 export default class AuthorMore extends Component{
     state={
@@ -96,7 +96,13 @@ export default class AuthorMore extends Component{
                         <div className='more-top flexcbl'>
                             <div className='more-top-author flexb'>
                                 <div className='flexl'>
-                                    <div className='fleximg more-headerimg'><img src={authorInfo && authorInfo.header_url} alt="header" /></div>
+                                    <div className='fleximg more-headerimg'>
+                                      <img 
+                                        src={authorInfo && authorInfo.header_url?authorInfo.header_url:headerimg} 
+                                        alt="header" 
+                                        onError={(e) => { e.target.src = headerimg }}
+                                      />
+                                    </div>
                                     <div className='more-auther-name'>{authorInfo && authorInfo.creatorName}</div>
                                 </div>
                                 <div>

@@ -18,7 +18,7 @@ export const MessageContainer = () => {
       const obj = [...pre,option ];
       setTimeout(() => {
           remove(option)
-        }, 3000)
+        }, 2000)
         return obj
     })
     // 最好不用下面这个写法，当同时调用两个message时候，只会显示最后调用那次

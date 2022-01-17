@@ -24,8 +24,8 @@ class User extends Component {
     state={
         nav:['我的任务','我的收益','创作中心','我的消息','设置'],
         aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
-        navActiveIndex:0,//导航active的下标
-        asideActive:0,//侧边栏active的下标
+        navActiveIndex:2,//导航active的下标
+        asideActive:1,//侧边栏active的下标
         isArticleDetail:0,//是否是详情页
         exitActive:false,//退出按钮是否hover
         exitNone:true,//退出登录是否显示
@@ -36,6 +36,7 @@ class User extends Component {
       e.stopPropagation()
       this.setState({exitNone:!this.state.exitNone})
     }
+    //返回登录
     exitlogin=async(e)=>{
       e.stopPropagation()
       let res = await loginOut()
@@ -45,17 +46,12 @@ class User extends Component {
       }
       
     }
+    //跳到首页
     toIndex=()=>{
       window.location.href='/'
     }
-    componentDidMount=async()=>{
-      let local=this.props.location
-      if(local.query){
-        this.setState({
-          navActiveIndex:local.query[0],
-          asideActive:local.query[1]
-        })
-      }
+    //获取用户信息
+    getUserInfo=async()=>{
       const result = await getUser()
       if(result.status){
         this.setState({
@@ -67,7 +63,16 @@ class User extends Component {
           loginFlag:true
         })
       }
-      
+    }
+    componentDidMount=()=>{
+      let local=this.props.location
+      if(local.query){
+        this.setState({
+          navActiveIndex:local.query[0],
+          asideActive:local.query[1]
+        })
+      }
+      this.getUserInfo()
     }
     render(){
         let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag} = this.state

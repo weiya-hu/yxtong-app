@@ -5,7 +5,7 @@ export default class Develop extends Component {
     render(){
         return <div>develop
             <div onClick={()=>{
-                window.history.back(-1);
+                this.props.history.goBack();
                 console.log(window.history)
                 }
             }>返回</div>

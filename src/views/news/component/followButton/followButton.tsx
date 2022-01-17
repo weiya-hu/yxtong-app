@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import './followButton.scss'
 import PopupLogin from '../../../login/popupLogin'
+import {doAttention} from '../../../../service/news'
+import $message from '../../../component/message/index'
 
 import addSmallimg from '../../../../public/images/user/addSmall.png'
 import addBigimg from '../../../../public/images/user/addBig.png'
@@ -8,6 +10,7 @@ import gouimg from '../../../../public/images/user/gou.png'
 
 interface FollowButtonItem{
     is_attention:string | null
+    creator_id?:number
 }
 
 interface FollowButtonProps{
@@ -21,13 +24,20 @@ export default class FollowButton extends Component<FollowButtonProps> {
         item:this.props.item,
         loginShow:false
     }
-    follow=(event)=>{
+    follow=async(event)=>{
         event.stopPropagation() 
-        setTimeout(()=>{
-            let {item} =this.state
+        let {item} =JSON.parse(JSON.stringify(this.state)) 
+        console.log(item)
+        let data={
+            "creator_id":item.creator_id?item.creator_id:Number(window.location.search.split('=')[1]) ,
+            "types": item.is_attention?0:1
+        }
+        const res =await doAttention(data)
+        if(res.status){
+            $message.info(data.types?'关注成功':'取消关注')
             item.is_attention=!item.is_attention?'1':null
             this.setState({item:item})
-        },100)
+        }
     }
     render(){
         const {item,loginShow} = this.state,{size}=this.props
