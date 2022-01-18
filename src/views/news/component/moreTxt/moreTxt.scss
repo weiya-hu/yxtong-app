@@ -1,0 +1,18 @@
+.more-txt{
+    .news-loading{
+        height: 60px;
+        .loadingimg{
+            width: 12px;
+            margin-right: 8px;
+            animation: rotation 1s linear infinite;
+        }
+    }
+    @keyframes rotation {
+        from {
+            transform: rotate(360deg);
+        }
+        to {
+            transform: rotate(0deg);
+        }
+    } 
+}

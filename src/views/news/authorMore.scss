@@ -1,28 +1,58 @@
 .authorMore{
-    padding-top: 50px;
+    padding: 265px 0 20px;
     .more-header{
         width: 100%;
         position: fixed;
         top: 0;
         left: 0;
-
+        z-index: 3;
+    }
+    .blank-div{
+        width: 100%;
+        height: 10px;
+        background: #F4F4F4;
+    }
+    .more-types-pre{
+        width: 100%;
+        
     }
     .more-top{
-        width: 100%;
+        width: 1200px;
         height: 215px;
         padding: 40px 30px 0;
         background:url(../../public/images/user/top.jpg) no-repeat;
-        .more-headerimg{
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 29px;
+        .more-top-author{
+            width: 100%;
+            .more-headerimg{
+                width: 90px;
+                height: 90px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 29px;
+            }
+            .more-auther-name{
+                font-size: 24px;
+                color: #363636;
+                font-weight: 600;
+            }
         }
-        .more-auther-name{
-            font-size: 24px;
-            color: #363636;
+        .more-top-type{
+            height: 70px;
+            line-height: 70px;
+            font-size: 18px;
             font-weight: 600;
+            border-top:3px solid rgba(0,0,0,0) ;
+            border-bottom:3px solid rgba(0,0,0,0) ;
+            margin-right: 50px;
+            cursor: pointer;
         }
+        .more-top-type-active{
+            color: #304F97;
+            border-bottom:3px solid #304F97;
+        }
+    }
+    .more-newslist{
+        background: #ffffff;
+        padding: 0 30px;
     }
 }

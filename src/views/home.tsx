@@ -1,23 +1,15 @@
 
 import { Component } from 'react'
 import PopupLogin from './login/popupLogin'
-import {doLogin} from '../service/login'
 
 
 export default class Home extends Component {
     state={
         popupLoginShow:false
     }
-    getinfo=async()=>{
-        let data = {
-            username: 'admin',
-            passwd: '123',
-            code: 'hjkj'
-        }
-        const res =await doLogin(data)
-        console.log(res)
-    }
+    
     componentDidMount(){
+
     }
     login=()=>{
         this.setState({

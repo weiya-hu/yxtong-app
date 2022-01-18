@@ -2,9 +2,12 @@
  * 网络请求配置
  */
  import axios from "axios";
+ import message from '../views/component/message/index'
+ import {token} from '../service/login'
+import { AxisPointerComponent } from "echarts/components";
 
  axios.defaults.timeout = 10000;
- axios.defaults.baseURL = "http://dev.yxtong.com/";
+ axios.defaults.baseURL = "/api";
 
 
  
@@ -12,13 +15,13 @@
   * http request 拦截器
   */
  axios.interceptors.request.use(
-   (config) => {
-      let token = window.localStorage.getItem("accessToken")
+   (config) => {   
      config.data = JSON.stringify(config.data);
-    if(token){
+      let firstToken = window.localStorage.getItem("firstToken")
+    if(firstToken){
         config.headers = {
             "Content-Type": "application/json",
-            "accessToken": token
+            "Authorization": firstToken
           };
     }else{
         config.headers = {
@@ -37,13 +40,25 @@
   */
  axios.interceptors.response.use(
    (response) => {
-     if (response.data.errCode === 2) {
-       console.log("过期");
+     if (response.data.errno === 10620) {
+       console.log("登录状态过期");
+       localStorage.removeItem('userInfo')
+       window.location.href='/app/login?url='+window.location.pathname
+       message.info('登录状态过期，请再次登录')
+     }
+     if(response.data.errno === 10403){
+        token().then(res=>{
+          if(res.status){
+            localStorage.setItem('firstToken',res.body)
+            window.location.reload()
+          }
+        })
      }
      return response;
    },
    (error) => {
      console.log("请求出错：", error);
+     message.info( error)
    }
  );
  
@@ -54,14 +69,14 @@
   * @returns {Promise}
   */
  export function get(url, params = {}) {
-   return new Promise((resolve, reject) => {
+   return new Promise<API.IResult>((resolve, reject) => {
      axios.get(url, {
          params: params,
        }).then((response) => {
-         landing(url, params, response.data);
          resolve(response.data);
        })
        .catch((error) => {
+        message.info(error)
          reject(error);
        });
    });
@@ -75,13 +90,14 @@
   */
  
  export function post(url, data) {
-   return new Promise((resolve, reject) => {
+   return new Promise<API.IResult>((resolve, reject) => {
      axios.post(url, data).then(
        (response) => {
          //关闭进度条
          resolve(response.data);
        },
        (err) => {
+        message.info(err.data.message)
          reject(err);
        }
      );
@@ -219,6 +235,7 @@
   * @param data
   */
  function landing(url, params, data) {
+   console.log(url)
    if (data.code === -1) {
    }
  }

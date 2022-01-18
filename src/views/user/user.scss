@@ -11,7 +11,12 @@
         width: 100%;
         height: 40px;
         background:#363636;
-
+        .user-name{
+          width: 70px;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          white-space: nowrap;
+        }
         >div{
             width: 1200px;
             height: 100%;

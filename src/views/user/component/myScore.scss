@@ -1,11 +1,11 @@
 .myscore{
     width: 100%;
     background: #FFFFFF;
-    height: 76px;
-    padding: 20px ;
+    height: 108px;
+    padding: 25px 20px;
     .todayscorepre{
         font-size: 16px;
-        margin-right: 42px;
+        margin-right: 94px;
         .todayscore{
             color: #304F97;
         }
@@ -18,4 +18,5 @@
 }
 .padding{
     padding: 20px 30px;
+    height: 76px;
 }

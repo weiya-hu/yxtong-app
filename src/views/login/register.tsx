@@ -4,7 +4,10 @@ import './register.scss'
 import { Form , Button} from 'antd';
 import InputComponent from './component/inputComponent';
 import { util } from '../../utils/user'
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
+import {doreg} from '../../service/login'
+import $message from '../component/message';
+
 
 import logoimg from '../../public/images/logo.png'
 import warnimg from '../../public/images/warn.png'
@@ -15,14 +18,17 @@ export default class Register extends Component {
     state={
         isForget:'',//模式选择，是忘记密码还是注册，候选值有forget,next,register
         warnMessage:'',//input框验证错误
-        registermessage:'密码最小长度6个字，最大长度16个字；必须包含字母、数字、不能和用户名相同',
+        registermessage:'密码长度在6~18之间,不能只是数字或字母',
         inviteCode:'',//邀请码默认值
         agree:false,//是否阅读并同意协议的默认值
+        mobileValue:'',
+        acode:'86',
+        loginFlag:false
     }
     nextSubmit=(value)=>{
         console.log(value)
         let mobile = util.validate_mobile(value.mobile),message     
-        message = mobile?mobile:util.validate_yzm(value.mobileYZM)   
+        message = mobile?mobile:util.validate_yzm(value.sms)   
         this.setState({warnMessage:message})
         if(!message){
             value.countryCode = value.countryCode?value.countryCode:'86'
@@ -42,19 +48,23 @@ export default class Register extends Component {
             //接口，完成
         }       
     }
-    registerSubmit=(value)=>{
+    registerSubmit=async(value)=>{
         console.log(value)
         let mobile = util.validate_mobile(value.mobile),message  
-        let mobileYZM = util.validate_yzm(value.mobileYZM)
-        message = mobile?mobile:(mobileYZM?mobileYZM:util.validate_passwordRegister(value.password))   
+        let mobileYZM = util.validate_yzm(value.sms)
+        message = mobile?mobile:(mobileYZM?mobileYZM:util.validate_passwordRegister(value.pass))   
         this.setState({warnMessage:message})
         if(!message){
             if(!this.state.agree){
                 this.setState({warnMessage:'请阅读并同意《药智网用户须知》'})
             }else{
-                console.log('下一步ok')
                 console.log(value)
-                //接口，免费注册
+                value.acode='+'+value.acode
+                const res =await doreg({...value})
+                if(res.status){
+                    setTimeout(()=>{this.setState({loginFlag:true})},1000)                    
+                }
+                $message.info(res.message)
             }            
         }      
     }
@@ -64,7 +74,11 @@ export default class Register extends Component {
         this.setState({isForget:pathname[3]})
     }
     render(){
-        let isForget = this.state.isForget,warnMessage=this.state.warnMessage,registermessage=this.state.registermessage
+        let {isForget,warnMessage,registermessage,mobileValue,acode,loginFlag} = this.state
+        if(loginFlag){
+            return <Redirect to={{ pathname: "/app/login" }} />;
+            // return <Redirect to='/' />;
+        }
         return <div id='register'>
             <div className='content'>
                 <div className='logoimg flexl'><img src={logoimg} alt="logo" /></div>
@@ -77,10 +91,22 @@ export default class Register extends Component {
                                 onFinishFailed={this.nextSubmit}
                             >   
                                 <div className='marg'>
-                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobile' name='mobile'/>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='mobile' 
+                                        name='mobile'
+                                        MobileValue={(val)=>{this.setState({mobileValue:val})}} 
+                                        Acode={(val)=>{this.setState({acode:val})}}
+                                    />
                                 </div>
                                 <div className='marg'>
-                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobileYZM' name='mobileYZM'/>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='sms' 
+                                        name='mobileYZM'
+                                        mobileValue={mobileValue}
+                                        acode={acode}
+                                    />
                                 </div>
                                 {warnMessage && 
                                     <div className='warn flexl'>
@@ -101,21 +127,37 @@ export default class Register extends Component {
                                 onFinishFailed={this.registerSubmit}
                             >
                                 <div className='marg'>
-                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobile' name='mobile'/>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='mobile' 
+                                        name='mobile'
+                                        MobileValue={(val)=>{this.setState({mobileValue:val})}} 
+                                        Acode={(val)=>{this.setState({acode:val})}}
+                                    />
                                 </div>
                                 <div className='marg'>
-                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobileYZM' name='mobileYZM'/>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='sms' 
+                                        name='mobileYZM'
+                                        mobileValue={mobileValue}
+                                        acode={acode}
+                                        type='register'
+                                    />
                                 </div>
                                 <div className='marg'>
-                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='password' name='passwordRegister'/>
+                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='pass' name='passwordRegister'/>
                                 </div>
                                 <div className='marg'>
-                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='inviteCode' name='inviteCode' defaultValue={this.state.inviteCode}/>
+                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='invite_code' name='inviteCode' defaultValue={this.state.inviteCode}/>
                                 </div>
-                                <div className='warnnext flexll'>
+                                {
+                                    warnMessage && <div className='warnnext flexll'>
                                     <div><img src={warnimg} alt="warn" /></div>
-                                    <span>{warnMessage?warnMessage:registermessage}</span>
+                                    <span>{warnMessage}</span>
                                 </div> 
+                                }
+                                
                                 <Button className='forgetnextbt' htmlType="submit">免费注册</Button>
                                 <div className='flexl agree' onClick={()=>{this.setState({agree:!this.state.agree})}}>
                                     {this.state.agree?
@@ -123,7 +165,8 @@ export default class Register extends Component {
                                         (<div><img src={unselectimg} alt="unchecked" /></div> )
                                     }
                                     <span>我已阅读并同意</span>
-                                    <Link>《药智网用户须知》</Link>                                   
+                                    <span className='Link'>《药智网用户须知》</span>
+                                    {/* <Link>《药智网用户须知》</Link>                                    */}
                                 </div>
                             </Form>
                         </div>

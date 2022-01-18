@@ -12,7 +12,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   
 }
-#root{background: #F4F4F4;height: 100%;}
+iframe{
+  display: none ;
+}
+#root{background: #F4F4F4;height: 101%;}
 //取消双击选中文字，字体为微软雅黑
 div,span{
   -moz-user-select:none;/*火狐*/
@@ -108,6 +111,9 @@ div,span{
   background: rgba($color: #000000, $alpha: 0.3);
   // height: 100vh;
 }
+.back-color{
+  background: #F4F4F4;
+}
 .color1{
   color: #363636;
 }
@@ -163,3 +169,13 @@ div,span{
 .paginations{
   margin-top: 30px;
 }
+.tox-tinymce-aux {
+  z-index: 709826033 !important;
+}
+.tox-tinymce-aux {
+  z-index: 709826033 !important;
+}
+.tox-tinymce-inline {
+  z-index: 709826032 !important;
+}
+

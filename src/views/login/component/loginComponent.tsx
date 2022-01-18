@@ -1,47 +1,107 @@
+//@ts-nocheck
 import React,{ Component } from 'react'
 import './loginComponent.scss'
-import { Select ,Form , Button} from 'antd';
+import { Form , Button} from 'antd';
 import InputComponent from './inputComponent';
 import { util } from '../../../utils/user'
 import { Link } from 'react-router-dom';
+import {dologin,token,getUser} from '../../../service/login'
+import $message from '../../component/message';
+
 
 import weiboimg from '../../../public/images/weibo.png'
 import qqimg from '../../../public/images/QQ.png'
 import wechartimg from '../../../public/images/wechart.png'
 import warnimg from '../../../public/images/warn.png'
 
-const { Option } = Select;
 export default class LoginComponent extends Component {
     state={
        loginSwitch:0,
-       warnMessage:''
+       warnMessage:'',
+       mobileValue:'',
+       acode:'86',
+       captchaShow:false,
     }
-    formRef = React.createRef()
     
-    submit=(value)=>{
+    submit=async(value)=>{
         console.log(value)
-        let swtch = Object.keys(value)[1],message
-        if(swtch === 'countryCode'){    
-            let mobile = util.validate_mobile(value.mobile)     
-            message = mobile?mobile:util.validate_yzm(value.mobileYZM)    
-            value.countryCode = value.countryCode?value.countryCode:'86'
+        let {loginSwitch} = this.state,message
+        if(loginSwitch){    
+            let username = util.validate_mobile(value.mobile)
+           
+            if(value.captcha){
+                let captcha =  util.validate_captcha(value.captcha)
+                message = username?username:captcha?captcha:util.validate_password(value.pass) 
+            }else{
+                 message = username?username:util.validate_password(value.pass) 
+            }
+           
+            
         }else{
-            let username = util.validate_mobile(value.userName)
-            message = username?username:util.validate_password(value.password) 
+            let mobile = util.validate_mobile(value.mobile)  
+            
+            if(value.captcha){
+                let captcha =  util.validate_captcha(value.captcha)
+                message = mobile?mobile:captcha?captcha:util.validate_yzm(value.sms)   
+            }else{
+                message = mobile?mobile:util.validate_yzm(value.sms)
+            }
+                
         }
         this.setState({warnMessage:message})
+        value.acode && (value.acode='+'+value.acode)
         if(!message){
-            console.log('ok')
-            console.log(value)
-            //接口，登录
+            let data:API.UserLogin = {
+                type:loginSwitch?2:1,
+                ...value,
+            }
+            const res = await dologin(data)
+            let url =window.location.search
+            if(res.status){
+                let userInfoRes= await getUser()
+                localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body) )
+                if(url){
+                    window.location.href=url.split('=')[1]
+                }else{
+                    window.location.href='/'
+                }
+                $message.info(res.message)
+            }else{
+                if(res.errno === 10403 || res.errno === 10401){
+                    let tokenRes = await token()                  
+                    if(tokenRes.status){
+                        localStorage.setItem('firstToken',res.body)
+                        let dologinRes = await dologin(data)
+                        if(dologinRes.status){
+                            let userInfoRes= await getUser()
+                            localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body))
+                            if(url){
+                                window.location.href=url.split('=')[1]
+                            }else{
+                                window.location.href='/'
+                            }
+                        }
+                        $message.info(dologinRes.message)
+                    }
+                }else if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
+                    this.setState({captchaShow:true})
+                }else{
+                    $message.info(res.message)
+                }
+                
+            }
+                    
         }
     }
-
     componentDidMount(){
-        //接口，国家区号
+
     }
+    componentDidCatch(){
+        
+    }
+    
     render(){
-        let loginSwitch = this.state.loginSwitch,warnMessage=this.state.warnMessage
+        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow} = this.state
         return(
             <div id='logincomponent'>
                 <div className='loginswitch flexl'>
@@ -57,7 +117,6 @@ export default class LoginComponent extends Component {
                     </div>
                 </div>
                 <Form
-                    // ref={this.formRef}
                     className=" topForm"
                     onFinish={this.submit}
                     onFinishFailed={this.submit}
@@ -65,19 +124,54 @@ export default class LoginComponent extends Component {
                         {!loginSwitch?(
                             <div>
                                 <div className='marg'>
-                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobile' name='mobile'/>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='mobile' 
+                                        name='mobile' 
+                                        MobileValue={(val)=>{this.setState({mobileValue:val})}} 
+                                        Acode={(val)=>{this.setState({acode:val})}}
+                                    />
                                 </div>
+                                {captchaShow && <div className='marg'>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='captcha' 
+                                        name='captcha' 
+                                    />
+                                </div>
+                                }                                  
                                 <div className='marg'>
-                                    <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobileYZM' name='mobileYZM'/>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='sms' 
+                                        name='mobileYZM' 
+                                        mobileValue={mobileValue}
+                                        acode={acode}
+                                    />
                                 </div>                                                               
                             </div>
                     ):(
                         <div>   
                             <div className='marg'>
-                                <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='userName' name='userName'/>
+                                <InputComponent 
+                                    GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                    formName='mobile' 
+                                    name='mobile' 
+                                    MobileValue={(val)=>{this.setState({mobileValue:val})}} 
+                                    Acode={(val)=>{this.setState({acode:val})}}
+                                />
+                                {/* <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='mobile' name='userName'/> */}
                             </div>
+                            {captchaShow && <div className='marg'>
+                                    <InputComponent 
+                                        GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} 
+                                        formName='captcha' 
+                                        name='captcha' 
+                                    />
+                                </div>
+                            }
                             <div className='marg'>
-                                <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='password' name='password'/>
+                                <InputComponent GETFalseMessage={(val)=>{this.setState({warnMessage:val})}} formName='pass' name='password'/>
                             </div>                                        
                         </div>
                     )}

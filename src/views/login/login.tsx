@@ -9,6 +9,7 @@ import downimg from '../../public/images/down.png'
 import LoginComponent from './component/loginComponent'
 
 export default class Login extends Component {
+
     render(){
         return (
             <div id='login'>
@@ -20,7 +21,7 @@ export default class Login extends Component {
                         <div className='leftimg fleximg'>
                             <img src={mainimg} />
                         </div>
-                        <LoginComponent/> 
+                        <LoginComponent /> 
                     </div>
                     <div className='fleximg topimg'>
                         <img src={topimg}/>

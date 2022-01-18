@@ -5,152 +5,198 @@ import Header from './component/header/header'
 import NewsListItem from './component/newsListItem/newsListItem'
 import NewsNav from './component/newsNav/newsNav';
 import FollowButton from './component/followButton/followButton';
+import MoreTxt from './component/moreTxt/moreTxt';
+import {util} from '../../utils/news'
+import {newsNewsList,newsAList,newsCreatorDate} from '../../service/news'
 
 import writeimg from '../../public/images/user/write.png'
 import exchangeimg from '../../public/images/user/exchange.png'
-import loadingimg from '../../public/images/user/loading.png'
+import headerimg from '../../public/images/user/header.png'
+
 
 export default class News extends Component{
   state={
     isLogin:true,//是否登录了
-    exitNone:true,//退出登录是否显示
-    newsTypeActive:0,
+    newsTypeActive:0,//新闻类型的默认值
     mayInterestList:[],
     newsList:[],
-    scrollHeight: 0,
     hasMore: true,// 判断接口是否还有数据，通过接口设置
+    interestPage:1,
+    interestSize:7,
+    newsPage:1,
+    newsSize:5,
+    userInfo:null,
+    newsTypeId:null,
+    exchangeRotate:false,//换一换旋转的图标是否转动
+    UserAnalysis:{}
   }
   loadMoreData=()=>{
-    let array=this.state.newsList
-    setTimeout(()=>{
-      let ary=[]
-      for(let i=0;i<7;i++){
-        let itm={
-          title:'国民党终于拿出一铁证，“台湾属于中国”响彻岛内！',
-          content:'今年9月份，前台湾地区领导人马英九在参加一场新书发布会接受媒体采访时，拿出了台湾属于中国的铁证，当时，马英九表示，《开罗宣言》中明确指出，“日本盗窃中国的领土，例如东北三省，台湾等等',
-          time:'2021年9月23日',
-          read:3029,
-          from:'小米网',
-          star:i%3 === 0,
-          share :i%2 ===0,
-          follow:i%3 === 0,
-        }
-        ary.push(itm)
-      }
-      this.setState({
-        newsList:array.concat(ary) 
-      })
-    },500)
+    this.getNewslist(this.state.newsTypeId)
   }
-  handleScroll=()=>{
+  // 页面滚动
+  handleScroll = () => {
     const {hasMore} = this.state;
     if(!hasMore){
         return;
     }
-    //下面是判断页面滚动到底部的逻辑
-    console.log(this.scrollDom.scrollTop+this.scrollDom.clientHeight,this.scrollDom.scrollHeight)
-    if(this.scrollDom.scrollTop + this.scrollDom.clientHeight+1 >= this.scrollDom.scrollHeight){
-        this.loadMoreData()
-        
+    if(util.getIsTOBottom() < 10){
+      // 解除绑定
+      window.removeEventListener('scroll', this.handleScroll ,false);
+      // 在这里发送请求
+      this.loadMoreData()
+      // 并在请求到数据后重新开启监听
+      setTimeout(()=>window.addEventListener('scroll', this.handleScroll, false), 300)
     }
   }
-  newsIndexChange=(val)=>{
-    this.setState({newsTypeActive:val})
-    this.scrollDom.scrollTo(0, 0);
+  //根据新闻类型获取新闻列表
+  newsIndexChange=(val,item,flag)=>{
+    if(flag){
+      this.setState({
+        newsTypeActive:val,
+        newsPage:1,
+        newsTypeId:item.id,
+        newsList:[]
+      },()=>{this.getNewslist(item.id)})
+      
+    }else{
+      let param = this.props.location.query
+      if(param){
+        this.getNewslist(param.item.id)
+        this.setState({newsTypeActive:param.index})
+      }else{
+        this.getNewslist(item.id)
+      }
+    }
+    if(val === 0){
+      this.getFavorlist()
+    }
+  }
+  getInfo=()=>{
+    let param = this.props.location.query
+    if(param){
+      this.newsIndexChange(param.index,param.item)
+    }else{
+
+    }
+  }
+  //获取新闻列表
+  getNewslist=async(id)=>{
+    let {newsPage,newsSize,newsList} =this.state
+    let data={
+      current:newsPage,
+      size:newsSize,
+      typeId:id
+    }
+      const rest = await newsNewsList(data)
+      if(rest.status){
+        this.setState({
+          newsList:newsList.concat(rest.body.records),
+          hasMore:rest.body.total>newsPage*newsSize,
+          newsPage:newsPage+1
+        })
+      }
+      
+  }
+  //跳转新闻详情页
+  toNewsDetail=(item)=>{
+    console.log(item)
+    this.props.history.push( { pathname : '/app/newsdetail/?id='+item.id})
+   
+  }
+  getFavorlist=async()=>{
+    const {interestPage,interestSize}=this.state
+    this.setState({exchangeRotate:true})
+    let data={
+      current:interestPage,
+      size:interestSize
+    }
+    const res = await newsAList(data)
+    if(res.status){
+      this.setState({
+        mayInterestList:res.body.interestList,
+        exchangeRotate:false
+      })
+    }
+  }
+  //用户数据统计
+  getUserAnalysis=async()=>{
+    const res = await newsCreatorDate()
+    if(res.status){
+      this.setState({
+        UserAnalysis:res.body
+      })
+    }
+    
   }
   componentDidMount(){
-    this.setState({
-      scrollHeight: window.innerHeight 
-  })
-
-
-    let arr =[],ary=[]
-    for(let i=0;i<7;i++){
-      let item={
-        name:'封面新闻',
-        follow:i%3 === 0,
-      }
-      let itm={
-        title:'马英九发声后，国民党终于拿出一铁证，“台湾属于中国”响彻岛内！',
-        content:'今年9月份，前台湾地区领导人马英九在参加一场新书发布会接受媒体采访时，拿出了台湾属于中国的铁证，当时，马英九表示，《开罗宣言》中明确指出，“日本盗窃中国的领土，例如东北三省，台湾等等',
-        time:'2021年9月23日',
-        read:3029,
-        from:'小米网',
-        star:i%3 === 0,
-        share :i%2 ===0,
-        follow:i%3 === 0,
-      }
-      arr.push(item)
-      ary.push(itm)
+    this.getUserAnalysis()
+    window.addEventListener('scroll', this.handleScroll, false)
+  }
+  componentWillUnmount(): void {
+    window.removeEventListener('scroll', this.handleScroll)
+    this.setState = (state,callback)=>{
+      return;
     }
-    this.setState({
-      mayInterestList:arr,
-      newsList:ary
-    })
-    console.log(this.state.mayInterestList,arr)
   }
   render(){
-    const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,scrollHeight,hasMore}=this.state
+    const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate}=this.state
     return (
-      <div id='news' onClick={()=>{this.setState({exitNone:true})}} ref={body=>this.scrollDom = body} style={{height: scrollHeight-1}}
-      onScroll={this.handleScroll.bind(this)}>
+      <div id='news' className='back-color'>
         <div className='news-header'>
-          <Header 
-            isLogin={isLogin} 
-            exitNone={exitNone} 
-            exitNoneFlag={(val)=>{this.setState({exitNone:val})}}           
-          />  
+          <Header />  
         </div> 
         <div className='news-down'>
           <div className='news-down-top'></div>
           <div className='width flexbl position'>
             <div className='news-main'>
-              <NewsNav newsIndexChange={this.newsIndexChange} />
+              <NewsNav newsTypeActive={newsTypeActive} newsIndexChange={this.newsIndexChange} />
             </div>
             <div className='userinfo'>  
-              <div className='bold'>作者名</div>
+              <div className='bold'>创作中心</div>
               <div className='writeimg fleximg'><img src={writeimg} alt="write" /></div>
               <div className='font12'>写文章</div>
               <div className='hr'></div>
               <div className='flexa'>
                 <div className='fleximgc'>
                   <div className='font12'>今日阅读</div>
-                  <div className='today-read'>200</div>
-                  <div className='yeterday-profit'>昨日阅读 <span>8</span></div>
+                  <div className='today-read'>{UserAnalysis.readt}</div>
+                  <div className='yeterday-profit'>昨日阅读 <span>{UserAnalysis.ready}</span></div>
                 </div>
                 <div className='fleximgc'>
                   <div className='font12'>今日分享</div>
-                  <div className='today-read'>200</div>
-                  <div className='yeterday-profit'>昨日分享 <span>8</span></div>
+                  <div className='today-read'>{UserAnalysis.sharet}</div>
+                  <div className='yeterday-profit'>昨日分享 <span>{UserAnalysis.sharey}</span></div>
                 </div>
                 <div className='fleximgc'>
                   <div className='font12'>今日收益</div>
-                  <div className='today-read'>200</div>
-                  <div className='yeterday-profit'>昨日收益 <span >8</span></div>
+                  <div className='today-read'>{UserAnalysis.integralt}</div>
+                  <div className='yeterday-profit'>昨日收益 <span >{UserAnalysis.integraly}</span></div>
                 </div>
               </div>
-              <div className='button fleximg'>进入内容中心</div>
+              <div className='button fleximg' onClick={()=>{this.props.history.push({pathname:'/app/user',query :[2,1]}) }}>进入内容中心</div>
             </div>
           </div>
         </div>
-        <div className='width flexbl'>
+        <div className='width flexbl ' >
           <div className='news-main news-position-left'>
             {newsTypeActive === 0 &&
               <div className='may-interest'>
                 <div className='may-interest-title flexb'>
                   <div className='may-interest-title-txt'>您可能感兴趣</div>
-                  <div className='flexr'>
-                    <div className='exchangeimg fleximg'><img src={exchangeimg} alt="exchangeimg" /></div>
+                  <div className='flexr' onClick={this.getFavorlist}>
+                    <div className={exchangeRotate?'exchangeimg fleximg exchange-rotate':'exchangeimg fleximg'}>
+                      <img src={exchangeimg} alt="exchangeimg" />
+                    </div>
                     <div className='color3'>换一换</div>
                   </div>
                 </div>
-                <div className='may-interest-list flexb'>
+                <div className='may-interest-list flexl'>
                   {mayInterestList.map((item,index)=>(
                     <div className='may-interest-item fleximgc' key={index}>
-                      <div className='fleximg writeimg'><img src={writeimg} alt="cover" /></div>
+                      <div className='fleximg writeimg'><img src={item.head_url?item.head_url:headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
                       <div >{item.name}</div>
                       <div>
-                        <FollowButton item={item}/>
+                        <FollowButton item={item} />
                       </div>
                     </div>
                   ))}
@@ -160,20 +206,12 @@ export default class News extends Component{
             
             <div className='news-list'  >
               {newsList.map((item,index)=>(
-                <div>
+                <div key={index} onClick={()=>this.toNewsDetail(item)}>
                   <NewsListItem item={item}/>
                 </div>
               ))}
             </div>
-            {hasMore?(
-              <div className='fleximg news-loading'>
-                <div className='fleximg loadingimg'><img src={loadingimg} alt="loading" /></div>
-                <div className='font12 color3'>正在获取更多内容</div>
-              </div>): (
-              <div className='fleximg news-loading'>
-              <div className='font12 color3'>没有更多内容了</div>
-              </div>)
-            } 
+              <MoreTxt hasMore={hasMore}/>
           </div>
         </div>
       </div>
