@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数智器械 - 行业导航</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="icon" href="static/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="static/css/common.css" />
+    <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+</head>
+
+
+
+<body>
+
+
+    <div class="topbar">
+        <div class="wrapper">
+            <div class="topbar-left">
+                <span>你好，欢迎登陆康洲数智官网！</span>
+                <a target="_blank" href="https://job.yaozh.com/">数智人才</a>
+                <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
+                <a target="_blank" href="https://report.yaozh.com/">数智咨询</a>
+                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">数智汇</a>
+                <a target="_blank" href="https://s.yaozh.com">数智通</a>
+                <a target="_blank" href="https://edu.yaozh.com/">数智大讲堂</a>
+                <a target="_blank" href="https://aiyun.yaozh.com/">产业大脑</a>
+                <a target="_blank" href="https://bbs.yaozh.com">论坛交流</a>
+                <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
+                <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
+                <a target="_blank" href="https://gu.yaozh.com/ ">数智谷</a>
+                <a target="_blank" href="https://nav.yaozh.com/">数智搜</a>
+            </div>
+            <div class="topbar-right">
+
+                <a class="active" target="_blank" href="/app/login">登录</a>
+                <span class="split">|</span>
+                <a target="_blank" href="/app/register/register">注册</a>
+                <!--
+            	<a target="_blank" href="//www-dev.yaozh.com/member/">用户名称</a>
+            	<i class="fa"></i> 退出</a>
+            	-->
+            </div>
+            <div class="topbar-login">
+
+                <div class="info-messages">消息</div>
+                <div class="info-numbers"><span>0</span></div>
+                <div class="info-avatar"><img src="static/images/icon-avatar.png" alt=""></div>
+                <div class="info-username">阳光之下</div>
+                <div class="info-quit"><img src="static/images/icon-quit.png" alt=""><span>退出</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navs">
+        <div class="wrapper">
+            <a class="logo" href="/">
+                <img src="static/images/logo.png" title="数智器械">
+            </a>
+            <div class="navbar" id="navbar">
+                <ul>
+                    <li class="active"><a href="/index.html">首页</a></li>
+                    <li>
+                        <a href="/product.html">产品与服务</a>
+                        <div class="navchild">
+                            <ul>
+                                <li class=""><a href="/marketing.html">智能APP营销<br>机器人矩阵系统</a></li>
+                                <li><a href="/developmenting.html">企业名片<br>SCRM系统</a></li>
+                                <li><a href="/developmenting.html">智能短信<br>SMS系统</a></li>
+                                <li><a href="/developmenting.html">智能E-mail<br>营销系统</a></li>
+                                <li><a href="/developmenting.html">无感营销系统</a></li>
+                                <li><a href="/developmenting.html">智能电话机器人<br>营销系统</a></li>
+                                <li><a href="/developmenting.html">企业网站<br>建设运营服务</a></li>
+                                <li><a href="/developmenting.html">数智网<br>站内广告投放</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/sales.html">数智营销通</a></li>
+                    <li><a href="/vipdata.html">数智器械通</a></li>
+                    <li><a href="/attract.html">商务合作</a></li>
+                    <li><a href="/app/news">资讯中心</a></li>
+                    <li>
+                        <a href="/member.html">会员中心</a>
+                        <div class="navchild2">
+                            <ul>
+                                <li><a href="/member_news.html?id=1">通知公告</a></li>
+                                <li><a href="/benefits.html" class="isFlag">VIP权益</a></li>
+                                <!-- <li><a href="JavaScript:void(0)" class="isFlag">VIP权益</a></li> -->
+
+                                <li><a href="/spread.html">我要推广</a></li>
+                                <li><a href="/material.html">营销素材</a></li>
+                                <li><a href="/member.html#feedback">客户反馈</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/help.html">帮助中心</a></li>
+                    <li><a href="/navigation.html">行业导航</a></li>
+
+                </ul>
+
+            </div>
+            <div class="header-phone">
+                <img src="static/images/header-phone.png" alt="">
+                <span>咨询电话：</span>
+                <span>400-890-9020</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // // 退出按钮
+        $('.topbar-login').on({
+            mouseenter: function() {
+                $('.info-quit').show()
+            },
+            mouseleave: function() {
+                $('.info-quit').hide()
+            }
+        });
+        $('.info-quit').on({
+            mouseenter: function() {
+                $(this).css('background', '#304F97')
+                $('.info-quit span').css('color', '#FFFFFF')
+                $('.info-quit img').attr('src', './static/images/icon-quit-white.png')
+            },
+            mouseleave: function() {
+                $(this).css('background', '#FFFFFF')
+                $('.info-quit span').css('color', '#363636')
+                $('.info-quit img').attr('src', './static/images/icon-quit.png')
+            }
+
+        });
+    </script>
+
+    <script>
+        function getUser() {
+            const token = localStorage.getItem('firstToken')
+            const isLogin = localStorage.getItem('isLogin')
+            if (token) {
+                $.ajax({
+                    method: 'get',
+                    headers: {
+                        Authorization: token
+                    },
+                    url: "/api/user/my-center/info",
+                    dataType: "json",
+                    success: function(res) {
+                        if (res.status == 1) { //本地有token并且token登录了就是已登录
+                            $('.topbar-right').hide()
+                            $('.topbar-login').show()
+                            $('.info-username').html(res.body.name)
+
+                            // 点击退出
+                            $('.info-quit').mouseup(function() {
+                                $.ajax({
+                                    method: 'get',
+                                    url: "/api/login/login-out",
+                                    dataType: "json",
+                                    success: function(res) {
+                                        console.log(res)
+                                        $('.topbar-right').show()
+                                        $('.topbar-login').hide()
+                                    }
+                                })
+
+                            })
+
+
+                        } else {
+                            // window.location.href = '/login/dologin'
+
+                        }
+                    }
+                })
+            } else {
+                // window.location.href = '/login/dologin'
+            }
+
+        }
+        $(document).ready(function() {
+
+            getUser()
+
+        })
+
+
+        // 立即体验在跳转链接前，校验是否登录
+        $('.isFlag').click(function() {
+            const token = localStorage.getItem('firstToken')
+            const isLogin = localStorage.getItem('isLogin')
+            if (token) {
+                console.log('token', token)
+                console.log('登录了')
+
+            } else {
+                console.log('没有登录')
+
+                console.log('token', token)
+
+                window.location.href = '/app/login'
+                return false;
+            }
+        })
+    </script>
+<link rel="stylesheet" type="text/css" href="static/css/marketing.css" />
+
+<div id="container">
+    <div class="marketing-swiper">
+        <div class="swiper-wrapper" id="marketing-top-swiper">
+            <div class="swiper-wrapper">
+
+                <a href="https://robot.yxtong.com/user/qq/devicesRun.html" class="swiper-slide" style="background-image: url(uploads/marketing-swiper-1.png);">
+                    <div class="wrapper">
+                    </div>
+                </a>
+                <a href="https://robot.yxtong.com/user/qq/devicesRun.html" class="swiper-slide" style="background-image: url(uploads/marketing-swiper-1.png);">
+                    <div class="wrapper">
+                    </div>
+                </a>
+                <!-- <div class="swiper-slide" style="background-image: url(uploads/marketing-swiper-1.png);">
+                    <div class="wrapper">
+                    </div>
+                </div> -->
+            </div>
+            <div class="swiper-pagination marketing-top-swiper-pagination"></div>
+            <div class="swiper-button-next swiper-button-white marketing-top-swiper-button-next"></div>
+            <div class="swiper-button-prev swiper-button-white marketing-top-swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="marketing-soft">
+        <div class="wrapper">
+            <div class="marketing-tit white">
+                <h2 class="wow fadeInUp">大数据智能APP营销矩阵系统</h2>
+                <P class="wow fadeInDown">App Marketing Robot</P>
+            </div>
+            <div class="marketing-soft-content clearfix">
+                <div class="left wow bounceInLeft">
+                    <div class="item item-1">
+                        <div class="inner">
+                            <div class="icon"></div>
+                            <h3>海量APP</h3>
+                            <p>国内外上百个不同的APP集成的矩阵系统</p>
+                        </div>
+                    </div>
+                    <div class="item item-2">
+                        <div class="inner">
+                            <div class="icon"></div>
+                            <h3>移动互联</h3>
+                            <p>不同品牌，不同地域的手机加入广告联盟机制——集成庞大的矩阵系统</p>
+                        </div>
+                    </div>
+                    <div class="item item-3">
+                        <div class="inner">
+                            <div class="icon"></div>
+                            <h3>全网集成</h3>
+                            <p>包含PC端的上百万各种网址/网站+手机端的上百种APP形成的矩阵系统</p>
+                            <div class="img"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right wow bounceInRight">
+                    <div class="video">
+                        <video class="index-about-video" poster="static/images/marketing-soft-video-cover.png" preload="auto" controls="controls">
+							<source src="http://news-files.yaozh.com/video/sunzong09.mp4" type="video/mp4">您的浏览器不支持 video 标签。
+				        </video>
+                    </div>
+                    <div class="item item-4">
+                        <div class="inner">
+                            <div class="icon"></div>
+                            <h3>功能集成</h3>
+                            <ul>
+                                <li>客户数据采集系统：不同来源客户数据的采集、分类和导入</li>
+                                <li>全网海量广告推送矩阵系统：不同通过PC端、手机端进行推送的机器人系统</li>
+                                <li>智能客服系统</li>
+                                <li>大数据分析/标签/画像/引流系统</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="marketing-power">
+        <div class="wrapper">
+            <div class="marketing-tit">
+                <h2 class="wow fadeInUp">超强覆盖能力</h2>
+                <P class="wow fadeInDown">Super coverage</P>
+            </div>
+            <div class="con">
+                <div class="hd">多种广告类型</div>
+                <div class="bd lst clearfix">
+                    <div class="item wow pulse" data-wow-delay=".2s">
+                        <div class="img img-1"></div>
+                        <span>文本广告</span>
+                    </div>
+                    <div class="item wow pulse" data-wow-delay=".3s">
+                        <div class="img img-2"></div>
+                        <span>图片广告</span>
+                    </div>
+                    <div class="item wow pulse" data-wow-delay=".4s">
+                        <div class="img img-3"></div>
+                        <span>视频广告</span>
+                    </div>
+                    <div class="item wow pulse" data-wow-delay=".5s">
+                        <div class="img img-4"></div>
+                        <span>软文广告</span>
+                    </div>
+                    <div class="item wow pulse">
+                        <div class="img img-5" data-wow-delay=".6s"></div>
+                        <span>音频广告</span>
+                    </div>
+                </div>
+            </div>
+            <div class="con image">
+                <div class="hd">海量APP覆盖</div>
+                <div class="bd wow bounceInUp"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="marketing-fission">
+        <div class="wrapper">
+            <div class="marketing-tit white">
+                <h2 class="wow fadeInUp">多级裂变全球矩阵</h2>
+                <P class="wow fadeInDown">Multistage fission global matrix</P>
+            </div>
+            <div class="lst clearfix">
+                <div class="item">
+                    <div class="img img-1"></div>
+                    <h3>APP 矩阵</h3>
+                    <p>不同类型，不同区域的 APP 组成<br>手机终端的 APP 矩阵</p>
+                </div>
+                <div class="item">
+                    <div class="img img-2"></div>
+                    <h3>手机矩阵</h3>
+                    <p>客户拥有多部手机，既能组成多机<br>一体的手机矩阵</p>
+                </div>
+                <div class="item">
+                    <div class="img img-3"></div>
+                    <h3>客户联盟矩阵</h3>
+                    <p>不同客户组成广告联盟，形成庞大<br>的区域客户矩阵</p>
+                </div>
+                <div class="item">
+                    <div class="img img-4"></div>
+                    <h3>区域矩阵</h3>
+                    <p>区域互联，全球共享，构建智能互<br>联的全球区域矩阵</p>
+                </div>
+            </div>
+            <div class="phone"></div>
+        </div>
+    </div>
+
+    <div class="marketing-model">
+        <div class="wrapper">
+            <div class="marketing-tit">
+                <h2 class="wow fadeInUp">超强覆盖能力</h2>
+                <P class="wow fadeInDown">Super coverage</P>
+            </div>
+            <div class="tab" data-tab="tab-marketing-model">
+                <a class="active">QQ</a>
+                <a>微信</a>
+                <a>今日头条</a>
+                <a>抖音</a>
+                <a>微博</a>
+                <span disabled>…</span>
+            </div>
+            <div class="tab-content" tab-content="tab-marketing-model">
+                <div class="tab-content-item" style="display: block;">
+                    <div class="left">
+                        <img src="static/images/marketing-model-qq.png" width="100" height="100" alt="QQ">
+                    </div>
+                    <div class="right">
+                        <dl>
+                            <dt>QQ养号功能模块</dt>
+                            <dd>
+                                <span>QQ 收发红包</span>
+                                <span>QQ 微视浏览</span>
+                                <span>QQ 上传头像/性别/年龄等</span>
+                                <span>QQ 机器自发</span>
+                                <span>绑定身份证/银行卡等</span>
+                                <span>QQ 看点</span>
+                                <span>腾讯新闻</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>QQ广告推送好友</dt>
+                            <dd>
+                                <span>QQ 好友发私信</span>
+                                <span>QQ 发说说</span>
+                                <span>搜索加 QQ 好友</span>
+                                <span>QQ 附近人打招呼/加关注</span>
+                                <span>条件查找陌生人加 QQ 好友</span>
+                                <span>QQ 好友动态分享</span>
+                                <span>被动加 QQ 好友</span>
+                                <span>通讯录加 QQ 好友</span>
+                                <span>清理僵尸 QQ 好友</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>QQ群推送广告</dt>
+                            <dd>
+                                <span>搜索 QQ 群号加群</span>
+                                <span>QQ 群发消息</span>
+                                <span>QQ 自建群并加人</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="tab-content-item">
+                    <div class="left">
+                        <img src="static/images/marketing-model-wx.png" width="100" height="100" alt="微信">
+                    </div>
+                    <div class="right">
+                        <dl>
+                            <dt>微信养号功能模块</dt>
+                            <dd>
+                                <span>微信红包转账养号</span>
+                                <span>浏览微信公众号</span>
+                                <span>浏览腾讯新闻</span>
+                                <span>绑定身份证或者银行卡</span>
+                                <span>修改头像、性别、年龄</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>微信好友推送广告</dt>
+                            <dd>
+                                <span>发送群邀请</span>
+                                <span>通讯录加好友</span>
+                                <span>企业微信联系人加好友</span>
+                                <span>被动加好友</span>
+                                <span>朋友圈发消息</span>
+                                <span>附近人打招呼</span>
+                                <span>好友一键群发</span>
+                                <span>搜索加微信好友</span>
+                                <span>好友私发消息</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>微信群推送广告</dt>
+                            <dd>
+                                <span>微信群发消息</span>
+                                <span>被动拉入微信群</span>
+                                <span>扫描微信群二维码加群</span>
+                                <span>自建群并拉人</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="tab-content-item">
+                    <div class="left">
+                        <img src="static/images/marketing-model-tt.png" width="100" height="100" alt="今日头条">
+                    </div>
+                    <div class="right">
+                        <dl>
+                            <dt>头条养号功能模块</dt>
+                            <dd>
+                                <span>头条个人参数设置</span>
+                                <span>头条视频/文章浏览</span>
+                                <span>头条实名认证</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>头条分享裂变功能</dt>
+                            <dd>
+                                <span>转发到QQ空间</span>
+                                <span>头条分享到微信</span>
+                                <span>分享到QQ</span>
+                                <span>头条分享到朋友圈</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>头条加关注/发私信</dt>
+                            <dd>
+                                <span>头条粉丝发私信</span>
+                                <span>头条关键词大V发粉丝私信</span>
+                                <span>头条转发</span>
+                                <span>发目标大V活跃粉</span>
+                                <span>发目标大V粉丝</span>
+                                <span>发关键字大V活动粉</span>
+                                <span>热点评论发广告</span>
+                                <span>头条点赞回复</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>头条账号发消息</dt>
+                            <dd>
+                                <span>头条发图集</span>
+                                <span>发微头条/小视频/图片</span>
+                                <span>发头条文章</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="tab-content-item">
+                    <div class="left">
+                        <img src="static/images/marketing-model-dy.png" width="100" height="100" alt="抖音">
+                    </div>
+                    <div class="right">
+                        <dl>
+                            <dt>抖音养号功能</dt>
+                            <dd>
+                                <span>抖音实名认证</span>
+                                <span>抖音个人参数设置</span>
+                                <span>抖音视频浏览</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>抖音加关注/发私信</dt>
+                            <dd>
+                                <span>发目标大V活跃粉</span>
+                                <span>抖音转发</span>
+                                <span>抖音评论回复</span>
+                                <span>抖音点赞回复</span>
+                                <span>抖音通讯录加关注/发私信</span>
+                                <span>抖音关键词大V发粉丝私信</span>
+                                <span>发关键字大V活动粉</span>
+                                <!-- <span>粉丝发私信</span> -->
+                                <span>发目标大V粉丝</span>
+                                <span>抖音热点评论发信息</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>抖音裂变功能</dt>
+                            <dd>
+                                <span>抖音分享到微博</span>
+                                <span>抖音分享到微信</span>
+                                <span>抖音分享到朋友圈</span>
+                                <span>抖音转发到QQ</span>
+                                <span>抖音转发到空间</span>
+                                <span>粉丝发私信</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>抖音账号发信息</dt>
+                            <dd>
+                                <span>抖音发视频/图片</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="tab-content-item">
+                    <div class="left">
+                        <img src="static/images/marketing-model-wb.png" width="100" height="100" alt="微博">
+                    </div>
+                    <div class="right">
+                        <dl>
+                            <dt>微博养号功能</dt>
+                            <dd>
+                                <span>微博个人参数设置</span>
+                                <span>微博实名认证</span>
+                                <span>微博文章/视频浏览</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>微博分享裂变功能</dt>
+                            <dd>
+                                <span>微博分享到微信</span>
+                                <span>微博分享到邮箱</span>
+                                <span>微博分享到朋友圈</span>
+                                <span>微博分享到QQ</span>
+                                <span>微博分享到短信</span>
+                                <span>微博分享到支付宝</span>
+                                <span>微博分享到QQ空间</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>微博加关注/发私信</dt>
+                            <dd>
+                                <span>微博通讯录加关注/发私信</span>
+                                <span>微博转发</span>
+                                <span>微博评论/点赞回复</span>
+                                <span>微博热点评论发信息</span>
+                                <span>微博粉丝发私信</span>
+                                <span>微博关键词大V发粉丝私信</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>微博账号发信息</dt>
+                            <dd>
+                                <span>微博写文章</span>
+                                <span>写微博/发图片/视频</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="marketing-adv">
+        <div class="wrapper">
+            <div class="marketing-tit white">
+                <h2 class="wow fadeInUp">十二大优势</h2>
+                <P class="wow fadeInDown">App Marketing Robot</P>
+            </div>
+            <div class="lst clearfix">
+                <div class="left">
+                    <div class="item item-01">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">01</div>
+                                <h3>技术领先</h3>
+                            </div>
+                            <div class="bd">
+                                <p>技术的大幅改进，安全性能大幅度提升，国内唯一一家采用三种技术合一的智能营销机器人系统。</p>
+                                <p>基于操作系统底层代码的改进；融合了人工智能（AI）的图像识别技术的应用；同时采用了混沌技术来模拟单个和群体App运营号的行为，使系统真正做到极致接近真实个人的操作行为。</p>
+                                <p>大幅度提高了各种App运营号（如QQ号，微信号）的安全性，同时可以实现一机无限多号；而且一号一IP一环境参数。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-03">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">03</div>
+                                <h3>高自动化</h3>
+                            </div>
+                            <div class="bd">
+                                <p>自动化程度高。</p>
+                                <p>1，一键设置参数，用户“傻瓜式”操作，简单易学。</p>
+                                <p>2，可按天数，或按周，或按月，提前设置机器人的操作行为，做到真正的完全自动化。</p>
+                                <p>3，提供智能客服系统，机器人系统可以自动回复客户的一般提问，大幅度节省了用户的工作时间。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-05">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">05</div>
+                                <h3>生态系统完善</h3>
+                            </div>
+                            <div class="bd">
+                                <p>本营销机器人系统平台不仅可以提供APP的各项宣传推广功能，还可以提供每个APP系统应有的上中下游完善的产业链服务，诸如：注册，采集，解冻并提供各种App运营号的等。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-07">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">07</div>
+                                <h3>数据库全</h3>
+                            </div>
+                            <div class="bd">
+                                <p>大数据智能营销机器人自带To B及 To C的数据库，全国1.6亿企业数据库和10以以上个人手机号段。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-09">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">09</div>
+                                <h3>信息类型丰富</h3>
+                            </div>
+                            <div class="bd">
+                                <p>本智能营销机器人系统是目前国内发送广告信息的种类最多，最完整的平台。</p>
+                                <p>可以发放的广告类型包括：文本消息，文档文件，图片文件，视频文件，音频文件，链接网址等。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-11">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">11</div>
+                                <h3>适用范围广泛</h3>
+                            </div>
+                            <div class="bd">
+                                <p>1，适用于各行各业，各种商业项目的宣传推广：如App推广，网站网址推广，产品/技术/服务推广。</p>
+                                <p>2，适用于不同年龄阶层的人：上至七，八十岁的老人；下至七，八岁/十几岁的小学生/中学生皆可使用，让机器人帮您挣钱，您专注学习，从事兴趣爱好，享受生活，不再是梦想！</p>
+                                <p>3、适合不同的类型的主体使用：既是适合于个人的创业法宝； 也是适合于家庭财富的倍增器；也是适合于大中小微各种企业推广产品宣传，提升产品销售业绩的神器。</p>
+                                <p>4、适合于不同的商业类型和商业模式的开发，比如：自媒体作品的推广；基于微信群的社交微商。</p>
+                                <p>5、国际化程度高，适合各种经营外贸业务的企业和个人开展外贸业务。本系统开发了目前世界上最流行的APP，即将推出包括Facebook，Twitter，WhatsApp, LinkedIn, Messenger, Youtube, Instagram等平台的营销机器人系统。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="item item-02">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">02</div>
+                                <h3>规模庞大</h3>
+                            </div>
+                            <div class="bd">
+                                <p>宣传推广能力和规模的大幅度提升</p>
+                                <p>国内唯一一家可以将大规模营销宣传推广的能力赋能予个人的系统。一个人就可以打败一家大型公司，甚至是颠覆一个行业的市场格局，将不再是梦想！！！</p>
+                                <p>1，单一手机的宣传效能（在连续24小时内）大幅度的提升：是其他同类产品的5~10倍。</p>
+                                <p>2，单一手机可以在多App平台推广：能从数以百计不同的APP平台进行宣传推广，供客户自由选用。</p>
+                                <p>3，可以为客户提供不同App运营号定制增号的服务，可以客户定制开发任何APP平台的宣传推广功能。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-04">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">04</div>
+                                <h3>价格优惠</h3>
+                            </div>
+                            <div class="bd">
+                                <p>价格大幅度的下降，可永久免费使用，还可以赚取巨额佣金（目前是国内性价比最优惠，绝对价格最低的营销机器人系统）。</p>
+                                <p>1，首期推出的5个App平台（包括微信，QQ，今日头条，抖音，新浪微博），每个软件的基础功能月付费用仅仅99元至198元。同时开通5个App推广平台基础功能的优惠方案仅仅支付398元/每月（平均仅70多元/月/软件）。</p>
+                                <p>2，平台同时提供极其优惠的裂变推广返佣政策，首创分级返佣模式，让用户可以通过积分兑换，享受几乎永久的免费的使用本营销机器人系统，并可以赚取可观的推广佣金：每月可高达几千至几万不等。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-06">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">06</div>
+                                <h3>远程监控</h3>
+                            </div>
+                            <div class="bd">
+                                <p>可以随时远程监控管理，轻轻松松移动办公，不需要额外设置中控系统。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-08">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">08</div>
+                                <h3>降低运营成本</h3>
+                            </div>
+                            <div class="bd">
+                                <p>本智能营销机器人系统大幅度降低了各种人工成本，场地成本，税费成本，约占公司费用80~90%以上。</p>
+                                <p>减少了90%以上人力成本（包括销售人员，客服人员以及行政管理人员的数量）；</p>
+                                <p>减少了90%以上场地成本（员工数量减少，办公场地必然减少）。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-10">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">10</div>
+                                <h3>广告联盟服务</h3>
+                            </div>
+                            <div class="bd">
+                                <p>加入广告联盟，每年可以免费享受多次全平台数以万计，十万计，百万计，甚至千万计的微信号，QQ号，抖音号，微博号等不同的平台的广告内容推送服务。为加盟客户做产品技术的巨量免费引流。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-12">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="number">12</div>
+                                <h3>自主产权</h3>
+                            </div>
+                            <div class="bd">
+                                <p>可以根据不同目标APP平台规则的改变而随时修改，从而保证用户能长期稳定的使用本营销系统。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-navs">
+    <div class="wrapper clearfix">
+        <div class="item-contact">
+            <img class="logo" src="static/images/logo-bottom.png" alt="药智器械">
+            <div class="phone">400-805-6906</div>
+            <div class="qq">2081288520</div>
+            <div class="email">szyxtong@qq.com</div>
+        </div>
+        <dl>
+            <dt>商务合作</dt>
+            <dd><a target="_blank" href="attract.html">产品及服务价格</a></dd>
+            <dd><a target="_blank" href="attract.html">招商加盟</a></dd>
+            <dd><a target="_blank" href="attract.html">项目合作</a></dd>
+            <dd><a target="_blank" href="attract.html">广告投放</a></dd>
+        </dl>
+
+        <dl>
+            <dt>会员中心</dt>
+            <dd><a target="_blank" href="member.html">VIP权限</a></dd>
+            <dd><a target="_blank" href="member.html">我要推广</a></dd>
+            <dd><a target="_blank" href="member.html">营销素材</a></dd>
+            <dd><a target="_blank" href="member.html">客户反馈</a></dd>
+        </dl>
+
+        <dl>
+            <dt>帮助中心</dt>
+            <dd><a target="_blank" href="###">医药知识库</a></dd>
+            <dd><a target="_blank" href="###">常见问题</a></dd>
+            <dd><a target="_blank" href="###">用户手册</a></dd>
+            <dd><a target="_blank" href="###">下载中心</a></dd>
+        </dl>
+        <div class="item-qrcode">
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr1.png" alt="">
+                <div>扫一扫关注药智器械</div>
+            </div>
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr2.png" alt="">
+                <div>扫一扫加入客服群</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper clearfix">
+        <div class="footer-navs">
+            <a href="###">首页</a>
+            <span class="split"></span>
+            <a href="product.html">产品与服务</a>
+            <a href="sales.html">药智营销通</a>
+            <a href="vipdata.html">药智医械通</a>
+            <!-- <a href="vipdata.html">医械数据通</a> -->
+            <span class="split"></span>
+            <!-- <a target="_blank" href="developmenting.html">器械商城</a>
+			<a target="_blank" href="https://job.yaozh.com/">求职招聘</a>
+			<span class="split"></span> -->
+            <a href="attract.html">商务合作</a>
+            <a href="developmenting.html">新闻中心</a>
+            <span class="split"></span>
+            <a href="member.html">会员中心</a>
+            <a href="help.html">帮助中心</a>
+            <span class="split"></span>
+            <a href="navigation.html">行业导航</a>
+        </div>
+        <div class="footer-navs2">
+            <a target="_blank" href="index.html">免责声明</a>
+            <a target="_blank" href="index.html">更新日志</a>
+            <a target="_blank" href="index.html">技术支持</a>
+        </div>
+        <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
+    </div>
+</div>
+<!-- 
+<div class="right-sidebar">
+    <a class="right-sidebar-qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1261826768&site=qq&menu=yes">
+        <span>在线咨询</span>
+    </a>
+    <a href="" class="right-sidebar-top"><span>返回顶部</span></a>
+</div> -->
+<script src="static/lib/vendor.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/lib/swiper/4.4.6/swiper.min.js"></script>
+<script>
+    //首页顶部轮播
+    var marketingTopSwiper = new Swiper('#marketing-top-swiper', {
+        //effect : 'fade',
+        loop: true,
+        autoplay: {
+            delay: 8000,
+        },
+        pagination: {
+            el: '.marketing-top-swiper-pagination',
+            clickable: true
+        },
+        navigation: {
+            nextEl: '.marketing-top-swiper-button-next',
+            prevEl: '.marketing-top-swiper-button-prev'
+        }
+    });
+</script>
+<script>
+    //静态演示用，绑程序时删除 star
+    document.title = '药智器械 - APP营销机器人';
+    $('#navbar>ul').children('li').eq(1).addClass('active').siblings().removeClass();
+    $('#navbar>ul').children('li').eq(1).find('li').eq(0).addClass('active');
+
+
+    //静态演示用，绑程序时删除 end
+</script>
+
+</body>
+
+</html>

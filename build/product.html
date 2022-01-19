@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数智器械 - 行业导航</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="icon" href="static/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="static/css/common.css" />
+    <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+</head>
+
+
+
+<body>
+
+
+    <div class="topbar">
+        <div class="wrapper">
+            <div class="topbar-left">
+                <span>你好，欢迎登陆康洲数智官网！</span>
+                <a target="_blank" href="https://job.yaozh.com/">数智人才</a>
+                <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
+                <a target="_blank" href="https://report.yaozh.com/">数智咨询</a>
+                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">数智汇</a>
+                <a target="_blank" href="https://s.yaozh.com">数智通</a>
+                <a target="_blank" href="https://edu.yaozh.com/">数智大讲堂</a>
+                <a target="_blank" href="https://aiyun.yaozh.com/">产业大脑</a>
+                <a target="_blank" href="https://bbs.yaozh.com">论坛交流</a>
+                <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
+                <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
+                <a target="_blank" href="https://gu.yaozh.com/ ">数智谷</a>
+                <a target="_blank" href="https://nav.yaozh.com/">数智搜</a>
+            </div>
+            <div class="topbar-right">
+
+                <a class="active" target="_blank" href="/app/login">登录</a>
+                <span class="split">|</span>
+                <a target="_blank" href="/app/register/register">注册</a>
+                <!--
+            	<a target="_blank" href="//www-dev.yaozh.com/member/">用户名称</a>
+            	<i class="fa"></i> 退出</a>
+            	-->
+            </div>
+            <div class="topbar-login">
+
+                <div class="info-messages">消息</div>
+                <div class="info-numbers"><span>0</span></div>
+                <div class="info-avatar"><img src="static/images/icon-avatar.png" alt=""></div>
+                <div class="info-username">阳光之下</div>
+                <div class="info-quit"><img src="static/images/icon-quit.png" alt=""><span>退出</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navs">
+        <div class="wrapper">
+            <a class="logo" href="/">
+                <img src="static/images/logo.png" title="数智器械">
+            </a>
+            <div class="navbar" id="navbar">
+                <ul>
+                    <li class="active"><a href="/index.html">首页</a></li>
+                    <li>
+                        <a href="/product.html">产品与服务</a>
+                        <div class="navchild">
+                            <ul>
+                                <li class=""><a href="/marketing.html">智能APP营销<br>机器人矩阵系统</a></li>
+                                <li><a href="/developmenting.html">企业名片<br>SCRM系统</a></li>
+                                <li><a href="/developmenting.html">智能短信<br>SMS系统</a></li>
+                                <li><a href="/developmenting.html">智能E-mail<br>营销系统</a></li>
+                                <li><a href="/developmenting.html">无感营销系统</a></li>
+                                <li><a href="/developmenting.html">智能电话机器人<br>营销系统</a></li>
+                                <li><a href="/developmenting.html">企业网站<br>建设运营服务</a></li>
+                                <li><a href="/developmenting.html">数智网<br>站内广告投放</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/sales.html">数智营销通</a></li>
+                    <li><a href="/vipdata.html">数智器械通</a></li>
+                    <li><a href="/attract.html">商务合作</a></li>
+                    <li><a href="/app/news">资讯中心</a></li>
+                    <li>
+                        <a href="/member.html">会员中心</a>
+                        <div class="navchild2">
+                            <ul>
+                                <li><a href="/member_news.html?id=1">通知公告</a></li>
+                                <li><a href="/benefits.html" class="isFlag">VIP权益</a></li>
+                                <!-- <li><a href="JavaScript:void(0)" class="isFlag">VIP权益</a></li> -->
+
+                                <li><a href="/spread.html">我要推广</a></li>
+                                <li><a href="/material.html">营销素材</a></li>
+                                <li><a href="/member.html#feedback">客户反馈</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/help.html">帮助中心</a></li>
+                    <li><a href="/navigation.html">行业导航</a></li>
+
+                </ul>
+
+            </div>
+            <div class="header-phone">
+                <img src="static/images/header-phone.png" alt="">
+                <span>咨询电话：</span>
+                <span>400-890-9020</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // // 退出按钮
+        $('.topbar-login').on({
+            mouseenter: function() {
+                $('.info-quit').show()
+            },
+            mouseleave: function() {
+                $('.info-quit').hide()
+            }
+        });
+        $('.info-quit').on({
+            mouseenter: function() {
+                $(this).css('background', '#304F97')
+                $('.info-quit span').css('color', '#FFFFFF')
+                $('.info-quit img').attr('src', './static/images/icon-quit-white.png')
+            },
+            mouseleave: function() {
+                $(this).css('background', '#FFFFFF')
+                $('.info-quit span').css('color', '#363636')
+                $('.info-quit img').attr('src', './static/images/icon-quit.png')
+            }
+
+        });
+    </script>
+
+    <script>
+        function getUser() {
+            const token = localStorage.getItem('firstToken')
+            const isLogin = localStorage.getItem('isLogin')
+            if (token) {
+                $.ajax({
+                    method: 'get',
+                    headers: {
+                        Authorization: token
+                    },
+                    url: "/api/user/my-center/info",
+                    dataType: "json",
+                    success: function(res) {
+                        if (res.status == 1) { //本地有token并且token登录了就是已登录
+                            $('.topbar-right').hide()
+                            $('.topbar-login').show()
+                            $('.info-username').html(res.body.name)
+
+                            // 点击退出
+                            $('.info-quit').mouseup(function() {
+                                $.ajax({
+                                    method: 'get',
+                                    url: "/api/login/login-out",
+                                    dataType: "json",
+                                    success: function(res) {
+                                        console.log(res)
+                                        $('.topbar-right').show()
+                                        $('.topbar-login').hide()
+                                    }
+                                })
+
+                            })
+
+
+                        } else {
+                            // window.location.href = '/login/dologin'
+
+                        }
+                    }
+                })
+            } else {
+                // window.location.href = '/login/dologin'
+            }
+
+        }
+        $(document).ready(function() {
+
+            getUser()
+
+        })
+
+
+        // 立即体验在跳转链接前，校验是否登录
+        $('.isFlag').click(function() {
+            const token = localStorage.getItem('firstToken')
+            const isLogin = localStorage.getItem('isLogin')
+            if (token) {
+                console.log('token', token)
+                console.log('登录了')
+
+            } else {
+                console.log('没有登录')
+
+                console.log('token', token)
+
+                window.location.href = '/app/login'
+                return false;
+            }
+        })
+    </script>
+<div id="content">
+    <div class="content-weixi">
+        <img src="static/images/icon-content-weixi.png" alt="">
+        <span>微信咨询</span>
+
+    </div>
+    <div class="content-tel">
+        <img src="static/images/icon-content-phone.png" alt="">
+        <span>电话咨询</span>
+
+    </div>
+    <div class="content-source">
+        <a href="https://1537030.udesk.cn/im_client/?web_plugin_id=179991&agent_id=467471&group_id=303781" target="_blank"> <img src="static/images/icon-content-source.png" alt="">
+            <span>智能客服</span>
+        </a>
+    </div>
+</div>
+
+<div class="content-tips-wechat">
+    <div class="tips-title">联系客服</div>
+
+    <img src="static/images/content-weixi.png" alt="" class="qrcodeimg">
+    <div class="tips-prompt">请扫描上方二维码，联系客服人员</div>
+    <div class="tips-bottom" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+
+<div class="content-tips-tel">
+    <span>电话咨询</span>
+    <span>客服咨询电话：023-62797926</span>
+    <div class="btn-tel" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+<script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    //获取拖拽实验对象
+
+    let old_left = 0
+    let old_top = 0
+    let old_position_left = 0
+    let old_position_top = 0
+
+    let timer = null;
+    let isDrag = false;
+    $('#content').on('mousedown', function(event) {
+        console.log('mousedown')
+        old_left = event.pageX;
+        old_top = event.pageY;
+        old_position_left = $(this).position().left;
+        old_position_top = $(this).position().top;
+        timer = setTimeout(() => {
+            isDrag = true
+        }, 100);
+    })
+    $('#content').on('mouseup', () => {
+        if (!isDrag) {
+            clearTimeout(timer);
+        } else {
+            setTimeout(() => {
+                isDrag = false;
+            }, 200);
+        }
+    })
+    $('#content').on('mousemove', () => {
+        if (isDrag) {
+            $(document).mousemove(function(event) {
+                let new_left = event.pageX;
+                let new_top = event.pageY;
+                let chang_x = new_left - old_left;
+                let change_y = new_top - old_top;
+                let new_position_left = old_position_left + chang_x;
+                let new_position_top = old_position_top + change_y;
+                if (new_position_top < 0) {
+                    new_position_top = 0;
+                }
+                if (new_position_top > $(document).height() - $('#content').height()) {
+                    new_position_top = $(document).height() - $('#content').height();
+                }
+
+                $('#content').css({
+
+                    top: new_position_top + 'px'
+                })
+            });
+        } else {
+            $(document).off("mousemove");
+        }
+    })
+    $('#content .content-weixi').on('mouseup', () => {
+        setTimeout(() => {
+            if (!isDrag) {
+                $('.content-tips-wechat').show()
+
+            }
+        }, 100);
+    })
+    $('#content .content-tel').on('mouseup', () => {
+            setTimeout(() => {
+                if (!isDrag) {
+                    $('.content-tips-tel').show()
+
+                }
+            }, 100);
+        })
+        // 弹框消失
+    function able() {
+        $('.content-tips-tel').hide()
+        $('.content-tips-wechat').hide()
+    }
+</script>
+<link rel="stylesheet" type="text/css" href="static/css/product.css" />
+
+<div class="container">
+    <div class="prod-swiper">
+        <div class="swiper-wrapper" id="prod-top-swiper">
+            <div class="swiper-wrapper">
+                <a href="/service.html#00" target="_blank" class="swiper-slide" style="background-image: url(uploads/prod-swiper-1.png);">
+                    <div class="wrapper">
+                    </div>
+                </a>
+                <a href="/service.html#11" target="_blank" class="swiper-slide" style="background-image: url(uploads/prod-swiper-1.png);">
+                    <div class="wrapper">
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-pagination prod-top-swiper-pagination"></div>
+            <div class="swiper-button-next swiper-button-white prod-top-swiper-button-next"></div>
+            <div class="swiper-button-prev swiper-button-white prod-top-swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="prod-soft">
+        <div class="wrapper">
+            <div class="prod-tit">
+                <h3>其他服务</h3>
+                <em class="split">/</em>
+                <span>大数据医疗器械数据库</span>
+            </div>
+            <div class="prod-disc">
+                基于智能数据采集和大数据AI技术，为您提供专业、全面、科学的医疗<br>器械数据服务，助力企业科学决策、精准营销
+            </div>
+
+
+            <div class="lst">
+                <div class="con wow fadeInLeft">
+                    <div class="hd">
+                        <h3>科研类 | 生产类</h3>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            <li>1. <a href="https://qx.yaozh.com/qxss"><span class="tit">中国上市器械</span><span class="type">生产类</span></a></li>
+                            <li>2. <a href="https://qx.yaozh.com/fdaqx"><span class="tit">美国上市器械</span><span class="type">生产类</span></a></li>
+                            <li>3. <a href="https://qx.yaozh.com/rbsms"><span class="tit">日本上市器械及说明书</span><span class="type">科研类</span></a></li>
+                            <li>4. <a href="https://qx.yaozh.com/qxzhuce"><span class="tit">中国注册审评数据库</span><span class="type">生产类</span></a></li>
+                            <li>5. <a href="https://vip.yaozh.com/clinical/list"><span class="tit">全球临床实验数据库</span><span class="type">生产类</span></a></li>
+                            <li>6. <a href="https://qx.yaozh.com/jcnlfw_cnas"><span class="tit">CNAS认证实验室检测能力</span><span class="type">市场类</span></a></li>
+                            <li>7. <a href="https://qx.yaozh.com/qixiebiaozhun"><span class="tit">中国医疗器械标准</span><span class="type">市场类</span></a></li>
+                            <li>8. <a href="https://qx.yaozh.com/jndbzrk"><span class="tit">加拿大医疗器械认可标准</span><span class="type">科研类</span></a></li>
+                        </ul>
+                        <a class="more" href="https://qx.yaozh.com/home">查看更多</a>
+                    </div>
+                </div>
+                <div class="con wow fadeInRight">
+                    <div class="hd">
+                        <h3>市场类 | 客户类</h3>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            <li>1. <a href="https://qx.yaozh.com/yyhc"><span class="tit">中国耗材中标</span><span class="type">生产类</span></a></li>
+                            <li>2. <a href="https://qx.yaozh.com/qxdlcg"><span class="tit">中国医疗器械带量采购</span><span class="type">生产类</span></a></li>
+                            <li>3. <a href="https://qx.yaozh.com/xyjhcl"><span class="tit">中国医保耗材信息</span><span class="type">科研类</span></a></li>
+                            <li>4. <a href="https://qx.yaozh.com/jyqxlssc"><span class="tit">中国家用医疗器械零售信息</span><span class="type">生产类</span></a></li>
+                            <li>5. <a href="https://qx.yaozh.com/ylfwsfbzjjg"><span class="tit">中国医疗服务收费编码及价格</span><span class="type">生产类</span></a></li>
+                            <li>6. <a href="https://qx.yaozh.com/eujckqy"><span class="tit">欧盟进出口企业名录</span><span class="type">市场类</span></a></li>
+                            <li>7. <a href="https://qx.yaozh.com/qxjyqy"><span class="tit">中国医疗器械经营企业</span><span class="type">市场类</span></a></li>
+                            <li>8. <a href="https://qx.yaozh.com/yhry"><span class="tit">中国医护人员信息</span><span class="type">科研类</span></a></li>
+                        </ul>
+                        <a class="more" href="https://qx.yaozh.com/home">查看更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="prod-data">
+        <div class="wrapper">
+            <div class="prod-tit black right">
+                <span>大数据+AI 技术加持的智能市场营销服务</span>
+                <em class="split">/</em>
+                <h3>药智营销通</h3>
+            </div>
+            <div class="prod-disc black">
+                采用多平台矩阵、 全自动化、智能化、大数据化、同时顺应4G-5G的发展，顺应万物互联-物联网时代的多种营销推广方式
+            </div>
+            <div class="clear"></div>
+
+            <div class="lst">
+                <div class="item wow fadeInUp" data-wow-delay="0.2s">
+                    <em></em>
+                    <h4>数据库采集工具</h4>
+                    <ul>
+                        <li><span class="tit">科研信息数据采集软件</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">目标客户采集软件</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">市场信息数据采集软件</span></li>
+                        <li><span class="tit">大数据智能APP营销机器人矩阵系统</span></li>
+                    </ul>
+                </div>
+                <div class="item wow fadeInUp" data-wow-delay="0.4s">
+                    <em></em>
+                    <h4>数据库采集工具</h4>
+                    <ul>
+                        <li><span class="tit">智能企业名片-药智CRM</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">智能E-mail营销系统</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">智能电话销售机器人</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">大数据智能APP营销机器人矩阵系统</span></li>
+                        <li><span class="tit">智能无感营销系统</span></li>
+                        <li><span class="tit">智能短信营销系统</span></li>
+                        <li><span class="tit">官网建设/Seo/</span></li>
+                        <li><span class="tit">药智网-站内广告投放</span></li>
+                    </ul>
+                </div>
+                <div class="item wow fadeInUp" data-wow-delay="0.6s">
+                    <em></em>
+                    <h4>数据库采集工具</h4>
+                    <ul>
+                        <li><span class="tit">智能语音客服</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">智能图文客服</span></li>
+                    </ul>
+                </div>
+                <div class="item wow fadeInUp" data-wow-delay="0.8s">
+                    <em></em>
+                    <h4>数据库采集工具</h4>
+                    <ul>
+                        <li><span class="tit">智能全网精准客户匹配系统</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">智能精准客户匹配系统</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="prod-other">
+        <div class="wrapper">
+            <div class="prod-tit">
+                <h3>医械数据通</h3>
+            </div>
+            <div class="lst">
+                <ul>
+                    <li>站内广告投放</li>
+                    <li>营销图片、海报、视频、H5等定制</li>
+                    <li>行业科研数据管理管理系统</li>
+                    <li>商业方案策划支持</li>
+                    <li>医疗机构内部经营管理系统</li>
+                    <li>其他广告服务</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-navs">
+    <div class="wrapper clearfix">
+        <div class="item-contact">
+            <img class="logo" src="static/images/logo-bottom.png" alt="药智器械">
+            <div class="phone">400-805-6906</div>
+            <div class="qq">2081288520</div>
+            <div class="email">szyxtong@qq.com</div>
+        </div>
+        <dl>
+            <dt>商务合作</dt>
+            <dd><a target="_blank" href="attract.html">产品及服务价格</a></dd>
+            <dd><a target="_blank" href="attract.html">招商加盟</a></dd>
+            <dd><a target="_blank" href="attract.html">项目合作</a></dd>
+            <dd><a target="_blank" href="attract.html">广告投放</a></dd>
+        </dl>
+
+        <dl>
+            <dt>会员中心</dt>
+            <dd><a target="_blank" href="member.html">VIP权限</a></dd>
+            <dd><a target="_blank" href="member.html">我要推广</a></dd>
+            <dd><a target="_blank" href="member.html">营销素材</a></dd>
+            <dd><a target="_blank" href="member.html">客户反馈</a></dd>
+        </dl>
+
+        <dl>
+            <dt>帮助中心</dt>
+            <dd><a target="_blank" href="###">医药知识库</a></dd>
+            <dd><a target="_blank" href="###">常见问题</a></dd>
+            <dd><a target="_blank" href="###">用户手册</a></dd>
+            <dd><a target="_blank" href="###">下载中心</a></dd>
+        </dl>
+        <div class="item-qrcode">
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr1.png" alt="">
+                <div>扫一扫关注药智器械</div>
+            </div>
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr2.png" alt="">
+                <div>扫一扫加入客服群</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper clearfix">
+        <div class="footer-navs">
+            <a href="###">首页</a>
+            <span class="split"></span>
+            <a href="product.html">产品与服务</a>
+            <a href="sales.html">药智营销通</a>
+            <a href="vipdata.html">药智医械通</a>
+            <!-- <a href="vipdata.html">医械数据通</a> -->
+            <span class="split"></span>
+            <!-- <a target="_blank" href="developmenting.html">器械商城</a>
+			<a target="_blank" href="https://job.yaozh.com/">求职招聘</a>
+			<span class="split"></span> -->
+            <a href="attract.html">商务合作</a>
+            <a href="developmenting.html">新闻中心</a>
+            <span class="split"></span>
+            <a href="member.html">会员中心</a>
+            <a href="help.html">帮助中心</a>
+            <span class="split"></span>
+            <a href="navigation.html">行业导航</a>
+        </div>
+        <div class="footer-navs2">
+            <a target="_blank" href="index.html">免责声明</a>
+            <a target="_blank" href="index.html">更新日志</a>
+            <a target="_blank" href="index.html">技术支持</a>
+        </div>
+        <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
+    </div>
+</div>
+<!-- 
+<div class="right-sidebar">
+    <a class="right-sidebar-qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1261826768&site=qq&menu=yes">
+        <span>在线咨询</span>
+    </a>
+    <a href="" class="right-sidebar-top"><span>返回顶部</span></a>
+</div> -->
+<script src="static/lib/vendor.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/lib/swiper/4.4.6/swiper.min.js"></script>
+<script>
+    //顶部轮播
+    var serviceTopSwiper = new Swiper('#prod-top-swiper', {
+        //effect : 'fade',
+        loop: true,
+        autoplay: {
+            delay: 8000,
+        },
+        pagination: {
+            el: '.prod-top-swiper-pagination',
+            clickable: true
+        },
+        navigation: {
+            nextEl: '.prod-top-swiper-button-next',
+            prevEl: '.prod-top-swiper-button-prev'
+        }
+    });
+</script>
+
+<script>
+    //静态演示用，绑程序时删除 star
+    document.title = '药智器械 - 产品与服务';
+    $('#navbar>ul').children('li').eq(1).addClass('active').siblings().removeClass();
+    //静态演示用，绑程序时删除 end
+</script>
+
+</body>
+
+</html>

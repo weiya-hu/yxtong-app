@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数智器械 - 行业导航</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="icon" href="static/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="static/css/common.css" />
+    <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+</head>
+
+
+
+<body>
+
+
+    <div class="topbar">
+        <div class="wrapper">
+            <div class="topbar-left">
+                <span>你好，欢迎登陆康洲数智官网！</span>
+                <a target="_blank" href="https://job.yaozh.com/">数智人才</a>
+                <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
+                <a target="_blank" href="https://report.yaozh.com/">数智咨询</a>
+                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">数智汇</a>
+                <a target="_blank" href="https://s.yaozh.com">数智通</a>
+                <a target="_blank" href="https://edu.yaozh.com/">数智大讲堂</a>
+                <a target="_blank" href="https://aiyun.yaozh.com/">产业大脑</a>
+                <a target="_blank" href="https://bbs.yaozh.com">论坛交流</a>
+                <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
+                <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
+                <a target="_blank" href="https://gu.yaozh.com/ ">数智谷</a>
+                <a target="_blank" href="https://nav.yaozh.com/">数智搜</a>
+            </div>
+            <div class="topbar-right">
+
+                <a class="active" target="_blank" href="/app/login">登录</a>
+                <span class="split">|</span>
+                <a target="_blank" href="/app/register/register">注册</a>
+                <!--
+            	<a target="_blank" href="//www-dev.yaozh.com/member/">用户名称</a>
+            	<i class="fa"></i> 退出</a>
+            	-->
+            </div>
+            <div class="topbar-login">
+
+                <div class="info-messages">消息</div>
+                <div class="info-numbers"><span>0</span></div>
+                <div class="info-avatar"><img src="static/images/icon-avatar.png" alt=""></div>
+                <div class="info-username">阳光之下</div>
+                <div class="info-quit"><img src="static/images/icon-quit.png" alt=""><span>退出</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navs">
+        <div class="wrapper">
+            <a class="logo" href="/">
+                <img src="static/images/logo.png" title="数智器械">
+            </a>
+            <div class="navbar" id="navbar">
+                <ul>
+                    <li class="active"><a href="/index.html">首页</a></li>
+                    <li>
+                        <a href="/product.html">产品与服务</a>
+                        <div class="navchild">
+                            <ul>
+                                <li class=""><a href="/marketing.html">智能APP营销<br>机器人矩阵系统</a></li>
+                                <li><a href="/developmenting.html">企业名片<br>SCRM系统</a></li>
+                                <li><a href="/developmenting.html">智能短信<br>SMS系统</a></li>
+                                <li><a href="/developmenting.html">智能E-mail<br>营销系统</a></li>
+                                <li><a href="/developmenting.html">无感营销系统</a></li>
+                                <li><a href="/developmenting.html">智能电话机器人<br>营销系统</a></li>
+                                <li><a href="/developmenting.html">企业网站<br>建设运营服务</a></li>
+                                <li><a href="/developmenting.html">数智网<br>站内广告投放</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/sales.html">数智营销通</a></li>
+                    <li><a href="/vipdata.html">数智器械通</a></li>
+                    <li><a href="/attract.html">商务合作</a></li>
+                    <li><a href="/app/news">资讯中心</a></li>
+                    <li>
+                        <a href="/member.html">会员中心</a>
+                        <div class="navchild2">
+                            <ul>
+                                <li><a href="/member_news.html?id=1">通知公告</a></li>
+                                <li><a href="/benefits.html" class="isFlag">VIP权益</a></li>
+                                <!-- <li><a href="JavaScript:void(0)" class="isFlag">VIP权益</a></li> -->
+
+                                <li><a href="/spread.html">我要推广</a></li>
+                                <li><a href="/material.html">营销素材</a></li>
+                                <li><a href="/member.html#feedback">客户反馈</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/help.html">帮助中心</a></li>
+                    <li><a href="/navigation.html">行业导航</a></li>
+
+                </ul>
+
+            </div>
+            <div class="header-phone">
+                <img src="static/images/header-phone.png" alt="">
+                <span>咨询电话：</span>
+                <span>400-890-9020</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // // 退出按钮
+        $('.topbar-login').on({
+            mouseenter: function() {
+                $('.info-quit').show()
+            },
+            mouseleave: function() {
+                $('.info-quit').hide()
+            }
+        });
+        $('.info-quit').on({
+            mouseenter: function() {
+                $(this).css('background', '#304F97')
+                $('.info-quit span').css('color', '#FFFFFF')
+                $('.info-quit img').attr('src', './static/images/icon-quit-white.png')
+            },
+            mouseleave: function() {
+                $(this).css('background', '#FFFFFF')
+                $('.info-quit span').css('color', '#363636')
+                $('.info-quit img').attr('src', './static/images/icon-quit.png')
+            }
+
+        });
+    </script>
+
+    <script>
+        function getUser() {
+            const token = localStorage.getItem('firstToken')
+            const isLogin = localStorage.getItem('isLogin')
+            if (token) {
+                $.ajax({
+                    method: 'get',
+                    headers: {
+                        Authorization: token
+                    },
+                    url: "/api/user/my-center/info",
+                    dataType: "json",
+                    success: function(res) {
+                        if (res.status == 1) { //本地有token并且token登录了就是已登录
+                            $('.topbar-right').hide()
+                            $('.topbar-login').show()
+                            $('.info-username').html(res.body.name)
+
+                            // 点击退出
+                            $('.info-quit').mouseup(function() {
+                                $.ajax({
+                                    method: 'get',
+                                    url: "/api/login/login-out",
+                                    dataType: "json",
+                                    success: function(res) {
+                                        console.log(res)
+                                        $('.topbar-right').show()
+                                        $('.topbar-login').hide()
+                                    }
+                                })
+
+                            })
+
+
+                        } else {
+                            // window.location.href = '/login/dologin'
+
+                        }
+                    }
+                })
+            } else {
+                // window.location.href = '/login/dologin'
+            }
+
+        }
+        $(document).ready(function() {
+
+            getUser()
+
+        })
+
+
+        // 立即体验在跳转链接前，校验是否登录
+        $('.isFlag').click(function() {
+            const token = localStorage.getItem('firstToken')
+            const isLogin = localStorage.getItem('isLogin')
+            if (token) {
+                console.log('token', token)
+                console.log('登录了')
+
+            } else {
+                console.log('没有登录')
+
+                console.log('token', token)
+
+                window.location.href = '/app/login'
+                return false;
+            }
+        })
+    </script>
+<div id="content">
+    <div class="content-weixi">
+        <img src="static/images/icon-content-weixi.png" alt="">
+        <span>微信咨询</span>
+
+    </div>
+    <div class="content-tel">
+        <img src="static/images/icon-content-phone.png" alt="">
+        <span>电话咨询</span>
+
+    </div>
+    <div class="content-source">
+        <a href="https://1537030.udesk.cn/im_client/?web_plugin_id=179991&agent_id=467471&group_id=303781" target="_blank"> <img src="static/images/icon-content-source.png" alt="">
+            <span>智能客服</span>
+        </a>
+    </div>
+</div>
+
+<div class="content-tips-wechat">
+    <div class="tips-title">联系客服</div>
+
+    <img src="static/images/content-weixi.png" alt="" class="qrcodeimg">
+    <div class="tips-prompt">请扫描上方二维码，联系客服人员</div>
+    <div class="tips-bottom" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+
+<div class="content-tips-tel">
+    <span>电话咨询</span>
+    <span>客服咨询电话：023-62797926</span>
+    <div class="btn-tel" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+<script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    //获取拖拽实验对象
+
+    let old_left = 0
+    let old_top = 0
+    let old_position_left = 0
+    let old_position_top = 0
+
+    let timer = null;
+    let isDrag = false;
+    $('#content').on('mousedown', function(event) {
+        console.log('mousedown')
+        old_left = event.pageX;
+        old_top = event.pageY;
+        old_position_left = $(this).position().left;
+        old_position_top = $(this).position().top;
+        timer = setTimeout(() => {
+            isDrag = true
+        }, 100);
+    })
+    $('#content').on('mouseup', () => {
+        if (!isDrag) {
+            clearTimeout(timer);
+        } else {
+            setTimeout(() => {
+                isDrag = false;
+            }, 200);
+        }
+    })
+    $('#content').on('mousemove', () => {
+        if (isDrag) {
+            $(document).mousemove(function(event) {
+                let new_left = event.pageX;
+                let new_top = event.pageY;
+                let chang_x = new_left - old_left;
+                let change_y = new_top - old_top;
+                let new_position_left = old_position_left + chang_x;
+                let new_position_top = old_position_top + change_y;
+                if (new_position_top < 0) {
+                    new_position_top = 0;
+                }
+                if (new_position_top > $(document).height() - $('#content').height()) {
+                    new_position_top = $(document).height() - $('#content').height();
+                }
+
+                $('#content').css({
+
+                    top: new_position_top + 'px'
+                })
+            });
+        } else {
+            $(document).off("mousemove");
+        }
+    })
+    $('#content .content-weixi').on('mouseup', () => {
+        setTimeout(() => {
+            if (!isDrag) {
+                $('.content-tips-wechat').show()
+
+            }
+        }, 100);
+    })
+    $('#content .content-tel').on('mouseup', () => {
+            setTimeout(() => {
+                if (!isDrag) {
+                    $('.content-tips-tel').show()
+
+                }
+            }, 100);
+        })
+        // 弹框消失
+    function able() {
+        $('.content-tips-tel').hide()
+        $('.content-tips-wechat').hide()
+    }
+</script>
+<link rel="stylesheet" type="text/css" href="static/css/navigation.css" />
+
+<div class="container">
+    <div class="navi-swiper">
+        <div class="swiper-wrapper" id="navi-top-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url(uploads/navi-swiper-1.png);">
+                    <div class="wrapper">
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url(uploads/navi-swiper-1.png);">
+                    <div class="wrapper">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination navi-top-swiper-pagination"></div>
+            <div class="swiper-button-next swiper-button-white navi-top-swiper-button-next"></div>
+            <div class="swiper-button-prev swiper-button-white navi-top-swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="navi-search">
+        <h2 class="wow fadeInUp">数百个行业网站，你想要的都在这里</h2>
+        <div class="wrapper">
+            <div class="search">
+                <form action="">
+                    <input type="text" id="searchipt" placeholder="搜索网站" autocomplete="off">
+                    <!-- <button>搜索</button> -->
+                </form>
+                <div class="searchlist">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navi-top">
+        <div class="navi-tit white">
+            <h2 class="wow fadeInUp">常用网站</h2>
+            <p class="wow fadeInDown">Common websites</p>
+        </div>
+        <div class="wrapper">
+            <div class="lst">
+                <a class="item" href="https://www.yaozh.com/" target="_blank">
+                    <div class="img">
+                        <img src="https://www.yaozh.com/uploads/2021/07/12/16260853129978.jpg" alt="logo">
+                    </div>
+                    <div class="tit">药智网</div>
+                    <p>中国健康产业大数据服务平台</p>
+                </a>
+                <a class="item" href="https://www.yaozh.com/" target="_blank">
+                    <div class="img">
+                        <img src="https://www.yaozh.com/uploads/2021/07/12/16260853129978.jpg" alt="logo">
+                    </div>
+                    <div class="tit">药智网</div>
+                    <p>中国健康产业大数据服务平台</p>
+                </a>
+                <a class="item" href="https://www.yaozh.com/" target="_blank">
+                    <div class="img">
+                        <img src="https://www.yaozh.com/uploads/2021/07/12/16260853129978.jpg" alt="logo">
+                    </div>
+                    <div class="tit">药智网</div>
+                    <p>中国健康产业大数据服务平台</p>
+                </a>
+                <a class="item" href="https://www.yaozh.com/" target="_blank">
+                    <div class="img">
+                        <img src="https://www.yaozh.com/uploads/2021/07/12/16260853129978.jpg" alt="logo">
+                    </div>
+                    <div class="tit">药智网</div>
+                    <p>中国健康产业大数据服务平台</p>
+                </a>
+                <a class="item" href="https://www.yaozh.com/" target="_blank">
+                    <div class="img">
+                        <img src="https://www.yaozh.com/uploads/2021/07/12/16260853129978.jpg" alt="logo">
+                    </div>
+                    <div class="tit">药智网</div>
+                    <p>中国健康产业大数据服务平台</p>
+                </a>
+                <a class="item" href="https://www.yaozh.com/" target="_blank">
+                    <div class="img">
+                        <img src="https://www.yaozh.com/uploads/2021/07/12/16260853129978.jpg" alt="logo">
+                    </div>
+                    <div class="tit">药智网</div>
+                    <p>中国健康产业大数据服务平台</p>
+                </a>
+                <a class="item" href="https://www.yaozh.com/" target="_blank">
+                    <div class="img">
+                        <img src="https://www.yaozh.com/uploads/2021/07/12/16260853129978.jpg" alt="logo">
+                    </div>
+                    <div class="tit">药智网</div>
+                    <p>中国健康产业大数据服务平台</p>
+                </a>
+                <a class="item" href="https://www.yaozh.com/" target="_blank">
+                    <div class="img">
+                        <img src="https://www.yaozh.com/uploads/2021/07/12/16260853129978.jpg" alt="logo">
+                    </div>
+                    <div class="tit">药智网</div>
+                    <p>中国健康产业大数据服务平台</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navi-lst">
+        <div class="navi-tit">
+            <h2 class="wow fadeInUp">网址导航</h2>
+            <p class="wow fadeInDown">URL navigation</p>
+        </div>
+        <div class="wrapper">
+            <div class="tab clearfix" data-tab="tab-navitop">
+                <a class="active">生物领域</a>
+                <a>大健康领域</a>
+                <a>医疗平台</a>
+                <a>期刊文献</a>
+                <a>医学机构/院校</a>
+                <a>知名院校</a>
+                <a>政府单位</a>
+                <a>资讯媒体</a>
+                <a>论坛门户</a>
+            </div>
+            <div class="tab-content" tab-content="tab-navitop">
+                <div class="tab-content-item" style="display: block;">
+                    <div class="left navi-lmenu lefturlnav">
+                        <a class="active" data-id="a1">生物论坛BBS</a>
+                        <a data-id="a2">生物门户网站</a>
+                        <a data-id="a3">生物器械厂商</a>
+                        <a data-id="a4">生物协会学会</a>
+                        <a data-id="a5">生物研究所</a>
+                        <a data-id="a6">文献期刊</a>
+                        <a data-id="a7">生物研究院</a>
+                        <a data-id="a8">人才招聘</a>
+                    </div>
+                    <div class="right navi-rcon scrollcontainer">
+                        <div>
+                            <dl id="scrollto_a1">
+                                <dt>生物论坛BBS</dt>
+                                <dd>
+                                    <a href="https://www.pcseaz.com/" target="_blank" ref="nofollow" title="PCS海水生物技术交流论坛">PCS海水生物技术交流论坛</a>
+                                    <a href="https://portal.dxy.cn/" target="_blank" ref="nofollow" title="丁香园论坛">丁香园论坛</a>
+                                    <a href="http://bbs.kaoyan.com" target="_blank" ref="nofollow" title="生物学考研论坛">生物学考研论坛</a>
+                                    <a href="https://www.omicshare.com/forum/portal.php" target="_blank" ref="nofollow" title="OmicShareForum专业的生物信息学论坛">OmicShareForum专业的生物信息学论坛</a>
+                                    <a href="http://www.biosige.com/" target="_blank" ref="nofollow" title="四哥生物论坛">四哥生物论坛</a>
+                                    <a href="https://www.omicshare.com/forum/" target="_blank" ref="nofollow" title="基迪奥生物信息论坛">基迪奥生物信息论坛</a>
+                                    <a href="http://bioms.org/" target="_blank" ref="nofollow" title="生物分子模拟论坛">生物分子模拟论坛</a>
+                                    <a href="https://www.bio-engine.com/" target="_blank" ref="nofollow" title="Bio-ENGINE">Bio-ENGINE</a>
+                                    <a href="http://www.bio-basedconf.com/" target="_blank" ref="nofollow" title="bio-Based">bio-Based</a>
+                                    <a href="https://www.fajiaoren.com/" target="_blank" ref="nofollow" title="PoweredbyDiscuz">PoweredbyDiscuz</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_a2">
+                                <dt>生物门户网站</dt>
+                                <dd>
+                                    <a href="https://www.bioon.com/" target="_blank" ref="nofollow">生物谷</a>
+                                    <a href="http://www.ebiotrade.com/" target="_blank" ref="nofollow">生物通</a>
+                                    <a href="http://www.biovip.com/" target="_blank" ref="nofollow">生命经纬</a>
+                                    <a href="http://www.biotech.org.cn/" target="_blank" ref="nofollow">中国生物技术信息网</a>
+                                    <a href="https://www.ibioo.com/" target="_blank" ref="nofollow">绿谷生物网</a>
+                                    <a href="http://www.bioguider.com/" target="_blank" ref="nofollow">生物行</a>
+                                    <a href="https://www.instrument.com.cn/" target="_blank" ref="nofollow">仪器信息网</a>
+                                    <a href="https://www.biosino.org/bmdc/" target="_blank" ref="nofollow">生物医学大数据中心</a>
+                                    <a href="https://huanbao.bjx.com.cn/" target="_blank" ref="nofollow">北极星环保网</a>
+                                    <a href="http://www.cnena.com/" target="_blank" ref="nofollow">会展门户</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_a3">
+                                <dt>生物器械厂商</dt>
+                                <dd>
+                                    <a href="http://www.eppendorf.cn" target="_blank" ref="nofollow">艾本德中国有限公司</a>
+                                    <a href="http://www.medchemexpress.cn/" target="_blank" ref="nofollow">上海皓元生物医药科技有限公司</a>
+                                    <a href="http://www.huayueco.com" target="_blank" ref="nofollow">华粤行仪器有限公司</a>
+                                    <a href="http://www.applitechpharma.com" target="_blank" ref="nofollow">广州市艾贝泰生物科技有限公司</a>
+                                    <a href="www.antylia.com" target="_blank" ref="nofollow">科尔帕默仪器（上海）有限公司</a>
+                                    <a href="http://www.cbio21.com" target="_blank" ref="nofollow">北京赛百奥科技有限公司</a>
+                                    <a href="http://www.yakedianzhi.com/" target="_blank" ref="nofollow">上海银雀电子科技发展有限公司</a>
+                                    <a href="www.sunncell.com.cn" target="_blank" ref="nofollow">武汉尚恩生物技术有限公司</a>
+                                    <a href="https://www.fine-tec.cn" target="_blank" ref="nofollow">安徽法恩生物科技有限公司</a>
+                                    <a href="http://www.westang.com" target="_blank" ref="nofollow">上海西唐生物科技有限公司</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_a4">
+                                <dt>生物协会学会</dt>
+                                <dd>
+                                    <a href="http://www.cmba.org.cn/" target="_blank" ref="nofollow">中国医药生物技术协会</a>
+                                    <a href="http://www.biotechchina.org/" target="_blank" ref="nofollow">中国生物工程学会</a>
+                                    <a href="http://www.cfia.org.cn/" target="_blank" ref="nofollow">中国生物发酵产业协会</a>
+                                    <a href="http://www.cspp.org.cn/" target="_blank" ref="nofollow">中国植物病理学会</a>
+                                    <a href="http://szbios.org/" target="_blank" ref="nofollow">苏州市生物学会</a>
+                                    <a href="https://www.ssbt.org.cn/" target="_blank" ref="nofollow">上海市生物工程学会</a>
+                                    <a href="http://www.chinapsc.cn/" target="_blank" ref="nofollow">中国古生物学会</a>
+                                    <a href="http://www.ssmsh.org.cn/" target="_blank" ref="nofollow">上海市微生物学会</a>
+                                    <a href="http://www.chinapsc.cn/" target="_blank" ref="nofollow">中国微生物学会</a>
+                                    <a href="https://sls.nxu.edu.cn/nxswxh/" target="_blank" ref="nofollow">宁夏生物学会</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_a5">
+                                <dt>生物研究所</dt>
+                                <dd>
+                                    <a href="http://www.ihb.ac.cn/" target="_blank" ref="nofollow">中国科学院水生生物研究所</a>
+                                    <a href="http://www.im.cas.cn/" target="_blank" ref="nofollow">中国科学院微生物研究所</a>
+                                    <a href="http://www.cib.ac.cn/" target="_blank" ref="nofollow">中国科学院成都生物研究所</a>
+                                    <a href="http://www.nwipb.cas.cn/" target="_blank" ref="nofollow">中国科学院西北高原生物研究所</a>
+                                    <a href="http://www.ibcas.ac.cn/" target="_blank" ref="nofollow">中国科学院中植物研究所</a>
+                                    <a href="http://www.ioz.ac.cn/" target="_blank" ref="nofollow">中国科学院动物研究所</a>
+                                    <a href="http://www.swslkf.com/" target="_blank" ref="nofollow">生物饲料开发国家工程研究中心</a>
+                                    <a href="http://www.bricaas.cn/" target="_blank" ref="nofollow">中国农业科学院生物技术研究所</a>
+                                    <a href="https://www.imbcams.ac.cn/" target="_blank" ref="nofollow">中国医学科学院医学生物学研究所</a>
+                                    <a href="http://www.prcsiri.com/" target="_blank" ref="nofollow">广东省科学院生物工程研究所</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_a6">
+                                <dt>文献期刊</dt>
+                                <dd>
+                                    <a href="https://www.cnki.net/" target="_blank" ref="nofollow">知网</a>
+                                    <a href="http://muchong.com/" target="_blank" ref="nofollow">小木虫</a>
+                                    <a href="http://www.ywswjs.com/" target="_blank" ref="nofollow">药物生物技术</a>
+                                    <a href="https://www.qikanchina.net/" target="_blank" ref="nofollow">期刊网</a>
+                                    <a href="http://www.cqvip.com/" target="_blank" ref="nofollow">维普网</a>
+                                    <a href="https://www.wanfangdata.com.cn/" target="_blank" ref="nofollow">万方数据知识服务平台</a>
+                                    <a href="http://www.sinomed.ac.cn/" target="_blank" ref="nofollow">中国生物医学文献服务系统</a>
+                                    <a href="https://rdswxb.hainanu.edu.cn/" target="_blank" ref="nofollow">热带生物学报</a>
+                                    <a href="http://cjbmb.bjmu.edu.cn/" target="_blank" ref="nofollow">中国生物化学与分子生物学报</a>
+                                    <a href="http://ssswxb.ihb.ac.cn/" target="_blank" ref="nofollow">水生生物学报</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_a7">
+                                <dt>生物研究院</dt>
+                                <dd>
+                                    <a href="https://ibs.fudan.edu.cn/" target="_blank" ref="nofollow">复旦大学生物医学研究院</a>
+                                    <a href="http://ibms.suda.edu.cn/" target="_blank" ref="nofollow">苏州大学生物医学研究院</a>
+                                    <a href="http://www.cab.zju.edu.cn/swjs/" target="_blank" ref="nofollow">浙江大学生物技术研究所</a>
+                                    <a href="https://tedabio.nankai.edu.cn/" target="_blank" ref="nofollow">南开大学泰达生物技术研究院</a>
+                                    <a href="https://ifsb.jhun.edu.cn/" target="_blank" ref="nofollow">江汉大学系统生物学研究院</a>
+                                    <a href="http://www.sdu-zbpharm.com/" target="_blank" ref="nofollow">山东大学淄博生物医药研究院</a>
+                                    <a href="http://www.genetics.ac.cn/" target="_blank" ref="nofollow">中国科学院遗传与发育生物学研究院</a>
+                                    <a href="http://www.tjab.org/" target="_blank" ref="nofollow">天津国际生物医药联合研究院</a>
+                                    <a href="http://www.whbio.org.cn/" target="_blank" ref="nofollow">武汉生物技术研究院</a>
+                                    <a href="http://cuixi.org/" target="_blank" ref="nofollow">诸暨市翠溪生物技术研究院</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_a8">
+                                <dt>人才招聘</dt>
+                                <dd>
+                                    <a href="http://sw.36hjob.com/" target="_blank" ref="nofollow">生物人才网</a>
+                                    <a href="http://www.ebiotrade.com/jobf/Index.aspx" target="_blank" ref="nofollow">生物通人才市场</a>
+                                    <a href="http://bio.job1001.com/" target="_blank" ref="nofollow">一览生物</a>
+                                    <a href="http://www.5ajob.com/" target="_blank" ref="nofollow">5A农业人才网</a>
+                                    <a href="http://www.xumurc.com/" target="_blank" ref="nofollow">牧通人才网</a>
+                                    <a href="https://www.healthr.com/" target="_blank" ref="nofollow">医药英才网</a>
+                                </dd>
+                            </dl>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content-item">
+                    <div class="left lefturlnav">
+                        <a class="active" data-id="b1">健康咨询公司</a>
+                        <a data-id="b2">健康管理公司</a>
+                        <a data-id="b3">健康教育行业</a>
+                        <a data-id="b4">营养食品公司</a>
+                    </div>
+                    <div class="right scrollcontainer">
+                        <div>
+                            <dl id="scrollto_b1">
+                                <dt>健康咨询公司</dt>
+                                <dd>
+                                    <a href="http://www.natali.com.cn/" target="_blank" ref="nofollow">纳塔力健康管理咨询有限公司</a>
+                                    <a href="https://www.pubmed.nl/" target="_blank" ref="nofollow">pubmed</a>
+                                    <a href="http://www.accessh.org.cn/" target="_blank" ref="nofollow">艾杜康（上海）健康咨询有限公司</a>
+                                    <a href="https://www.kangruiyun.cn/" target="_blank" ref="nofollow">成都康瑞云健康咨询有限公司</a>
+                                    <a href="http://www.jxhjjk.com/" target="_blank" ref="nofollow">昊极健康咨询有限公司</a>
+                                    <a href="http://www.puyihealth.com/" target="_blank" ref="nofollow">上海朴毅健康咨询有限公司</a>
+                                    <a href="http://www.fatzymz.com/" target="_blank" ref="nofollow">山东妇安堂健康咨询管理有限公司</a>
+                                    <a href="http://www.jzjkml.com/" target="_blank" ref="nofollow">成都嘉志健康咨询有限公司</a>
+                                    <a href="http://www.fyjk-fudanmed.com/" target="_blank" ref="nofollow">上海复医健康管理咨询有限公司</a>
+                                    <a href="http://www.ehnchina.com/" target="_blank" ref="nofollow">凯悦汉深（上海）健康科技有限公司</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_b2">
+                                <dt>健康管理公司</dt>
+                                <dd>
+                                    <a href="https://www.haidjk.com/" target="_blank" ref="nofollow">海德健康</a>
+                                    <a href="http://www.huimingsh.com/" target="_blank" ref="nofollow">上海慧民健康管理公司</a>
+                                    <a href="https://www.etong-online.com/" target="_blank" ref="nofollow">医通健康</a>
+                                    <a href="http://www.fanenshi.com/" target="_blank" ref="nofollow">成都梵恩诗健康咨询有限公司</a>
+                                    <a href="http://www.hfherun.com/" target="_blank" ref="nofollow">合肥和润健康管理有限公司</a>
+                                    <a href="http://www.awbchina.com/" target="_blank" ref="nofollow">上海惜安健康咨询有限公司</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_b3">
+                                <dt>健康教育行业</dt>
+                                <dd>
+                                    <a href="http://www.foodeducation.cn/" target="_blank" ref="nofollow">食育网</a>
+                                    <a href="http://www.cahep.com/" target="_blank" ref="nofollow">中国健康促进与教育协会</a>
+                                    <a href="https://www.119120.cn/" target="_blank" ref="nofollow">安全健康教育网</a>
+                                    <a href="http://www.nihe.org.cn/" target="_blank" ref="nofollow">中国健康教育网</a>
+                                    <a href="http://www.jkgls.com.cn/" target="_blank" ref="nofollow">中国健康管理师网</a>
+                                    <a href="http://www.chinaschool.org.cn/" target="_blank" ref="nofollow">中国校园健康网</a>
+                                    <a href="http://www.chinaxlbj.org/" target="_blank" ref="nofollow">健康管理网</a>
+                                    <a href="https://www.cha-china.org/" target="_blank" ref="nofollow">中国健康管理协会</a>
+                                    <a href="http://www.bjjkglxh.org/" target="_blank" ref="nofollow">北京健康管理协会</a>
+                                    <a href="http://www.ghma.cn/" target="_blank" ref="nofollow">广东健康管理学会</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_b4">
+                                <dt>营养食品公司</dt>
+                                <dd>
+                                    <a href="http://dingzetang.com/" target="_blank" ref="nofollow">鼎泽堂健康教育产业集团</a>
+                                    <a href="http://www.jinzikang.com/" target="_blank" ref="nofollow">温州金滋康营养食品有限公司</a>
+                                    <a href="https://www.szruipin.cn/" target="_blank" ref="nofollow">深圳市瑞品食品有限公司</a>
+                                    <a href="http://www.shanghainingfeng.com/" target="_blank" ref="nofollow">上海宁枫生物科技有限公司</a>
+                                    <a href="http://www.newnutri.com/" target="_blank" ref="nofollow">新营养（北京）科技有限公司</a>
+                                    <a href="http://www.xiangyinshipin.com/" target="_blank" ref="nofollow">广东翔印营养食品有限公司</a>
+                                    <a href="http://www.gdyijiaqin.com/" target="_blank" ref="nofollow"> 广东一家亲营养科技有限公司</a>
+                                    <a href="http://www.cdkzysp.com/" target="_blank" ref="nofollow">成都康之源食品有限公司</a>
+                                    <a href="http://www.chences.com/" target="_blank" ref="nofollow">湖南臣生营养食品有限公司</a>
+                                    <a href="http://www.tianranshijia.com/" target="_blank" ref="nofollow">辽宁天然世家营养食品科技有限公司</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content-item">
+                    <div class="left lefturlnav">
+                        <a class="active" data-id="c1">医疗平台</a>
+                        <a data-id="c2">医疗器械行业</a>
+                        <a data-id="c3">医疗器械厂商</a>
+                        <a data-id="c4">医疗企业</a>
+                        <a data-id="c5">医药厂商</a>
+                    </div>
+                    <div class="right scrollcontainer">
+                        <div>
+                            <dl id="scrollto_c1">
+                                <dt>医疗平台</dt>
+                                <dd>
+                                    <a href="http://www.yizhen.cn/" target="_blank" ref="nofollow">医真云</a>
+                                    <a href="https://cloud.guahao.cn/" target="_blank" ref="nofollow">微医云</a>
+                                    <a href="http://www.hlwylsc.com/" target="_blank" ref="nofollow">互联网医疗</a>
+                                    <a href="https://www.alihealth.cn/" target="_blank" ref="nofollow">阿里健康</a>
+                                    <a href="https://www.jk.cn/" target="_blank" ref="nofollow">平安好医生</a>
+                                    <a href="https://www.guahao.com/" target="_blank" ref="nofollow">微医</a>
+                                    <a href="https://www.yiducloud.com.cn/academy.html" target="_blank" ref="nofollow">医渡云</a>
+                                    <a href="https://portal.dxy.cn/" target="_blank" ref="nofollow">丁香园</a>
+                                    <a href="http://www.114jiankang.com/" target="_blank" ref="nofollow">114健康网</a>
+                                    <a href="https://www.myweimai.net/contact" target="_blank" ref="nofollow">微脉</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_c2">
+                                <dt>医疗器械行业</dt>
+                                <dd>
+                                    <a href="http://www.innomd.org/" target="_blank" ref="nofollow">医械创新网</a>
+                                    <a href="http://www.zg17.com/" target="_blank" ref="nofollow">中国仪器网</a>
+                                    <a href="http://www.e7online.cn/" target="_blank" ref="nofollow">科学仪器在线</a>
+                                    <a href="http://www.seek17.com" target="_blank" ref="nofollow">赛格仪器网</a>
+                                    <a href="http://www.yi7.com/" target="_blank" ref="nofollow">仪器交易网</a>
+                                    <a href="http://www.21hgjx.com/" target="_blank" ref="nofollow">化工机械行业网</a>
+                                    <a href="http://www.pharmjx.com/" target="_blank" ref="nofollow">制药机械行业网</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_c3">
+                                <dt>医疗器械厂商</dt>
+                                <dd>
+                                    <a href="http://www.zhisun.com" target="_blank" ref="nofollow">上海之信仪器有限公司</a>
+                                    <a href="http://www.gtmed.com.cn/" target="_blank" ref="nofollow">通用医疗</a>
+                                    <a href="http://www.maydeal.com/" target="_blank" ref="nofollow">美迪医疗</a>
+                                    <a href="http://www.anke.com/cn/about" target="_blank" ref="nofollow">深圳安科</a>
+                                    <a href="http://www.ruidamedical.com/" target="_blank" ref="nofollow">广州瑞达医疗器械有限公司</a>
+                                    <a href="http://www.yiliao.biz/" target="_blank" ref="nofollow">中国医疗器械网</a>
+                                    <a href="http://med6319.yixie8.com/" target="_blank" ref="nofollow">厦门大博颖精医疗器械有限公司</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_c4">
+                                <dt>医疗企业</dt>
+                                <dd>
+                                    <a href="https://www.mindray.com/cn/index.html" target="_blank" ref="nofollow">迈瑞医疗国际股份有限公司</a>
+                                    <a href="http://www.haixuyl.com/" target="_blank" ref="nofollow">山东日照海旭医疗器械有限公司</a>
+                                    <a href="http://sdzbgdyl1605213.yixie8.com/" target="_blank" ref="nofollow">山东淄博光大医疗用品有限公司</a>
+                                    <a href="http://www.hkmg.com/" target="_blank" ref="nofollow">恒康医疗集团股份有限公司</a>
+                                    <a href="http://www.dazd.cn/" target="_blank" ref="nofollow">迪安诊断</a>
+                                    <a href="http://www.yihuahealth.com/" target="_blank" ref="nofollow">宜华健康医疗股份有限公司</a>
+                                    <a href="http://www.shinva.net/" target="_blank" ref="nofollow">新华医疗</a>
+                                    <a href="http://www.yuyue.com.cn/" target="_blank" ref="nofollow">鱼跃医疗</a>
+                                    <a href="https://www.lepumedical.com/" target="_blank" ref="nofollow">乐普医疗</a>
+                                    <a href="http://www.rundamedical.com/" target="_blank" ref="nofollow">润达医疗</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_c5">
+                                <dt>医药厂商</dt>
+                                <dd>
+                                    <a href="http://www.hengjian.cn/" target="_blank" ref="nofollow">广东恒健制药有限公司</a>
+                                    <a href="http://www.xianzhsw.com/" target="_blank" ref="nofollow">西安正浩生物制药有限公司</a>
+                                    <a href="http://xjyyg.sitongzixun.com/" target="_blank" ref="nofollow">西安佳欣药业有限公司</a>
+                                    <a href="http://www.otcbbs.cn/" target="_blank" ref="nofollow">山东强燊药业股份有限公司</a>
+                                    <a href="http://www.ykpharm.com/" target="_blank" ref="nofollow">四川依科制药有限公司</a>
+                                    <a href="http://sxhkyy.sitongzixun.com/" target="_blank" ref="nofollow">陕西惠康医药有限公司</a>
+                                    <a href="http://www.jztey.com/" target="_blank" ref="nofollow">九州通医药集团股份有限公司</a>
+                                    <a href="http://www.lunan.com.cn/" target="_blank" ref="nofollow">鲁南制药集团</a>
+                                    <a href="https://www.fosunpharma.com/" target="_blank" ref="nofollow">复星医药</a>
+                                    <a href="http://www.kexing.com/" target="_blank" ref="nofollow">科兴生物制药股份有限公司</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content-item">
+                    <div class="left lefturlnav">
+                        <a class="active" data-id="d1">期刊文献</a>
+                    </div>
+                    <div class="right scrollcontainer">
+                        <div>
+                            <dl id="scrollto_d1">
+                                <dt>期刊文献</dt>
+                                <dd>
+                                    <a href="https://www.cnki.net/" target="_blank" ref="nofollow">中国知网</a>
+                                    <a href="https://www.wanfangdata.com.cn/index.html" target="_blank" ref="nofollow">万方</a>
+                                    <a href="https://www.thelancet.com/" target="_blank" ref="nofollow">柳叶刀</a>
+                                    <a href="https://www.nature.com/" target="_blank" ref="nofollow">自然</a>
+                                    <a href="http://journal18.magtechjournal.com/Jwk_zgyyyx/CN/volumn/current.shtml" target="_blank" ref="nofollow">中国医药药学杂志</a>
+                                    <a href="https://jamanetwork.com/journals/jama" target="_blank" ref="nofollow">美国医学会杂志</a>
+                                    <a href="https://www.nejm.org/" target="_blank" ref="nofollow">新英格兰医学</a>
+                                    <a href="http://medjournals.cn/index.do" target="_blank" ref="nofollow">中华医学期刊网</a>
+                                    <a href="http://zhwkzz.yiigle.com/" target="_blank" ref="nofollow">中华外科杂志</a>
+                                    <a href="http://zhfckzz.yiigle.com/" target="_blank" ref="nofollow">中华妇产科杂志</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content-item">
+                    <div class="left lefturlnav">
+                        <a class="active" data-id="e1">医学考试</a>
+                        <a data-id="e2">学会协会</a>
+                        <a data-id="e3">知名医院</a>
+                        <a data-id="e4">病友交流平台</a>
+                    </div>
+                    <div class="right scrollcontainer">
+                        <div>
+                            <dl id="scrollto_e1">
+                                <dt>医学考试</dt>
+                                <dd>
+                                    <a href="https://www.med66.com/" target="_blank" ref="nofollow">医学教育网</a>
+                                    <a href="http://www.nmec.org.cn/" target="_blank" ref="nofollow">国家医学考试网</a>
+                                    <a href="http://e.chinamsr.com/" target="_blank" ref="nofollow">中国医药培训网</a>
+                                    <a href="http://www.ejiao.net.cn/" target="_blank" ref="nofollow">医教在线</a>
+                                    <a href="http://www.medelites.com/" target="_blank" ref="nofollow">医学生学习网</a>
+                                    <a href="http://xy.bioon.com/" target="_blank" ref="nofollow">行云学院</a>
+                                    <a href="http://www.everlab.net" target="_blank" ref="nofollow">Everlab云端实验室</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_e2">
+                                <dt>学会协会</dt>
+                                <dd>
+                                    <a href="http://www.capc.org.cn/index.html" target="_blank" ref="nofollow">中国医药商业协会</a>
+                                    <a href="http://www.cmea.org.cn/" target="_blank" ref="nofollow">中国医药教育协会</a>
+                                    <a href="http://www.cmba.org.cn/" target="_blank" ref="nofollow">中国医药生物技术协会</a>
+                                    <a href="https://www.cma.org.cn/" target="_blank" ref="nofollow">中华医学会</a>
+                                    <a href="http://www.chinaema.org.cn/" target="_blank" ref="nofollow">中国民族医药协会</a>
+                                    <a href="http://www.camdi.org/" target="_blank" ref="nofollow">中国医疗器械协会</a>
+                                    <a href="http://www.cndent.com/" target="_blank" ref="nofollow">中华口腔医学会</a>
+                                    <a href="https://www.csbt.org.cn/" target="_blank" ref="nofollow">中国输血学会</a>
+                                    <a href="https://www.cnsoc.org/" target="_blank" ref="nofollow">中国营养学会</a>
+                                    <a href="http://www.cacm.org.cn/" target="_blank" ref="nofollow">中华中医药学会</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_e3">
+                                <dt>知名医院</dt>
+                                <dd>
+                                    <a href="http://www.pumch.cn/" target="_blank" ref="nofollow">北京协和医院</a>
+                                    <a href="http://www.301hospital.com.cn/" target="_blank" ref="nofollow">中国人民解放军总医院</a>
+                                    <a href="http://www.rjh.com.cn/" target="_blank" ref="nofollow">上海交通大学医学院附属瑞金医院</a>
+                                    <a href="http://www.zs-hospital.sh.cn/" target="_blank" ref="nofollow">复旦大学附属中山医院</a>
+                                    <a href="http://www.fahsysu.org.cn/" target="_blank" ref="nofollow">中山大学附属第一医院</a>
+                                    <a href="https://www.huashan.org.cn/" target="_blank" ref="nofollow">复旦大学附属华山医院</a>
+                                    <a href="https://www.tjh.com.cn/" target="_blank" ref="nofollow">华中科技大学同济医学院附属同济医院</a>
+                                    <a href="https://www.pkufh.com/" target="_blank" ref="nofollow">北京大学第一医院</a>
+                                    <a href="http://www.whuh.com/" target="_blank" ref="nofollow">华中科技大学同济医学院附属协和医院</a>
+                                    <a href="http://www.xyeyy.com/" target="_blank" ref="nofollow">中南大学湘雅二医院</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_e4">
+                                <dt>病友交流平台</dt>
+                                <dd>
+                                    <a href="http://cnpu.org/" target="_blank" ref="nofollow">病友之家</a>
+                                    <a href="http://www.bingyouq.cn/" target="_blank" ref="nofollow">病友圈</a>
+                                    <a href="https://m.zhao01.com/" target="_blank" ref="nofollow">病友论坛</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content-item">
+                    <div class="left lefturlnav">
+                        <a class="active" data-id="f1">医学院校</a>
+                    </div>
+                    <div class="right scrollcontainer">
+                        <div>
+                            <dl id="scrollto_f1">
+                                <dt>医学院校</dt>
+                                <dd>
+                                    <a href="http://www.pumc.edu.cn/" target="_blank" ref="nofollow">清华大学北京协和医学院</a>
+                                    <a href="http://www.bjmu.edu.cn/" target="_blank" ref="nofollow">北京大学医学部</a>
+                                    <a href="http://shmc.fudan.edu.cn/" target="_blank" ref="nofollow">复旦大学上海医学院</a>
+                                    <a href="https://www.shsmu.edu.cn/" target="_blank" ref="nofollow">上海交通大学医学院</a>
+                                    <a href="http://www.tjmu.edu.cn/" target="_blank" ref="nofollow">华中科技大学同济医学院</a>
+                                    <a href="http://zssom.sysu.edu.cn/" target="_blank" ref="nofollow">中山大学中山医学院</a>
+                                    <a href="https://wcums.scu.edu.cn/" target="_blank" ref="nofollow">四川大学华西医学中心</a>
+                                    <a href="https://www.fmmu.edu.cn/" target="_blank" ref="nofollow">第四军医大学</a>
+                                    <a href="https://www.tmmu.edu.cn/" target="_blank" ref="nofollow">第三军医大学</a>
+                                    <a href="https://xysm.csu.edu.cn/" target="_blank" ref="nofollow">中南大学湘雅医学院</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content-item">
+                    <div class="left lefturlnav">
+                        <a class="active" data-id="g1">药监局</a>
+                        <a data-id="g2">医保局</a>
+                        <a data-id="g3">卫生健康委员会</a>
+                    </div>
+                    <div class="right scrollcontainer">
+                        <div>
+                            <dl id="scrollto_g1">
+                                <dt>药监局</dt>
+                                <dd>
+                                    <a href="https://www.nmpa.gov.cn/" target="_blank" ref="nofollow">国家药品监督管理局</a>
+                                    <a href="http://yjj.beijing.gov.cn/" target="_blank" ref="nofollow">北京市药品监督管理局</a>
+                                    <a href="http://scjg.tj.gov.cn/" target="_blank" ref="nofollow">天津市市场监督管理委员会</a>
+                                    <a href="http://yjj.hebei.gov.cn/hbpda/" target="_blank" ref="nofollow">河北省药品监督管理局</a>
+                                    <a href="https://yjj.shanxi.gov.cn/" target="_blank" ref="nofollow">山西省药品监督管理局</a>
+                                    <a href="http://mpa.nmg.gov.cn/" target="_blank" ref="nofollow">内蒙古自治区药品监督管理局</a>
+                                    <a href="http://ypjg.ln.gov.cn/" target="_blank" ref="nofollow">辽宁省药品监督管理局</a>
+                                    <a href="http://mpa.jl.gov.cn/" target="_blank" ref="nofollow">吉林省药品监督管理局</a>
+                                    <a href="http://mpa.hlj.gov.cn/" target="_blank" ref="nofollow">黑龙江省药品监督管理局</a>
+                                    <a href="http://yjj.sh.gov.cn/" target="_blank" ref="nofollow">上海市药品监督管理局</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_g2">
+                                <dt>医保局</dt>
+                                <dd>
+                                    <a href="http://www.nhsa.gov.cn/" target="_blank" ref="nofollow">国家医疗保障局</a>
+                                    <a href="http://ybj.beijing.gov.cn" target="_blank" ref="nofollow">北京市医疗保障局</a>
+                                    <a href="http://ylbz.tj.gov.cn/" target="_blank" ref="nofollow">天津市医疗保障局</a>
+                                    <a href="http://ylbzj.hebei.gov.cn/" target="_blank" ref="nofollow">河北省医疗保障局</a>
+                                    <a href="http://ybj.shanxi.gov.cn/" target="_blank" ref="nofollow">山西省医疗保障局</a>
+                                    <a href="http://ylbzj.nmg.gov.cn/" target="_blank" ref="nofollow">内蒙古自治区医疗保障局</a>
+                                    <a href="http://ybj.ln.gov.cn/" target="_blank" ref="nofollow">辽宁省医疗保障局</a>
+                                    <a href="http://ybj.jl.gov.cn/" target="_blank" ref="nofollow">吉林省医疗保障局</a>
+                                    <a href="http://ybj.hlj.gov.cn/" target="_blank" ref="nofollow">黑龙江省医疗保障局</a>
+                                    <a href="http://ybj.sh.gov.cn/" target="_blank" ref="nofollow">上海市医疗保障局</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_g3">
+                                <dt>卫生健康委员会</dt>
+                                <dd>
+                                    <a href="http://www.nhc.gov.cn/wjw/dfzfwz/201906/97fb8e5a7bcb4c68996024add52d9bbc.shtml" target="_blank" ref="nofollow">北京市卫生健康委员会</a>
+                                    <a href="http://wsjk.tj.gov.cn/" target="_blank" ref="nofollow">天津市卫生健康委员会</a>
+                                    <a href="http://wsjkw.hebei.gov.cn/" target="_blank" ref="nofollow">河北省卫生健康委员会</a>
+                                    <a href="http://wjw.shanxi.gov.cn/" target="_blank" ref="nofollow">山西省卫生健康委员会</a>
+                                    <a href="http://wjw.nmg.gov.cn/" target="_blank" ref="nofollow">内蒙古自治区卫生健康委员会</a>
+                                    <a href="http://wsjk.ln.gov.cn/" target="_blank" ref="nofollow">辽宁省卫生健康委员会</a>
+                                    <a href="http://wsjkw.jl.gov.cn/" target="_blank" ref="nofollow">吉林省卫生健康委员会</a>
+                                    <a href="http://wsjkw.hlj.gov.cn/" target="_blank" ref="nofollow">黑龙江省卫生健康委员</a>
+                                    <a href="http://wsjkw.sh.gov.cn/" target="_blank" ref="nofollow">上海市卫生健康委员会</a>
+                                    <a href="http://wjw.jiangsu.gov.cn/" target="_blank" ref="nofollow">江苏省卫生健康委员会</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content-item">
+                    <div class="left lefturlnav">
+                        <a class="active" data-id="h1">报纸媒体</a>
+                        <a data-id="h2">报纸媒体</a>
+                        <a data-id="h3">医学专业</a>
+                        <a data-id="h4">会展活动</a>
+                        <a data-id="h5">综合性平台</a>
+                    </div>
+                    <div class="right scrollcontainer">
+                        <div>
+                            <dl id="scrollto_h1">
+                                <dt>报纸媒体</dt>
+                                <dd>
+                                    <a href="http://www.jkb.com.cn/" target="_blank" ref="nofollow">健康报社</a>
+                                    <a href="http://www.yyjjb.com.cn/" target="_blank" ref="nofollow">医药经济报</a>
+                                    <a href="http://cmtbrain.com/" target="_blank" ref="nofollow">中国医学论坛报</a>
+                                    <a href="https://www.familydoctor.com.cn/" target="_blank" ref="nofollow">家庭医生</a>
+                                    <a href="https://www.qikanchina.net/journal/9982" target="_blank" ref="nofollow">中华医学信息导报</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_h2">
+                                <dt>医药信息</dt>
+                                <dd>
+                                    <a href="http://zgypw.w.cxzg.com/" target="_blank" ref="nofollow">中国药网</a>
+                                    <a href="http://zgygw.21hubei.com/" target="_blank" ref="nofollow">中国医谷网</a>
+                                    <a href="http://www.emedchina.cn/beforeIndexContorller/index.do" target="_blank" ref="nofollow">海虹医药网</a>
+                                    <a href="http://www.100md.com/" target="_blank" ref="nofollow">百拇医药</a>
+                                    <a href="http://www.cyy123.com/" target="_blank" ref="nofollow">中国医药123</a>
+                                    <a href="http://www.eyao.com/" target="_blank" ref="nofollow">e药网</a>
+                                    <a href="http://www.gm.net.cn/Front/Index.aspx" target="_blank" ref="nofollow">金药网</a>
+                                    <a href="http://www.pharmtec.org.cn/" target="_blank" ref="nofollow">中国医药经济信息网</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_h3">
+                                <dt>医学专业</dt>
+                                <dd>
+                                    <a href="http://www.37med.com/" target="_blank" ref="nofollow">37℃医学网</a>
+                                    <a href="http://www.365heart.com/newslist/2.shtml" target="_blank" ref="nofollow">心血管网</a>
+                                    <a href="http://medline.org.cn/index.do" target="_blank" ref="nofollow">中华医学网</a>
+                                    <a href="https://medicalspace.lofter.com/" target="_blank" ref="nofollow">医学空间</a>
+                                    <a href="https://www.yanke360.com/" target="_blank" ref="nofollow">中华眼科网</a>
+                                    <a href="https://www.bioon.com/" target="_blank" ref="nofollow">生物谷</a>
+                                    <a href="www.genetide.com/" target="_blank" ref="nofollow">基因潮</a>
+                                    <a href="http://www.cndent.com/" target="_blank" ref="nofollow">中华口腔医学网</a>
+                                    <a href=" www.kq88.com" target="_blank" ref="nofollow">口腔医学网</a>
+                                    <a href="http://182.92.172.157/" target="_blank" ref="nofollow">中华骨科网</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_h4">
+                                <dt>会展活动</dt>
+                                <dd>
+                                    <a href="https://www.reed-sinopharm.com/" target="_blank" ref="nofollow">医药励展展览公司</a>
+                                    <a href="http://www.chinamed.net.cn/" target="_blank" ref="nofollow">ChinaMed</a>
+                                    <a href="http://medica.dongsinexpo.com/" target="_blank" ref="nofollow">德国MEDICSA</a>
+                                    <a href="http://www.cnexpo.com/" target="_blank" ref="nofollow">中国会展网</a>
+                                    <a href="http://www.cnena.com/" target="_blank" ref="nofollow">中国会展门户</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_h5">
+                                <dt>综合性平台</dt>
+                                <dd>
+                                    <a href="http://toutiao.com/" target="_blank" ref="nofollow">今日头条</a>
+                                    <a href="https://mp.sohu.com/" target="_blank" ref="nofollow">搜狐公众平台</a>
+                                    <a href="https://baijiahao.baidu.com/" target="_blank" ref="nofollow">百度百家号</a>
+                                    <a href="https://www.jianshu.com/" target="_blank" ref="nofollow">简书</a>
+                                    <a href="https://www.xiaohongshu.com/" target="_blank" ref="nofollow">小红书</a>
+                                    <a href="https://www.zhihu.com/" target="_blank" ref="nofollow">知乎</a>
+                                    <a href="https://www.bilibili.com/" target="_blank" ref="nofollow">bilibili</a>
+                                    <a href="https://mp.weixin.qq.com/" target="_blank" ref="nofollow">微信公众号</a>
+                                    <a href="https://www.douyin.com/" target="_blank" ref="nofollow">抖音</a>
+                                    <a href="https://www.kuaishou.com/" target="_blank" ref="nofollow">快手</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content-item">
+                    <div class="left lefturlnav">
+                        <a class="active" data-id="i1">科技资讯类网站</a>
+                        <a data-id="i2">创业资讯类网站</a>
+                        <a data-id="i3">自媒体论坛BBS</a>
+                    </div>
+                    <div class="right scrollcontainer">
+                        <div>
+                            <dl id="scrollto_i1">
+                                <dt>创业资讯类网站</dt>
+                                <dd>
+                                    <a href="https://www.leiphone.com/" target="_blank" ref="nofollow">雷锋网</a>
+                                    <a href="https://www.tmtpost.com/" target="_blank" ref="nofollow">钛媒体</a>
+                                    <a href="https://www.iresearch.cn/" target="_blank" ref="nofollow">艾瑞网</a>
+                                    <a href="https://www.pintu360.com/" target="_blank" ref="nofollow">品途网</a>
+                                    <a href="https://lusongsong.com/" target="_blank" ref="nofollow">松松网</a>
+                                    <a href="https://www.iyiou.com/" target="_blank" ref="nofollow">亿欧网</a>
+                                    <a href="http://www.ikanchai.com/" target="_blank" ref="nofollow">砍材网</a>
+                                    <a href="https://www.sootoo.com/" target="_blank" ref="nofollow">速途网</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_i2">
+                                <dt>创业资讯类网站</dt>
+                                <dd>
+                                    <a href="https://www.cyzone.cn/" target="_blank" ref="nofollow">创业邦</a>
+                                    <a href="https://36kr.com/" target="_blank" ref="nofollow">36氪</a>
+                                </dd>
+                            </dl>
+                            <dl id="scrollto_i3">
+                                <dt>自媒体论坛BBS</dt>
+                                <dd>
+                                    <a href="http://www.meizhizu.com/" target="_blank" ref="nofollow">媒之族</a>
+                                    <a href="http://www.zimeitibbs.com/" target="_blank" ref="nofollow">猪八戒自媒体</a>
+                                    <a href="https://tieba.baidu.com/" target="_blank" ref="nofollow">百度贴吧</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-navs">
+    <div class="wrapper clearfix">
+        <div class="item-contact">
+            <img class="logo" src="static/images/logo-bottom.png" alt="药智器械">
+            <div class="phone">400-805-6906</div>
+            <div class="qq">2081288520</div>
+            <div class="email">szyxtong@qq.com</div>
+        </div>
+        <dl>
+            <dt>商务合作</dt>
+            <dd><a target="_blank" href="attract.html">产品及服务价格</a></dd>
+            <dd><a target="_blank" href="attract.html">招商加盟</a></dd>
+            <dd><a target="_blank" href="attract.html">项目合作</a></dd>
+            <dd><a target="_blank" href="attract.html">广告投放</a></dd>
+        </dl>
+
+        <dl>
+            <dt>会员中心</dt>
+            <dd><a target="_blank" href="member.html">VIP权限</a></dd>
+            <dd><a target="_blank" href="member.html">我要推广</a></dd>
+            <dd><a target="_blank" href="member.html">营销素材</a></dd>
+            <dd><a target="_blank" href="member.html">客户反馈</a></dd>
+        </dl>
+
+        <dl>
+            <dt>帮助中心</dt>
+            <dd><a target="_blank" href="###">医药知识库</a></dd>
+            <dd><a target="_blank" href="###">常见问题</a></dd>
+            <dd><a target="_blank" href="###">用户手册</a></dd>
+            <dd><a target="_blank" href="###">下载中心</a></dd>
+        </dl>
+        <div class="item-qrcode">
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr1.png" alt="">
+                <div>扫一扫关注药智器械</div>
+            </div>
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr2.png" alt="">
+                <div>扫一扫加入客服群</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper clearfix">
+        <div class="footer-navs">
+            <a href="###">首页</a>
+            <span class="split"></span>
+            <a href="product.html">产品与服务</a>
+            <a href="sales.html">药智营销通</a>
+            <a href="vipdata.html">药智医械通</a>
+            <!-- <a href="vipdata.html">医械数据通</a> -->
+            <span class="split"></span>
+            <!-- <a target="_blank" href="developmenting.html">器械商城</a>
+			<a target="_blank" href="https://job.yaozh.com/">求职招聘</a>
+			<span class="split"></span> -->
+            <a href="attract.html">商务合作</a>
+            <a href="developmenting.html">新闻中心</a>
+            <span class="split"></span>
+            <a href="member.html">会员中心</a>
+            <a href="help.html">帮助中心</a>
+            <span class="split"></span>
+            <a href="navigation.html">行业导航</a>
+        </div>
+        <div class="footer-navs2">
+            <a target="_blank" href="index.html">免责声明</a>
+            <a target="_blank" href="index.html">更新日志</a>
+            <a target="_blank" href="index.html">技术支持</a>
+        </div>
+        <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
+    </div>
+</div>
+<!-- 
+<div class="right-sidebar">
+    <a class="right-sidebar-qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1261826768&site=qq&menu=yes">
+        <span>在线咨询</span>
+    </a>
+    <a href="" class="right-sidebar-top"><span>返回顶部</span></a>
+</div> -->
+<script src="static/lib/vendor.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/lib/swiper/4.4.6/swiper.min.js"></script>
+<script>
+    //行业导航顶部轮播
+    var naviTopSwiper = new Swiper('#navi-top-swiper', {
+        //effect : 'fade',
+        loop: true,
+        autoplay: {
+            delay: 8000,
+        },
+        pagination: {
+            el: '.navi-top-swiper-pagination',
+            clickable: true
+        },
+        navigation: {
+            nextEl: '.navi-top-swiper-button-next',
+            prevEl: '.navi-top-swiper-button-prev'
+        }
+    });
+    //网址导航
+    $('.navi-rcon').on('scroll', function() {
+        var t = $(this).scrollTop();
+        //console.log(t)
+        //console.log(t);
+    })
+
+
+    //navi-lmenu
+</script>
+<script>
+    //静态演示用，绑程序时删除 star
+    document.title = '药智器械 - 行业导航';
+    $('#navbar>ul').children('li').eq(8).addClass('active').siblings().removeClass();
+    //静态演示用，绑程序时删除 end
+
+    $('.lefturlnav>a').on('click', function() {
+        $(this).addClass('active').siblings().removeClass();
+        let id = $(this).attr('data-id')
+        let container = $(this).parent().siblings(".scrollcontainer")
+        let scrollTo = $('#scrollto_' + id)
+
+        // container.scrollTop(
+        // 	scrollTo.offset().top - container.offset().top + container.scrollTop()
+        // );
+        container.animate({
+            scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+        })
+    })
+
+    function debounce(fn, wait) {
+        var timer = null;
+        return function() {
+            if (timer !== null) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(fn, wait);
+        }
+    }
+
+    function getSearchList() {
+        let val = $('#searchipt').val()
+        if (val) {
+            $('.searchlist').append(`<div class="searchitem" data-url="${'url'}">${val}</div>`)
+        }
+    }
+
+    $('#searchipt').on('input', debounce(() => {
+        console.log($('#searchipt').val())
+        getSearchList()
+    }, 500))
+
+    $('.searchlist').on('click', '.searchitem', function() {
+        console.log($(this).attr('data-url'));
+    })
+
+    $('#searchipt').on('blur', function() {
+        setTimeout(function() {
+            $('.searchlist').html('')
+        }, 200)
+    })
+
+    $('#searchipt').on('focus', function() {
+        console.log($(this).val())
+        getSearchList()
+    })
+</script>
+
+</body>
+
+</html>
