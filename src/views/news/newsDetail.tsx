@@ -94,7 +94,7 @@ export default class NewsDetail extends Component {
     }
     //详情页文章切换
     articleChange=(id)=>{
-        this.props.history.push('/app/newsdetail/?id='+id)
+        this.props.history.push('/app/newsdetail?newsId='+id)
         window.location.reload()
     }
     componentDidMount(){
