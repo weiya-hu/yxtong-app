@@ -30,6 +30,14 @@
         height: 240px;
         background: #FFFFFF;
         margin-top: 10px;
+        .coverimg{
+            width: 220px;
+            height: 140px;
+            overflow: hidden;
+            position: relative;
+            top: 3px;
+            margin-left: 10px;
+        }
         .cover-txt{
             font-size: 16px;
             font-weight: 600;
@@ -45,6 +53,14 @@
                 width: 26px;
                 margin: 0 auto 10px;
             }
+        }
+        button{
+            width: 220px;
+            height: 140px;
+            position: absolute;
+            top: -100px;
+            left: 0px;
+            opacity: 0;
         }
     }
     .title{
@@ -120,4 +136,7 @@
  }
  iframe{
     display: block !important ;
+  }
+  .ant-upload-list-text .ant-upload-span{
+      display: none;
   }

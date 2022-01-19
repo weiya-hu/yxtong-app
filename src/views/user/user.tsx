@@ -23,14 +23,18 @@ import phoneimg from '../../public/images/user/phone.png'
 class User extends Component {
     state={
         nav:['我的任务','我的收益','创作中心','我的消息','设置'],
-        aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
+        // aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
+        aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['我的消息'],['设置']],
+
         navActiveIndex:0,//导航active的下标
         asideActive:0,//侧边栏active的下标
         isArticleDetail:0,//是否是详情页
         exitActive:false,//退出按钮是否hover
         exitNone:true,//退出登录是否显示
         userInfo:{},
-        loginFlag:false
+        loginFlag:false,
+        newsDetail:{},//文章详情
+        editItem:null
     }
     exitloginpre=(e)=>{
       e.stopPropagation()
@@ -64,6 +68,15 @@ class User extends Component {
         })
       }
     }
+    //编辑预览返回值
+    writingPreview=(val,item)=>{
+      this.setState({
+        isArticleDetail:val,
+        asideActive:val,
+        newsDetail:item,
+        editItem:item
+      })
+    }
     componentDidMount=()=>{
       let local=this.props.location
       if(local.query){
@@ -75,7 +88,7 @@ class User extends Component {
       this.getUserInfo()
     }
     render(){
-        let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag} = this.state
+        let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag,newsDetail,editItem} = this.state
         let asideActive = navActiveIndex === 2?this.state.asideActive:0
         if(loginFlag){
           return <Redirect to='/app/login?url=/app/user' />;
@@ -143,7 +156,8 @@ class User extends Component {
                       key={index}
                       className={asideActive === index?'aside-active':'' }
                       onClick={()=>{
-                        this.setState({asideActive:index,isArticleDetail:0})
+                        this.setState({asideActive:index,isArticleDetail:0,editItem:this.state.editItem})
+                        console.log(this.state.editItem)
                       }}
                       >{item}</div>
                   ))}
@@ -154,17 +168,17 @@ class User extends Component {
                 {
                   navActiveIndex === 0 ? <MyTask /> :
                   navActiveIndex === 1 ? <Profit /> :
-                  (navActiveIndex === 2 && asideActive === 0)? <Writing />:
+                  (navActiveIndex === 2 && asideActive === 0)? <Writing preview={(val,item)=>{this.writingPreview(val,item)}} item={editItem} publish={(val)=>{this.setState({editItem:null})}}/>:
                   (navActiveIndex === 2 && asideActive === 2) ? <DataAnalysis />:
                   (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 0) ? 
                     <ArticleList 
-                      edit={(val)=>{this.setState({asideActive:val})}}
+                      edit={(val,item)=>{this.setState({asideActive:val,editItem:item})}}
                       dataAnalysis={(val)=>{this.setState({asideActive:val})}}
-                      articleDetail={(val)=>{this.setState({isArticleDetail:val})}}
+                      articleDetail={(val,item)=>{this.setState({isArticleDetail:val,newsDetail:item})}}
                     />:
                   (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 1) && 
                   <div className='usermain-ArticleDetail'>
-                    <ArticleDetail />
+                    <ArticleDetail newsDetail={newsDetail}/>
                   </div>
                    
                 }

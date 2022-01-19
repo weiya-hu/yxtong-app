@@ -17,7 +17,7 @@ import headerimg from '../../public/images/user/header.png'
 export default class News extends Component{
   state={
     isLogin:true,//是否登录了
-    newsTypeActive:0,//新闻类型的默认值
+    newsTypeActive:1,//新闻类型的默认值
     mayInterestList:[],
     newsList:[],
     hasMore: true,// 判断接口是否还有数据，通过接口设置

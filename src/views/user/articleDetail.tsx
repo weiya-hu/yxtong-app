@@ -26,19 +26,18 @@ export default class ArticleDetail extends Component<ArticleDetailProps>{
     }
     render(): ReactNode {
         let newsDetail= this.props.newsDetail?this.props.newsDetail:this.state.detail
+        let userInfo= JSON.parse(localStorage.getItem('userInfo'))
         return(
             newsDetail && <div className='articleDetail'>
                 <div className='title'>{newsDetail.title}</div>
                 <div className='flexb detail-info'>
                     <div className='flexl'>
                         <div>{moment(newsDetail.create_time).format('YYYY月MM月DD HH:mm')}</div>
-                        <div className='detail-from'>来源：{newsDetail.creator_name}</div>
+                        <div className='detail-from'>来源：{newsDetail.creator_name?newsDetail.creator_name:userInfo.name}</div>
                     </div>
                     <div>阅读量： {newsDetail.readed}</div>
                 </div>
-                <div className='news-content'>
-                    {newsDetail.content}
-                </div>
+                <div dangerouslySetInnerHTML = {{__html:newsDetail.content}} ></div>
             </div>
         )
     }

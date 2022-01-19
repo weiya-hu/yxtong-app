@@ -7,26 +7,121 @@ import tinymce from 'tinymce/tinymce';
 import AliyunOSSUpload from './component/ossImg'
 import OSSUpload from './component/ossTest'
 import { Form} from 'antd'
+import message from '../component/message/index';
+import {newsPublish} from '../../service/user'
 
 
 
 import addimg from '../../public/images/user/add.png'
 import warnimg from '../../public/images/warn.png'
+import falseimg from '../../public/images/user/false.png'
 
 export default class Writing extends Component{
     state={
         titleMessage:'',//标题的错误message
-        textMessage:'必填项',//文章的错误message
+        textMessage:'',//文章的错误message
+        coverImgurl:this.props.item?this.props.item.thumb_url?this.props.item.thumb_url:falseimg:'',
+        title:this.props.item?this.props.item.title:'',
+        content:this.props.item?this.props.item.content:'',
+        edit:this.props.item?this.props.item.content:''
     }
+    //富文本编辑器文本有改变
     EditorChange=(val)=>{
-        
+       this.setState({
+            edit:val,
+            textMessage:val?'':'必填项'
+       })
+    
     }
+    //标题输入有改变
+    titleChange=(e)=>{
+        this.setState({
+            title:e.target.value,
+            titleMessage:e.target.value?'':'必填项'
+        })
+    }
+    imageEditor= (blobInfo, success, failure)=>{
+        if (blobInfo.blob()){
+            success('https://p5.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/fd9a925e129d4486bc2ae602b30eb2ee~tplv-tt-cs0:640:360.jpg')
+        }
+        // if (blobInfo.blob()){
+        //         const formData = new window.FormData();
+        //         formData.append('myFile', blobInfo.blob(), blobInfo.filename())
+        //         axios.post(``,formData).then((res) => {
+        //                if(res.data){
+        //                      // 将图片插入到编辑器中
+        //                      success(res.data.data[0])
+        //                 }
+        //  }).catch((error) => {
+        //                alert(error);
+        //  })
+        //  } else {
+        //          alert('error');
+        //  }
+  
+   }
+   //预览文章
+   preView=()=>{
+        const {title,edit,coverImgurl} = this.state
+        if(!title){
+            message.info('请输入标题')
+            this.setState({titleMessage:'必填项'})
+        }else if(!edit){
+            message.info('请编辑文章')
+            this.setState({textMessage:'必填项'})
+        }
+        else{
+            let item={
+                commented: 0,
+                content: edit,
+                readed: 0,
+                thumb_url:coverImgurl,
+                title:title,
+                update_time: new Date()
+            }
+            this.props.preview(1,item)
+        }
+   }
+   //发布文章
+   publishNews=async()=>{
+        const {title,edit,coverImgurl} = this.state
+        if(!title){
+            message.info('请输入标题')
+            this.setState({titleMessage:'必填项'})
+        }else if(!edit ){
+            message.info('请编辑文章')
+            this.setState({textMessage:'必填项'})
+        }
+        else{
+            let item={
+                content: edit,
+                thumb_url:coverImgurl,
+                title:title
+            }
+            const res = await newsPublish(item)
+            if(res.status){
+                this.props.publish(true)
+                this.setState({
+                    coverImgurl:'',
+                    title:'',
+                    content:'',
+                    titleMessage:'',
+                    textMessage:'',
+                    edit:''
+                })
+                message.info('发布成功')
+            }
+        }
+   }
+  
     componentDidMount(){
         // tinymce.activeEditor.getBody().setAttribute('contenteditable', false);
+        console.log(this.props.item,this.state.coverImgurl)
+
     }
     render(){
-        let titleMessage=this.state.titleMessage,textMessage=this.state.textMessage
-        let templateStr='dfsdfsd'
+        let {titleMessage,coverImgurl,textMessage,title,content}=this.state
+        let str=content
         return(
             <div className='writing'>
                 <div className='top flexb'>
@@ -35,22 +130,33 @@ export default class Writing extends Component{
                         <span  className='font12 color3'>草稿自动保存</span>
                     </div>
                     <div className='flexr'>
-                        <div className='writing-buttton fleximg'>发布文章</div>
-                        <div className='preview-button fleximg'>预览文章</div>
+                        <div className='writing-buttton fleximg' onClick={this.publishNews}>发布文章</div>
+                        <div className='preview-button fleximg' onClick={this.preView}>预览文章</div>
                     </div>
                 </div>
                 <div className='cover'>
                     <div className='cover-txt'>上传封面</div>
-                    <div className='cover-button'>
-                        <div className='addimg'><img src={addimg} alt="add" /></div>
-                        <div>添加封面</div>
+                    <div className='flexl'>
+                        <div className='cover-button'>
+                            <div className='addimg'><img src={addimg} alt="add" /></div>
+                            <div>添加封面</div>
+                            <div>
+                                <Form labelCol={{ span: 4 }}>
+                                    <Form.Item name="photos">
+                                        <AliyunOSSUpload className='img-upload' change={(val=>{this.setState({coverImgurl:val})})} />
+                                    </Form.Item>
+                                </Form>
+                            </div>
+                            
+                        </div>
+                        {coverImgurl && 
+                            <div className='coverimg fleximg'><img src={coverImgurl} alt="cover" onError={(e) => { e.target.src = falseimg }}/></div>
+                        }
                     </div>
+                    
+                    
                 </div>
-                {/* <Form labelCol={{ span: 4 }}>
-                    <Form.Item label="Photos" name="photos">
-                    <AliyunOSSUpload />
-                    </Form.Item>
-                </Form> */}
+                
                 {/* <div>
                     <OSSUpload />
                 </div> */}
@@ -61,7 +167,7 @@ export default class Writing extends Component{
                     </div>
                     <div className='flexl'>
                         <div className='title-item flexl'>
-                            <input type="text" placeholder='请输入文章标题（5~50个字）' maxLength={50} minLength={5} />
+                            <input type="text" placeholder='请输入文章标题（5~50个字' defaultValue={title} onChange={this.titleChange} maxLength={50} minLength={5} />
                             
                         </div>
                         {titleMessage && 
@@ -77,7 +183,7 @@ export default class Writing extends Component{
                     <div className='font16 bold'>文章内容</div>
                     <div className='editor position'>
                         <Editor
-                            initialValue={templateStr}
+                            initialValue={str}
                             id={"tincyEditor"}
                             tinymceScriptSrc={'../../../tinymce/js/tinymce/tinymce.min.js'}
                             apiKey="mabgo7mjxmpeaukhcqge4rtd5gvtay0595bkvv931xewl7yf"
@@ -94,7 +200,7 @@ export default class Writing extends Component{
                                 statusbar: true, // 底部的状态栏
                                 convert_urls: false,//去除URL转换
                                 plugin_preview_width: "930", // 预览宽度
-                                images_upload_handler: (blobInfo, success, failure)=>{}}}
+                                images_upload_handler: (blobInfo, success, failure)=>{this.imageEditor(blobInfo, success, failure)}}}
                             onEditorChange={this.EditorChange}
                         />
                        

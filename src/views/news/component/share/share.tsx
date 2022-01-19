@@ -14,8 +14,15 @@ import toutiaoimg from '../../../../public/images/user/16toutiao.png'
 import wechartimg from '../../../../public/images/user/16wechart.png' 
 import weiboimg from '../../../../public/images/user/16weibo.png' 
 
+import weibogray from '../../../../public/images/user/weibogray.png' 
+import doubangray from '../../../../public/images/user/doubangray.png' 
+import QQgray from '../../../../public/images/user/QQgray.png' 
+import qqklgray from '../../../../public/images/user/qqklgray.png' 
+import toutgray from '../../../../public/images/user/toutgray.png' 
+
 interface ShareState{
     css:string
+    item:{id?:string}
 }
 
 export default class Share extends Component<ShareState> {  
@@ -44,9 +51,10 @@ export default class Share extends Component<ShareState> {
                 <div className='flexl position share-wechat'>
                     <div className='wechartimg fleximg'><img src={wechartimg} alt="wechart" /></div>
                     <div>微信</div>
+                    {/* <div>{window.location.protocol+'//'+window.location.host+'/app/newsdetail/?newsId='+this.props.item.id}</div> */}
                     <div className='wechat-ma'>
                         <QRCode
-                            value={window.location.protocol+'//'+window.location.host+'/app/newsdetail/id='+233}  //value参数为生成二维码的链接
+                            value={window.location.protocol+'//'+window.location.host+'/app/newsdetail/newsId='+this.props.item.id}  //value参数为生成二维码的链接
                             size={100} //二维码的宽高尺寸
                             fgColor="#000000"  //二维码的颜色
                         />
@@ -55,26 +63,26 @@ export default class Share extends Component<ShareState> {
                     </div>
                 </div>
                 
-                {/* <div className='flexl'>
-                    <div className='wechartimg fleximg'><img src={qqimg} alt="wechart" /></div>
+                <div className='flexl'>
+                    <div className='wechartimg fleximg'><img src={QQgray} alt="wechart" /></div>
                     <div>QQ</div>
                 </div>
                 <div className='flexl'>
-                    <div className='wechartimg fleximg'><img src={doubanimg} alt="wechart" /></div>
+                    <div className='wechartimg fleximg'><img src={doubangray} alt="wechart" /></div>
                     <div>豆瓣</div>
                 </div>
                 <div className='flexl'>
-                    <div className='wechartimg fleximg'><img src={weiboimg} alt="wechart" /></div>
+                    <div className='wechartimg fleximg'><img src={weibogray} alt="wechart" /></div>
                     <div>新浪微博</div>
                 </div>
                 <div className='flexl'>
-                    <div className='wechartimg fleximg'><img src={qqkjimg} alt="wechart" /></div>
+                    <div className='wechartimg fleximg'><img src={qqklgray} alt="wechart" /></div>
                     <div>QQ空间</div>
                 </div>
                 <div className='flexl'>
-                    <div className='wechartimg fleximg'><img src={toutiaoimg} alt="wechart" /></div>
+                    <div className='wechartimg fleximg'><img src={toutgray} alt="wechart" /></div>
                     <div>今日头条</div>
-                </div> */}
+                </div>
                 <div className='flexl'>
                     <div className='wechartimg fleximg'><img src={linkimg} alt="wechart" /></div>
                     <div>复制链接</div>

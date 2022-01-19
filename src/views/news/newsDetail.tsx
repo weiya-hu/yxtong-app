@@ -10,12 +10,14 @@ import Collect from './component/collect/collect';
 import Share from './component/share/share';
 import Report from './component/report/report';
 import Comment from './component/comment/comment';
-import {newsDetail,newsReadList,newsWorksList} from '../../service/news'
+import {newsDetail,newsReadList,newsWorksList,addReadLog} from '../../service/news'
 
 import toimg from'../../public/images/user/to.png'
 import commentBlackimg from '../../public/images/user/commentBlack.png'
 import headerimg from '../../public/images/user/header.png'
+import message  from '../component/message/index';
 
+let timer=null
 export default class NewsDetail extends Component {
     state={
         newsTypeActive:-1,
@@ -97,10 +99,24 @@ export default class NewsDetail extends Component {
         this.props.history.push('/app/newsdetail/?newsId='+id)
         window.location.reload()
     }
+    //计时获得积分
+    getReadLog=()=>{
+        timer=setTimeout(()=>{
+            let data={"news_id":window.location.search.split('=')[1]}
+            addReadLog(data).then(res=>{
+                res.status && message.info('浏览获得积分')
+            })
+        },10000)
+        
+    }
     componentDidMount(){
         this.getNewsDetail()
         this.newsReadLists()
         this.getHotArticleList()
+        this.getReadLog()
+    }
+    componentWillUnmount(){
+        clearInterval(timer)
     }
     render(){
         let {newsTypeActive,total,readRank,newsDetail,hotArticleList}=this.state
@@ -125,7 +141,7 @@ export default class NewsDetail extends Component {
                         </div>
                         <div className='newsDetail-share-hr'></div>
                         <div className='share'>
-                            <Share css='align' />
+                            <Share css='align' item={newsDetail}/>
                         </div>
                     </div>
                     <div className='newsDetail-article newsDetail-article-padding'>

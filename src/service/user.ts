@@ -47,3 +47,8 @@ export const contentList =(data):Promise<API.IResult>=>{
 export const uploadolicy =():Promise<API.IResult>=>{
     return  get('user/upload-policy')
 }
+//发布文章
+
+export const newsPublish =(data):Promise<API.IResult>=>{
+    return  post('news/writing/publish',data)
+}

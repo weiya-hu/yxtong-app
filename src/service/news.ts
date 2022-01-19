@@ -70,3 +70,9 @@ export const newsAddPrais =(data):Promise<API.IResult>=>{
 export const newsCreatorDate =():Promise<API.IResult>=>{
     return  get('news/public/creatorDate')
 }
+
+//添加阅读记录
+
+export const addReadLog =(data):Promise<API.IResult>=>{
+    return  post('news/addReadLog',data)
+}

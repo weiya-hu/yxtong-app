@@ -39,6 +39,7 @@ export default class AliyunOSSUpload extends React.Component {
   onChange = ({ fileList }) => {
     const { onChange } = this.props;
     console.log('Aliyun OSS:', fileList);
+    this.props.change('https://p5.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/fd9a925e129d4486bc2ae602b30eb2ee~tplv-tt-cs0:640:360.jpg')
     if (onChange) {
       onChange([...fileList]);
     }
@@ -101,7 +102,7 @@ export default class AliyunOSSUpload extends React.Component {
     };
     return (
       <Upload {...props}>
-        <Button icon={<UploadOutlined />}>Click to Upload</Button>
+        <Button icon={<UploadOutlined/>}>Click to Upload</Button>
       </Upload>
     );
   }

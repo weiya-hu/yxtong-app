@@ -33,7 +33,7 @@ export default class ArticleItem extends Component<ArticleItemState> {
           <div className='flexcbl article-right'>
             <div>
               <div className='title'>{item.title}</div>
-              <div className='item-content'>{item.content}</div>
+              <div className='item-content' dangerouslySetInnerHTML = {{__html:item.content}}></div>
             </div>
             <div className='flexb article-bottom'>
               <div className='article-bottom-detail'>
