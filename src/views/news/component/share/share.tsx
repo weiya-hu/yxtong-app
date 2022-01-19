@@ -1,6 +1,8 @@
+//@ts-nocheck
 import { Component } from 'react'
 import './share.scss'
 import QRCode  from 'qrcode.react'
+import message from '../../../component/message/index'
 
 import shareimg from '../../../../public/images/user/share.png'
 import shareActiveimg from '../../../../public/images/user/shareActive.png'
@@ -27,10 +29,49 @@ interface ShareState{
 
 export default class Share extends Component<ShareState> {  
     state={
-        shareActive:false
+        shareActive:false,
+        copyUrl:""
     } 
+    copy = (e) => {
+        let copyDom = document.createElement("input");
+        
+        // 获得需要复制的内容
+        copyDom.setAttribute("value",e);
+        
+        //不要让他displaynone,否则复制不出来
+        // copyDom.style.display = "none";
+        
+        // 添加到 DOM 元素中
+        document.body.appendChild(copyDom);
+        
+        // 执行选中
+        // 注意: 只有 input 和 textarea 可以执行 select() 方法.
+        copyDom.select();
+        
+        // 获得选中的内容
+        let content = window.getSelection().toString();
+        
+        // 执行复制命令
+        document.execCommand("copy");
+        
+        // 将 input 元素移除
+        document.body.removeChild(copyDom);
+        message.success('复制成功');
+        }
+    copyLink=()=>{
+        let id =this.props.item.id?this.props.item.id:window.location.href.split('=')[1]
+        this.copy(window.location.protocol+'//'+window.location.host+'/app/newsdetail/newsId='+id)
+        
+    }
+    componentDidMount(){
+        console.log(this.props)
+        let id =this.props.item.id?this.props.item.id:window.location.href.split('=')[1]
+        let url =window.location.protocol+'//'+window.location.host+'/app/newsdetail/newsId='+id
+        this.setState({copyUrl:url})
+    }
     render(){
-        let prop = this.props,shareActive=this.state.shareActive
+        let prop = this.props
+        let {shareActive,copyUrl}=this.state
         return <div 
                     onMouseEnter ={()=>{this.setState({shareActive:true})}} 
                     onMouseLeave ={()=>{this.setState({shareActive:false})}}
@@ -54,7 +95,7 @@ export default class Share extends Component<ShareState> {
                     {/* <div>{window.location.protocol+'//'+window.location.host+'/app/newsdetail/?newsId='+this.props.item.id}</div> */}
                     <div className='wechat-ma'>
                         <QRCode
-                            value={window.location.protocol+'//'+window.location.host+'/app/newsdetail/newsId='+this.props.item.id}  //value参数为生成二维码的链接
+                            value={copyUrl}  //value参数为生成二维码的链接
                             size={100} //二维码的宽高尺寸
                             fgColor="#000000"  //二维码的颜色
                         />
@@ -83,7 +124,7 @@ export default class Share extends Component<ShareState> {
                     <div className='wechartimg fleximg'><img src={toutgray} alt="wechart" /></div>
                     <div>今日头条</div>
                 </div>
-                <div className='flexl'>
+                <div className='flexl' onClick={this.copyLink}>
                     <div className='wechartimg fleximg'><img src={linkimg} alt="wechart" /></div>
                     <div>复制链接</div>
                 </div>

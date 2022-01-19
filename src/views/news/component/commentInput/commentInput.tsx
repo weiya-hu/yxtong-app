@@ -25,7 +25,7 @@ export default class CommentInput extends Component<CommentInputState> {
     }
     //点击评论按钮
     commentBt=async()=>{
-        let id = window.location.search.split('=')[1]
+        let id = window.location.href.split('=')[1]
         let data={
             "content": this.state.comment,
             "news_id": id

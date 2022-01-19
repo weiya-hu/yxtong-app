@@ -56,7 +56,7 @@ export default class LoginComponent extends Component {
                 ...value,
             }
             const res = await dologin(data)
-            let url =window.location.search
+            let url =window.location.href
             if(res.status){
                 let userInfoRes= await getUser()
                 localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body) )

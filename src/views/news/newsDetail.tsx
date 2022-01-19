@@ -57,7 +57,8 @@ export default class NewsDetail extends Component {
       //获取新闻详情
     getNewsDetail=async(id)=>{
         if(!id){
-            id = window.location.search.split('=')[1]
+            id = window.location.href.split('=')[1]
+            console.log(window.location.href)
         }
         let data={
             newsId:id
@@ -102,7 +103,7 @@ export default class NewsDetail extends Component {
     //计时获得积分
     getReadLog=()=>{
         timer=setTimeout(()=>{
-            let data={"news_id":window.location.search.split('=')[1]}
+            let data={"news_id":window.location.href.split('=')[1]}
             addReadLog(data).then(res=>{
                 res.status && message.info('浏览获得积分')
             })
@@ -141,7 +142,7 @@ export default class NewsDetail extends Component {
                         </div>
                         <div className='newsDetail-share-hr'></div>
                         <div className='share'>
-                            <Share css='align' item={newsDetail}/>
+                            <Share css='align' key={newsDetail.id} item={newsDetail}/>
                         </div>
                     </div>
                     <div className='newsDetail-article newsDetail-article-padding'>

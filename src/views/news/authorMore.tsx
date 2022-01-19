@@ -57,7 +57,7 @@ export default class AuthorMore extends Component{
           }
     }
     getArticleList=async()=>{
-      let id = window.location.search.split('=')[1]
+      let id = window.location.href.split('=')[1]
       let {current,size,newsList}=this.state
       let data={
         creatorId:id,

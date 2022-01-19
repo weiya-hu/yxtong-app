@@ -27,7 +27,7 @@ export default class Collect extends Component<CollectProps> {
         e.stopPropagation() 
         let item = JSON.parse(JSON.stringify(this.state.item))
         let data={
-            "news_id": item.id?item.id:window.location.search.split('=')[1],
+            "news_id": item.id?item.id:window.location.href.split('=')[1],
             "types":item.is_collection?0:1
         }
         const res = await doCollect(data)

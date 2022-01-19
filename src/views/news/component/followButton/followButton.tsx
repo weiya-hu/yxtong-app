@@ -28,7 +28,7 @@ export default class FollowButton extends Component<FollowButtonProps> {
         event.stopPropagation() 
         let {item} =JSON.parse(JSON.stringify(this.state)) 
         let data={
-            "creator_id":item.creator_id?item.creator_id:Number(window.location.search.split('=')[1]) ,
+            "creator_id":item.creator_id?item.creator_id:Number(window.location.href.split('=')[1]) ,
             "types": item.is_attention?0:1
         }
         const res =await doAttention(data)

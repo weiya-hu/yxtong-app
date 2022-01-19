@@ -42,7 +42,7 @@ export default class Report extends Component {
         const {reportActive,reports} =this.state
         let data={
             "content": reports[reportActive],
-            "news_id":window.location.search.split('=')[1]
+            "news_id":window.location.href.split('=')[1]
         }
         const res = await sureReport(data)
         if(res.status){
