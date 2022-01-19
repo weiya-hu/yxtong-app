@@ -14,10 +14,15 @@ export const signInInfo =():Promise<API.IResult>=>{
 }
 
 
+//签到
 export const signIn =():Promise<API.IResult>=>{
-    return  post('user/my-center/sign-in',{})
+    return  post('user/singin',{})
 }
 
+//是否签到
+export const isSignIn =():Promise<API.IResult>=>{
+    return  get('user/is-singin')
+}
 
 export const tasks =():Promise<API.IResult>=>{
     return  get('user/my-center/tasks')

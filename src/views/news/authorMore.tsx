@@ -75,7 +75,7 @@ export default class AuthorMore extends Component{
     //跳转新闻页
     toNewsDetail=(item)=>{
       console.log(item)
-      this.props.history.push( { pathname : '/app/newsdetail?newsId='+item.id})
+      this.props.history.push( { pathname : '/app/newsdetail/?newsId='+item.id})
     }
     componentDidMount(){
       this.getArticleList()
