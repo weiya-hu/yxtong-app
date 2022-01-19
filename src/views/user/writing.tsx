@@ -46,11 +46,11 @@ export default class Writing extends Component{
                         <div>添加封面</div>
                     </div>
                 </div>
-                <Form labelCol={{ span: 4 }}>
+                {/* <Form labelCol={{ span: 4 }}>
                     <Form.Item label="Photos" name="photos">
                     <AliyunOSSUpload />
                     </Form.Item>
-                </Form>
+                </Form> */}
                 {/* <div>
                     <OSSUpload />
                 </div> */}
