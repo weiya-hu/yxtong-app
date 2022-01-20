@@ -56,7 +56,7 @@ export default class Share extends Component<ShareState> {
         
         // 将 input 元素移除
         document.body.removeChild(copyDom);
-        message.success('复制成功');
+        message.info('复制成功');
         }
     copyLink=()=>{
         let id =this.props.item.id?this.props.item.id:window.location.href.split('=')[1]

@@ -9,6 +9,7 @@ import { loginOut } from '../../../../service/login';
 import headerimg from '../../../../public/images/user/header.png'
 import exitimg from '../../../../public/images/user/exit.png'
 import exitactiveimg from '../../../../public/images/user/exitactive.png'
+import { spawn } from 'child_process';
 
  
 interface HeaderState{
@@ -23,6 +24,7 @@ interface HeaderState{
 class Header extends Component<any,HeaderState>{
   state={
     links:[
+      {name:'药智器械',link:'https://qx.yaozh.com/qxss'},
        {name:'药智人才',link:'https://job.yaozh.com/'},
        {name:'专利通',link:'https://patent.yaozh.com/'},
        {name:'药智咨询',link:'https://report.yaozh.com/'},
@@ -67,7 +69,14 @@ class Header extends Component<any,HeaderState>{
         <div className='width flexb'>
           <div className='linkspre'>
             <div className='flexl links'>
-              {links.map((item,index)=><a target="_blank" href={item.link} className='link-item' key={index}>{item.name}</a>)}
+              {links.map((item,index:number)=>
+                <div key={index}>
+                  <a target="_blank" href={item.link} className='link-item' >{item.name}</a> 
+                  {index===0 && <span className='hot-txt'>【热】</span> }
+                </div> 
+                
+              )}
+              
             </div>
           </div>
           {userInfo?(
