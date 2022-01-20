@@ -33,7 +33,7 @@ export default class ArticleDetail extends Component<ArticleDetailProps>{
                 <div className='flexb detail-info'>
                     <div className='flexl'>
                         <div>{moment(newsDetail.create_time).format('YYYY月MM月DD HH:mm')}</div>
-                        <div className='detail-from'>来源：{newsDetail.creator_name?newsDetail.creator_name:userInfo.name}</div>
+                        <div className='detail-from'>来源：{newsDetail.creator_name}</div>
                     </div>
                     <div>阅读量： {newsDetail.readed}</div>
                 </div>

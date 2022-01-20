@@ -17,7 +17,7 @@ import commentBlackimg from '../../public/images/user/commentBlack.png'
 import headerimg from '../../public/images/user/header.png'
 import message  from '../component/message/index';
 
-let timer=null
+// let timer=null
 export default class NewsDetail extends Component {
     state={
         newsTypeActive:-1,
@@ -114,10 +114,10 @@ export default class NewsDetail extends Component {
         this.getNewsDetail()
         this.newsReadLists()
         this.getHotArticleList()
-        this.getReadLog()
+        // this.getReadLog()
     }
     componentWillUnmount(){
-        clearInterval(timer)
+        // clearInterval(timer)
     }
     render(){
         let {newsTypeActive,total,readRank,newsDetail,hotArticleList}=this.state

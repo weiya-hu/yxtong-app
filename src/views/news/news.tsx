@@ -210,7 +210,7 @@ export default class News extends Component{
             <div className='news-list'  >
               {newsList.map((item,index)=>(
                 <div key={index} onClick={()=>this.toNewsDetail(item)}>
-                  <NewsListItem item={item}/>
+                  <NewsListItem key={item.id}  item={item}/>
                 </div>
               ))}
             </div>

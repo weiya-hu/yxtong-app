@@ -134,9 +134,12 @@
         color: #D00000;
     }
  }
- iframe{
-    display: block !important ;
-  }
+
   .ant-upload-list-text .ant-upload-span{
       display: none;
   }
+#writing{
+    iframe{
+        display: block;
+    }
+}

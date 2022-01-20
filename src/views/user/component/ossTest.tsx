@@ -1,8 +1,10 @@
+//@ts-nocheck
 import { Upload} from 'antd';
 import  React  from 'react';
 import {uploadolicy} from '../../../service/user'
 import moment from 'moment'
 import {get, post} from '../../../utils/request'
+import axios from "axios";
 export default class OSSUpload extends React.Component{
     render(){
         return <Upload 
@@ -58,18 +60,37 @@ uploadFile = (info) => {
                 file:photo   //一定在最后面
             };  //顺序最好按照我写的  不要动位置 要不然不保证你能活着走下去..哈哈
             let formData = new FormData();  //以表单的形式传递给oss
-            // Object.keys(param).forEach((key) => {
-            //   formData.append(key, param[key]);
-            // });
-            for (let i in param){
-                formData.append(i, param[i]);
-                console.log(formData,i, param[i])
-            }
-            console.log(formData)
+            // const formData = new window.FormData();
+            Object.keys(param).forEach((key) => {
+              formData.append(key, param[key]);
+            });
+            // for (let i in param){
+            //     formData.append(i, param[i]);
+            //     console.log(formData,i, param[i])
+            // }
+            console.log(formData.getAll('signature'))
             //请求oss上传
-            post(url,param).then((res) => {
+            axios.post(url,formData,{
+                header:{
+                    "Content-Type": "multipart/form-data"
+                },
+            }).then((res) => {
                 console.log(res)
             })
+            // axios({
+            //     url: url,
+                
+            //     header:{
+            //         "Content-Type": "multipart/form-data"
+            //     },
+            //     method: 'post',
+            //     data: formData
+            //   }).then((res) => {
+            //     console.log(res)
+            // })
+            // post(url,formData).then((res) => {
+            //     console.log(res)
+            // })
         });
     }
 }

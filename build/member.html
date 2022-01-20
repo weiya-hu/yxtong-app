@@ -6,6 +6,7 @@
     <title>数智器械 - 行业导航</title>
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="static/css/common.css" />
@@ -43,17 +44,13 @@
                 <a class="active" target="_blank" href="/app/login">登录</a>
                 <span class="split">|</span>
                 <a target="_blank" href="/app/register/register">注册</a>
-                <!--
-            	<a target="_blank" href="//www-dev.yaozh.com/member/">用户名称</a>
-            	<i class="fa"></i> 退出</a>
-            	-->
             </div>
             <div class="topbar-login">
 
                 <div class="info-messages">消息</div>
                 <div class="info-numbers"><span>0</span></div>
                 <div class="info-avatar"><img src="static/images/icon-avatar.png" alt=""></div>
-                <div class="info-username">阳光之下</div>
+                <div class="info-username"></div>
                 <div class="info-quit"><img src="static/images/icon-quit.png" alt=""><span>退出</span></div>
             </div>
         </div>
@@ -67,7 +64,7 @@
             <div class="navbar" id="navbar">
                 <ul>
                     <li class="active"><a href="/index.html">首页</a></li>
-                    <li><a href="/product.html">产品与服务</a>
+                    <li class="" id="li-propuct"><a href="/product.html">产品与服务</a>
                         <div class="product-content">
                             <div class="nav-left" data-pro="pro-item">
                                 <div class="first-nav">营销通</div>
@@ -134,7 +131,6 @@
                                                 <a href="">
                                                     <div class="item-pro-name">
                                                         <span>营销素材中心（CMS）</span>
-
                                                     </div>
                                                     <img src="static/images/icon-jump-black.png" alt="">
                                                 </a>
@@ -362,6 +358,17 @@
     </div>
 
     <script>
+        // 头像处加载
+        function myLoading() {
+            const token = localStorage.getItem('firstToken')
+            const isLogin = localStorage.getItem('isLogin')
+            if (!token) {
+                $('.topbar-login').show().css('background', './static/images/icon-loading.gif')
+            }
+
+        }
+
+
         // // 退出按钮
         $('.topbar-login').on({
             mouseenter: function() {
@@ -387,99 +394,18 @@
     </script>
 
     <script>
-        function getUser() {
-            const token = localStorage.getItem('firstToken')
-            const isLogin = localStorage.getItem('isLogin')
-            if (token) {
-                $.ajax({
-                    method: 'get',
-                    headers: {
-                        Authorization: token
-                    },
-
-                    url: "/api/user/my-center/info",
-                    dataType: "json",
-                    beforeSend: function() {
-                        $('.topbar-right').hide().after('<img id="load" src="./static/images/icon-loading.gif"/>')
-                        console.log('jiazai')
-                    },
-                    success: function(res) {
-                        if (res.status == 1) { //本地有token并且token登录了就是已登录
-
-                            // $('.topbar-right').hide()
-
-                            // $('.topbar-login').show()
-                            // $('.info-username').html(res.body.name)
-
-                            // 点击退出
-                            // $('.info-quit').mouseup(function() {
-                            //     $.ajax({
-                            //         method: 'get',
-                            //         url: "/api/login/login-out",
-                            //         dataType: "json",
-                            //         success: function(res) {
-                            //             console.log(res)
-                            //             $('.topbar-right').show()
-                            //             $('.topbar-login').hide()
-                            //         }
-                            //     })
-
-                            // })
-
-
-                        } else {
-                            // window.location.href = '/login/dologin'
-
-                        }
-                    },
-                    complete: function() {
-                        console.log('加载结束')
-                        $('#load').remove();
-                    }
-                })
-            } else {
-                // window.location.href = '/login/dologin'
-            }
-
-        }
-        $(document).ready(function() {
-
-            getUser()
-
-        })
-
-
-        // 立即体验在跳转链接前，校验是否登录
-        $('.isFlag').click(function() {
-            const token = localStorage.getItem('firstToken')
-            const isLogin = localStorage.getItem('isLogin')
-            if (token) {
-                console.log('token', token)
-                console.log('登录了')
-
-            } else {
-                console.log('没有登录')
-
-                console.log('token', token)
-
-                window.location.href = '/app/login'
-                return false;
-            }
-        })
-
         // 导航栏
-
-        $('.navs .navbar ul li:eq(1)').mouseover(function() {
-            $('.product-content').css('display', 'block')
+        $('.product-content').hide()
+        $('#li-propuct').mouseover(function() {
+            $('.product-content').css('display', 'flex')
         })
 
-        $('.product-content').mouseleave(function() {
-            $('.product-content').css('display', 'none')
+        $('#li-propuct').mouseout(function() {
+            $('.product-content').hide()
         })
     </script>
     <script>
-        console.log($('.nav-left .active'));
-        $('[data-pro]').children('a').click(function() {
+        $('[data-pro]').children('a').mouseover(function() {
             $(this).addClass('active').siblings().removeClass('active').find('.aimg').hide().siblings('img').show();
             $(this).find('.aimg').show().siblings('img').hide()
             var aa = $(this).index('a')
@@ -487,6 +413,50 @@
 
             $cons.eq($(this).attr('data-i') - 1).show().siblings().hide();
 
+        })
+
+        $('.topbar-login').hide()
+        if (localStorage.getItem('userInfo')) {
+            let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+            $('.topbar-login .info-avatar').attr('scr', userInfo.head)
+            $('.topbar-login .info-username').html(userInfo.name)
+            $('.topbar-right').hide()
+            $('.topbar-login').show()
+        } else if (localStorage.getItem('firstToken')) { //静态页面没有登录逻辑 如果没有userInfo，则取本地token获取userInfo，如果token失效，则为未登录，再去获取token也无用，因为是最新的token是未登录的
+            //发ajax
+            $.ajax({
+                method: 'get',
+                headers: {
+                    Authorization: localStorage.getItem('firstToken')
+                },
+                url: "/api/user/my-center/info",
+                dataType: "json",
+                success: function(res) {
+                    let {
+                        body,
+                        status
+                    } = res
+
+                    if (status == 1) { //本地有token并且token登录了就是已登录
+                        console.log('登录成功')
+
+                        localStorage.setItem('userInfo', JSON.stringify(body))
+                        $('.topbar-login .info-avatar').attr('scr', body.head)
+                        $('.topbar-login .info-username').html(body.name)
+                        $('.topbar-right').hide()
+                        $('.topbar-login').show()
+                    } else { //token 失效
+                        return
+                    }
+                },
+            })
+        } else { //未登录
+        }
+
+        // 点击退出
+        $('.info-quit').on('click', function() {
+            $('.topbar-login').hide()
+            $('.topbar-right').show()
         })
     </script>
 <div id="content">
@@ -501,7 +471,7 @@
 
     </div>
     <div class="content-source">
-        <a href="https://1537030.udesk.cn/im_client/?web_plugin_id=179991&agent_id=467471&group_id=303781" target="_blank"> <img src="static/images/icon-content-source.png" alt="">
+        <a href="" target="_blank"> <img src="static/images/icon-content-source.png" alt="">
             <span>智能客服</span>
         </a>
     </div>
@@ -606,6 +576,39 @@
         $('.content-tips-tel').hide()
         $('.content-tips-wechat').hide()
     }
+</script>
+
+
+<script>
+    (function(a, h, c, b, f, g) { //c：jq；b:js链接字符串；f:函数名；g:script标签
+        a["UdeskApiObject"] = f;
+        a[f] = a[f] || function() {
+            (a[f].d = a[f].d || []).push(arguments)
+        };
+        g = h.createElement(c);
+        g.async = 1;
+        g.charset = "utf-8";
+        g.src = b;
+        c = h.getElementsByTagName(c)[0];
+        c.parentNode.insertBefore(g, c)
+    })(window, document, "script", "https://assets-cli.udesk.cn/im_client/js/udeskApi.js", "ud");
+
+    ud({
+        "code": "4a67504g",
+        "link": "https://1537030.udesk.cn/im_client/?web_plugin_id=179991"
+    });
+
+
+    let kfBtn
+    let getFftimer = setInterval(() => {
+        kfBtn = $('#udesk_btn .udesk-client-btn')
+        if (kfBtn.length) {
+            kfBtn.addClass('myfkbtn').appendTo('#content').mouseup((e) => {
+                e.stopPropagation()
+            })
+            clearInterval(getFftimer)
+        }
+    }, 100);
 </script>
 <link rel="stylesheet" type="text/css" href="static/css/member.css" />
 
@@ -1098,7 +1101,7 @@
         </dl>
         <div class="item-qrcode">
             <div class="qrcode-1">
-                <img width="110" height="105" src="static/images/qr1.png" alt="">
+                <img width="110" height="105" src="static/images/qr2.jpg" alt="">
                 <div>扫一扫关注药智器械</div>
             </div>
             <div class="qrcode-1">

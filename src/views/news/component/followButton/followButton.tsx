@@ -26,18 +26,35 @@ export default class FollowButton extends Component<FollowButtonProps> {
     }
     follow=async(event)=>{
         event.stopPropagation() 
-        let {item} =JSON.parse(JSON.stringify(this.state)) 
-        let data={
-            "creator_id":item.creator_id?item.creator_id:Number(window.location.href.split('=')[1]) ,
-            "types": item.is_attention?0:1
-        }
-        const res =await doAttention(data)
-        if(res.status){
-            $message.info(data.types?'关注成功':'取消关注')
-            item.is_attention=!item.is_attention?'1':null
-            this.setState({item:item})
-        }
+        // let userInfo =JSON.parse(localStorage.getItem('userInfo'))
+        // if(userInfo){
+            let {item} =JSON.parse(JSON.stringify(this.state)) 
+            let data={
+                "creator_id":item.creator_id?item.creator_id:Number(window.location.href.split('=')[1]) ,
+                "types": item.is_attention?0:1
+            }
+            const res =await doAttention(data)
+            if(res.status){
+                $message.info(data.types?'关注成功':'取消关注')
+                item.is_attention=!item.is_attention?'1':null
+                this.setState({item:item})
+            }
+        // }else{
+        //     this.setState({
+        //         loginShow:true  
+        //     })
+        //     document.body.style.overflow='hidden'
+        // }
+        
     }
+    popLoginShow=(val)=>{
+        this.state.loginShow=val;
+        this.setState({loginShow:val})
+        document.body.style.overflow='auto';
+        console.log(this.state.loginShow,val);
+        this.forceUpdate();
+    }
+    
     render(){
         const {item,loginShow} = this.state,{size}=this.props
         return size==='big'?(
@@ -45,8 +62,9 @@ export default class FollowButton extends Component<FollowButtonProps> {
             <div onClick={this.follow} className={item.is_attention?'big-interest-button-gray fleximg':'fleximg big-interest-button'}>
                 <div className='followimg fleximg'><img src={item.is_attention?gouimg:addBigimg} alt="add" /></div>
                 <span>{item.is_attention?'已关注':'关注'}</span>
-                {loginShow &&  <PopupLogin 
-                    show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}
+                {loginShow &&  <PopupLogin
+                    key={item.creator_id} 
+                    show={(val)=>{this.setState({loginShow:false});document.body.style.overflow='auto'}}
                     userInfo={(val)=>{this.setState({userInfo:val});this.props.userInfo(val)}}
                 />} 
             </div>
@@ -56,7 +74,8 @@ export default class FollowButton extends Component<FollowButtonProps> {
                 <div className='followimg fleximg'><img src={item.is_attention?gouimg:addSmallimg} alt="is_attention" /></div>
                 <span>{item.is_attention?'已关注':'关注'}</span>
                 {loginShow &&  <PopupLogin 
-                    show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}
+                    key={item.creator_id} 
+                    show={(val)=>{this.popLoginShow(val)}}
                     userInfo={(val)=>{this.setState({userInfo:val});this.props.userInfo(val)}}
                 />} 
             </div>

@@ -81,7 +81,7 @@ export default class Register extends Component {
         }
         return <div id='register'>
             <div className='content'>
-                <div className='logoimg flexl'><img src={logoimg} alt="logo" /></div>
+                <div className='logoimg fleximg'><img src={logoimg} alt="logo" /></div>
                 {(isForget === 'forget')?(
                     <div className='forget'>
                         <div className='forgettitle'>找回密码</div>

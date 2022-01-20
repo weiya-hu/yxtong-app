@@ -3,10 +3,10 @@ import { Component } from 'react'
 import './writing.scss'
 import { Editor } from '@tinymce/tinymce-react'
 import AliyunOSSUpload from './component/ossImg'
-import OSSUpload from './component/ossTest'
 import { Form} from 'antd'
 import message from '../component/message/index';
 import {newsPublish} from '../../service/user'
+import OSSUpload from './component/ossTest'
 
 
 
@@ -39,8 +39,11 @@ export default class Writing extends Component{
         })
     }
     imageEditor= (blobInfo, success, failure)=>{
+        console.log(blobInfo.base64(),blobInfo.uri())
+        console.log(blobInfo.blobUri())
         if (blobInfo.blob()){
-            success('https://p5.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/fd9a925e129d4486bc2ae602b30eb2ee~tplv-tt-cs0:640:360.jpg')
+            // success('https://p5.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/fd9a925e129d4486bc2ae602b30eb2ee~tplv-tt-cs0:640:360.jpg')
+            success(blobInfo.base64())
         }
         // if (blobInfo.blob()){
         //         const formData = new window.FormData();
@@ -117,11 +120,15 @@ export default class Writing extends Component{
         console.log(this.props.item,this.state.coverImgurl)
 
     }
+    coverIMgChange=(val)=>{
+        console.log(val)
+        this.setState({coverImgurl:val})
+    }
     render(){
         let {titleMessage,coverImgurl,textMessage,title,content}=this.state
         let str=content
         return(
-            <div className='writing'>
+            <div className='writing' id='writing'>
                 <div className='top flexb'>
                     <div>
                         <span className='writing-txt'>发布文章</span>
@@ -139,24 +146,23 @@ export default class Writing extends Component{
                             <div className='addimg'><img src={addimg} alt="add" /></div>
                             <div>添加封面</div>
                             <div>
-                                <Form labelCol={{ span: 4 }}>
-                                    <Form.Item name="photos">
-                                        <AliyunOSSUpload className='img-upload' change={(val=>{this.setState({coverImgurl:val})})} />
-                                    </Form.Item>
-                                </Form>
+                                {/* <Form labelCol={{ span: 4 }}>
+                                    <Form.Item name="photos"> */}
+                                        <AliyunOSSUpload className='img-upload' change={(val=>{this.coverIMgChange(val)  })} />
+                                    {/* </Form.Item>
+                                </Form> */}
                             </div>
                             
                         </div>
                         {coverImgurl && 
-                            <div className='coverimg fleximg'><img src={coverImgurl} alt="cover" onError={(e) => { e.target.src = falseimg }}/></div>
+                            <div className='coverimg fleximg'><img src={coverImgurl} alt="cover"  onError={(e) => { e.target.src = falseimg }}/></div>
                         }
                     </div>
                     
                     
                 </div>
-                
+                {/* <div><OSSUpload /></div> */}
                 <div>
-                    <OSSUpload />
                 </div>
                 <div className='title'>
                     <div className='title-txt'>

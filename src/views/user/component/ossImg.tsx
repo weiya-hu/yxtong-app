@@ -38,8 +38,9 @@ export default class AliyunOSSUpload extends React.Component {
 
   onChange = ({ fileList }) => {
     const { onChange } = this.props;
+    const {OSSData} = this.state
     console.log('Aliyun OSS:', fileList);
-    this.props.change(Date.now())
+    this.props.change(OSSData.host+'/'+ fileList[0].url)
     if (onChange) {
       onChange([...fileList]);
     }
@@ -47,9 +48,7 @@ export default class AliyunOSSUpload extends React.Component {
 
   onRemove = file => {
     const { value, onChange } = this.props;
-
     const files = value.filter(v => v.url !== file.url);
-
     if (onChange) {
       onChange(files);
     }
@@ -57,12 +56,12 @@ export default class AliyunOSSUpload extends React.Component {
 
   getExtraData = file => {
     const { OSSData } = this.state;
-
     return {
       key: file.url,
       OSSAccessKeyId: OSSData.accessid,
+      success_action_status : '200',
       policy: OSSData.policy,
-      Signature: OSSData.signature,
+      signature: OSSData.signature,
     };
   };
 
@@ -75,20 +74,15 @@ export default class AliyunOSSUpload extends React.Component {
     }
 
     const suffix = file.name.slice(file.name.lastIndexOf('.'));
-    const filename = Date.now() + suffix;
+    const filename = Date.now() +suffix;
     file.url = OSSData.dir + filename;
+
 
     return file;
   };
-  //采用手动上传的方式
-// beforeUpload = (file) => {
-//     let files = [];
-//     this.setState({
-//         fileList: [...files]
-//     })
-//      return false;
-// }
-
+  upload=()=>{
+    console.log(55666)
+  }
   render() {
     const { value } = this.props;
     const props = {
@@ -99,19 +93,24 @@ export default class AliyunOSSUpload extends React.Component {
       onRemove: this.onRemove,
       data: this.getExtraData,
       beforeUpload: this.beforeUpload,
+      // customRequest:this.upload
     };
     return (
-      <Upload {...props}>
-        <Button icon={<UploadOutlined/>}>Click to Upload</Button>
-      </Upload>
+      <Form labelCol={{ span: 4 }}>
+        <Form.Item name="photos">
+          <Upload {...props}>
+            <Button icon={<UploadOutlined/>}>Click to Upload</Button>
+          </Upload>
+          </Form.Item>
+      </Form>
     );
   }
 }
-// const FormPage = () => (
-//   <Form labelCol={{ span: 4 }}>
-//     <Form.Item label="Photos" name="photos">
-//       <AliyunOSSUpload />
-//     </Form.Item>
-//   </Form>
-// );
+const FormPage = () => (
+  <Form labelCol={{ span: 4 }}>
+    <Form.Item label="Photos" name="photos">
+      <AliyunOSSUpload />
+    </Form.Item>
+  </Form>
+);
 // ReactDOM.render(<FormPage />, mountNode);
