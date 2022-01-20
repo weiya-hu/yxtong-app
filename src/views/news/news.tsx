@@ -60,6 +60,9 @@ export default class News extends Component{
       
     }else{
       let param = this.props.location.query
+      this.setState({
+        newsTypeId:item.id
+      })
       if(param){
         this.getNewslist(param.item.id)
         this.setState({newsTypeActive:param.index})
@@ -67,6 +70,7 @@ export default class News extends Component{
         this.getNewslist(item.id)
       }
     }
+    
     if(val === 0){
       this.getFavorlist()
     }
@@ -99,9 +103,8 @@ export default class News extends Component{
   }
   //跳转新闻详情页
   toNewsDetail=(item)=>{
-    console.log(item)
     this.props.history.push( { pathname : '/app/newsdetail/?newsId='+item.id})
-   
+    window.scrollTo (0,0);
   }
   getFavorlist=async()=>{
     const {interestPage,interestSize}=this.state

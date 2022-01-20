@@ -24,7 +24,7 @@ interface HeaderState{
 class Header extends Component<any,HeaderState>{
   state={
     links:[
-      {name:'药智器械',link:'https://qx.yaozh.com/qxss'},
+      {name:'药智器械',link:'https://qx.yaozh.com/login'},
        {name:'药智人才',link:'https://job.yaozh.com/'},
        {name:'专利通',link:'https://patent.yaozh.com/'},
        {name:'药智咨询',link:'https://report.yaozh.com/'},

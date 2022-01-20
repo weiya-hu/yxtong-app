@@ -2,8 +2,6 @@
 import { Component } from 'react'
 import './writing.scss'
 import { Editor } from '@tinymce/tinymce-react'
-// import 'tinymce/themes/mobile/theme'
-import tinymce from 'tinymce/tinymce';
 import AliyunOSSUpload from './component/ossImg'
 import OSSUpload from './component/ossTest'
 import { Form} from 'antd'

@@ -64,7 +64,6 @@ export default class Share extends Component<ShareState> {
         
     }
     componentDidMount(){
-        console.log(this.props)
         let id =this.props.item.id?this.props.item.id:window.location.href.split('=')[1]
         let url =window.location.protocol+'//'+window.location.host+'/app/newsdetail/newsId='+id
         this.setState({copyUrl:url})
