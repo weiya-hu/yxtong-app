@@ -477,6 +477,18 @@
             $('.product-content').css('display', 'none')
         })
     </script>
+    <script>
+        console.log($('.nav-left .active'));
+        $('[data-pro]').children('a').click(function() {
+            $(this).addClass('active').siblings().removeClass('active').find('.aimg').hide().siblings('img').show();
+            $(this).find('.aimg').show().siblings('img').hide()
+            var aa = $(this).index('a')
+            var $cons = $('[pro-content="' + $(this).parent().attr('data-pro') + '"]').children();
+
+            $cons.eq($(this).attr('data-i') - 1).show().siblings().hide();
+
+        })
+    </script>
 <link rel="stylesheet" type="text/css" href="static/css/member.css" />
 
 <div class="container">

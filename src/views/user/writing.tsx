@@ -155,9 +155,9 @@ export default class Writing extends Component{
                     
                 </div>
                 
-                {/* <div>
+                <div>
                     <OSSUpload />
-                </div> */}
+                </div>
                 <div className='title'>
                     <div className='title-txt'>
                         <span className='font16 bold'>文章标题</span>
