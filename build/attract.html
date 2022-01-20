@@ -2,41 +2,41 @@
 <div class="product-content">
     <div class="nav-left" data-pro="pro-item">
         <div class="first-nav">营销通</div>
-        <a class="active">
+        <a class="active" data-i="1">
             <div class="nav-propuct">
                 <img src="static/images/icon-propuct-1.png" alt="">
                 <img src="static/images/icon-propuct-1-w.png" class="aimg" alt="">
                 <span> 采集制作</span></div>
         </a>
-        <a>
+        <a data-i="2">
             <div class="nav-propuct">
                 <img src="static/images/icon-propuct-2.png" alt="">
                 <img src="static/images/icon-propuct-2-w.png" class="aimg" alt="">
                 <span> 广告服务（DSP）</span>
             </div>
         </a>
-        <a>
+        <a data-i="3">
             <div class="nav-propuct">
                 <img src="static/images/icon-propuct-3.png" alt="">
                 <img src="static/images/icon-propuct-3-w.png" class="aimg" alt="">
                 <span> 客户管理</span>
             </div>
         </a>
-        <a>
+        <a data-i="4">
             <div class="nav-propuct">
                 <img src="static/images/icon-propuct-4.png" alt="">
                 <img src="static/images/icon-propuct-4-w.png" class="aimg" alt="">
                 <span> 数据处理</span>
             </div>
         </a>
-        <a>
+        <a data-i="5">
             <div class="nav-propuct">
                 <img src="static/images/icon-propuct-5.png" alt="">
                 <img src="static/images/icon-propuct-5-w.png" class="aimg" alt="">
                 <span> 裂变分销</span>
             </div>
         </a>
-        <a>
+        <a data-i="6">
             <div class="nav-propuct">
                 <img src="static/images/icon-propuct-6.png" alt="">
                 <img src="static/images/icon-propuct-6-w.png" class="aimg" alt="">
@@ -44,7 +44,7 @@
             </div>
         </a>
         <div class="first-nav">器械通</div>
-        <a>
+        <a data-i="7">
             <div class="nav-propuct">
                 <img src="static/images/icon-propuct-7.png" alt="">
                 <img src="static/images/icon-propuct-7-w.png" class="aimg" alt="">
@@ -261,17 +261,19 @@
 </div>
 
 <script>
-    // console.log($('.nav-left .active'));
-    $('.nav-left .active .aimg').show().siblings('img').hide()
-    $('[data-pro]').children().click(function() {
-        if ($(this).attr('disabled')) return;
+    console.log($('.nav-left .active'));
+    // $('.nav-left .active .aimg').show().siblings('img').hide()
+    $('[data-pro]').children('a').click(function() {
+        // if ($(this).attr('disabled')) return;
         $(this).addClass('active').siblings().removeClass('active').find('.aimg').hide().siblings('img').show();
         $(this).find('.aimg').show().siblings('img').hide()
         var aa = $(this).index('a')
         var $cons = $('[pro-content="' + $(this).parent().attr('data-pro') + '"]').children();
-        console.log($cons.eq($(this).index(aa)))
-        console.log(aa)
-        $cons.eq($(this).index()).show().siblings().hide();
+        // console.log($cons.children($(this).index('a')))
+
+        // console.log($(this).attr('data-i'));
+        $cons.eq($(this).attr('data-i') - 1).show().siblings().hide();
+
     })
 </script>
 
@@ -284,7 +286,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="icon" href="static/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="static/css/common.css" />
     <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
     <meta name="keywords" content="" />
@@ -496,17 +498,14 @@
             }
         })
 
-        // 导航栏链接
-
-
+        // 导航栏
 
         $('.navs .navbar ul li:eq(1)').mouseover(function() {
-            console.log(111)
             $('.product-content').css('display', 'block')
         })
-        $('.navs .navbar ul li').mouseleave(function() {
-            // $('.product-content .nav-propuct').mouseleave(function() {
-            $('.product-content').hide()
+
+        $('.product-content').mouseleave(function() {
+            $('.product-content').css('display', 'none')
         })
     </script>
 <div id="content">
