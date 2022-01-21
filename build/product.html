@@ -65,7 +65,7 @@
                     <!-- <div class="info-messages">消息</div>
                     <div class="info-numbers"><span>0</span></div> -->
                     <img id="header" src="static/images/icon-avatar.png" alt="">
-                    <div id="uname">阿里斯顿会计法</div>
+                    <div id="uname"></div>
                     <div class="info-quit">退出</div>
                 </div>
 
@@ -414,6 +414,10 @@
                 return
             }
             initLogin(token)
+
+            $('#uname').click(function(){
+                location.href = '/app/user'
+            })
         })
 
         // 点击退出
@@ -728,7 +732,7 @@
                 </div>
                 <div class="item wow fadeInUp" data-wow-delay="0.4s">
                     <em></em>
-                    <h4>数据库采集工具</h4>
+                    <h4>智能推送工具</h4>
                     <ul>
                         <li><span class="tit">智能企业名片-药智CRM</span><span class="type">重点推荐</span></li>
                         <li><span class="tit">智能E-mail营销系统</span><span class="type">重点推荐</span></li>
@@ -742,7 +746,7 @@
                 </div>
                 <div class="item wow fadeInUp" data-wow-delay="0.6s">
                     <em></em>
-                    <h4>数据库采集工具</h4>
+                    <h4>智能客服工具</h4>
                     <ul>
                         <li><span class="tit">智能语音客服</span><span class="type">重点推荐</span></li>
                         <li><span class="tit">智能图文客服</span></li>
@@ -750,7 +754,7 @@
                 </div>
                 <div class="item wow fadeInUp" data-wow-delay="0.8s">
                     <em></em>
-                    <h4>数据库采集工具</h4>
+                    <h4>精算匹配系统</h4>
                     <ul>
                         <li><span class="tit">智能全网精准客户匹配系统</span><span class="type">重点推荐</span></li>
                         <li><span class="tit">智能精准客户匹配系统</span></li>
@@ -763,7 +767,7 @@
     <div class="prod-other">
         <div class="wrapper">
             <div class="prod-tit">
-                <h3>医械数据通</h3>
+                <h3>其他服务</h3>
             </div>
             <div class="lst">
                 <ul>

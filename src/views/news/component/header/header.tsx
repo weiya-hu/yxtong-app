@@ -36,8 +36,8 @@ class Header extends Component<any,HeaderState>{
        {name:'论坛交流',link:'https://bbs.yaozh.com'},
        {name:'俱乐部',link:'https://club.yaozh.com/'},
        {name:'海外智通',link:'https://www.yaohaiwai.com/'},
-       {name:'药智谷',link:'https://gu.yaozh.com/'},
-       {name:'药智搜',link:'https://nav.yaozh.com/'}
+       {name:'药智谷',link:'https://gu.yaozh.com/'}
+      //  {name:'药智搜',link:'https://nav.yaozh.com/'}
     ],
     exitActive:false,//退出按钮是否hover
     exitNone:false,//退出登录是否显示
@@ -73,6 +73,9 @@ class Header extends Component<any,HeaderState>{
         <div className='width flexb'>
           <div className='linkspre'>
             <div className='flexl links'>
+              <div onClick={()=>{window.location.href='/'}}>
+                <a className='link-item' >首页</a> 
+              </div> 
               {links.map((item,index:number)=>
                 <div key={index}>
                   <a target="_blank" href={item.link} className='link-item' >{item.name}</a> 

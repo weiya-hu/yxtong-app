@@ -65,7 +65,7 @@
                     <!-- <div class="info-messages">消息</div>
                     <div class="info-numbers"><span>0</span></div> -->
                     <img id="header" src="static/images/icon-avatar.png" alt="">
-                    <div id="uname">阿里斯顿会计法</div>
+                    <div id="uname"></div>
                     <div class="info-quit">退出</div>
                 </div>
 
@@ -414,6 +414,10 @@
                 return
             }
             initLogin(token)
+
+            $('#uname').click(function(){
+                location.href = '/app/user'
+            })
         })
 
         // 点击退出
@@ -787,7 +791,7 @@
                             <div class="bgb1 t2">
                                 <div class="stitle1">推送系统</div>
                                 <div class="mbtns">
-                                    <div class="mbtn" data-surl="/https://robot.yxtong.com/user/qq/devicesRun.html">
+                                    <div class="mbtn" data-surl="https://robot.yxtong.com/user/qq/devicesRun.html">
                                         <img src="static/images/sm-star.png" class="smstar" alt="">
                                         APP营销机器人矩阵
                                     </div>
