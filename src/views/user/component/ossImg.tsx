@@ -3,6 +3,14 @@ import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import React from 'react'
 import {uploadolicy} from '../../../service/user'
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 
 export default class AliyunOSSUpload extends React.Component {
   state = {
@@ -36,14 +44,22 @@ export default class AliyunOSSUpload extends React.Component {
     signature: 'ZGFob25nc2hhbw==',
   });
 
-  onChange = ({ fileList }) => {
+  onChange = async({file, fileList ,event}) => {
+
     const { onChange } = this.props;
     const {OSSData} = this.state
-    console.log('Aliyun OSS:', fileList);
-    this.props.change(OSSData.host+'/'+ fileList[0].url)
+
+    // this.props.change(OSSData.host+'/'+ fileList[0].url)
     if (onChange) {
       onChange([...fileList]);
     }
+      let sendUrl= OSSData.host+'/'+ file.url
+      let imgurl = await getBase64(file.originFileObj);
+      this.props.change(imgurl,OSSData.host+'/'+ file.url)
+      // this.props.sendUrlchange(OSSData.host+'/'+ file.url)
+
+    console.log(sendUrl )
+
   };
 
   onRemove = file => {
@@ -53,7 +69,9 @@ export default class AliyunOSSUpload extends React.Component {
       onChange(files);
     }
   };
-
+  uploadFile=(a,b,s)=>{
+    console.log(a,b,s)
+  }
   getExtraData = file => {
     const { OSSData } = this.state;
     return {
@@ -65,7 +83,10 @@ export default class AliyunOSSUpload extends React.Component {
     };
   };
 
+
   beforeUpload = async file => {
+   
+    
     const { OSSData } = this.state;
     const expire = OSSData.expire * 1000;
 
@@ -77,8 +98,9 @@ export default class AliyunOSSUpload extends React.Component {
     const filename = Date.now() +suffix;
     file.url = OSSData.dir + filename;
 
-
+   
     return file;
+    
   };
   upload=()=>{
     console.log(55666)
@@ -92,7 +114,9 @@ export default class AliyunOSSUpload extends React.Component {
       onChange: this.onChange,
       onRemove: this.onRemove,
       data: this.getExtraData,
+      UploadFile:this.uploadFile,
       beforeUpload: this.beforeUpload,
+      onPreview:this.handlePreview
       // customRequest:this.upload
     };
     return (

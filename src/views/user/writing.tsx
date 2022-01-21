@@ -19,6 +19,7 @@ export default class Writing extends Component{
         titleMessage:'',//标题的错误message
         textMessage:'',//文章的错误message
         coverImgurl:this.props.item?this.props.item.thumb_url?this.props.item.thumb_url:falseimg:'',
+        sendCoverImgurl:this.props.item?this.props.item.sendCoverImgurl:'',
         title:this.props.item?this.props.item.title:'',
         content:this.props.item?this.props.item.content:'',
         edit:this.props.item?this.props.item.content:''
@@ -42,28 +43,13 @@ export default class Writing extends Component{
         console.log(blobInfo.base64(),blobInfo.uri())
         console.log(blobInfo.blobUri())
         if (blobInfo.blob()){
-            // success('https://p5.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/fd9a925e129d4486bc2ae602b30eb2ee~tplv-tt-cs0:640:360.jpg')
-            success(blobInfo.base64())
+            success('data:image/jpeg;base64,'+blobInfo.base64())
         }
-        // if (blobInfo.blob()){
-        //         const formData = new window.FormData();
-        //         formData.append('myFile', blobInfo.blob(), blobInfo.filename())
-        //         axios.post(``,formData).then((res) => {
-        //                if(res.data){
-        //                      // 将图片插入到编辑器中
-        //                      success(res.data.data[0])
-        //                 }
-        //  }).catch((error) => {
-        //                alert(error);
-        //  })
-        //  } else {
-        //          alert('error');
-        //  }
-  
+
    }
    //预览文章
    preView=()=>{
-        const {title,edit,coverImgurl} = this.state
+        const {title,edit,coverImgurl,sendCoverImgurl} = this.state
         if(!title){
             message.info('请输入标题')
             this.setState({titleMessage:'必填项'})
@@ -78,14 +64,16 @@ export default class Writing extends Component{
                 readed: 0,
                 thumb_url:coverImgurl,
                 title:title,
-                update_time: new Date()
+                update_time: new Date(),
+                sendCoverImgurl:sendCoverImgurl
             }
             this.props.preview(1,item)
         }
    }
    //发布文章
    publishNews=async()=>{
-        const {title,edit,coverImgurl} = this.state
+        const {title,edit,sendCoverImgurl,coverImgurl} = this.state
+        console.log(sendCoverImgurl)
         if(!title){
             message.info('请输入标题')
             this.setState({titleMessage:'必填项'})
@@ -96,7 +84,7 @@ export default class Writing extends Component{
         else{
             let item={
                 content: edit,
-                thumb_url:coverImgurl,
+                thumb_url:sendCoverImgurl?sendCoverImgurl:coverImgurl,
                 title:title
             }
             const res = await newsPublish(item)
@@ -108,7 +96,8 @@ export default class Writing extends Component{
                     content:'',
                     titleMessage:'',
                     textMessage:'',
-                    edit:''
+                    edit:'',
+                    sendCoverImgurl:''
                 })
                 message.info('发布成功')
             }
@@ -120,9 +109,28 @@ export default class Writing extends Component{
         console.log(this.props.item,this.state.coverImgurl)
 
     }
-    coverIMgChange=(val)=>{
+    getObjectURL=(file)=> {
+        var url = null;
+        if (window.createObjectURL != undefined) {
+            url = window.createObjectURL(file);
+        } else if (window.URL != undefined) {
+            url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) {
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+    coverIMgChange=(val,sendval)=>{
         console.log(val)
-        this.setState({coverImgurl:val})
+        console.log(sendval)
+        // var objectURL = window.URL.createObjectURL(val)
+        // console.log(objectURL)
+
+        this.setState({
+            coverImgurl:val,
+            sendCoverImgurl:sendval
+        })
+        console.log(this.state.sendCoverImgurl)
     }
     render(){
         let {titleMessage,coverImgurl,textMessage,title,content}=this.state
@@ -148,7 +156,7 @@ export default class Writing extends Component{
                             <div>
                                 {/* <Form labelCol={{ span: 4 }}>
                                     <Form.Item name="photos"> */}
-                                        <AliyunOSSUpload className='img-upload' change={(val=>{this.coverIMgChange(val)  })} />
+                                        <AliyunOSSUpload className='img-upload' change={((val,sendval)=>{this.coverIMgChange(val,sendval)  })} />
                                     {/* </Form.Item>
                                 </Form> */}
                             </div>
@@ -161,7 +169,7 @@ export default class Writing extends Component{
                     
                     
                 </div>
-                {/* <div><OSSUpload /></div> */}
+                <div><OSSUpload /></div>
                 <div>
                 </div>
                 <div className='title'>

@@ -26,7 +26,7 @@ export default class FollowButton extends Component<FollowButtonProps> {
     }
     follow=async(event)=>{
         event.stopPropagation() 
-        // let userInfo =JSON.parse(localStorage.getItem('userInfo'))
+        let userInfo =JSON.parse(localStorage.getItem('userInfo'))
         // if(userInfo){
             let {item} =JSON.parse(JSON.stringify(this.state)) 
             let data={

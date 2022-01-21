@@ -12,6 +12,9 @@ import {loginOut } from '../../service/login'
 import { getUser } from '../../service/login'
 import { Link,Redirect ,withRouter} from 'react-router-dom';
 
+// import store from "../../store/index";
+// import { setUserInfo,removeUserInfo,loginShow,loginRemove } from "../../store/actionCreators.js";
+
 import logoimg from '../../public/images/logo.png'
 import homeimg from '../../public/images/user/home.png'
 import exitimg from '../../public/images/user/exit.png'
@@ -47,6 +50,7 @@ class User extends Component {
       if(res.status){
         this.props.history.push('/app/login?url=/app/user')
         localStorage.removeItem('userInfo')
+        // store.dispatch(removeUserInfo())
       }
       
     }

@@ -3,7 +3,7 @@ import { Upload} from 'antd';
 import  React  from 'react';
 import {uploadolicy} from '../../../service/user'
 import moment from 'moment'
-import {get, post} from '../../../utils/request'
+import {post} from '../../../utils/request'
 import axios from "axios";
 export default class OSSUpload extends React.Component{
     render(){
@@ -51,11 +51,12 @@ uploadFile = (info) => {
             // biu一下，提交给oss
             let param = {
                 name:photoName,
-                key,
-                policy:policy,
+                key:key,
+               
                 OSSAccessKeyId:OSSAccessKeyId,
                 success_action_status:'200',  //必须这么写 不要问为什么
                 // callback:callback,
+                policy:policy,
                 signature:signature,
                 file:photo   //一定在最后面
             };  //顺序最好按照我写的  不要动位置 要不然不保证你能活着走下去..哈哈
@@ -69,14 +70,16 @@ uploadFile = (info) => {
             //     console.log(formData,i, param[i])
             // }
             console.log(formData.getAll('signature'))
+            localStorage.setItem('type','oss')
             //请求oss上传
-            axios.post(url,formData,{
-                header:{
-                    "Content-Type": "multipart/form-data"
-                },
-            }).then((res) => {
+            post(url,formData).then(res=>{
                 console.log(res)
             })
+            // axios.post(url,formData,{
+            //     header:{
+            //         "Content-Type": "multipart/form-data"
+            //     },
+            // })
             // axios({
             //     url: url,
                 

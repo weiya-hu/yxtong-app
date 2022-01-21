@@ -6,6 +6,7 @@ import PopupLogin from '../../../login/popupLogin'
 import { withRouter } from 'react-router-dom';
 import { loginOut } from '../../../../service/login';
 
+
 import headerimg from '../../../../public/images/user/header.png'
 import exitimg from '../../../../public/images/user/exit.png'
 import exitactiveimg from '../../../../public/images/user/exitactive.png'
@@ -55,6 +56,9 @@ class Header extends Component<any,HeaderState>{
   }
   tologin=()=>{
     this.props.history.push('/app/login?url=/app/news')
+  }
+  toRegister=()=>{
+    this.props.history.push('/app/register/register')
   }
   componentDidMount=()=>{
     let userInfo=JSON.parse(localStorage.getItem('userInfo')) 
@@ -111,7 +115,7 @@ class Header extends Component<any,HeaderState>{
               <div className='news-login' onClick={ this.tologin}>登录</div>
 
               <div className='news-login-line'></div>
-              <div className='colorw'>注册</div>
+              <div className='colorw'  onClick={ this.toRegister}>注册</div>
             </div>
           )}  
         </div>

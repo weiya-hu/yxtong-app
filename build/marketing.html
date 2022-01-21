@@ -22,9 +22,9 @@
 
 
     <div class="topbar">
-        <div class="wrapper">
-            <div class="topbar-left">
-                <span>你好，欢迎登陆康洲数智官网！</span>
+        <div class="tips">你好，欢迎登陆康洲数智官网！</div>
+        <div class="links">
+            <div class="content">
                 <a target="_blank" href="https://qx.yaozh.com/home">药智器械</a>
                 <a target="_blank" href="https://job.yaozh.com/">数智人才</a>
                 <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
@@ -37,23 +37,43 @@
                 <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
                 <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
                 <a target="_blank" href="https://gu.yaozh.com/ ">数智谷</a>
-                <a target="_blank" href="https://nav.yaozh.com/">数智搜</a>
             </div>
-            <div class="topbar-right">
+            <div class="login" id="login">
+                <div class="default-show">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50" xml:space="preserve">
+                            <rect x="0" y="9.22656" width="4" height="12.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="10" y="5.22656" width="4" height="20.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="20" y="8.77344" width="4" height="13.4531" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                        </svg>
+                    <sprn style="margin-left:15px;">加载中...</sprn>
+                </div>
+                <div class="nologin">
+                    <a target="_blank" href="/app/login">登录</a>
+                    <span class="split">|</span>
+                    <a target="_blank" href="/app/register/register">注册</a>
+                </div>
+                <div class="logined">
+                    <!-- <div class="info-messages">消息</div>
+                    <div class="info-numbers"><span>0</span></div> -->
+                    <img id="header" src="static/images/icon-avatar.png" alt="">
+                    <div id="uname">阿里斯顿会计法</div>
+                    <div class="info-quit">退出</div>
+                </div>
 
-                <a class="active" target="_blank" href="/app/login">登录</a>
-                <span class="split">|</span>
-                <a target="_blank" href="/app/register/register">注册</a>
-            </div>
-            <div class="topbar-login">
-
-                <div class="info-messages">消息</div>
-                <div class="info-numbers"><span>0</span></div>
-                <div class="info-avatar"><img src="static/images/icon-avatar.png" alt=""></div>
-                <div class="info-username"></div>
-                <div class="info-quit"><img src="static/images/icon-quit.png" alt=""><span>退出</span></div>
             </div>
         </div>
+        <div class="zw"></div>
+
+
     </div>
 
     <div class="navs">
@@ -128,7 +148,7 @@
                                     <div class="pro-content-info info1" style="display: block;">
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>营销素材中心（CMS）</span>
                                                     </div>
@@ -140,7 +160,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>精准客户采集（DMP）</span>
 
@@ -157,7 +177,7 @@
                                     <div class="pro-content-info info2">
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>广告管理系统</span>
 
@@ -173,7 +193,7 @@
                                     <div class="pro-content-info info3">
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>客户关系管理系统（SCRM）</span>
 
@@ -185,7 +205,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>智能客服</span>
 
@@ -200,7 +220,7 @@
                                     <div class="pro-content-info info4">
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>CDP客户数据平台</span>
                                                     </div>
@@ -215,7 +235,7 @@
 
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/app/news">
                                                     <div class="item-pro-name">
                                                         <span>咨询平台</span>
 
@@ -227,7 +247,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>直播</span>
 
@@ -239,7 +259,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>会员裂变</span>
 
@@ -251,7 +271,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>快速建站</span>
 
@@ -267,7 +287,7 @@
 
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/marketing.html">
                                                     <div class="item-pro-name">
                                                         <span>APP营销机器人矩阵</span>
 
@@ -279,7 +299,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>5G短信（SMS）</span>
 
@@ -291,7 +311,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>Email邮件（EDM）</span>
 
@@ -307,7 +327,7 @@
 
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>医疗器械数据库</span>
 
@@ -326,7 +346,7 @@
                         </div>
                     </li>
                     <li><a href="/sales.html">数智营销通</a></li>
-                    <li><a href="/vipdata.html">数智器械通</a></li>
+                    <li><a href="/vipdata.html">药智器械</a></li>
                     <li><a href="/attract.html">商务合作</a></li>
                     <li><a href="/app/news">资讯中心</a></li>
                     <li>
@@ -357,41 +377,7 @@
         </div>
     </div>
 
-    <script>
-        // 头像处加载
-        function myLoading() {
-            const token = localStorage.getItem('firstToken')
-            const isLogin = localStorage.getItem('isLogin')
-            if (!token) {
-                $('.topbar-login').show().css('background', './static/images/icon-loading.gif')
-            }
 
-        }
-
-
-        // // 退出按钮
-        $('.topbar-login').on({
-            mouseenter: function() {
-                $('.info-quit').show()
-            },
-            mouseleave: function() {
-                $('.info-quit').hide()
-            }
-        });
-        $('.info-quit').on({
-            mouseenter: function() {
-                $(this).css('background', '#304F97')
-                $('.info-quit span').css('color', '#FFFFFF')
-                $('.info-quit img').attr('src', './static/images/icon-quit-white.png')
-            },
-            mouseleave: function() {
-                $(this).css('background', '#FFFFFF')
-                $('.info-quit span').css('color', '#363636')
-                $('.info-quit img').attr('src', './static/images/icon-quit.png')
-            }
-
-        });
-    </script>
 
     <script>
         // 导航栏
@@ -405,59 +391,75 @@
         })
     </script>
     <script>
-        $('[data-pro]').children('a').mouseover(function() {
-            $(this).addClass('active').siblings().removeClass('active').find('.aimg').hide().siblings('img').show();
-            $(this).find('.aimg').show().siblings('img').hide()
-            var aa = $(this).index('a')
-            var $cons = $('[pro-content="' + $(this).parent().attr('data-pro') + '"]').children();
-
-            $cons.eq($(this).attr('data-i') - 1).show().siblings().hide();
-
-        })
-
-        $('.topbar-login').hide()
-        if (localStorage.getItem('userInfo')) {
-            let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-            $('.topbar-login .info-avatar').attr('scr', userInfo.head)
-            $('.topbar-login .info-username').html(userInfo.name)
-            $('.topbar-right').hide()
-            $('.topbar-login').show()
-        } else if (localStorage.getItem('firstToken')) { //静态页面没有登录逻辑 如果没有userInfo，则取本地token获取userInfo，如果token失效，则为未登录，再去获取token也无用，因为是最新的token是未登录的
-            //发ajax
-            $.ajax({
-                method: 'get',
-                headers: {
-                    Authorization: localStorage.getItem('firstToken')
-                },
-                url: "/api/user/my-center/info",
-                dataType: "json",
-                success: function(res) {
-                    let {
-                        body,
-                        status
-                    } = res
-
-                    if (status == 1) { //本地有token并且token登录了就是已登录
-                        console.log('登录成功')
-
-                        localStorage.setItem('userInfo', JSON.stringify(body))
-                        $('.topbar-login .info-avatar').attr('scr', body.head)
-                        $('.topbar-login .info-username').html(body.name)
-                        $('.topbar-right').hide()
-                        $('.topbar-login').show()
-                    } else { //token 失效
-                        return
-                    }
-                },
+        var token = localStorage.getItem('firstToken');
+        // loaded page
+        $(document).ready(function() {
+            $('[data-pro]').children('a').mouseover(function() {
+                $(this).addClass('active').siblings().removeClass('active').find('.aimg').hide().siblings('img').show();
+                $(this).find('.aimg').show().siblings('img').hide()
+                var aa = $(this).index('a')
+                var $cons = $('[pro-content="' + $(this).parent().attr('data-pro') + '"]').children();
+                $cons.eq($(this).attr('data-i') - 1).show().siblings().hide();
             })
-        } else { //未登录
-        }
+            if (!token) {
+                $.ajax({
+                    method: 'get',
+                    url: "/api/user/public/token",
+                    dataType: "json",
+                    success: function(res) {
+                        localStorage.setItem("firstToken", res.body);
+                        isUser()
+                    },
+                })
+                return
+            }
+            initLogin(token)
+        })
 
         // 点击退出
         $('.info-quit').on('click', function() {
-            $('.topbar-login').hide()
-            $('.topbar-right').show()
+            $.ajax({
+                method: 'get',
+                headers: {
+                    Authorization: token
+                },
+                url: "/api/login/login-out",
+                dataType: "json",
+                success: function(res) {
+                    isUser()
+                },
+            })
         })
+
+        function initLogin(token) {
+            $.ajax({
+                method: 'get',
+                headers: {
+                    Authorization: token
+                },
+                url: "/api/user/public/get-user",
+                dataType: "json",
+                success: function(res) {
+                    res.status ? isUser(res.body) : isUser()
+                },
+            })
+        }
+
+        function isUser(userInfo) {
+            console.log(userInfo)
+            $('.default-show').hide()
+            if (!userInfo) {
+                $('.nologin').css('display', 'flex')
+                $('.logined').css('display', 'none')
+            } else {
+                $('.nologin').css('display', 'none')
+                $('.logined').css('display', 'flex')
+                $('#header').attr('src', userInfo.head)
+                $('#uname').text(userInfo.name)
+            }
+
+
+        }
     </script>
 <link rel="stylesheet" type="text/css" href="static/css/marketing.css" />
 

@@ -22,9 +22,9 @@
 
 
     <div class="topbar">
-        <div class="wrapper">
-            <div class="topbar-left">
-                <span>你好，欢迎登陆康洲数智官网！</span>
+        <div class="tips">你好，欢迎登陆康洲数智官网！</div>
+        <div class="links">
+            <div class="content">
                 <a target="_blank" href="https://qx.yaozh.com/home">药智器械</a>
                 <a target="_blank" href="https://job.yaozh.com/">数智人才</a>
                 <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
@@ -37,23 +37,43 @@
                 <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
                 <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
                 <a target="_blank" href="https://gu.yaozh.com/ ">数智谷</a>
-                <a target="_blank" href="https://nav.yaozh.com/">数智搜</a>
             </div>
-            <div class="topbar-right">
+            <div class="login" id="login">
+                <div class="default-show">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50" xml:space="preserve">
+                            <rect x="0" y="9.22656" width="4" height="12.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="10" y="5.22656" width="4" height="20.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="20" y="8.77344" width="4" height="13.4531" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                        </svg>
+                    <sprn style="margin-left:15px;">加载中...</sprn>
+                </div>
+                <div class="nologin">
+                    <a target="_blank" href="/app/login">登录</a>
+                    <span class="split">|</span>
+                    <a target="_blank" href="/app/register/register">注册</a>
+                </div>
+                <div class="logined">
+                    <!-- <div class="info-messages">消息</div>
+                    <div class="info-numbers"><span>0</span></div> -->
+                    <img id="header" src="static/images/icon-avatar.png" alt="">
+                    <div id="uname">阿里斯顿会计法</div>
+                    <div class="info-quit">退出</div>
+                </div>
 
-                <a class="active" target="_blank" href="/app/login">登录</a>
-                <span class="split">|</span>
-                <a target="_blank" href="/app/register/register">注册</a>
-            </div>
-            <div class="topbar-login">
-
-                <div class="info-messages">消息</div>
-                <div class="info-numbers"><span>0</span></div>
-                <div class="info-avatar"><img src="static/images/icon-avatar.png" alt=""></div>
-                <div class="info-username"></div>
-                <div class="info-quit"><img src="static/images/icon-quit.png" alt=""><span>退出</span></div>
             </div>
         </div>
+        <div class="zw"></div>
+
+
     </div>
 
     <div class="navs">
@@ -128,7 +148,7 @@
                                     <div class="pro-content-info info1" style="display: block;">
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>营销素材中心（CMS）</span>
                                                     </div>
@@ -140,7 +160,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>精准客户采集（DMP）</span>
 
@@ -157,7 +177,7 @@
                                     <div class="pro-content-info info2">
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>广告管理系统</span>
 
@@ -173,7 +193,7 @@
                                     <div class="pro-content-info info3">
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>客户关系管理系统（SCRM）</span>
 
@@ -185,7 +205,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>智能客服</span>
 
@@ -200,7 +220,7 @@
                                     <div class="pro-content-info info4">
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>CDP客户数据平台</span>
                                                     </div>
@@ -215,7 +235,7 @@
 
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/app/news">
                                                     <div class="item-pro-name">
                                                         <span>咨询平台</span>
 
@@ -227,7 +247,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>直播</span>
 
@@ -239,7 +259,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>会员裂变</span>
 
@@ -251,7 +271,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>快速建站</span>
 
@@ -267,7 +287,7 @@
 
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/marketing.html">
                                                     <div class="item-pro-name">
                                                         <span>APP营销机器人矩阵</span>
 
@@ -279,7 +299,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>5G短信（SMS）</span>
 
@@ -291,7 +311,7 @@
                                         </div>
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>Email邮件（EDM）</span>
 
@@ -307,7 +327,7 @@
 
                                         <div class="item-pro-plate">
                                             <div class="pro-info">
-                                                <a href="">
+                                                <a href="/developmenting.html">
                                                     <div class="item-pro-name">
                                                         <span>医疗器械数据库</span>
 
@@ -326,7 +346,7 @@
                         </div>
                     </li>
                     <li><a href="/sales.html">数智营销通</a></li>
-                    <li><a href="/vipdata.html">数智器械通</a></li>
+                    <li><a href="/vipdata.html">药智器械</a></li>
                     <li><a href="/attract.html">商务合作</a></li>
                     <li><a href="/app/news">资讯中心</a></li>
                     <li>
@@ -357,41 +377,7 @@
         </div>
     </div>
 
-    <script>
-        // 头像处加载
-        function myLoading() {
-            const token = localStorage.getItem('firstToken')
-            const isLogin = localStorage.getItem('isLogin')
-            if (!token) {
-                $('.topbar-login').show().css('background', './static/images/icon-loading.gif')
-            }
 
-        }
-
-
-        // // 退出按钮
-        $('.topbar-login').on({
-            mouseenter: function() {
-                $('.info-quit').show()
-            },
-            mouseleave: function() {
-                $('.info-quit').hide()
-            }
-        });
-        $('.info-quit').on({
-            mouseenter: function() {
-                $(this).css('background', '#304F97')
-                $('.info-quit span').css('color', '#FFFFFF')
-                $('.info-quit img').attr('src', './static/images/icon-quit-white.png')
-            },
-            mouseleave: function() {
-                $(this).css('background', '#FFFFFF')
-                $('.info-quit span').css('color', '#363636')
-                $('.info-quit img').attr('src', './static/images/icon-quit.png')
-            }
-
-        });
-    </script>
 
     <script>
         // 导航栏
@@ -405,75 +391,92 @@
         })
     </script>
     <script>
-        $('[data-pro]').children('a').mouseover(function() {
-            $(this).addClass('active').siblings().removeClass('active').find('.aimg').hide().siblings('img').show();
-            $(this).find('.aimg').show().siblings('img').hide()
-            var aa = $(this).index('a')
-            var $cons = $('[pro-content="' + $(this).parent().attr('data-pro') + '"]').children();
-
-            $cons.eq($(this).attr('data-i') - 1).show().siblings().hide();
-
-        })
-
-        $('.topbar-login').hide()
-        if (localStorage.getItem('userInfo')) {
-            let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-            $('.topbar-login .info-avatar').attr('scr', userInfo.head)
-            $('.topbar-login .info-username').html(userInfo.name)
-            $('.topbar-right').hide()
-            $('.topbar-login').show()
-        } else if (localStorage.getItem('firstToken')) { //静态页面没有登录逻辑 如果没有userInfo，则取本地token获取userInfo，如果token失效，则为未登录，再去获取token也无用，因为是最新的token是未登录的
-            //发ajax
-            $.ajax({
-                method: 'get',
-                headers: {
-                    Authorization: localStorage.getItem('firstToken')
-                },
-                url: "/api/user/my-center/info",
-                dataType: "json",
-                success: function(res) {
-                    let {
-                        body,
-                        status
-                    } = res
-
-                    if (status == 1) { //本地有token并且token登录了就是已登录
-                        console.log('登录成功')
-
-                        localStorage.setItem('userInfo', JSON.stringify(body))
-                        $('.topbar-login .info-avatar').attr('scr', body.head)
-                        $('.topbar-login .info-username').html(body.name)
-                        $('.topbar-right').hide()
-                        $('.topbar-login').show()
-                    } else { //token 失效
-                        return
-                    }
-                },
+        var token = localStorage.getItem('firstToken');
+        // loaded page
+        $(document).ready(function() {
+            $('[data-pro]').children('a').mouseover(function() {
+                $(this).addClass('active').siblings().removeClass('active').find('.aimg').hide().siblings('img').show();
+                $(this).find('.aimg').show().siblings('img').hide()
+                var aa = $(this).index('a')
+                var $cons = $('[pro-content="' + $(this).parent().attr('data-pro') + '"]').children();
+                $cons.eq($(this).attr('data-i') - 1).show().siblings().hide();
             })
-        } else { //未登录
-        }
+            if (!token) {
+                $.ajax({
+                    method: 'get',
+                    url: "/api/user/public/token",
+                    dataType: "json",
+                    success: function(res) {
+                        localStorage.setItem("firstToken", res.body);
+                        isUser()
+                    },
+                })
+                return
+            }
+            initLogin(token)
+        })
 
         // 点击退出
         $('.info-quit').on('click', function() {
-            $('.topbar-login').hide()
-            $('.topbar-right').show()
+            $.ajax({
+                method: 'get',
+                headers: {
+                    Authorization: token
+                },
+                url: "/api/login/login-out",
+                dataType: "json",
+                success: function(res) {
+                    isUser()
+                },
+            })
         })
+
+        function initLogin(token) {
+            $.ajax({
+                method: 'get',
+                headers: {
+                    Authorization: token
+                },
+                url: "/api/user/public/get-user",
+                dataType: "json",
+                success: function(res) {
+                    res.status ? isUser(res.body) : isUser()
+                },
+            })
+        }
+
+        function isUser(userInfo) {
+            console.log(userInfo)
+            $('.default-show').hide()
+            if (!userInfo) {
+                $('.nologin').css('display', 'flex')
+                $('.logined').css('display', 'none')
+            } else {
+                $('.nologin').css('display', 'none')
+                $('.logined').css('display', 'flex')
+                $('#header').attr('src', userInfo.head)
+                $('#uname').text(userInfo.name)
+            }
+
+
+        }
     </script>
-<div id="content">
+<div id="content" style="height: 222px;z-index: 1001;">
     <div class="content-weixi">
-        <img src="static/images/icon-content-weixi.png" alt="">
+        <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
         <span>微信咨询</span>
 
     </div>
     <div class="content-tel">
-        <img src="static/images/icon-content-phone.png" alt="">
+        <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
         <span>电话咨询</span>
 
     </div>
     <div class="content-source">
-        <a href="" target="_blank"> <img src="static/images/icon-content-source.png" alt="">
+        <div>
+            <img src="static/images/icon-content-source.png" alt="" style="user-select: none;">
             <span>智能客服</span>
-        </a>
+        </div>
     </div>
 </div>
 
@@ -500,10 +503,7 @@
     </div>
 </div>
 
-<!-- <script src="static/lib/jquery/3.3.1/jquery.min.js"></script> -->
 <script>
-    //获取拖拽实验对象
-
     let old_left = 0
     let old_top = 0
     let old_position_left = 0
@@ -511,46 +511,58 @@
 
     let timer = null;
     let isDrag = false;
+    $(document).on('mouseup',()=>{
+        if (!isDrag) {
+            clearTimeout(timer);
+        } else {
+            setTimeout(() => {
+                isDrag = false;
+                $('.udesk-client-btn').css('z-index','999')
+                $('#content').css('cursor','pointer')
+            }, 200);
+        }
+    })
     $('#content').on('mousedown', function(event) {
-        console.log('mousedown')
+        isDrag = false;
         old_left = event.pageX;
         old_top = event.pageY;
         old_position_left = $(this).position().left;
         old_position_top = $(this).position().top;
         timer = setTimeout(() => {
             isDrag = true
+            $('.udesk-client-btn').css('z-index','-1')
+            $('#content').css('cursor','s-resize')
         }, 100);
     })
-    $('#content').on('mouseup', () => {
+    $('#content').on('mouseup', (e) => {
         if (!isDrag) {
             clearTimeout(timer);
         } else {
             setTimeout(() => {
                 isDrag = false;
+                $('.udesk-client-btn').css('z-index','999')
+                $('#content').css('cursor','pointer')
             }, 200);
         }
     })
     $('#content').on('mousemove', () => {
         if (isDrag) {
-            $(document).mousemove(function(event) {
-                let new_left = event.pageX;
-                let new_top = event.pageY;
-                let chang_x = new_left - old_left;
-                let change_y = new_top - old_top;
-                let new_position_left = old_position_left + chang_x;
-                let new_position_top = old_position_top + change_y;
-                if (new_position_top < 0) {
-                    new_position_top = 0;
-                }
-                if (new_position_top > $(document).height() - $('#content').height()) {
-                    new_position_top = $(document).height() - $('#content').height();
-                }
+            let new_left = event.pageX;
+            let new_top = event.pageY;
+            let chang_x = new_left - old_left;
+            let change_y = new_top - old_top;
+            let new_position_left = old_position_left + chang_x;
+            let new_position_top = old_position_top + change_y;
+            if (new_position_top < 0) {
+                new_position_top = 0;
+            }
+            if (new_position_top > $(document).height() - $('#content').height()) {
+                new_position_top = $(document).height() - $('#content').height();
+            }
 
-                $('#content').css({
-
-                    top: new_position_top + 'px'
-                })
-            });
+            $('#content').css({
+                top: new_position_top + 'px'
+            })
         } else {
             $(document).off("mousemove");
         }
@@ -580,7 +592,7 @@
 
 
 <script>
-    (function(a, h, c, b, f, g) { //c：jq；b:js链接字符串；f:函数名；g:script标签
+    (function(a, h, c, b, f, g) {
         a["UdeskApiObject"] = f;
         a[f] = a[f] || function() {
             (a[f].d = a[f].d || []).push(arguments)
@@ -604,7 +616,13 @@
         kfBtn = $('#udesk_btn .udesk-client-btn')
         if (kfBtn.length) {
             kfBtn.addClass('myfkbtn').appendTo('#content').mouseup((e) => {
-                e.stopPropagation()
+                if (!isDrag) {
+                    clearTimeout(timer);
+                } else {
+                    setTimeout(() => {
+                        isDrag = false;
+                    }, 200);
+                }
             })
             clearInterval(getFftimer)
         }
@@ -616,11 +634,11 @@
     <div class="sales-swiper">
         <div class="swiper-wrapper" id="sales-top-swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image: url(uploads/sales-swiper-1.png);">
+                <div class="swiper-slide" style="background-image: url(static/images/sb1.jpg);">
                     <div class="wrapper">
                     </div>
                 </div>
-                <div class="swiper-slide" style="background-image: url(uploads/sales-swiper-1.png);">
+                <div class="swiper-slide" style="background-image: url(static/images/sb2.jpg);">
                     <div class="wrapper">
                     </div>
                 </div>
@@ -693,9 +711,185 @@
             <h2 class="wow fadeInUp">药智营销通产品矩阵</h2>
             <p class="wow fadeInDown">Product matrix</p>
         </div>
-        <div class="subtitle">助力企业实现营销自动化、智能化、专业化、高效化</div>
-        <div class="wrapper">
-            <img src="static/images/sales-matrix.png" class="bigmatriximg" alt="药智营销通产品矩阵">
+        <div class="subtitle">为客户提供全面、专业、高效的数字营销自动化工具</div>
+        <div class="wrapper bigimg">
+            <div class="toptitle">
+                <div class="item sfitem1">
+                    <div class="bgt">数据 + 内容准备</div>
+                    <div>营销前</div>
+                </div>
+                <div class="seat"></div>
+                <div class="item sfitem2">
+                    <div class="bgt">数据 + 流量 = 私域</div>
+                    <div>营销中</div>
+                </div>
+                <div class="seat"></div>
+                <div class="item sfitem3">
+                    <div class="bgt">人货场管理</div>
+                    <div>营销后</div>
+                </div>
+            </div>
+            <div class="bigarrowbox">
+                <div class="btxt">方案调整  内容优化</div>
+                <div class="bigarrow">
+                    <div class="arrow"></div>
+                </div>
+            </div>
+            <div class="scont">
+                <div class="sitem sitem1">
+                    <div class="bgg lt crp" data-surl="/app/register/register">注册加入营销通会员</div>
+                    <div class="arrowbox at1">
+                        <div class="arrow"></div>
+                        <div class="arrow">
+                            <div class="arrowtxt">
+                                <div>为中小企业</div>
+                                <div>提供初始数据</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rt">
+                        <div class="bgg crp" data-surl="/developmenting.html">
+                            <div class="stitle">CMS系统</div>
+                            <div class="bgg1 mbtn">营销方案策划</div>
+                            <div class="bgg1 mbtn mt10">广告内容制作</div>
+                        </div>
+                        <div class="bgg crp" data-surl="/developmenting.html">
+                            <div class="stitle">
+                                <img src="static/images/sm-star.png" class="smstar" alt="">
+                                DMP系统
+                            </div>
+                            <div class="bgg1 bt1">
+                                <div>精准目标客户内容</div>
+                                <span>(三大运营商提供支持)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="simg simg1">
+                    <img src="static/images/g-right.png" alt="">
+                </div>
+                <div class="sitem sitem2">
+                    <div class="lt">
+                        <div class="s2top bgb">
+                            <div class="stitle">DSP管理系统</div>
+                            <div class="bgb1 t1">
+                                <div class="stitle1">广告投放</div>
+                                <div class="mbtns">
+                                    <div class="mbtn" data-surl="/app/news">资讯平台</div>
+                                    <div class="mbtn" data-surl="/developmenting.html">
+                                        <img src="static/images/sm-star.png" class="smstar" alt="">
+                                        企业快速建站
+                                    </div>
+                                    <div class="mbtn mt10" data-surl="/developmenting.html">第三方投放整合</div>
+                                    <div class="mbtn mt10" data-surl="/developmenting.html">效果数据采集与分析</div>
+                                </div>
+                            </div>
+                            <div class="bgb1 t2">
+                                <div class="stitle1">推送系统</div>
+                                <div class="mbtns">
+                                    <div class="mbtn" data-surl="/https://robot.yxtong.com/user/qq/devicesRun.html">
+                                        <img src="static/images/sm-star.png" class="smstar" alt="">
+                                        APP营销机器人矩阵
+                                    </div>
+                                    <div class="mbtn" data-surl="/developmenting.html">5G短信 (SMS)</div>
+                                    <div class="mbtn mt10" data-surl="/developmenting.html">Email邮件 (EDM)</div>
+                                    <div class="mbtn mt10" data-surl="/developmenting.html">电销机器人</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="barrowbox">
+                            <div class="arrow">
+                                <div class="batxt">放大效果</div>
+                            </div>
+                        </div>
+                        <div class="s2bot bgb">
+                            <div class="stitle">裂变系统</div>
+                            <div class="mbtns">
+                                <div class="mbtn" data-surl="/app/news">资讯/视频：增加曝光</div>
+                                <div class="mbtn" data-surl="/benefits.html">会员系统：链路跟踪</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">直播系统：提升流量</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">线上商城：持续引流</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="arrowbox at2">
+                        <div class="arrow">
+                            <div class="arrowtxt">数据反馈</div>
+                        </div>
+                        <div class="arrow">
+                            <div class="arrowtxt tt1">数据收集</div>
+                            <div class="arrowtxt">效果分析</div>
+                        </div>
+                    </div>
+                    <div class="rt bgb crp" data-surl="/developmenting.html">
+                        <div class="stitle">
+                            <img src="static/images/sm-star.png" class="smstar" alt="">
+                            CDP系统
+                        </div>
+                        <div class="bds">
+                            <div></div>
+                        </div>
+                        <div class="bgb1">用户行为<br/>数据收集</div>
+                        <div class="bgb1">数据分析</div>
+                        <div class="bgb1">客户画像</div>
+                        <div class="bgb1">精准匹配</div>
+                    </div>
+                </div>
+                <div class="simg stimg">
+                    <div class="simg-t">
+                        <img src="static/images/b-right.png" alt="">
+                        <div class="simgtxt">精准客户</div>
+                    </div>
+                    <div class="simg-b">
+                        <img src="static/images/p-left.png" alt="">
+                        <div class="simgtxt">客户回流</div>
+                    </div>
+                </div>
+                <div class="sitem sitem3">
+                    <div class="s3item bgp">
+                        <div class="ltitle">售前</div>
+                        <div>
+                            <div class="stitle">
+                                <img src="static/images/sm-star.png" class="smstar" alt="">
+                                SCRM系统
+                            </div>
+                            <div class="mbtns">
+                                <div class="mbtn" data-surl="/developmenting.html">线索管理</div>
+                                <div class="mbtn" data-surl="/developmenting.html">客户管理</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">人员管理</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">货品管理</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="barrowbox">
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="s3item bgp s3item2">
+                        <div class="ltitle">售中</div>
+                        <div>
+                            <div class="stitle">落地实施  成交变现</div>
+                            <div class="mbtns">
+                                <div class="mbtn" data-surl="/developmenting.html">订单管理</div>
+                                <div class="mbtn" data-surl="/developmenting.html">支付管理</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">物流跟踪</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="barrowbox">
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="s3item bgp s3item3">
+                        <div class="ltitle">售后</div>
+                        <div>
+                            <div class="stitle">售后支持</div>
+                            <div class="mbtns">
+                                <div class="mbtn" data-surl="/developmenting.html">线索管理</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">客户管理</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -841,6 +1035,13 @@
     $('#navbar>ul').children('li').eq(2).addClass('active').siblings().removeClass();
 
     //静态演示用，绑程序时删除 end
+
+    $('[data-surl]').on('click',function(){
+        let url = $(this).attr('data-surl')
+        location.href = url
+    })
+
+
 </script>
 
 </body>

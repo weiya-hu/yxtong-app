@@ -11,6 +11,7 @@ interface ArticleDetailProps{
         readed?: number
         title?: string
         update_time?: number
+        sendCoverImgurl?:string
     }
 }
 export default class ArticleDetail extends Component<ArticleDetailProps>{

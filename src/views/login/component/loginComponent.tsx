@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 import React,{ Component } from 'react'
 import './loginComponent.scss'
 import { Form , Button} from 'antd';
@@ -7,6 +7,10 @@ import { util } from '../../../utils/user'
 import { Link } from 'react-router-dom';
 import {dologin,token,getUser} from '../../../service/login'
 import $message from '../../component/message';
+
+// import store from "../../../store/index";
+// import { setUserInfo} from "../../../store/actionCreators.js";
+
 
 
 import weiboimg from '../../../public/images/weibo.png'
@@ -56,10 +60,11 @@ export default class LoginComponent extends Component {
                 ...value,
             }
             const res = await dologin(data)
-            let url =window.location.href
+            let url =window.location.search
             if(res.status){
                 let userInfoRes= await getUser()
                 localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body) )
+                // store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
                 if(url){
                     window.location.href=url.split('=')[1]
                 }else{
@@ -75,6 +80,8 @@ export default class LoginComponent extends Component {
                         if(dologinRes.status){
                             let userInfoRes= await getUser()
                             localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body))
+                            // store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
+                            // console.log(store.getState())
                             if(url){
                                 window.location.href=url.split('=')[1]
                             }else{
@@ -94,7 +101,7 @@ export default class LoginComponent extends Component {
         }
     }
     componentDidMount(){
-
+        // console.log(store.getState())
     }
     componentDidCatch(){
         

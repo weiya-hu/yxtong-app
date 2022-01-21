@@ -8,6 +8,9 @@ import {BrowserRouter as Router, Link } from 'react-router-dom';
 import {dologin,getUser,token} from '../../service/login'
 import $message from '../component/message';
 
+// import store from "../../store/index";
+// import { setUserInfo} from "../../store/actionCreators.js";
+
 import weiboimg from '../../public/images/weibo.png'
 import qqimg from '../../public/images/QQ.png'
 import wechartimg from '../../public/images/wechart.png'
@@ -61,6 +64,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
                 let result = await getUser()
                if(result.status){
                     localStorage.setItem('userInfo',JSON.stringify(result.body))
+                    // store.dispatch(setUserInfo(JSON.stringify(result.body)))
                } 
                 this.close()
                 location.reload();
@@ -74,6 +78,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
                             let userInfoRes= await getUser()
                             if(userInfoRes.status){
                                 localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body))
+                                // store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
                            } 
                             this.close()
                             location.reload();

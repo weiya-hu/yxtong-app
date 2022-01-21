@@ -11,6 +11,7 @@ import Share from './component/share/share';
 import Report from './component/report/report';
 import Comment from './component/comment/comment';
 import {newsDetail,newsReadList,newsWorksList,addReadLog} from '../../service/news'
+import PopupLogin from '../login/popupLogin';
 
 import toimg from'../../public/images/user/to.png'
 import commentBlackimg from '../../public/images/user/commentBlack.png'
@@ -36,7 +37,8 @@ export default class NewsDetail extends Component {
         newsDetail:{},
         newsProps:this.props.location.query,
         hotArticleList:{},
-        total:null
+        total:null,
+        loginShow:false,//浮框登录是否显示
     }
     collectChange=(val)=>{
         let articleINfo=JSON.parse(JSON.stringify(this.state.articleINfo)) 
@@ -68,6 +70,9 @@ export default class NewsDetail extends Component {
             this.setState({
                 newsDetail:res.body
             })
+            this.getHotArticleList(res.body.creator_id)
+        }else{
+            message.info(res.message)
         }
     }
     //每日阅读榜
@@ -78,9 +83,9 @@ export default class NewsDetail extends Component {
         })
     }
     //作者信息和作品列表
-    getHotArticleList=async () => {
+    getHotArticleList=async (id) => {
         //to do list,creatorId
-        let res = await newsWorksList({creatorId:1,current:1,size:5})
+        let res = await newsWorksList({creatorId:id,current:1,size:5})
         res.status && this.setState({
             hotArticleList:res.body
         })
@@ -89,7 +94,15 @@ export default class NewsDetail extends Component {
     toNewsAuthor=()=>{
         //to do list,creatorId
         let {newsDetail} =this.state
-        this.props.history.push('/app/newsauthormore/?creatorId='+newsDetail.creator_id)
+        let userInfo =localStorage.getItem('userInfo')
+        if(userInfo){
+            this.props.history.push('/app/newsauthormore/?creatorId='+newsDetail.creator_id)
+        }else{
+            this.setState({
+                loginShow:true
+            })
+        }
+        
     }
     //点击nav跳转新闻列表
     navChange=(val,item,flag)=>{
@@ -113,14 +126,14 @@ export default class NewsDetail extends Component {
     componentDidMount(){
         this.getNewsDetail()
         this.newsReadLists()
-        this.getHotArticleList()
+        // this.getHotArticleList()
         // this.getReadLog()
     }
     componentWillUnmount(){
         // clearInterval(timer)
     }
     render(){
-        let {newsTypeActive,total,readRank,newsDetail,hotArticleList}=this.state
+        let {newsTypeActive,total,readRank,newsDetail,hotArticleList,loginShow}=this.state
 
         return <div className='newsDetail'>
             <div className='header-pre'>
@@ -216,6 +229,9 @@ export default class NewsDetail extends Component {
                 </div>
                 
             </div>
+            {loginShow &&  <PopupLogin 
+                show={(val)=>{this.setState({loginShow:val})}}
+            />} 
         </div>
     }
     

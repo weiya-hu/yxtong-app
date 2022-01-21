@@ -60,12 +60,12 @@ export default class Share extends Component<ShareState> {
         }
     copyLink=()=>{
         let id =this.props.item.id?this.props.item.id:window.location.href.split('=')[1]
-        this.copy(window.location.protocol+'//'+window.location.host+'/app/newsdetail/newsId='+id)
+        this.copy(window.location.protocol+'//'+window.location.host+'/app/newsdetail/?newsId='+id)
         
     }
     componentDidMount(){
         let id =this.props.item.id?this.props.item.id:window.location.href.split('=')[1]
-        let url =window.location.protocol+'//'+window.location.host+'/app/newsdetail/newsId='+id
+        let url =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id
         this.setState({copyUrl:url})
     }
     render(){
