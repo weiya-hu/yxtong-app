@@ -2,7 +2,6 @@
 import { Component } from 'react'
 import PopupLogin from './login/popupLogin'
 
-
 export default class Home extends Component {
     state={
         popupLoginShow:false

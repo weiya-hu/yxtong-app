@@ -2,7 +2,7 @@
 import { Component } from 'react'
 import './authorHotArticleItem.scss'
 import moment from 'moment'
-import falseimg from '../../../../public/images/user/false.png'
+import falseimg from 'public/images/user/false.png'
 
 interface AuthorHotArticleItemState{
     item:{

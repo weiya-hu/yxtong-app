@@ -2,10 +2,10 @@ import { Component } from 'react'
 import './login.scss'
 
 
-import logowhite from '../../public/images/logowhite.png'
-import mainimg from '../../public/images/main.png'
-import topimg from '../../public/images/top.png'
-import downimg from '../../public/images/down.png'
+import logowhite from 'public/images/logowhite.png'
+import mainimg from 'public/images/main.png'
+import topimg from 'public/images/top.png'
+import downimg from 'public/images/down.png'
 import LoginComponent from './component/loginComponent'
 
 export default class Login extends Component {

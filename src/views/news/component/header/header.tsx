@@ -1,16 +1,16 @@
 
 import { Component} from 'react'
 import './header.scss'
-import { getUser } from '../../../../service/login'
-import PopupLogin from '../../../login/popupLogin'
 import { withRouter } from 'react-router-dom';
-import { loginOut } from '../../../../service/login';
+import { loginOut } from 'service/login';
+
+import store from 'store';
+import {removeUserInfo, loginShow} from 'store/actionCreators'
 
 
-import headerimg from '../../../../public/images/user/header.png'
-import exitimg from '../../../../public/images/user/exit.png'
-import exitactiveimg from '../../../../public/images/user/exitactive.png'
-import { spawn } from 'child_process';
+import headerimg from 'public/images/user/header.png'
+import exitimg from 'public/images/user/exit.png'
+import exitactiveimg from 'public/images/user/exitactive.png'
 
  
 interface HeaderState{
@@ -18,7 +18,6 @@ interface HeaderState{
   exitActive:boolean
   exitNone:boolean
   userInfo:API.IBgUser | any
-  loginShow:boolean
 }
 
 
@@ -42,32 +41,37 @@ class Header extends Component<any,HeaderState>{
     exitActive:false,//退出按钮是否hover
     exitNone:false,//退出登录是否显示
     userInfo:null,
-    loginShow:false
   }
   //退出登录
   exitlogin=async(e)=>{
     e.stopPropagation()
     let res = await loginOut()
     if(res.status){
-      this.props.history.push('/app/login?url=/app/news')
+      // this.props.history.push('/app/login?url=/app/news')
       localStorage.removeItem('userInfo')
+      store.dispatch(removeUserInfo())
+      this.setState({userInfo:null})
     }
-    
   }
+  //去登录页面
   tologin=()=>{
-    this.props.history.push('/app/login?url=/app/news')
+    // this.props.history.push('/app/login?url=/app/news')
+    store.dispatch(loginShow())
+    this.forceUpdate()
   }
+  //去注册页面
   toRegister=()=>{
     this.props.history.push('/app/register/register')
   }
   componentDidMount=()=>{
-    let userInfo=JSON.parse(localStorage.getItem('userInfo')) 
+    let userInfo=JSON.parse(store.getState().userInfo) 
     if(userInfo){
       this.setState({userInfo:userInfo})
     }
   }
   render(){
-    let {links,exitActive,userInfo,loginShow,exitNone}=this.state
+    let {links,exitActive,exitNone,}=this.state
+    let userInfo = JSON.parse(store.getState().userInfo)
     return (
       <div className='header' >
         <div className='width flexb'>
@@ -123,10 +127,6 @@ class Header extends Component<any,HeaderState>{
           )}  
         </div>
         <div className='invite '>你好，欢迎登录康州数智官网！</div>
-        {loginShow &&  <PopupLogin 
-            show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}
-            userInfo={(val)=>{this.setState({userInfo:val});this.props.userInfo(val)}}
-        />} 
       </div>
     )
   }

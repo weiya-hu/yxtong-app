@@ -1,9 +1,9 @@
 import { Component } from 'react'
 import './favorbutton.scss'
-import {newsAddPrais} from '../../../../service/news'
+import {newsAddPrais} from 'service/news'
 
-import favorimg from '../../../../public/images/user/favor.png'
-import favorActiveimg from '../../../../public/images/user/favorActive.png' 
+import favorimg from 'public/images/user/favor.png'
+import favorActiveimg from 'public/images/user/favorActive.png' 
 
 interface CommentListItemProps{
     item:{

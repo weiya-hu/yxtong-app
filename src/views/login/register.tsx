@@ -3,16 +3,16 @@ import { Component } from 'react'
 import './register.scss'
 import { Form , Button} from 'antd';
 import InputComponent from './component/inputComponent';
-import { util } from '../../utils/user'
+import { util } from 'utils/user'
 import { Link,Redirect } from 'react-router-dom';
-import {doreg} from '../../service/login'
-import $message from '../component/message';
+import {doreg} from 'service/login'
+import $message from 'views/component/message';
 
 
-import logoimg from '../../public/images/logo.png'
-import warnimg from '../../public/images/warn.png'
-import unselectimg from '../../public/images/unselect.png'
-import selectimg from '../../public/images/select.png'
+import logoimg from 'public/images/logo.png'
+import warnimg from 'public/images/warn.png'
+import unselectimg from 'public/images/unselect.png'
+import selectimg from 'public/images/select.png'
 
 export default class Register extends Component {
     state={

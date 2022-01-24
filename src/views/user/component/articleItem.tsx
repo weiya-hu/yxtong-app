@@ -1,9 +1,9 @@
 //@ts-nocheck
 import { Component } from 'react'
 import './articleItem.scss'
-import editimg from '../../../public/images/user/edit.png'
-import dataimg from '../../../public/images/user/data.png'
-import falseimg from '../../../public/images/user/false.png'
+import editimg from 'public/images/user/edit.png'
+import dataimg from 'public/images/user/data.png'
+import falseimg from 'public/images/user/false.png'
 
 interface Item{
   commented: number

@@ -6,8 +6,8 @@ import Collect from '../collect/collect';
 import Share from '../share/share';
 import moment from 'moment'
 
-import readimg from '../../../../public/images/user/read.png'
-import falseimg from '../../../../public/images/user/false.png'
+import readimg from 'public/images/user/read.png'
+import falseimg from 'public/images/user/false.png'
 
 interface item{
   time:string

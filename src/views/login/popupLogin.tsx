@@ -3,20 +3,20 @@ import * as ReactDOM from 'react-dom';
 import './popupLogin.scss'
 import { Form , Button} from 'antd';
 import InputComponent from './component/inputComponent';
-import { util } from '../../utils/user'
+import { util } from 'utils/user'
 import {BrowserRouter as Router, Link } from 'react-router-dom';
-import {dologin,getUser,token} from '../../service/login'
-import $message from '../component/message';
+import {dologin,getUser,token} from 'service/login'
+import $message from 'views/component/message';
 
-// import store from "../../store/index";
-// import { setUserInfo} from "../../store/actionCreators.js";
+import store from "store/index";
+import { setUserInfo,loginRemove} from "store/actionCreators.js";
 
-import weiboimg from '../../public/images/weibo.png'
-import qqimg from '../../public/images/QQ.png'
-import wechartimg from '../../public/images/wechart.png'
-import warnimg from '../../public/images/warn.png'
-import mainbackground from '../../public/images/mainbackground.jpg'
-import chaimg from '../../public/images/cha.png'
+import weiboimg from 'public/images/weibo.png'
+import qqimg from 'public/images/QQ.png'
+import wechartimg from 'public/images/wechart.png'
+import warnimg from 'public/images/warn.png'
+import mainbackground from 'public/images/mainbackground.jpg'
+import chaimg from 'public/images/cha.png'
 
 interface PopupLoginState{
     show?:(val:boolean)=>void
@@ -64,7 +64,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
                 let result = await getUser()
                if(result.status){
                     localStorage.setItem('userInfo',JSON.stringify(result.body))
-                    // store.dispatch(setUserInfo(JSON.stringify(result.body)))
+                    store.dispatch(setUserInfo(JSON.stringify(result.body)))
                } 
                 this.close()
                 location.reload();
@@ -78,7 +78,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
                             let userInfoRes= await getUser()
                             if(userInfoRes.status){
                                 localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body))
-                                // store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
+                                store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
                            } 
                             this.close()
                             location.reload();
@@ -93,7 +93,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
         }
     }
     close=()=>{
-        this.props.show(false)
+        store.dispatch(loginRemove())
     }
     componentDidMount(){
 

@@ -5,10 +5,10 @@ import Header from './component/header/header'
 import FollowButton from './component/followButton/followButton'
 import NewsListItem from './component/newsListItem/newsListItem'
 import MoreTxt from './component/moreTxt/moreTxt'
-import {util} from '../../utils/news'
-import {newsWorksList } from '../../service/news'
+import {util} from 'utils/news'
+import {newsWorksList } from 'service/news'
 
-import headerimg from '../../public/images/user/header.png'
+import headerimg from 'public/images/user/header.png'
 
 export default class AuthorMore extends Component{
     state={

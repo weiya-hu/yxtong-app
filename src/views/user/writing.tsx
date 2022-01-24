@@ -4,15 +4,13 @@ import './writing.scss'
 import { Editor } from '@tinymce/tinymce-react'
 import AliyunOSSUpload from './component/ossImg'
 import { Form} from 'antd'
-import message from '../component/message/index';
-import {newsPublish} from '../../service/user'
+import message from 'views/component/message/index';
+import {newsPublish} from 'service/user'
 import OSSUpload from './component/ossTest'
 
-
-
-import addimg from '../../public/images/user/add.png'
-import warnimg from '../../public/images/warn.png'
-import falseimg from '../../public/images/user/false.png'
+import addimg from 'public/images/user/add.png'
+import warnimg from 'public/images/warn.png'
+import falseimg from 'public/images/user/false.png'
 
 export default class Writing extends Component{
     state={
@@ -197,7 +195,7 @@ export default class Writing extends Component{
                         <Editor
                             initialValue={str}
                             id={"tincyEditor"}
-                            tinymceScriptSrc={'../../../tinymce/js/tinymce/tinymce.min.js'}
+                            tinymceScriptSrc={'../tinymce/js/tinymce/tinymce.min.js'}
                             apiKey="mabgo7mjxmpeaukhcqge4rtd5gvtay0595bkvv931xewl7yf"
                             init={{                               
                                 language: 'zh_CN',

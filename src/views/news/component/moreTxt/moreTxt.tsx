@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import './moreTxt.scss'
 
-import loadingimg from '../../../../public/images/user/loading.png'
+import loadingimg from 'public/images/user/loading.png'
 
 interface MoreTxtState{
     hasMore:boolean

@@ -3,23 +3,34 @@ import { Component } from 'react'
 import './newsDetail.scss'
 import Header from './component/header/header'
 import NewsNav from './component/newsNav/newsNav';
-import ArticleDetail from '../user/articleDetail';
+import ArticleDetail from 'views/user/articleDetail';
 import FollowButton from './component/followButton/followButton';
 import AuthorHotArticleItem from './component/authorHotArticleItem/authorHotArticleItem';
 import Collect from './component/collect/collect';
 import Share from './component/share/share';
 import Report from './component/report/report';
 import Comment from './component/comment/comment';
-import {newsDetail,newsReadList,newsWorksList,addReadLog} from '../../service/news'
-import PopupLogin from '../login/popupLogin';
+import {newsDetail,newsReadList,newsWorksList,addReadLog} from 'service/news'
+import PopupLogin from 'views/login/popupLogin';
 
-import toimg from'../../public/images/user/to.png'
-import commentBlackimg from '../../public/images/user/commentBlack.png'
-import headerimg from '../../public/images/user/header.png'
-import message  from '../component/message/index';
+import store from 'store';
+
+import toimg from'public/images/user/to.png'
+import commentBlackimg from 'public/images/user/commentBlack.png'
+import headerimg from 'public/images/user/header.png'
+import message  from 'views/component/message/index';
 
 // let timer=null
 export default class NewsDetail extends Component {
+    constructor(props) {
+        super(props)
+        // 监听state状态改变
+        store.subscribe(() => {
+            const state = store.getState()
+             this.setState({loginShow:state.loginShow})
+        })
+    }
+
     state={
         newsTypeActive:-1,
         isLogin:true,//是否登录了
@@ -229,9 +240,7 @@ export default class NewsDetail extends Component {
                 </div>
                 
             </div>
-            {loginShow &&  <PopupLogin 
-                show={(val)=>{this.setState({loginShow:val})}}
-            />} 
+            {loginShow &&  <PopupLogin />} 
         </div>
     }
     

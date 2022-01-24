@@ -3,10 +3,10 @@ import './comment.scss'
 import CommentInput from '../commentInput/commentInput'
 import CommentListItem from '../commentListItem/commentListItem';
 import { Drawer} from 'antd';
-import {commentList} from '../../../../service/news'
+import {commentList} from 'service/news'
 
-import chaimg from '../../../../public/images/cha.png'
-import toimg from '../../../../public/images/user/to.png'
+import chaimg from 'public/images/cha.png'
+import toimg from 'public/images/user/to.png'
 
 interface CommentProps{
     commentNum:(val:number)=>void

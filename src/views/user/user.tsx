@@ -7,21 +7,20 @@ import Writing from './writing'
 import ArticleList from './articleList'
 import DataAnalysis from './dataAnalysis'
 import ArticleDetail from './articleDetail'
-import {userMycenterInfo} from '../../service/user'
-import {loginOut } from '../../service/login'
-import { getUser } from '../../service/login'
-import { Link,Redirect ,withRouter} from 'react-router-dom';
+import {loginOut } from 'service/login'
+import { getUser } from 'service/login'
+import { Redirect ,withRouter} from 'react-router-dom';
 
-// import store from "../../store/index";
-// import { setUserInfo,removeUserInfo,loginShow,loginRemove } from "../../store/actionCreators.js";
+import store from "store/index";
+import { removeUserInfo} from "store/actionCreators.js";
 
-import logoimg from '../../public/images/logo.png'
-import homeimg from '../../public/images/user/home.png'
-import exitimg from '../../public/images/user/exit.png'
-import exitactiveimg from '../../public/images/user/exitactive.png'
-import headerimg from '../../public/images/user/header.png'
-import realnamedimg from '../../public/images/user/realnamed.png'
-import phoneimg from '../../public/images/user/phone.png'
+import logoimg from 'public/images/logo.png'
+import homeimg from 'public/images/user/home.png'
+import exitimg from 'public/images/user/exit.png'
+import exitactiveimg from 'public/images/user/exitactive.png'
+import headerimg from 'public/images/user/header.png'
+import realnamedimg from 'public/images/user/realnamed.png'
+import phoneimg from 'public/images/user/phone.png'
 
 class User extends Component {
     state={
@@ -50,7 +49,7 @@ class User extends Component {
       if(res.status){
         this.props.history.push('/app/login?url=/app/user')
         localStorage.removeItem('userInfo')
-        // store.dispatch(removeUserInfo())
+        store.dispatch(removeUserInfo())
       }
       
     }

@@ -3,7 +3,7 @@ import { Component } from 'react'
 import './articleList.scss'
 import ArticleItem from './component/articleItem'
 import { Pagination } from 'antd';
-import {contentList} from '../../service/user'
+import {contentList} from 'service/user'
 
 interface ArticleItemState{
   imgurl:string;

@@ -4,8 +4,7 @@ import { Table, Pagination } from 'antd'
 import './profit.scss'
 import moment from 'moment'
 import MyScore from "./component/myScore";
-import {integralRecord} from '../../service/user'
-
+import {integralRecord} from 'service/user'
 
 const columns = [
     {

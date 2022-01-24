@@ -4,7 +4,7 @@ import './commentListItem.scss'
 import FavorButton from '../favorbutton/favorbutton'
 import moment from 'moment'
 
-import headerimg from '../../../../public/images/user/header.png'
+import headerimg from 'public/images/user/header.png'
 
 interface CommentListItemProps{
     item:{

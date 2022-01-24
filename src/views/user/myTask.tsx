@@ -4,23 +4,21 @@ import './myTask.scss'
 import MyScore from './component/myScore'
 import CommonButton from './component/commonButton'
 import Task from './component/task'
-import { signInInfo,signIn,tasks,userTasks,isSignIn } from "../../service/user";
-import $message from "../component/message/index";
-import {imgs} from '../../utils/taskImg'
+import { signIn,userTasks,isSignIns } from "service/user";
+import {imgs} from 'utils/taskImg'
 
-import signinimg from '../../public/images/user/signin.png'
-import signinedimg from '../../public/images/user/signined.png'
+import signinimg from 'public/images/user/signin.png'
+import signinedimg from 'public/images/user/signined.png'
 
-import giftimg from '../../public/images/user/gift.png'
-import gift7img from '../../public/images/user/gift7.png'
-import gift14img from '../../public/images/user/gift14.png'
-import gift30img from '../../public/images/user/gift30.png'
-import giftSIgnimg from '../../public/images/user/giftSIgn.png'
-import giftSIgnNoimg from '../../public/images/user/giftSIgnNo.png'
-import dianimg from '../../public/images/user/dian.png'
+import giftimg from 'public/images/user/gift.png'
+import gift7img from 'public/images/user/gift7.png'
+import gift14img from 'public/images/user/gift14.png'
+import gift30img from 'public/images/user/gift30.png'
+import giftSIgnimg from 'public/images/user/giftSIgn.png'
+import giftSIgnNoimg from 'public/images/user/giftSIgnNo.png'
+import dianimg from 'public/images/user/dian.png'
 
-import emailimg from '../../public/images/user/email.png'
-import chaimg from '../../public/images/user/cha.png'
+import chaimg from 'public/images/user/cha.png'
 
 export default class MyTask extends Component{
     state={
@@ -63,19 +61,20 @@ export default class MyTask extends Component{
          const {body,status} = await signIn()
          if(status){
             const result = await userTasks()
-            const res = await isSignIn()
+            const res = await isSignIns()
             this.setState({
                isSignIn:res.body,
                contDay:result.body.signin[0].completed,
                signinSuccess:5,  //签到获得的分数看接口是哪个参数再改一下
             })
+            console.log(this.state)
          }
          // res && $message.info(res.message)
        }
     }
     componentDidMount=async()=>{
         const result = await userTasks()
-        const res = await isSignIn()
+        const res = await isSignIns()
         if(result.status){
             const tasks=result.body.tasks
             let arr=[],ary=[],limitType=tasks[0].limit_type

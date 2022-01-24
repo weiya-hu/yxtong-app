@@ -20,7 +20,7 @@ export const signIn =():Promise<API.IResult>=>{
 }
 
 //是否签到
-export const isSignIn =():Promise<API.IResult>=>{
+export const isSignIns =():Promise<API.IResult>=>{
     return  get('user/is-singin')
 }
 

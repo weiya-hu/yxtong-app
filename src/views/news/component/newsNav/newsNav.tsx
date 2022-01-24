@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component } from 'react'
 import './newsNav.scss'
-import {newsTypeList} from '../../../../service/news'
+import {newsTypeList} from 'service/news'
 
 interface NewsNavState{
     newsIndexChange:(val:number)=>void

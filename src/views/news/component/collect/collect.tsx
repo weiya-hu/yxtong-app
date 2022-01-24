@@ -1,13 +1,16 @@
 //@ts-nocheck
 import { Component } from 'react'
 import './collect.scss'
-import $message from '../../../component/message/index';
-import {doCollect} from '../../../../service/news'
+import $message from 'views/component/message/index';
+import {doCollect} from 'service/news'
 
-import collectimg from '../../../../public/images/user/collectBlack.png'
-import starActive20img from '../../../../public/images/user/starActive20.png'
-import starimg from '../../../../public/images/user/star.png'
-import starActiveimg from '../../../../public/images/user/starActive.png'
+import store from 'store'
+import { loginRemove, loginShow } from 'store/actionCreators'
+
+import collectimg from 'public/images/user/collectBlack.png'
+import starActive20img from 'public/images/user/starActive20.png'
+import starimg from 'public/images/user/star.png'
+import starActiveimg from 'public/images/user/starActive.png'
 
 interface CollectPropsItem{
     is_collection:string | null
@@ -24,19 +27,24 @@ export default class Collect extends Component<CollectProps> {
         item:this.props.item
     }
     collectChange=async(e)=>{
-        e.stopPropagation() 
-        let item = JSON.parse(JSON.stringify(this.state.item))
-        let data={
-            "news_id": item.id?item.id:window.location.href.split('=')[1],
-            "types":item.is_collection?0:1
-        }
-        const res = await doCollect(data)
-        if(res.status){
-            item.is_collection=data.types?'1':null
-            this.setState({
-                item:item
-            })
-            $message.info(data.types?'收藏成功':'取消收藏')
+        e.stopPropagation()
+        const userInfo = JSON.parse(store.getState().userInfo) 
+        if(userInfo){
+            let item = JSON.parse(JSON.stringify(this.state.item))
+            let data={
+                "news_id": item.id?item.id:window.location.href.split('=')[1],
+                "types":item.is_collection?0:1
+            }
+            const res = await doCollect(data)
+            if(res.status){
+                item.is_collection=data.types?'1':null
+                this.setState({
+                    item:item
+                })
+                $message.info(data.types?'收藏成功':'取消收藏')
+            }
+        }else{
+            store.dispatch(loginShow())
         }
     }
     

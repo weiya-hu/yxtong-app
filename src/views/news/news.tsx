@@ -6,15 +6,28 @@ import NewsListItem from './component/newsListItem/newsListItem'
 import NewsNav from './component/newsNav/newsNav';
 import FollowButton from './component/followButton/followButton';
 import MoreTxt from './component/moreTxt/moreTxt';
-import {util} from '../../utils/news'
-import {newsNewsList,newsAList,newsCreatorDate} from '../../service/news'
+import {util} from 'utils/news'
+import {newsNewsList,newsAList,newsCreatorDate} from 'service/news'
+import PopupLogin from 'views/login/popupLogin';
 
-import writeimg from '../../public/images/user/write.png'
-import exchangeimg from '../../public/images/user/exchange.png'
-import headerimg from '../../public/images/user/header.png'
+import store from 'store';
+import { loginShow } from 'store/actionCreators';
+
+import writeimg from 'public/images/user/write.png'
+import exchangeimg from 'public/images/user/exchange.png'
+import headerimg from 'public/images/user/header.png'
+
 
 
 export default class News extends Component{
+  constructor(props) {
+    super(props)
+    // 监听state状态改变
+    store.subscribe(() => {
+      const state = store.getState()
+      this.setState({loginShow:state.loginShow})
+    })
+  }
   state={
     isLogin:true,//是否登录了
     newsTypeActive:1,//新闻类型的默认值
@@ -131,6 +144,15 @@ export default class News extends Component{
     }
     
   }
+  toUser=()=>{
+    let userInfo = store.getState().userInfo
+    if(userInfo){
+      this.props.history.push({pathname:'/app/user',query :[2,1]})
+    }else{
+      store.dispatch(loginShow())
+    }
+    
+  }
   componentDidMount(){
     this.getUserAnalysis()
     window.addEventListener('scroll', this.handleScroll, false)
@@ -142,7 +164,7 @@ export default class News extends Component{
     }
   }
   render(){
-    const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate}=this.state
+    const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate,loginShow}=this.state
     return (
       <div id='news' className='back-color'>
         <div className='news-header'>
@@ -176,7 +198,7 @@ export default class News extends Component{
                   <div className='yeterday-profit'>昨日收益 <span >{UserAnalysis.integraly}</span></div>
                 </div>
               </div>
-              <div className='button fleximg' onClick={()=>{this.props.history.push({pathname:'/app/user',query :[2,1]}) }}>进入内容中心</div>
+              <div className='button fleximg' onClick={this.toUser}>进入内容中心</div>
             </div>
           </div>
         </div>
@@ -217,6 +239,7 @@ export default class News extends Component{
               <MoreTxt hasMore={hasMore}/>
           </div>
         </div>
+        {loginShow &&  <PopupLogin />}
       </div>
     )
   }

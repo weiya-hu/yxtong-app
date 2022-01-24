@@ -5,10 +5,10 @@ import zhCN from 'antd/lib/locale/zh_CN'
 import './dataAnalysis.scss'
 import DataOverview from "./component/dataOverview/dataOverview";
 import LineCharts from "./component/lineChart/lineChart";
-import {dataScreening} from '../../service/user'
+import {dataScreening} from 'service/user'
 
-import selectimg from '../../public/images/user/select.png'
-import unselectimg from '../../public/images/user/unselect.png'
+import selectimg from 'public/images/user/select.png'
+import unselectimg from 'public/images/user/unselect.png'
 
 
 

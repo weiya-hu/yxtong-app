@@ -1,9 +1,9 @@
 //@ts-nocheck
 import { Upload} from 'antd';
 import  React  from 'react';
-import {uploadolicy} from '../../../service/user'
+import {uploadolicy} from 'service/user'
 import moment from 'moment'
-import {post} from '../../../utils/request'
+import {post} from 'utils/request'
 import axios from "axios";
 export default class OSSUpload extends React.Component{
     render(){

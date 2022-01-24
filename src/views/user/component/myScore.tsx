@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component } from 'react'
 import CommonButton from './commonButton'
-import { userMycenterInfo } from '../../../service/user'
+import { userMycenterInfo } from 'service/user'
 import './myScore.scss'
 import {withRouter} from "react-router-dom";
 
