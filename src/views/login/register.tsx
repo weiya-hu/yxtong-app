@@ -4,7 +4,6 @@ import './register.scss'
 import { Form , Button} from 'antd';
 import InputComponent from './component/inputComponent';
 import { util } from 'utils/user'
-import { Link,Redirect } from 'react-router-dom';
 import {doreg} from 'service/login'
 import $message from 'views/component/message';
 
@@ -23,7 +22,6 @@ export default class Register extends Component {
         agree:false,//是否阅读并同意协议的默认值
         mobileValue:'',
         acode:'86',
-        loginFlag:false
     }
     nextSubmit=(value)=>{
         console.log(value)
@@ -58,12 +56,11 @@ export default class Register extends Component {
             if(!this.state.agree){
                 this.setState({warnMessage:'请阅读并同意《药智网用户须知》'})
             }else{
-                console.log(value)
                 value.acode='+'+value.acode
                 const res =await doreg({...value})
                 if(res.status){
-                    setTimeout(()=>{this.setState({loginFlag:true})},1000)                    
-                }
+                    window.localStorage.href='/'
+                }            
                 $message.info(res.message)
             }            
         }      
@@ -76,10 +73,7 @@ export default class Register extends Component {
         console.log(pathname[3])
     }
     render(){
-        let {isForget,warnMessage,registermessage,mobileValue,acode,loginFlag} = this.state
-        if(loginFlag){
-            return <Redirect to={{ pathname: "/app/login" }} />;
-        }
+        let {isForget,warnMessage,registermessage,mobileValue,acode} = this.state
         return <div id='register'>
             <div className='content'>
                 <div className='logoimg fleximg'><img src={logoimg} alt="logo" /></div>

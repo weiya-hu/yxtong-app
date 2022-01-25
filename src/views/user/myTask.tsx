@@ -39,18 +39,19 @@ export default class MyTask extends Component{
       console.log(val)
     }
     getIntegral(day:number){//获取积分
+      let dayValue = this.state.signList[0]?this.state.signList[0].value:0
       switch (day) {
           case 7 :
-              return this.state.signList[1]&&this.state.signList[1].value
+              return this.state.signList[1]&&this.state.signList[1].value + dayValue
               break;
           case 14 :
-              return this.state.signList[2]&&this.state.signList[2].value
+              return this.state.signList[2]&&this.state.signList[2].value + dayValue
               break;
           case 30 :
-              return this.state.signList[3]&&this.state.signList[3].value
+              return this.state.signList[3]&&this.state.signList[3].value + dayValue
               break;
           default :
-              return this.state.signList[0]&&this.state.signList[0].value
+              return this.state.signList[0]&&this.state.signList[0].value 
               break;
       }
     }
