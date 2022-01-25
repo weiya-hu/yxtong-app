@@ -24,7 +24,8 @@ export default class Comment extends Component<CommentProps> {
         this.setState({drawerShow:false})
     }
     getComment=async()=>{
-        let id = window.location.href.split('=')[1]
+        let url = window.location.href
+        let id=url.substring(url.indexOf('=')+1,url.length)
         let {current,size}=this.state
         let data={
             newsId:id,

@@ -116,8 +116,9 @@ export default class News extends Component{
   }
   //跳转新闻详情页
   toNewsDetail=(item)=>{
-    this.props.history.push( { pathname : '/app/newsdetail/?newsId='+item.id})
-    window.scrollTo (0,0);
+    // this.props.history.push( { pathname : '/app/newsdetail/?newsId='+item.id})
+    window.open(window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+item.id, "_blank"); 
+    // window.scrollTo (0,0);
   }
   getFavorlist=async()=>{
     const {interestPage,interestSize}=this.state
@@ -156,6 +157,7 @@ export default class News extends Component{
   componentDidMount(){
     this.getUserAnalysis()
     window.addEventListener('scroll', this.handleScroll, false)
+    document.title = '康州数智-新闻资讯'
   }
   componentWillUnmount(): void {
     window.removeEventListener('scroll', this.handleScroll)

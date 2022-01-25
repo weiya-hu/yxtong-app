@@ -96,13 +96,7 @@ export default class LoginComponent extends Component {
                     
         }
     }
-    componentDidMount(){
-        // console.log(store.getState())
-    }
-    componentDidCatch(){
-        
-    }
-    
+
     render(){
         let {loginSwitch,warnMessage,mobileValue,acode,captchaShow} = this.state
         return(

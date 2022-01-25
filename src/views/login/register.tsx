@@ -72,12 +72,13 @@ export default class Register extends Component {
         let { location } = this.props as { location }
         let pathname = location.pathname.split('/')
         this.setState({isForget:pathname[3]})
+        document.title = pathname[3] === 'forget' ? '康州数智-找回密码':pathname[3] === 'register'?'康州数智-注册':'康州数智-找回密码'
+        console.log(pathname[3])
     }
     render(){
         let {isForget,warnMessage,registermessage,mobileValue,acode,loginFlag} = this.state
         if(loginFlag){
             return <Redirect to={{ pathname: "/app/login" }} />;
-            // return <Redirect to='/' />;
         }
         return <div id='register'>
             <div className='content'>

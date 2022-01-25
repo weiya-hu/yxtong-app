@@ -81,6 +81,7 @@ class User extends Component {
       })
     }
     componentDidMount=()=>{
+      document.title = '康州数智-个人中心'
       let local=this.props.location
       if(local.query){
         this.setState({
@@ -130,7 +131,7 @@ class User extends Component {
                         {nav.map((item,index)=>(
                             <div 
                               key={index}
-                              className={navActiveIndex === index?'fleximg navactive':'fleximg'}
+                              className={navActiveIndex === index?'fleximg navactive pointer':'fleximg pointer'}
                               onClick={()=>{this.setState({navActiveIndex:index});window.scrollTo (0,0);}}
                             >{item}</div>                            
                         ))}
@@ -157,10 +158,9 @@ class User extends Component {
                   {aside[navActiveIndex].map((item,index)=>(
                     <div 
                       key={index}
-                      className={asideActive === index?'aside-active':'' }
+                      className={asideActive === index?'aside-active pointer':'pointer' }
                       onClick={()=>{
                         this.setState({asideActive:index,isArticleDetail:0,editItem:this.state.editItem})
-                        console.log(this.state.editItem)
                       }}
                       >{item}</div>
                   ))}

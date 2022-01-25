@@ -38,9 +38,11 @@ export default class Report extends Component {
     //确认举报按钮
     reportSure=async()=>{
         const {reportActive,reports} =this.state
+        let url = window.location.href
+        let id=url.substring(url.indexOf('=')+1,url.length)
         let data={
             "content": reports[reportActive],
-            "news_id":window.location.href.split('=')[1]
+            "news_id":id
         }
         const res = await sureReport(data)
         if(res.status){

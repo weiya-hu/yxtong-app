@@ -31,8 +31,10 @@ export default class Collect extends Component<CollectProps> {
         const userInfo = JSON.parse(store.getState().userInfo) 
         if(userInfo){
             let item = JSON.parse(JSON.stringify(this.state.item))
+            let url = window.location.href
+            let id=url.substring(url.indexOf('=')+1,url.length)
             let data={
-                "news_id": item.id?item.id:window.location.href.split('=')[1],
+                "news_id": item.id?item.id:id,
                 "types":item.is_collection?0:1
             }
             const res = await doCollect(data)

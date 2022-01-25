@@ -59,14 +59,18 @@ export default class Share extends Component<ShareState> {
         message.info('复制成功');
         }
     copyLink=()=>{
-        let id =this.props.item.id?this.props.item.id:window.location.href.split('=')[1]
+        let url = window.location.href
+        let newsId=url.substring(url.indexOf('=')+1,url.length)
+        let id =this.props.item.id?this.props.item.id:newsId
         this.copy(window.location.protocol+'//'+window.location.host+'/app/newsdetail/?newsId='+id)
         
     }
     componentDidMount(){
-        let id =this.props.item.id?this.props.item.id:window.location.href.split('=')[1]
-        let url =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id
-        this.setState({copyUrl:url})
+        let url = window.location.href
+        let newsId=url.substring(url.indexOf('=')+1,url.length)
+        let id =this.props.item.id?this.props.item.id:newsId
+        let urls =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id
+        this.setState({copyUrl:urls})
     }
     render(){
         let prop = this.props

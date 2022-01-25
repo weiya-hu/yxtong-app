@@ -70,8 +70,8 @@ export default class NewsDetail extends Component {
       //获取新闻详情
     getNewsDetail=async(id)=>{
         if(!id){
-            id = window.location.href.split('=')[1]
-            console.log(window.location.href)
+            let url = window.location.href
+            id=url.substring(url.indexOf('=')+1,url.length)
         }
         let data={
             newsId:id
@@ -103,17 +103,8 @@ export default class NewsDetail extends Component {
     }
     //跳转作者作品页
     toNewsAuthor=()=>{
-        //to do list,creatorId
         let {newsDetail} =this.state
-        let userInfo =localStorage.getItem('userInfo')
-        if(userInfo){
-            this.props.history.push('/app/newsauthormore/?creatorId='+newsDetail.creator_id)
-        }else{
-            this.setState({
-                loginShow:true
-            })
-        }
-        
+        this.props.history.push('/app/newsauthormore/?creatorId='+newsDetail.creator_id)
     }
     //点击nav跳转新闻列表
     navChange=(val,item,flag)=>{
@@ -121,24 +112,28 @@ export default class NewsDetail extends Component {
     }
     //详情页文章切换
     articleChange=(id)=>{
-        this.props.history.push('/app/newsdetail/?newsId='+id)
-        window.location.reload()
+        // this.props.history.push('/app/newsdetail/?newsId='+id)
+        window.open(window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id, "_blank"); 
+        // window.location.reload()
     }
     //计时获得积分
-    getReadLog=()=>{
-        timer=setTimeout(()=>{
-            let data={"news_id":window.location.href.split('=')[1]}
-            addReadLog(data).then(res=>{
-                res.status && message.info('浏览获得积分')
-            })
-        },10000)
+    // getReadLog=()=>{
+    //     timer=setTimeout(()=>{
+             
+    //         let data={"news_id":window.location.href.split('=')[1]}
+    //         addReadLog(data).then(res=>{
+    //             res.status && message.info('浏览获得积分')
+    //         })
+    //     },10000)
         
-    }
+    // }
     componentDidMount(){
         this.getNewsDetail()
         this.newsReadLists()
         // this.getHotArticleList()
         // this.getReadLog()
+        document.title = '康州数智-新闻资讯详情'
+        
     }
     componentWillUnmount(){
         // clearInterval(timer)

@@ -9,7 +9,9 @@ import downimg from 'public/images/down.png'
 import LoginComponent from './component/loginComponent'
 
 export default class Login extends Component {
-
+    componentDidMount(){
+        document.title = '康州数智-登录'
+    }
     render(){
         return (
             <div id='login'>

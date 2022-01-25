@@ -38,7 +38,7 @@ export default class ArticleDetail extends Component<ArticleDetailProps>{
                     </div>
                     <div>阅读量： {newsDetail.readed}</div>
                 </div>
-                <div dangerouslySetInnerHTML = {{__html:newsDetail.content}} ></div>
+                <div dangerouslySetInnerHTML = {{__html:newsDetail.content}} className='news-content'></div>
             </div>
         )
     }

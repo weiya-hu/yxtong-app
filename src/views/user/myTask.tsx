@@ -65,7 +65,7 @@ export default class MyTask extends Component{
             this.setState({
                isSignIn:res.body,
                contDay:result.body.signin[0].completed,
-               signinSuccess:5,  //签到获得的分数看接口是哪个参数再改一下
+               signinSuccess:body,  //签到获得的分数看接口是哪个参数再改一下
             })
             console.log(this.state)
          }
@@ -161,7 +161,7 @@ export default class MyTask extends Component{
                               
                               <Task title={val.name} score={`+${val.value}积分`} />
                            </div>
-                           <div>
+                           <div className="pointer">
                               <CommonButton onclicked={this.doperfect} isBefore={!val.finish} wordBefore={imgs[val.tag].beforeText} wordAfter='已完成'/>
                            </div>
                         </div> 

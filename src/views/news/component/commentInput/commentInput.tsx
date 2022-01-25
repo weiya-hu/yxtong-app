@@ -29,7 +29,8 @@ export default class CommentInput extends Component<CommentInputState> {
     commentBt=async()=>{
         let userInfo = JSON.parse(store.getState().userInfo)
         if(userInfo){
-            let id = window.location.href.split('=')[1]
+            let url = window.location.href
+            let id=url.substring(url.indexOf('=')+1,url.length)
             let data={
                 "content": this.state.comment,
                 "news_id": id
@@ -79,7 +80,7 @@ export default class CommentInput extends Component<CommentInputState> {
                 />
             </div>:<div className='unlogin-input fleximg'>
             {/* 没有登录大size */}
-                请先<span onClick={()=>{store.dispatch(loginShow())}}>登录</span>在做评论~
+                请先<span onClick={()=>{store.dispatch(loginShow())}}>登录</span>再做评论~
             </div>
             }
             <div className='comment-button fleximg' onClick={this.commentBt}>评论</div>

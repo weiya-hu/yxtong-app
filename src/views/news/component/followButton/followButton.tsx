@@ -30,8 +30,10 @@ export default class FollowButton extends Component<FollowButtonProps> {
         let userInfo =JSON.parse(store.getState().userInfo)
         if(userInfo){
             let {item} =JSON.parse(JSON.stringify(this.state)) 
+            let url = window.location.href
+            let reatorId=url.substring(url.indexOf('=')+1,url.length)
             let data={
-                "creator_id":item.creator_id?item.creator_id:Number(window.location.href.split('=')[1]) ,
+                "creator_id":item.creator_id?item.creator_id:Number(reatorId) ,
                 "types": item.is_attention?0:1
             }
             const res =await doAttention(data)
