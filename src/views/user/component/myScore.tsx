@@ -11,7 +11,7 @@ class MyScore extends Component<any> {
         userInfo:{},
     }
     exchangeScore=(val)=>{
-        this.props.history.push('/developmenting.html')
+        window.location.href='/developmenting.html'
     }
     componentDidMount=async()=>{
         //接口，获取积分

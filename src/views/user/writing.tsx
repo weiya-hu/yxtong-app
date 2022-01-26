@@ -163,8 +163,8 @@ export default class Writing extends Component{
                         <span  className='font12 color3'>草稿自动保存</span>
                     </div>
                     <div className='flexr'>
-                        <div className='writing-buttton fleximg' onClick={this.publishNews}>发布文章</div>
-                        <div className='preview-button fleximg' onClick={this.preView}>预览文章</div>
+                        <div className='writing-buttton fleximg pointer' onClick={this.publishNews}>发布文章</div>
+                        <div className='preview-button fleximg pointer' onClick={this.preView}>预览文章</div>
                     </div>
                 </div>
                 <div className='cover'>

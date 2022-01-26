@@ -73,6 +73,10 @@ export default class MyTask extends Component{
          // res && $message.info(res.message)
        }
     }
+    //去完成任务
+    todoTask=()=>{
+      window.location.href='/developmenting.html'
+    }
     componentDidMount=async()=>{
         const result = await userTasks()
         const res = await isSignIns()
@@ -151,7 +155,7 @@ export default class MyTask extends Component{
                   </div>
                   <div 
                      onClick={this.signIn}
-                     className={isSignIn?'signined-button fleximg':'signin-button fleximg'}
+                     className={isSignIn?'signined-button fleximg':'signin-button fleximg pointer'}
                   >{isSignIn?`已连续签到${contDay}天`:'签到'}</div>
                </div>
                {tasks.map((item,index)=><div className='task' key={index}>
@@ -162,7 +166,7 @@ export default class MyTask extends Component{
                               
                               <Task title={val.name} score={`+${val.value}积分`} />
                            </div>
-                           <div className="pointer">
+                           <div className="pointer" onClick={this.todoTask}>
                               <CommonButton onclicked={this.doperfect} isBefore={!val.finish} wordBefore={imgs[val.tag].beforeText} wordAfter='已完成'/>
                            </div>
                         </div> 

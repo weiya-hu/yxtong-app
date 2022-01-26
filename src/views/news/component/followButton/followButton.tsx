@@ -54,13 +54,13 @@ export default class FollowButton extends Component<FollowButtonProps> {
         const {item} = this.state,{size}=this.props
         return size==='big'?(
             // size='big'
-            <div onClick={this.follow} className={item.is_attention?'big-interest-button-gray fleximg':'fleximg big-interest-button'}>
+            <div onClick={this.follow} className={item.is_attention?'big-interest-button-gray fleximg pointer':'fleximg big-interest-button pointer'}>
                 <div className='followimg fleximg'><img src={item.is_attention?gouimg:addBigimg} alt="add" /></div>
                 <span>{item.is_attention?'已关注':'关注'}</span>
             </div>
             ): (
             // size='small'或者没传size
-            <div onClick={this.follow} className={item.is_attention?' interest-button-gray fleximg':'fleximg interest-button'}>
+            <div onClick={this.follow} className={item.is_attention?' interest-button-gray fleximg pointer':'fleximg interest-button pointer'}>
                 <div className='followimg fleximg'><img src={item.is_attention?gouimg:addSmallimg} alt="is_attention" /></div>
                 <span>{item.is_attention?'已关注':'关注'}</span>
             </div>

@@ -55,10 +55,10 @@ export default class Collect extends Component<CollectProps> {
     render(){
         let prop =this.props,{item}=this.state
         return <div onClick={this.collectChange}>
-            {prop.css === 'align' ?(<div className='collect-item fleximgc'>
+            {prop.css === 'align' ?(<div className='collect-item fleximgc pointer'>
                 <div className='fleximg collectimg'><img src={item.is_collection?starActive20img:collectimg} alt="collect" /></div>
                 <div className={item.is_collection?'collect-color font12':'font12'}>收藏</div>
-            </div> ):prop.css === 'justify' && (<div className='flexl star-item'>
+            </div> ):prop.css === 'justify' && (<div className='flexl star-item pointer'>
                 <div className='fleximg collectimg'><img src={item.is_collection?starActiveimg:starimg} alt="collect" /></div>
                 <div className={item.is_collection?'star-color':'color3'}>收藏</div>
             </div> 

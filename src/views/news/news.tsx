@@ -200,7 +200,7 @@ export default class News extends Component{
                   <div className='yeterday-profit'>昨日收益 <span >{UserAnalysis.integraly}</span></div>
                 </div>
               </div>
-              <div className='button fleximg' onClick={this.toUser}>进入内容中心</div>
+              <div className='button fleximg pointer' onClick={this.toUser}>进入内容中心</div>
             </div>
           </div>
         </div>

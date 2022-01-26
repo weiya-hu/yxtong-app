@@ -58,7 +58,7 @@ export default class Report extends Component {
     render(){
         const {reports,reportActive,reportShow } =this.state
         return <div className='flexr report-component'>
-            <div className='flexr' onClick={this.report}>
+            <div className='flexr pointer' onClick={this.report}>
                 <div className='fleximg reportimg'>
                     <img src={reportimg} alt="report" />
                 </div>
@@ -76,7 +76,7 @@ export default class Report extends Component {
                     <div className='report-frame-item-contents'>
                         {reports.map((item,index)=><div 
                             key={index} 
-                            className='flexb report-frame-item-content'
+                            className='flexb report-frame-item-content pointer'
                             onClick={()=>{this.setState({reportActive:index})}}
                         >
                             <div>{item}</div>
@@ -85,8 +85,8 @@ export default class Report extends Component {
                         }
                     </div>
                     <div className='flexr report-frame-item-button'>
-                        <div onClick={this.reportEdit} className='edit-button fleximg'>取消</div>
-                        <div onClick={this.reportSure} className='sure-button fleximg'>确认</div>
+                        <div onClick={this.reportEdit} className='edit-button fleximg pointer'>取消</div>
+                        <div onClick={this.reportSure} className='sure-button fleximg pointer'>确认</div>
                     </div>
                 </div>
             </div>

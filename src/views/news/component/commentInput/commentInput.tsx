@@ -85,7 +85,7 @@ export default class CommentInput extends Component<CommentInputState> {
                 请先<span onClick={()=>{store.dispatch(loginShow())}}>登录</span>再做评论~
             </div>
             }
-            <div className='comment-button fleximg' onClick={this.commentBt}>评论</div>
+            <div className='comment-button fleximg pointer' onClick={this.commentBt}>评论</div>
             
         </div>
     }

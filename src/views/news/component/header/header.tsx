@@ -96,7 +96,7 @@ class Header extends Component<any,HeaderState>{
                 {/* <div className='message-num fleximg'><span>99</span></div> */}
               </div>
               <div className='news-login-line'></div>
-              <div className='flexr position user-login'  
+              <div className='flexr position user-login pointer'  
                 onClick={()=>{this.props.history.push('/app/user')}}
                 onMouseEnter ={()=>{this.setState({exitNone:true})}} 
                 onMouseLeave ={()=>{this.setState({exitNone:false})}} 
@@ -119,10 +119,10 @@ class Header extends Component<any,HeaderState>{
             </div>
           ):(<div className='flexr'>
               {/* <div className='news-login' onClick={()=>{this.setState({loginShow:true})}}>登录</div> */}
-              <div className='news-login' onClick={ this.tologin}>登录</div>
+              <div className='news-login pointer' onClick={ this.tologin}>登录</div>
 
               <div className='news-login-line'></div>
-              <div className='colorw'  onClick={ this.toRegister}>注册</div>
+              <div className='colorw pointer'  onClick={ this.toRegister}>注册</div>
             </div>
           )}  
         </div>

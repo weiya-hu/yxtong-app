@@ -93,7 +93,7 @@ export default class Comment extends Component<CommentProps> {
                         </div> )}
                     </div>
                     {total>commentList.length?<div
-                        className='look-more fleximg'
+                        className='look-more fleximg pointer'
                         onClick={()=>{this.setState({drawerShow:true})}}
                     >
                         <div>查看更多评论</div>
