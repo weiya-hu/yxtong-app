@@ -158,48 +158,36 @@
             $('.bar-tip').show()
         })
         $('.marketing').mouseleave(function() {
-                $('.navchild1').css('overflow', 'hidden')
-                $('.bar-tip').hide()
+            $('.navchild1').css('overflow', 'hidden')
+            $('.bar-tip').hide()
 
-            })
-            // 导航栏
-            // $('.product-content').hide()
-            // $('.marketing').mouseover(function() {
-            //    
-            // })
-
-        // $('.marketing').mouseout(function() {
-        //     $('.barchild').hide()
-        // })
+        })
     </script>
     <script>
         var token = localStorage.getItem('firstToken');
         // loaded page
         $(document).ready(function() {
-            $('[data-pro]').children('a').mouseover(function() {
-                $(this).addClass('active').siblings().removeClass('active').find('.aimg').hide().siblings('img').show();
-                $(this).find('.aimg').show().siblings('img').hide()
-                var aa = $(this).index('a')
-                var $cons = $('[pro-content="' + $(this).parent().attr('data-pro') + '"]').children();
-                $cons.eq($(this).attr('data-i') - 1).show().siblings().hide();
-            })
             if (!token) {
                 $.ajax({
                     method: 'get',
                     url: "/api/user/public/token",
                     dataType: "json",
                     success: function(res) {
+                        // console.log(res.body)
                         localStorage.setItem("firstToken", res.body);
+
                         isUser()
                     },
                 })
                 return
             }
+
             initLogin(token)
 
             $('#uname').click(function() {
                 location.href = '/app/user'
             })
+
         })
 
         // 点击退出
@@ -213,9 +201,11 @@
                 dataType: "json",
                 success: function(res) {
                     isUser()
+                    localStorage.removeItem('userInfo')
                 },
             })
         })
+        console.log(token)
 
         function initLogin(token) {
             $.ajax({
@@ -227,6 +217,7 @@
                 dataType: "json",
                 success: function(res) {
                     res.status ? isUser(res.body) : isUser()
+                    res.status && localStorage.setItem('userInfo', res.body)
                 },
             })
         }
@@ -243,63 +234,62 @@
                 $('#header').attr('src', userInfo.head)
                 $('#uname').text(userInfo.name)
             }
-
-
         }
     </script>
 <link rel="stylesheet" type="text/css" href="static/css/member.css" />
 
 
 <div class="container bg-grey">
-	<div class="wrapper clearfix">
-		<div class="crumbs">
-			您当前位置：
-			<a href="news.html">会员中心</a> > 
-			通知公告
-		</div>
-		<div class="member-news-menu" id="newsnav">
-			<a class="active" href="member_news?id=1">通知公告</a>
-			<a href="member_news?id=2">系统公告</a>
-			<a href="member_news?id=3">招商公告</a>
-			<a href="member_news?id=4">优惠公告</a>
-			<a href="member_news?id=5">其他分类</a>
-		</div>
-		<div class="member-news-list-con">
-			<div class="member-news-list">
-				<div class="item">
-					<h2><a href="member_newsdetail.html">关于举办新修订《医疗器械监督管理条例》及配套规章（上市前）培训会的第二轮通知</a></h2>
-					<p>各有关单位： 近期新冠肺炎疫情防控形势趋于紧张和复杂，为严格落实全国和北京市疫情防控政策要求，中国医疗器械行业协会定于2021年10月28日至29日在北京组织新修订《医疗器械监督管理条例》及配套规章（上市前）培训会，做出调整。经与各方沟通协商，现第二轮通知如下：会议时间： 2021年10月28日—29日。会议形式：会议改为线上培训。</p>
-					<div class="bar">
-						<em class="icon-time"></em> 2021-09-29
-						<em class="icon-view"></em> 8636
-					</div>
-				</div>
-				<div class="item">
-					<h2><a href="member_newsdetail.html">诊疗设备与急救、生命支持设备复寒将于10月27日在浙江仙居开战 第四届（2021）中国医疗器械创新创业大赛诊疗设备与急救</a></h2>
-					<p>第四届（2021）中国医疗器械创新创业大赛诊疗设备与急救、生命支持设备复赛将于10月27日在浙江仙居举办，现场聚集了20个优秀的创新创业项目。比赛现场每个项目展示环节为15分钟，最后按照按评分的高低，现场评选出现场评选出复赛一等奖2名，二等奖3名，三等奖7名，优秀奖若干名。北京飞天大厦酒店一层兰州厅，地址：北京市东城区东二环广渠门外南街5号，电话：010-67778000，订房电话：18201090305，直接联系…</p>
-					<div class="bar">
-						<em class="icon-time"></em> 2021-09-29
-						<em class="icon-view"></em> 8636
-					</div>
-				</div>
-				<div class="item">
-					<h2><a href="member_newsdetail.html">报名延至11月2日 关于组团参加第四届CPRJ医用橡塑技术论坛暨展示会的通知</a></h2>
-					<p>各相关单位：为聚焦医用塑料产业的现状和未来发展，洞悉行业最新的市场和技术信息，2021第四届CPRJ医用橡塑技术论坛暨展示会将于今年11月4-5日在上海举办。</p>
-					<div class="bar">
-						<em class="icon-time"></em> 2021-09-29
-						<em class="icon-view"></em> 8636
-					</div>
-				</div>
-			</div>
-			<div class="page member-news-page">
-	            <span>共5条</span>
-	            <a class="pre disabled">&lt;</a>
-	            <span class="active">1</span>
-	            <a href="news.html">2</a>
-	            <a class="next" href="news.html?page=2">&gt;</a>
-	        </div>
-		</div>
-	</div>
+    <div class="wrapper clearfix">
+        <div class="crumbs">
+            您当前位置：
+            <a href="news.html">会员中心</a> > 通知公告
+        </div>
+        <div class="member-news-menu" id="newsnav">
+            <a class="active" href="member_news?id=1">通知公告</a>
+            <a href="/developmenting.html">系统公告</a>
+            <a href="/developmenting.html">招商公告</a>
+            <a href="/developmenting.html">优惠公告</a>
+            <a href="/developmenting.html">其他分类</a>
+        </div>
+        <div class="member-news-list-con">
+            <div class="member-news-list">
+                <div class="item">
+                    <h2><a href="member_newsdetail.html">关于举办新修订《医疗器械监督管理条例》及配套规章（上市前）培训会的第二轮通知</a></h2>
+                    <p>各有关单位： 近期新冠肺炎疫情防控形势趋于紧张和复杂，为严格落实全国和北京市疫情防控政策要求，中国医疗器械行业协会定于2021年10月28日至29日在北京组织新修订《医疗器械监督管理条例》及配套规章（上市前）培训会，做出调整。经与各方沟通协商，现第二轮通知如下：会议时间： 2021年10月28日—29日。会议形式：会议改为线上培训。</p>
+                    <div class="bar">
+                        <em class="icon-time"></em> 2021-09-29
+                        <em class="icon-view"></em> 8636
+                    </div>
+                </div>
+                <div class="item">
+                    <h2><a href="member_newsdetail.html">诊疗设备与急救、生命支持设备复寒将于10月27日在浙江仙居开战 第四届（2021）中国医疗器械创新创业大赛诊疗设备与急救</a></h2>
+                    <p>第四届（2021）中国医疗器械创新创业大赛诊疗设备与急救、生命支持设备复赛将于10月27日在浙江仙居举办，现场聚集了20个优秀的创新创业项目。比赛现场每个项目展示环节为15分钟，最后按照按评分的高低，现场评选出现场评选出复赛一等奖2名，二等奖3名，三等奖7名，优秀奖若干名。北京飞天大厦酒店一层兰州厅，地址：北京市东城区东二环广渠门外南街5号，电话：010-67778000，订房电话：18201090305，直接联系…</p>
+                    <div class="bar">
+                        <em class="icon-time"></em> 2021-09-29
+                        <em class="icon-view"></em> 8636
+                    </div>
+                </div>
+                <div class="item">
+                    <h2><a href="member_newsdetail.html">报名延至11月2日 关于组团参加第四届CPRJ医用橡塑技术论坛暨展示会的通知</a></h2>
+                    <p>各相关单位：为聚焦医用塑料产业的现状和未来发展，洞悉行业最新的市场和技术信息，2021第四届CPRJ医用橡塑技术论坛暨展示会将于今年11月4-5日在上海举办。</p>
+                    <div class="bar">
+                        <em class="icon-time"></em> 2021-09-29
+                        <em class="icon-view"></em> 8636
+                    </div>
+                </div>
+            </div>
+            <div class="page member-news-page">
+                <span>共5条</span>
+                <a class="pre disabled">&lt;</a>
+                <span class="active">1</span>
+
+                <a href="">2</a>
+                <a class="next" href="">&gt;</a>
+
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -389,21 +379,22 @@
 
 
 <script>
-//静态演示用，绑程序时删除 star
-document.title = '新闻中心';
-$('#navbar>ul').children('li').eq(6).addClass('active').siblings().removeClass();
-$('#navbar>ul').children('li').eq(6).find('li').eq(0).addClass('active').siblings().removeClass();
-//静态演示用，绑程序时删除 end
+    //静态演示用，绑程序时删除 star
+    document.title = '新闻中心';
+    $('#navbar>ul').children('li').eq(6).addClass('active').siblings().removeClass();
+    $('#navbar>ul').children('li').eq(6).find('li').eq(0).addClass('active').siblings().removeClass();
+    //静态演示用，绑程序时删除 end
 
-function getUrlParam(name){
-	let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");  
-	let r = window.location.search.substr(1).match(reg);  
-	if (r!=null) return unescape(r[2]);  
-	return null;
-}
-let id = getUrlParam('id')
-$('#newsnav').children('a').eq(id-1).addClass('active').siblings().removeClass();
+    function getUrlParam(name) {
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        let r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+    let id = getUrlParam('id')
+    $('#newsnav').children('a').eq(id - 1).addClass('active').siblings().removeClass();
 </script>
 
 </body>
+
 </html>

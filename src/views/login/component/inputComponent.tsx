@@ -315,17 +315,16 @@ export default class InputComponent extends Component<any> {
                 )
                 break;
             case 'inviteCode':
-                    console.log(defaultValue)
                     component = (
                         <div id='inviteCode'  className={height?'phone flexb height':'phone flexb'}>
                             <div className='flexl'>
                                 <div className='yzmTXT'>{title?title:'邀请码'}</div>
-                                <Form.Item name={formName}>
+                                <Form.Item name={formName} >
                                     <input 
                                         autoComplete='off' 
                                         type="text" 
                                         defaultValue={defaultValue} 
-                                        disabled={defaultValue?true:false}
+                                        // disabled={defaultValue?true:false}
                                         placeholder='请输入邀请码' 
                                     />
                                 </Form.Item>

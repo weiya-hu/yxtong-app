@@ -3,6 +3,8 @@ import { Component } from 'react'
 import './share.scss'
 import QRCode  from 'qrcode.react'
 import message from 'views/component/message/index'
+import {util} from 'utils/news'
+import store from 'store'
 
 import shareimg from 'public/images/user/share.png'
 import shareActiveimg from 'public/images/user/shareActive.png'
@@ -59,18 +61,23 @@ export default class Share extends Component<ShareState> {
         message.info('复制成功');
         }
     copyLink=()=>{
-        let url = window.location.href
-        let newsId=url.substring(url.indexOf('=')+1,url.length)
+        let newsId = util.getUrlParam('newsId')
         let id =this.props.item.id?this.props.item.id:newsId
         this.copy(window.location.protocol+'//'+window.location.host+'/app/newsdetail/?newsId='+id)
         
     }
     componentDidMount(){
-        let url = window.location.href
-        let newsId=url.substring(url.indexOf('=')+1,url.length)
+        let newsId = util.getUrlParam('newsId')
         let id =this.props.item.id?this.props.item.id:newsId
-        let urls =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id
-        this.setState({copyUrl:urls})
+        let userInfo=store.getState().userInfo
+        if(userInfo){
+            let urls =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id+'&invite_code='+userInfo.invite_code
+             this.setState({copyUrl:urls})
+        }else{
+            let urls =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id
+            this.setState({copyUrl:urls})
+        }
+        
     }
     render(){
         let prop = this.props
@@ -127,7 +134,7 @@ export default class Share extends Component<ShareState> {
                     <div className='wechartimg fleximg'><img src={toutgray} alt="wechart" /></div>
                     <div>今日头条</div>
                 </div>
-                <div className='flexl' onClick={this.copyLink}>
+                <div className='flexl' onClick={()=>this.copy(copyUrl)}>
                     <div className='wechartimg fleximg'><img src={linkimg} alt="wechart" /></div>
                     <div>复制链接</div>
                 </div>

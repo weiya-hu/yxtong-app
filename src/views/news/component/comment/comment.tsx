@@ -4,6 +4,7 @@ import CommentInput from '../commentInput/commentInput'
 import CommentListItem from '../commentListItem/commentListItem';
 import { Drawer} from 'antd';
 import {commentList} from 'service/news'
+import {util} from 'utils/news'
 
 import chaimg from 'public/images/cha.png'
 import toimg from 'public/images/user/to.png'
@@ -24,8 +25,9 @@ export default class Comment extends Component<CommentProps> {
         this.setState({drawerShow:false})
     }
     getComment=async()=>{
-        let url = window.location.href
-        let id=url.substring(url.indexOf('=')+1,url.length)
+        // let url = window.location.href
+        // let id=url.substring(url.indexOf('=')+1,url.length)
+        let id = util.getUrlParam('newsId')
         let {current,size}=this.state
         let data={
             newsId:id,

@@ -3,9 +3,10 @@ import { Component } from 'react'
 import './collect.scss'
 import $message from 'views/component/message/index';
 import {doCollect} from 'service/news'
+import {util} from 'utils/news'
 
 import store from 'store'
-import { loginRemove, loginShow } from 'store/actionCreators'
+import { loginShow } from 'store/actionCreators'
 
 import collectimg from 'public/images/user/collectBlack.png'
 import starActive20img from 'public/images/user/starActive20.png'
@@ -28,11 +29,12 @@ export default class Collect extends Component<CollectProps> {
     }
     collectChange=async(e)=>{
         e.stopPropagation()
-        const userInfo = JSON.parse(store.getState().userInfo) 
+        const userInfo = store.getState().userInfo
         if(userInfo){
             let item = JSON.parse(JSON.stringify(this.state.item))
-            let url = window.location.href
-            let id=url.substring(url.indexOf('=')+1,url.length)
+            // let url = window.location.href
+            // let id=url.substring(url.indexOf('=')+1,url.length)
+            let id = util.getUrlParam('newsId')
             let data={
                 "news_id": item.id?item.id:id,
                 "types":item.is_collection?0:1

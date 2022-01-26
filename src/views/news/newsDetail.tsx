@@ -12,6 +12,7 @@ import Report from './component/report/report';
 import Comment from './component/comment/comment';
 import {newsDetail,newsReadList,newsWorksList,addReadLog} from 'service/news'
 import PopupLogin from 'views/login/popupLogin';
+import {util} from 'utils/news'
 
 import store from 'store';
 
@@ -20,7 +21,6 @@ import commentBlackimg from 'public/images/user/commentBlack.png'
 import headerimg from 'public/images/user/header.png'
 import message  from 'views/component/message/index';
 
-// let timer=null
 export default class NewsDetail extends Component {
     constructor(props) {
         super(props)
@@ -70,8 +70,7 @@ export default class NewsDetail extends Component {
       //获取新闻详情
     getNewsDetail=async(id)=>{
         if(!id){
-            let url = window.location.href
-            id=url.substring(url.indexOf('=')+1,url.length)
+            id = util.getUrlParam('newsId')
         }
         let data={
             newsId:id
@@ -112,31 +111,15 @@ export default class NewsDetail extends Component {
     }
     //详情页文章切换
     articleChange=(id)=>{
-        // this.props.history.push('/app/newsdetail/?newsId='+id)
         window.open(window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id, "_blank"); 
-        // window.location.reload()
     }
-    //计时获得积分
-    // getReadLog=()=>{
-    //     timer=setTimeout(()=>{
-             
-    //         let data={"news_id":window.location.href.split('=')[1]}
-    //         addReadLog(data).then(res=>{
-    //             res.status && message.info('浏览获得积分')
-    //         })
-    //     },10000)
-        
-    // }
     componentDidMount(){
         this.getNewsDetail()
         this.newsReadLists()
-        // this.getHotArticleList()
-        // this.getReadLog()
         document.title = '康州数智-新闻资讯详情'
-        
-    }
-    componentWillUnmount(){
-        // clearInterval(timer)
+        //检查页面地址中是否有邀请码，有的话之后如果有点到注册页，注册页的邀请码默认值
+        let inviteCode = util.getUrlParam('invite_code')
+        inviteCode && sessionStorage.setItem('inviteCode',inviteCode)
     }
     render(){
         let {newsTypeActive,total,readRank,newsDetail,hotArticleList,loginShow}=this.state

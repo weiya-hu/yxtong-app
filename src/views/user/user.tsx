@@ -36,7 +36,8 @@ class User extends Component {
         userInfo:{},
         loginFlag:false,
         newsDetail:{},//文章详情
-        editItem:null
+        editItem:null,
+        isPreview:false,//文章详情页是否为预览
     }
     exitloginpre=(e)=>{
       e.stopPropagation()
@@ -77,7 +78,8 @@ class User extends Component {
         isArticleDetail:val,
         asideActive:val,
         newsDetail:item,
-        editItem:item
+        editItem:item,
+        isPreview:true
       })
     }
     componentDidMount=()=>{
@@ -92,7 +94,7 @@ class User extends Component {
       this.getUserInfo()
     }
     render(){
-        let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag,newsDetail,editItem} = this.state
+        let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag,newsDetail,editItem,isPreview} = this.state
         let asideActive = navActiveIndex === 2?this.state.asideActive:0
         if(loginFlag){
           return <Redirect to='/app/login?url=/app/user' />;
@@ -171,17 +173,23 @@ class User extends Component {
                 {
                   navActiveIndex === 0 ? <MyTask /> :
                   navActiveIndex === 1 ? <Profit /> :
-                  (navActiveIndex === 2 && asideActive === 0)? <Writing preview={(val,item)=>{this.writingPreview(val,item)}} item={editItem} publish={(val)=>{this.setState({editItem:null})}}/>:
+                  (navActiveIndex === 2 && asideActive === 0)? <Writing 
+                        preview={(val,item)=>{this.writingPreview(val,item)}} 
+                        item={editItem} 
+                        publish={(val)=>{this.setState({editItem:null})}}
+                        save={(val)=>{this.setState({editItem:val})}}
+                  />:
                   (navActiveIndex === 2 && asideActive === 2) ? <DataAnalysis />:
                   (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 0) ? 
                     <ArticleList 
                       edit={(val,item)=>{this.setState({asideActive:val,editItem:item})}}
                       dataAnalysis={(val)=>{this.setState({asideActive:val})}}
-                      articleDetail={(val,item)=>{this.setState({isArticleDetail:val,newsDetail:item})}}
+                      articleDetail={(val,item)=>{this.setState({isArticleDetail:val,newsDetail:item,isPreview:false})}}
+                      
                     />:
                   (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 1) && 
                   <div className='usermain-ArticleDetail'>
-                    <ArticleDetail newsDetail={newsDetail}/>
+                    <ArticleDetail newsDetail={newsDetail} isPreview={isPreview} backReview={(val)=>{this.setState({asideActive:0})}}/>
                   </div>
                    
                 }

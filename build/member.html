@@ -158,48 +158,36 @@
             $('.bar-tip').show()
         })
         $('.marketing').mouseleave(function() {
-                $('.navchild1').css('overflow', 'hidden')
-                $('.bar-tip').hide()
+            $('.navchild1').css('overflow', 'hidden')
+            $('.bar-tip').hide()
 
-            })
-            // 导航栏
-            // $('.product-content').hide()
-            // $('.marketing').mouseover(function() {
-            //    
-            // })
-
-        // $('.marketing').mouseout(function() {
-        //     $('.barchild').hide()
-        // })
+        })
     </script>
     <script>
         var token = localStorage.getItem('firstToken');
         // loaded page
         $(document).ready(function() {
-            $('[data-pro]').children('a').mouseover(function() {
-                $(this).addClass('active').siblings().removeClass('active').find('.aimg').hide().siblings('img').show();
-                $(this).find('.aimg').show().siblings('img').hide()
-                var aa = $(this).index('a')
-                var $cons = $('[pro-content="' + $(this).parent().attr('data-pro') + '"]').children();
-                $cons.eq($(this).attr('data-i') - 1).show().siblings().hide();
-            })
             if (!token) {
                 $.ajax({
                     method: 'get',
                     url: "/api/user/public/token",
                     dataType: "json",
                     success: function(res) {
+                        // console.log(res.body)
                         localStorage.setItem("firstToken", res.body);
+
                         isUser()
                     },
                 })
                 return
             }
+
             initLogin(token)
 
             $('#uname').click(function() {
                 location.href = '/app/user'
             })
+
         })
 
         // 点击退出
@@ -213,9 +201,11 @@
                 dataType: "json",
                 success: function(res) {
                     isUser()
+                    localStorage.removeItem('userInfo')
                 },
             })
         })
+        console.log(token)
 
         function initLogin(token) {
             $.ajax({
@@ -227,6 +217,7 @@
                 dataType: "json",
                 success: function(res) {
                     res.status ? isUser(res.body) : isUser()
+                    res.status && localStorage.setItem('userInfo', res.body)
                 },
             })
         }
@@ -243,8 +234,6 @@
                 $('#header').attr('src', userInfo.head)
                 $('#uname').text(userInfo.name)
             }
-
-
         }
     </script>
 <div id="content" style="height: 222px;z-index: 1001;">

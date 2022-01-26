@@ -4,6 +4,7 @@ import { subComment } from 'service/news'
 import './commentInput.scss'
 import { Input } from 'antd';
 import $message from 'views/component/message'
+import {util} from 'utils/news'
 
 import store from 'store';
 import {loginShow} from 'store/actionCreators'
@@ -18,7 +19,7 @@ interface CommentInputState{
 
 export default class CommentInput extends Component<CommentInputState> {
     state={
-        isLogin:JSON.parse(store.getState().userInfo),
+        isLogin:store.getState().userInfo,
         loginShow:false,
         comment:''
     }
@@ -27,10 +28,11 @@ export default class CommentInput extends Component<CommentInputState> {
     }
     //点击评论按钮
     commentBt=async()=>{
-        let userInfo = JSON.parse(store.getState().userInfo)
+        let userInfo = store.getState().userInfo
         if(userInfo){
-            let url = window.location.href
-            let id=url.substring(url.indexOf('=')+1,url.length)
+            // let url = window.location.href
+            // let id=url.substring(url.indexOf('=')+1,url.length)
+            let id = util.getUrlParam('newsId')
             let data={
                 "content": this.state.comment,
                 "news_id": id

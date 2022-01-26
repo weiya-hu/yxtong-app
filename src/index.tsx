@@ -5,7 +5,7 @@ import Router from 'router/index'
 import reportWebVitals from 'reportWebVitals';
 import {util} from 'utils/news'
 
-util.firstToken().then(()=>{
+util.firstTokenUserinfo().then(()=>{
   ReactDOM.render(
     <React.StrictMode>
       <Router />

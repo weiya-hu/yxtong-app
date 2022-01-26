@@ -2,6 +2,7 @@ import { Component } from 'react'
 import './report.scss'
 import {sureReport} from 'service/news'
 import $message from 'views/component/message'
+import {util} from 'utils/news'
 
 import store from 'store';
 import {loginShow} from 'store/actionCreators'
@@ -19,7 +20,7 @@ export default class Report extends Component {
     }
     //点击举报反馈
     report=async()=>{
-        let userInfo =  JSON.parse(store.getState().userInfo)
+        let userInfo =  store.getState().userInfo
         if(userInfo){//如果登录了
             this.reportEdit()
         }else{//没有登录
@@ -38,8 +39,9 @@ export default class Report extends Component {
     //确认举报按钮
     reportSure=async()=>{
         const {reportActive,reports} =this.state
-        let url = window.location.href
-        let id=url.substring(url.indexOf('=')+1,url.length)
+        // let url = window.location.href
+        // let id=url.substring(url.indexOf('=')+1,url.length)
+        let id = util.getUrlParam('newsId')
         let data={
             "content": reports[reportActive],
             "news_id":id

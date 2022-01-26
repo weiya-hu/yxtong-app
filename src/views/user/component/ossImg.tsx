@@ -110,6 +110,7 @@ export default class AliyunOSSUpload extends React.Component {
     const props = {
       name: 'file',
       fileList: value,
+      accept:'.jpeg,.png',
       action: this.state.OSSData.host,
       onChange: this.onChange,
       onRemove: this.onRemove,

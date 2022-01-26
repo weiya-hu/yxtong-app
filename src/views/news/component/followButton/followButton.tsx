@@ -2,6 +2,7 @@ import { Component } from 'react'
 import './followButton.scss'
 import {doAttention} from 'service/news'
 import $message from 'views/component/message/index'
+import {util} from 'utils/news'
 
 import store from 'store';
 import {loginShow} from 'store/actionCreators'
@@ -27,11 +28,12 @@ export default class FollowButton extends Component<FollowButtonProps> {
     }
     follow=async(event)=>{
         event.stopPropagation() 
-        let userInfo =JSON.parse(store.getState().userInfo)
+        let userInfo =store.getState().userInfo
         if(userInfo){
             let {item} =JSON.parse(JSON.stringify(this.state)) 
-            let url = window.location.href
-            let reatorId=url.substring(url.indexOf('=')+1,url.length)
+            // let url = window.location.href
+            // let reatorId=url.substring(url.indexOf('=')+1,url.length)
+            let reatorId = util.getUrlParam('creatorId')
             let data={
                 "creator_id":item.creator_id?item.creator_id:Number(reatorId) ,
                 "types": item.is_attention?0:1

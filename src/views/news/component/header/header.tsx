@@ -64,14 +64,14 @@ class Header extends Component<any,HeaderState>{
     this.props.history.push('/app/register/register')
   }
   componentDidMount=()=>{
-    let userInfo=JSON.parse(store.getState().userInfo) 
+    let userInfo=store.getState().userInfo
     if(userInfo){
       this.setState({userInfo:userInfo})
     }
   }
   render(){
     let {links,exitActive,exitNone,}=this.state
-    let userInfo = JSON.parse(store.getState().userInfo)
+    let userInfo = store.getState().userInfo
     return (
       <div className='header' >
         <div className='width flexb'>

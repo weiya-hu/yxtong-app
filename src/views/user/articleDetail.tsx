@@ -1,6 +1,7 @@
 import { Component, ReactNode } from 'react'
 import './articleDetail.scss'
 import moment from 'moment'
+import { Button } from 'antd';
 
 interface ArticleDetailProps{
     newsDetail:{
@@ -12,7 +13,9 @@ interface ArticleDetailProps{
         title?: string
         update_time?: number
         sendCoverImgurl?:string
-    }
+    },
+    isPreview?:boolean
+    backReview?:(val:boolean)=>void
 }
 export default class ArticleDetail extends Component<ArticleDetailProps>{
     state={
@@ -25,15 +28,21 @@ export default class ArticleDetail extends Component<ArticleDetailProps>{
         },
         newsDetail:this.props.newsDetail
     }
+    backReview=()=>{
+        this.props.backReview(true)
+    }
     render(): ReactNode {
-        let newsDetail= this.props.newsDetail?this.props.newsDetail:this.state.detail
-        let userInfo= JSON.parse(localStorage.getItem('userInfo'))
+        let {newsDetail,isPreview}= this.props
         return(
-            newsDetail && <div className='articleDetail'>
+            newsDetail && 
+            <div className='articleDetail position'>
+                {isPreview && <div className='back-button' onClick={this.backReview}>
+                    <Button type='ghost' size='small'>退出预览</Button>
+                </div> }
                 <div className='title'>{newsDetail.title}</div>
                 <div className='flexb detail-info'>
                     <div className='flexl'>
-                        <div>{moment(newsDetail.create_time).format('YYYY月MM月DD HH:mm')}</div>
+                        <div>{moment(newsDetail.create_time).format('YYYY月MM日DD HH:mm')}</div>
                         <div className='detail-from'>来源：{newsDetail.creator_name}</div>
                     </div>
                     <div>阅读量： {newsDetail.readed}</div>

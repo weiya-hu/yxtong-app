@@ -30,4 +30,12 @@
             font-size: 16px !important; 
         }
     }
+    .back-button{
+        position: absolute;
+        top: -25px;
+        left: -25px;
+        span{
+            color: #1890ff;
+        }
+    }
 }

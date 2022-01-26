@@ -1,7 +1,7 @@
 import { SetUserInfo, RemoveUserInfo,LoginShow,LoginRemove } from "./constants.js";
 
 const defaultState = {
-    userInfo: localStorage.getItem('userInfo'),
+    userInfo: null,
     loginShow:false
 };
 

@@ -24,18 +24,40 @@ export default class Writing extends Component{
     }
     //富文本编辑器文本有改变
     EditorChange=(val)=>{
+        const {title,edit,coverImgurl,sendCoverImgurl} = this.state
        this.setState({
             edit:val,
             textMessage:val?'':'必填项'
        })
+       let item={
+            commented: 0,
+            content: val,
+            readed: 0,
+            thumb_url:coverImgurl,
+            title:title,
+            update_time: new Date(),
+            sendCoverImgurl:sendCoverImgurl
+        }
+        this.props.save(item)
     
     }
     //标题输入有改变
     titleChange=(e)=>{
+        const {edit,coverImgurl,sendCoverImgurl} = this.state
         this.setState({
             title:e.target.value,
             titleMessage:e.target.value?'':'必填项'
         })
+        let item={
+            commented: 0,
+            content: edit,
+            readed: 0,
+            thumb_url:coverImgurl,
+            title:e.target.value,
+            update_time: new Date(),
+            sendCoverImgurl:sendCoverImgurl
+        }
+        this.props.save(item)
     }
     imageEditor= (blobInfo, success, failure)=>{
         console.log(blobInfo.base64(),blobInfo.uri())

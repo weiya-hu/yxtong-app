@@ -18,7 +18,7 @@ export default class Register extends Component {
         isForget:'',//模式选择，是忘记密码还是注册，候选值有forget,next,register
         warnMessage:'',//input框验证错误
         registermessage:'密码长度在6~18之间,不能只是数字或字母',
-        inviteCode:'',//邀请码默认值
+        inviteCode:sessionStorage.getItem('inviteCode')?sessionStorage.getItem('inviteCode'):'',//邀请码默认值
         agree:false,//是否阅读并同意协议的默认值
         mobileValue:'',
         acode:'86',
