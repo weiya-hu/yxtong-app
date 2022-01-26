@@ -45,7 +45,7 @@ export const util = {
             
         } 
         const result = await getUser()
-        store.dispatch(setUserInfo(result.body))
+        result.status && store.dispatch(setUserInfo(result.body))
     },
     getUrlParam:(name)=>{
         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");

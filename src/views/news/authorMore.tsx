@@ -7,10 +7,22 @@ import NewsListItem from './component/newsListItem/newsListItem'
 import MoreTxt from './component/moreTxt/moreTxt'
 import {util} from 'utils/news'
 import {newsWorksList } from 'service/news'
+import PopupLogin from 'views/login/popupLogin';
+
+import store from 'store';
+import { loginShow } from 'store/actionCreators';
 
 import headerimg from 'public/images/user/header.png'
 
 export default class AuthorMore extends Component{
+  constructor(props) {
+    super(props)
+    // 监听state状态改变
+    store.subscribe(() => {
+      const state = store.getState()
+      this.setState({loginShow:state.loginShow})
+    })
+  }
     state={
         types:['全部','文章'],
         typeActiveIndex:0,
@@ -19,6 +31,7 @@ export default class AuthorMore extends Component{
         authorInfo:null,
         current:1,
         size:10,
+        loginShow:false
     }
     loadMoreData=()=>{
         let array=this.state.newsList
@@ -88,7 +101,7 @@ export default class AuthorMore extends Component{
         window.removeEventListener('scroll', this.handleScroll)
     }
     render(){
-        const {types,typeActiveIndex,newsList,hasMore,authorInfo}=this.state
+        const {types,typeActiveIndex,newsList,hasMore,authorInfo,loginShow}=this.state
         return(
             <div className='authorMore'>
                 <div className='more-header'>
@@ -134,6 +147,7 @@ export default class AuthorMore extends Component{
                     </div>
                     
                 </div>
+                {loginShow &&  <PopupLogin />}
             </div>
         )
     }
