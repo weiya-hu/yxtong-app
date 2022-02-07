@@ -34,6 +34,9 @@ const NewsAuthorMore = loadable(()=> import('../views/news/authorMore'), {
 const Develop = loadable(() => import('../views/develop.tsx'), {
     LoadingComponent: Loading,
 })
+// const Oss = loadable(() => import('../views/ossImg.tsx'), {
+//     LoadingComponent: Loading,
+// })
  
  
 class IRouter extends React.Component {
@@ -53,7 +56,7 @@ class IRouter extends React.Component {
                         <Route path="/app/develop" component={Develop} />
                         {/* 404页面 */}
                         <Route path="*" component={NotFound} />
-                        
+                        {/* <Route path="/oss" component={Oss} /> */}
                     </Switch>
     
                 </Router>

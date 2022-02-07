@@ -3,101 +3,140 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>药智器械 - 行业导航</title>
+    <title>数智器械 - 行业导航</title>
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="icon" href="static/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="static/css/common.css" />
     <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
 </head>
 
-<!-- <body onload="load_data()"> -->
+
 
 <body>
 
 
+
     <div class="topbar">
-        <div class="wrapper">
-            <div class="topbar-left">
-                <span>你好，欢迎登陆康洲数智官网！</span>
-                <a target="_blank" href="https://job.yaozh.com/">药智人才</a>
+        <div class="tips">你好，欢迎登陆康洲数智官网！</div>
+        <div class="links">
+            <div class="content">
+                <a target="_blank" href="https://qx.yaozh.com/home">药智器械</a>
+                <a target="_blank" href="https://job.yaozh.com/">数智人才</a>
                 <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
-                <a target="_blank" href="https://report.yaozh.com/">药智咨询</a>
-                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">药智汇</a>
-                <a target="_blank" href="https://s.yaozh.com">药智通</a>
-                <a target="_blank" href="https://edu.yaozh.com/">药智大讲堂</a>
+                <a target="_blank" href="https://report.yaozh.com/">数智咨询</a>
+                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">数智汇</a>
+                <a target="_blank" href="https://s.yaozh.com">数智通</a>
+                <a target="_blank" href="https://edu.yaozh.com/">数智大讲堂</a>
                 <a target="_blank" href="https://aiyun.yaozh.com/">产业大脑</a>
                 <a target="_blank" href="https://bbs.yaozh.com">论坛交流</a>
                 <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
                 <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
-                <a target="_blank" href="https://gu.yaozh.com/ ">药智谷</a>
-                <a target="_blank" href="https://nav.yaozh.com/">药智搜</a>
+                <a target="_blank" href="https://gu.yaozh.com/ ">数智谷</a>
             </div>
-            <div class="topbar-right">
+            <div class="login" id="login">
+                <div class="default-show">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50" xml:space="preserve">
+                            <rect x="0" y="9.22656" width="4" height="12.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="10" y="5.22656" width="4" height="20.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="20" y="8.77344" width="4" height="13.4531" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                        </svg>
+                    <sprn style="margin-left:15px;">加载中...</sprn>
+                </div>
+                <div class="nologin">
+                    <a target="_blank" href="/app/login">登录</a>
+                    <span class="split">|</span>
+                    <a target="_blank" href="/app/register/register">注册</a>
+                </div>
+                <div class="logined">
+                    <!-- <div class="info-messages">消息</div>
+                    <div class="info-numbers"><span>0</span></div> -->
+                    <img id="header" src="static/images/icon-avatar.png" alt="">
+                    <div id="uname"></div>
+                    <div class="info-quit">退出</div>
+                </div>
 
-                <a class="active" target="_blank" href="/app/login">登录</a>
-                <span class="split">|</span>
-                <a target="_blank" href="/app/register/register">注册</a>
-                <!--
-            	<a target="_blank" href="//www-dev.yaozh.com/member/">用户名称</a>
-            	<i class="fa"></i> 退出</a>
-            	-->
-            </div>
-            <div class="topbar-login">
-
-                <div class="info-messages">消息</div>
-                <div class="info-numbers"><span>0</span></div>
-                <div class="info-avatar"><img src="static/images/psc.png" alt=""></div>
-                <div class="info-username">阳光之下</div>
-                <div class="info-quit"><img src="static/images/icon-quit.png" alt=""><span>退出</span></div>
             </div>
         </div>
+        <div class="zw"></div>
+
+
     </div>
 
     <div class="navs">
         <div class="wrapper">
             <a class="logo" href="/">
-                <img src="static/images/logo.png" title="药智器械">
+                <img src="static/images/logo.png" title="数智器械">
             </a>
             <div class="navbar" id="navbar">
                 <ul>
-                    <li class="active"><a href="index.html">首页</a></li>
-                    <li>
-                        <a href="product.html">产品与服务</a>
-                        <div class="navchild">
+                    <li class="active"><a href="/index.html">首页</a></li>
+                    <li class="" id="li-propuct"><a href="/product.html">产品与服务</a>
+                        <div class="navchild1">
                             <ul>
-                                <li class=""><a href="marketing.html">智能APP营销<br>机器人矩阵系统</a></li>
-                                <li><a href="/developmenting.html">企业名片<br>SCRM系统</a></li>
-                                <li><a href="developmenting.html">智能短信<br>SMS系统</a></li>
-                                <li><a href="developmenting.html">智能E-mail<br>营销系统</a></li>
-                                <li><a href="developmenting.html">无感营销系统</a></li>
-                                <li><a href="developmenting.html">智能电话机器人<br>营销系统</a></li>
-                                <li><a href="developmenting.html">企业网站<br>建设运营服务</a></li>
-                                <li><a href="developmenting.html">药智网<br>站内广告投放</a></li>
+                                <li class="marketing"><a href="/member_news.html?id=1">营销通</a><span>|</span>
+
+                                    <div class="barchild">
+                                        <div class="bar-tip"></div>
+                                        <ul>
+                                            <li><a href="/developmenting.html">CMS</a></li>
+                                            <li><a href="/developmenting.html">CDP</a></li>
+                                            <li><a href="/marketing.html">APP机器人</a></li>
+                                            <li><a href="/developmenting.html">DMP</a></li>
+                                            <li><a href="/developmenting.html">广告系统</a></li>
+                                            <li><a href="/developmenting.html">SCRM</a></li>
+                                            <li><a href="/developmenting.html">快速建站</a></li>
+                                            <li><a href="/developmenting.html">SMS</a></li>
+                                            <li><a href="/developmenting.html">EDM</a></li>
+                                            <li><a href=" /app/news">资讯平台</a></li>
+                                            <li><a href="/benefits.html">会员裂变</a></li>
+                                            <li><a href="/developmenting.html">直播</a></li>
+                                            <li><a href="/developmenting.html">智能客服</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li><a href="https://qx.yaozh.com/login">器械通</a><span>|</span></li>
+
+
+                                <li><a href="/spread.html">优销通</a><span>|</span></li>
+                                <li><a href="/material.html">营销通</a></li>
+
                             </ul>
                         </div>
                     </li>
-                    <li><a href="sales.html">药智营销通</a></li>
-                    <li><a href="vipdata.html">药智器械通</a></li>
-                    <li><a href="attract.html">商务合作</a></li>
+                    <li><a href="/sales.html">数智营销通</a></li>
+                    <li><a href="/vipdata.html">药智器械</a></li>
+                    <li><a href="/attract.html">商务合作</a></li>
                     <li><a href="/app/news">资讯中心</a></li>
                     <li>
-                        <a href="member.html">会员中心</a>
+                        <a href="/member.html">会员中心</a>
                         <div class="navchild2">
                             <ul>
-                                <li><a href="member_news.html?id=1">通知公告</a></li>
-                                <li><a href="benefits.html">VIP权益</a></li>
-                                <li><a href="spread.html">我要推广</a></li>
-                                <li><a href="material.html">营销素材</a></li>
-                                <li><a href="member.html#feedback">客户反馈</a></li>
+                                <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li>
+                                <li><a href="/benefits.html">VIP权益</a><span>|</span></li>
+
+                                <li><a href="/spread.html">我要推广</a><span>|</span></li>
+                                <li><a href="/material.html">营销素材</a><span>|</span></li>
+                                <li><a href="/member.html#feedback">客户反馈</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li><a href="help.html">帮助中心</a></li>
-                    <li><a href="navigation.html">行业导航</a></li>
+                    <li><a href="/help.html">帮助中心</a></li>
+                    <li><a href="/navigation.html">行业导航</a></li>
 
                 </ul>
 
@@ -110,173 +149,271 @@
         </div>
     </div>
 
+
+
     <script>
-        // // 退出按钮
+        $('.marketing').mouseenter(function() {
+            $('.navchild1').css('overflow', 'revert')
+            $('.barchild').css('height', '86px')
+            $('.bar-tip').show()
+        })
+        $('.marketing').mouseleave(function() {
+            $('.navchild1').css('overflow', 'hidden')
+            $('.bar-tip').hide()
 
-        $('.topbar-login').mousemove(function() {
-
-            $('.info-quit').slideDown('nomal', function() {
-                console.log('滑动显示动画结束了');
-            });
         })
     </script>
-
     <script>
-        function getUser() {
-            const token = localStorage.getItem('firstToken')
-            const isLogin = localStorage.getItem('isLogin')
-            if (token) {
+        var token = localStorage.getItem('firstToken');
+        // loaded page
+        $(document).ready(function() {
+            if (!token) {
                 $.ajax({
                     method: 'get',
-                    headers: {
-                        Authorization: token
-                    },
-                    url: "/api/user/my-center/info",
+                    url: "/api/user/public/token",
                     dataType: "json",
                     success: function(res) {
-                        if (res.status == 1) { //本地有token并且token登录了就是已登录
-                            console.log(res.body);
-                            console.log(123)
-                            const avatar = ("<div><img  <span>{res.name}</span></div>")
+                        // console.log(res.body)
+                        localStorage.setItem("firstToken", res.body);
 
-
-                        } else {
-                            // window.location.href = '/login/dologin'
-                        }
-                    }
+                        isUser()
+                    },
                 })
-            } else {
-                // window.location.href = '/login/dologin'
+                return
             }
 
-        }
-        $(document).ready(function() {
-            console.log(1);
-            getUser()
-                // isLogin()
+            initLogin(token)
+
+            $('#uname').click(function() {
+                location.href = '/app/user'
+            })
+
         })
 
-        // 判断是否登录
-        function isLogin() {
+        // 点击退出
+        $('.info-quit').on('click', function() {
             $.ajax({
                 method: 'get',
-                url: "/api/login/dologin",
+                headers: {
+                    Authorization: token
+                },
+                url: "/api/login/login-out",
                 dataType: "json",
                 success: function(res) {
-                    console.log(res)
-                    if (status) {
-                        console.log("已登录")
-                        $.ajax({
-                            method: 'get',
-                            url: "/api/login/login-out",
-                            dataType: "json",
-                            success: function(res) {
-                                console.log(res)
-                                if (status) {
-                                    console.log('退出失败')
-                                } else {
-                                    console.log('退出成功')
-                                }
-                            }
-                        })
-                    } else {
-                        console.log("未登录")
-                            // const avatar = "<div style='border:1px solid #f30;width:200px;height:100px;'></div>";
-                            // $('.topbar-right').append(avatar)
-                            // $('.topbar-right').html('111').css('color', ' #ccc')
-                        $('.topbar-right').html("<div style='border:1px solid #f30;width:150px;height:40px;'>退出</div>").css('color', ' #ccc')
-                    }
-                }
+                    isUser()
+                    localStorage.removeItem('userInfo')
+                },
+            })
+        })
+        console.log(token)
+
+        function initLogin(token) {
+            $.ajax({
+                method: 'get',
+                headers: {
+                    Authorization: token
+                },
+                url: "/api/user/public/get-user",
+                dataType: "json",
+                success: function(res) {
+                    res.status ? isUser(res.body) : isUser()
+                    res.status && localStorage.setItem('userInfo', res.body)
+                },
             })
         }
 
-
-
-
-        // function getUser() {
-        //     $.ajax({
-        //         method: 'get',
-        //         url: "/api/user/public/token",
-        //         dataType: "json",
-        //         success: function(res) {
-        //             console.log(res)
-        //             console.log('token', res.body)
-        //             if (res.status == 1) {
-        // $.ajax({
-        //     method: 'get',
-        //     headers: {
-        //         Authorization: res.body,
-        //     },
-        //     url: "/api/user/public/get-user",
-        //     dataType: "json",
-        //     success: function(res) {
-        //         console.log(res)
-        //         console.log(111)
-        //     }
-        // })
-
-        //             }
-        //         }
-        //     })
-        // }
-
-
-
-        // 登录
-        //用户登录
-        // function ulogin() {
-        //     //获取用户名和密码,登录成功以后，把用户名存储在session里面，然后显示在首页里面
-        //     var username = $("#uusername").val();
-        //     var password = $("#password").val();
-        //     $.ajax({
-        //         method: 'post',
-        //         url: "/login/dologin",
-        //         dataType: "text",
-        //         data: {
-        //             username: username,
-        //             password: password
-        //         },
-        //         success: function(res) {
-        //             //提示注册成功
-        //             if (res == "success") {
-        //                 //关闭模态框
-        //                 $("#close_lo").click();
-        //                 //把用户名密码存储在session里面，首页显示用户名称
-        //                 localStorage.setItem("username", username);
-        //                 load_data();
-        //             } else {
-        //                 alert("用户名或者密码输入错误，请重新输入");
-        //                 $("#password").val('');
-        //             }
-        //         }
-        //     })
-        // }
-
-
-        //页面刚加载的时候，开始判断，如果有用户名，就显示在页面上，如果没有用户名的话，就显示登录名称
-        // function load_data() {
-        //     var theme = localStorage.getItem("username");
-        //     if (theme == null || theme == "") {
-        //         $("#cue").show();
-        //         $("#uname").html('');
-        //     } else {
-        //         $("#cue").hide();
-        //         $("#uname").html(theme);
-        //     }
-
-        // }
+        function isUser(userInfo) {
+            console.log(userInfo)
+            $('.default-show').hide()
+            if (!userInfo) {
+                $('.nologin').css('display', 'flex')
+                $('.logined').css('display', 'none')
+            } else {
+                $('.nologin').css('display', 'none')
+                $('.logined').css('display', 'flex')
+                $('#header').attr('src', userInfo.head)
+                $('#uname').text(userInfo.name)
+            }
+        }
     </script>
+<div id="content" style="height: 222px;z-index: 1001;">
+    <div class="content-weixi">
+        <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
+        <span>微信咨询</span>
+
+    </div>
+    <div class="content-tel">
+        <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
+        <span>电话咨询</span>
+
+    </div>
+    <div class="content-source">
+        <div>
+            <img src="static/images/icon-content-source.png" alt="" style="user-select: none;">
+            <span>智能客服</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-tips-wechat">
+    <div class="tips-title">联系客服</div>
+
+    <img src="static/images/content-weixi.png" alt="" class="qrcodeimg">
+    <div class="tips-prompt">请扫描上方二维码，联系客服人员</div>
+    <div class="tips-bottom" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+
+<div class="content-tips-tel">
+    <span>电话咨询</span>
+    <span>客服咨询电话：023-62797926</span>
+    <div class="btn-tel" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+<script>
+    let old_left = 0
+    let old_top = 0
+    let old_position_left = 0
+    let old_position_top = 0
+
+    let timer = null;
+    let isDrag = false;
+    $(document).on('mouseup',()=>{
+        if (!isDrag) {
+            clearTimeout(timer);
+        } else {
+            setTimeout(() => {
+                isDrag = false;
+                $('.udesk-client-btn').css('z-index','999')
+                $('#content').css('cursor','pointer')
+            }, 200);
+        }
+    })
+    $('#content').on('mousedown', function(event) {
+        isDrag = false;
+        old_left = event.pageX;
+        old_top = event.pageY;
+        old_position_left = $(this).position().left;
+        old_position_top = $(this).position().top;
+        timer = setTimeout(() => {
+            isDrag = true
+            $('.udesk-client-btn').css('z-index','-1')
+            $('#content').css('cursor','s-resize')
+        }, 100);
+    })
+    $('#content').on('mouseup', (e) => {
+        if (!isDrag) {
+            clearTimeout(timer);
+        } else {
+            setTimeout(() => {
+                isDrag = false;
+                $('.udesk-client-btn').css('z-index','999')
+                $('#content').css('cursor','pointer')
+            }, 200);
+        }
+    })
+    $('#content').on('mousemove', () => {
+        if (isDrag) {
+            let new_left = event.pageX;
+            let new_top = event.pageY;
+            let chang_x = new_left - old_left;
+            let change_y = new_top - old_top;
+            let new_position_left = old_position_left + chang_x;
+            let new_position_top = old_position_top + change_y;
+            if (new_position_top < 0) {
+                new_position_top = 0;
+            }
+            if (new_position_top > $(document).height() - $('#content').height()) {
+                new_position_top = $(document).height() - $('#content').height();
+            }
+
+            $('#content').css({
+                top: new_position_top + 'px'
+            })
+        } else {
+            $(document).off("mousemove");
+        }
+    })
+    $('#content .content-weixi').on('mouseup', () => {
+        setTimeout(() => {
+            if (!isDrag) {
+                $('.content-tips-wechat').show()
+
+            }
+        }, 100);
+    })
+    $('#content .content-tel').on('mouseup', () => {
+            setTimeout(() => {
+                if (!isDrag) {
+                    $('.content-tips-tel').show()
+
+                }
+            }, 100);
+        })
+        // 弹框消失
+    function able() {
+        $('.content-tips-tel').hide()
+        $('.content-tips-wechat').hide()
+    }
+</script>
+
+
+<script>
+    (function(a, h, c, b, f, g) {
+        a["UdeskApiObject"] = f;
+        a[f] = a[f] || function() {
+            (a[f].d = a[f].d || []).push(arguments)
+        };
+        g = h.createElement(c);
+        g.async = 1;
+        g.charset = "utf-8";
+        g.src = b;
+        c = h.getElementsByTagName(c)[0];
+        c.parentNode.insertBefore(g, c)
+    })(window, document, "script", "https://assets-cli.udesk.cn/im_client/js/udeskApi.js", "ud");
+
+    ud({
+        "code": "4a67504g",
+        "link": "https://1537030.udesk.cn/im_client/?web_plugin_id=179991"
+    });
+
+
+    let kfBtn
+    let getFftimer = setInterval(() => {
+        kfBtn = $('#udesk_btn .udesk-client-btn')
+        if (kfBtn.length) {
+            kfBtn.addClass('myfkbtn').appendTo('#content').mouseup((e) => {
+                if (!isDrag) {
+                    clearTimeout(timer);
+                } else {
+                    setTimeout(() => {
+                        isDrag = false;
+                    }, 200);
+                }
+            })
+            clearInterval(getFftimer)
+        }
+    }, 100);
+</script>
 <link rel="stylesheet" type="text/css" href="static/css/sales.css" />
 
 <div class="container">
     <div class="sales-swiper">
         <div class="swiper-wrapper" id="sales-top-swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image: url(uploads/sales-swiper-1.png);">
+                <div class="swiper-slide" style="background-image: url(static/images/sb1.jpg);">
                     <div class="wrapper">
                     </div>
                 </div>
-                <div class="swiper-slide" style="background-image: url(uploads/sales-swiper-1.png);">
+                <div class="swiper-slide" style="background-image: url(static/images/sb2.jpg);">
                     <div class="wrapper">
                     </div>
                 </div>
@@ -289,32 +426,32 @@
 
     <div class="sales-show">
         <div class="sales-tit">
-            <h2 class="wow fadeInUp">数智营销通：重新定义营销自动化</h2>
+            <h2 class="wow fadeInUp">数智营销通：全域智能营销SaaS集成平台</h2>
             <p class="wow fadeInDown">Marketing automation</p>
         </div>
-        <div class="subtitle">助力企业实现营销自动化、智能化、专业化、高效化</div>
+        <div class="subtitle">企业的全能型“营销数智化员工”</div>
         <div class="wrapper">
             <div class="l">
                 <div class="lst">
                     <div class="item wow fadeInUp" data-wow-delay="0.1s">
                         <em></em>
                         <h4>精准采集</h4>
-                        <p>完整齐备的从研发、注册、生产到市场、目标客户全产业链条数据库的高效采集工具</p>
+                        <p>根据客户行业和地域需求，专项定制意向客户数据金准采集，帮助企业在前期获得营销推广的精准客源，打开营销局面</p>
                     </div>
                     <div class="item wow fadeInUp" data-wow-delay="0.2s">
                         <em></em>
-                        <h4>全面推送</h4>
-                        <p>覆盖全网的数据推送方式，一站式集成，无需四处寻找</p>
+                        <h4>渠道整合</h4>
+                        <p>整合各大主流互联网广告平台，广告投放一站式管理，全网信息推送渠道，确保内容高效触达</p>
                     </div>
                     <div class="item wow fadeInUp" data-wow-delay="0.3s">
                         <em></em>
-                        <h4>智能客服</h4>
-                        <p>完整齐备的从智能客户互动，全天候全通路秒级响应服务</p>
+                        <h4>数据驱动</h4>
+                        <p>大数据+AI技术赋能海量数据处理与分析能力，打通数据壁垒，综合分析建模客户画像，指导精准营销</p>
                     </div>
                     <div class="item wow fadeInUp" data-wow-delay="0.4s">
                         <em></em>
-                        <h4>精算匹配</h4>
-                        <p>对于B端/C端客户的画像、标签分析， 为B端客户提供精准客户匹配</p>
+                        <h4>SCRM</h4>
+                        <p>快速捕获有效线索，科学管理客户资源，集中处理所有客户相关数据，促进客户成功</p>
                     </div>
                 </div>
             </div>
@@ -339,8 +476,8 @@
 
     <div class="sales-split">
         <div class="wrapper">
-            <h2 class="wow fadeInUp">让客户主动找你合作，让顾客主动上门成交！</h2>
-            <p class="wow fadeInDown">药智营销通，为大健康行业提供完整的数字营销方案，让自动营销、智慧营销成为企业赢得未来市场的法宝、利器<br>让智能营销机器人团队代替成百上千人力帮助您做生意</p>
+            <h2 class="wow fadeInUp">一个员工的企业成本，百人团队的营销效果</h2>
+            <p class="wow fadeInDown">您只需每年支付1名员工的费用，即可享受数智营销通全域智能营销SaaS集成平台为您带来的百人团队所拥有的营销效果，让数智化营销成为企业赢得未来市场的利器<br>让智能营销机器人团队代替成百上千人力帮助您做生意</p>
         </div>
     </div>
 
@@ -349,9 +486,185 @@
             <h2 class="wow fadeInUp">药智营销通产品矩阵</h2>
             <p class="wow fadeInDown">Product matrix</p>
         </div>
-        <div class="subtitle">助力企业实现营销自动化、智能化、专业化、高效化</div>
-        <div class="wrapper">
-            <img src="static/images/sales-matrix.png" class="bigmatriximg" alt="药智营销通产品矩阵">
+        <div class="subtitle">为客户提供全面、专业、高效的数字营销自动化工具</div>
+        <div class="wrapper bigimg">
+            <div class="toptitle">
+                <div class="item sfitem1">
+                    <div class="bgt">数据 + 内容准备</div>
+                    <div>营销前</div>
+                </div>
+                <div class="seat"></div>
+                <div class="item sfitem2">
+                    <div class="bgt">数据 + 流量 = 私域</div>
+                    <div>营销中</div>
+                </div>
+                <div class="seat"></div>
+                <div class="item sfitem3">
+                    <div class="bgt">人货场管理</div>
+                    <div>营销后</div>
+                </div>
+            </div>
+            <div class="bigarrowbox">
+                <div class="btxt">方案调整  内容优化</div>
+                <div class="bigarrow">
+                    <div class="arrow"></div>
+                </div>
+            </div>
+            <div class="scont">
+                <div class="sitem sitem1">
+                    <div class="hvr-ripple-out bgg lt crp" data-surl="/app/register/register">注册加入营销通会员</div>
+                    <div class="arrowbox at1">
+                        <div class="arrow"></div>
+                        <div class="arrow">
+                            <div class="arrowtxt">
+                                <div>为中小企业</div>
+                                <div>提供初始数据</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rt">
+                        <div class="hvr-ripple-out bgg crp" data-surl="/developmenting.html">
+                            <div class="stitle">CMS系统</div>
+                            <div class="bgg1 mbtn">营销方案策划</div>
+                            <div class="bgg1 mbtn mt10">广告内容制作</div>
+                        </div>
+                        <div class="hvr-ripple-out bgg crp" data-surl="/developmenting.html">
+                            <div class="stitle">
+                                <img src="static/images/sm-star.png" class="smstar" alt="">
+                                DMP系统
+                            </div>
+                            <div class="scbtn bgg1 bt1">
+                                <div>精准目标客户内容</div>
+                                <span>(三大运营商提供支持)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="simg simg1">
+                    <img src="static/images/g-right.png" alt="">
+                </div>
+                <div class="sitem sitem2">
+                    <div class="lt">
+                        <div class="hvr-ripple-out s2top bgb">
+                            <div class="stitle">DSP管理系统</div>
+                            <div class="bgb1 t1">
+                                <div class="stitle1">广告投放</div>
+                                <div class="mbtns">
+                                    <div class="mbtn" data-surl="/app/news">资讯平台</div>
+                                    <div class="mbtn" data-surl="/developmenting.html">
+                                        <img src="static/images/sm-star.png" class="smstar" alt="">
+                                        企业快速建站
+                                    </div>
+                                    <div class="mbtn mt10" data-surl="/developmenting.html">第三方投放整合</div>
+                                    <div class="mbtn mt10" data-surl="/developmenting.html">效果数据采集与分析</div>
+                                </div>
+                            </div>
+                            <div class="bgb1 t2">
+                                <div class="stitle1">推送系统</div>
+                                <div class="mbtns">
+                                    <div class="mbtn" data-surl="https://robot.yxtong.com/user/qq/devicesRun.html">
+                                        <img src="static/images/sm-star.png" class="smstar" alt="">
+                                        APP营销机器人矩阵
+                                    </div>
+                                    <div class="mbtn" data-surl="/developmenting.html">5G短信 (SMS)</div>
+                                    <div class="mbtn mt10" data-surl="/developmenting.html">Email邮件 (EDM)</div>
+                                    <div class="mbtn mt10" data-surl="/developmenting.html">电销机器人</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="barrowbox">
+                            <div class="arrow">
+                                <div class="batxt">放大效果</div>
+                            </div>
+                        </div>
+                        <div class="hvr-ripple-out s2bot bgb">
+                            <div class="stitle">裂变系统</div>
+                            <div class="mbtns">
+                                <div class="mbtn" data-surl="/app/news">资讯/视频：增加曝光</div>
+                                <div class="mbtn" data-surl="/benefits.html">会员系统：链路跟踪</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">直播系统：提升流量</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">线上商城：持续引流</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="arrowbox at2">
+                        <div class="arrow">
+                            <div class="arrowtxt">数据反馈</div>
+                        </div>
+                        <div class="arrow">
+                            <div class="arrowtxt tt1">数据收集</div>
+                            <div class="arrowtxt">效果分析</div>
+                        </div>
+                    </div>
+                    <div class="hvr-ripple-out rt bgb crp" data-surl="/developmenting.html">
+                        <div class="stitle">
+                            <img src="static/images/sm-star.png" class="smstar" alt="">
+                            CDP系统
+                        </div>
+                        <div class="bds">
+                            <div></div>
+                        </div>
+                        <div class="scbtn bgb1">用户行为<br/>数据收集</div>
+                        <div class="scbtn bgb1">数据分析</div>
+                        <div class="scbtn bgb1">客户画像</div>
+                        <div class="scbtn bgb1">精准匹配</div>
+                    </div>
+                </div>
+                <div class="simg stimg">
+                    <div class="simg-t">
+                        <img src="static/images/b-right.png" alt="">
+                        <div class="simgtxt">精准客户</div>
+                    </div>
+                    <div class="simg-b">
+                        <img src="static/images/p-left.png" alt="">
+                        <div class="simgtxt">客户回流</div>
+                    </div>
+                </div>
+                <div class="sitem sitem3">
+                    <div class="hvr-ripple-out s3item bgp">
+                        <div class="ltitle">售前</div>
+                        <div>
+                            <div class="stitle">
+                                <img src="static/images/sm-star.png" class="smstar" alt="">
+                                SCRM系统
+                            </div>
+                            <div class="mbtns">
+                                <div class="mbtn" data-surl="/developmenting.html">线索管理</div>
+                                <div class="mbtn" data-surl="/developmenting.html">客户管理</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">人员管理</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">货品管理</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="barrowbox">
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="hvr-ripple-out s3item bgp s3item2">
+                        <div class="ltitle">售中</div>
+                        <div>
+                            <div class="stitle">落地实施  成交变现</div>
+                            <div class="mbtns">
+                                <div class="mbtn bgp1" data-surl="/developmenting.html">订单管理</div>
+                                <div class="mbtn bgp1" data-surl="/developmenting.html">支付管理</div>
+                                <div class="mbtn bgp1 mt10" data-surl="/developmenting.html">物流跟踪</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="barrowbox">
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="hvr-ripple-out s3item bgp s3item3">
+                        <div class="ltitle">售后</div>
+                        <div>
+                            <div class="stitle">售后支持</div>
+                            <div class="mbtns">
+                                <div class="mbtn" data-surl="/developmenting.html">线索管理</div>
+                                <div class="mbtn mt10" data-surl="/developmenting.html">客户管理</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -407,7 +720,7 @@
         <dl>
             <dt>会员中心</dt>
             <dd><a target="_blank" href="member.html">VIP权限</a></dd>
-            <dd><a target="_blank" href="member.html">我要推广</a></dd>
+            <dd><a target="_blank" href="/spread.html">我要推广</a></dd>
             <dd><a target="_blank" href="member.html">营销素材</a></dd>
             <dd><a target="_blank" href="member.html">客户反馈</a></dd>
         </dl>
@@ -421,11 +734,11 @@
         </dl>
         <div class="item-qrcode">
             <div class="qrcode-1">
-                <img width="110" height="110" src="static/images/qr1.png" alt="">
+                <img width="110" height="105" src="static/images/qr2.jpg" alt="">
                 <div>扫一扫关注药智器械</div>
             </div>
             <div class="qrcode-1">
-                <img width="110" height="110" src="static/images/qr2.png" alt="">
+                <img width="110" height="105" src="static/images/qr2.png" alt="">
                 <div>扫一扫加入客服群</div>
             </div>
 
@@ -497,6 +810,13 @@
     $('#navbar>ul').children('li').eq(2).addClass('active').siblings().removeClass();
 
     //静态演示用，绑程序时删除 end
+
+    $('[data-surl]').on('click',function(){
+        let url = $(this).attr('data-surl')
+        location.href = url
+    })
+
+
 </script>
 
 </body>

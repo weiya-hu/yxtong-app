@@ -2,14 +2,15 @@ import { Component } from 'react'
 import './comment.scss'
 import CommentInput from '../commentInput/commentInput'
 import CommentListItem from '../commentListItem/commentListItem';
-import { Divider, Drawer} from 'antd';
-import {commentList} from '../../../../service/news'
+import { Drawer} from 'antd';
+import {commentList} from 'service/news'
+import {util} from 'utils/news'
 
-import chaimg from '../../../../public/images/cha.png'
-import toimg from '../../../../public/images/user/to.png'
+import chaimg from 'public/images/cha.png'
+import toimg from 'public/images/user/to.png'
 
 interface CommentProps{
-    newsId:string
+    commentNum:(val:number)=>void
 }
 
 export default class Comment extends Component<CommentProps> {
@@ -24,7 +25,9 @@ export default class Comment extends Component<CommentProps> {
         this.setState({drawerShow:false})
     }
     getComment=async()=>{
-        let id = window.location.search.split('=')[1]
+        // let url = window.location.href
+        // let id=url.substring(url.indexOf('=')+1,url.length)
+        let id = util.getUrlParam('newsId')
         let {current,size}=this.state
         let data={
             newsId:id,
@@ -32,26 +35,18 @@ export default class Comment extends Component<CommentProps> {
             size:size
         }
         let res =await commentList(data)
-        this.setState({commentList:res.body.records,total:res.body.total})
+        if(res.status){
+            this.setState({commentList:res.body.records,total:res.body.total})
+            this.props.commentNum(res.body.total)
+        }
+        
     }
     //评论后
     commented=(val)=>{
-        console.log(val)
-        let userInfo=JSON.parse(localStorage.getItem('userInfo'))
         let commentList =JSON.parse(JSON.stringify(this.state.commentList)) 
-        let item={
-            comment_id: 0,
-            content: val,
-            favor_num: 0,
-            head_url: "",
-            is_favor: '0',
-            uid: 0,
-            update_time: new Date(),
-            username: userInfo.name
-        }
-        commentList.unshift(item)
+        commentList.unshift(val)
+        this.props.commentNum(this.state.total+1)
         this.setState({commentList:commentList,total:this.state.total+1})
-        
     }
     componentDidMount() {
         this.getComment()
@@ -98,7 +93,7 @@ export default class Comment extends Component<CommentProps> {
                         </div> )}
                     </div>
                     {total>commentList.length?<div
-                        className='look-more fleximg'
+                        className='look-more fleximg pointer'
                         onClick={()=>{this.setState({drawerShow:true})}}
                     >
                         <div>查看更多评论</div>

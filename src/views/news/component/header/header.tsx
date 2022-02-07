@@ -1,14 +1,16 @@
 
 import { Component} from 'react'
 import './header.scss'
-import { getUser } from '../../../../service/login'
-import PopupLogin from '../../../login/popupLogin'
 import { withRouter } from 'react-router-dom';
-import { loginOut } from '../../../../service/login';
+import { loginOut } from 'service/login';
 
-import headerimg from '../../../../public/images/user/header.png'
-import exitimg from '../../../../public/images/user/exit.png'
-import exitactiveimg from '../../../../public/images/user/exitactive.png'
+import store from 'store';
+import {removeUserInfo, loginShow} from 'store/actionCreators'
+
+
+import headerimg from 'public/images/user/header.png'
+import exitimg from 'public/images/user/exit.png'
+import exitactiveimg from 'public/images/user/exitactive.png'
 
  
 interface HeaderState{
@@ -16,13 +18,13 @@ interface HeaderState{
   exitActive:boolean
   exitNone:boolean
   userInfo:API.IBgUser | any
-  loginShow:boolean
 }
 
 
 class Header extends Component<any,HeaderState>{
   state={
     links:[
+      {name:'药智器械',link:'https://qx.yaozh.com/login'},
        {name:'药智人才',link:'https://job.yaozh.com/'},
        {name:'专利通',link:'https://patent.yaozh.com/'},
        {name:'药智咨询',link:'https://report.yaozh.com/'},
@@ -33,41 +35,59 @@ class Header extends Component<any,HeaderState>{
        {name:'论坛交流',link:'https://bbs.yaozh.com'},
        {name:'俱乐部',link:'https://club.yaozh.com/'},
        {name:'海外智通',link:'https://www.yaohaiwai.com/'},
-       {name:'药智谷',link:'https://gu.yaozh.com/'},
-       {name:'药智搜',link:'https://nav.yaozh.com/'}
+       {name:'药智谷',link:'https://gu.yaozh.com/'}
+      //  {name:'药智搜',link:'https://nav.yaozh.com/'}
     ],
     exitActive:false,//退出按钮是否hover
     exitNone:false,//退出登录是否显示
     userInfo:null,
-    loginShow:false
   }
   //退出登录
   exitlogin=async(e)=>{
     e.stopPropagation()
     let res = await loginOut()
     if(res.status){
-      this.props.history.push('/app/login?url=/app/news')
+      // this.props.history.push('/app/login?url=/app/news')
       localStorage.removeItem('userInfo')
+      store.dispatch(removeUserInfo())
+      this.setState({userInfo:null})
     }
-    
   }
+  //去登录页面
   tologin=()=>{
-    this.props.history.push('/app/login?url=/app/news')
+    // this.props.history.push('/app/login?url=/app/news')
+    store.dispatch(loginShow())
+    this.forceUpdate()
+  }
+  //去注册页面
+  toRegister=()=>{
+    this.props.history.push('/app/register/register')
   }
   componentDidMount=()=>{
-    let userInfo=JSON.parse(localStorage.getItem('userInfo')) 
+    let userInfo=store.getState().userInfo
     if(userInfo){
       this.setState({userInfo:userInfo})
     }
   }
   render(){
-    let {links,exitActive,userInfo,loginShow,exitNone}=this.state
+    let {links,exitActive,exitNone,}=this.state
+    let userInfo = store.getState().userInfo
     return (
       <div className='header' >
         <div className='width flexb'>
           <div className='linkspre'>
             <div className='flexl links'>
-              {links.map((item,index)=><a target="_blank" href={item.link} className='link-item' key={index}>{item.name}</a>)}
+              <div onClick={()=>{window.location.href='/'}}>
+                <a className='link-item' >首页</a> 
+              </div> 
+              {links.map((item,index:number)=>
+                <div key={index}>
+                  <a target="_blank" href={item.link} className='link-item' >{item.name}</a> 
+                  {index===0 && <span className='hot-txt'>【热】</span> }
+                </div> 
+                
+              )}
+              
             </div>
           </div>
           {userInfo?(
@@ -76,7 +96,7 @@ class Header extends Component<any,HeaderState>{
                 {/* <div className='message-num fleximg'><span>99</span></div> */}
               </div>
               <div className='news-login-line'></div>
-              <div className='flexr position user-login'  
+              <div className='flexr position user-login pointer'  
                 onClick={()=>{this.props.history.push('/app/user')}}
                 onMouseEnter ={()=>{this.setState({exitNone:true})}} 
                 onMouseLeave ={()=>{this.setState({exitNone:false})}} 
@@ -99,18 +119,14 @@ class Header extends Component<any,HeaderState>{
             </div>
           ):(<div className='flexr'>
               {/* <div className='news-login' onClick={()=>{this.setState({loginShow:true})}}>登录</div> */}
-              <div className='news-login' onClick={ this.tologin}>登录</div>
+              <div className='news-login pointer' onClick={ this.tologin}>登录</div>
 
               <div className='news-login-line'></div>
-              <div className='colorw'>注册</div>
+              <div className='colorw pointer'  onClick={ this.toRegister}>注册</div>
             </div>
           )}  
         </div>
         <div className='invite '>你好，欢迎登录康州数智官网！</div>
-        {loginShow &&  <PopupLogin 
-            show={(val)=>{this.setState({loginShow:val});document.body.style.overflow='auto'}}
-            userInfo={(val)=>{this.setState({userInfo:val});this.props.userInfo(val)}}
-        />} 
       </div>
     )
   }

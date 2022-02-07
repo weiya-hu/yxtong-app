@@ -2,7 +2,6 @@
   "name": "yxt-cp-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
@@ -50,6 +49,7 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "loadable-components": "^2.2.3",
     "mini-css-extract-plugin": "0.11.3",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
@@ -59,13 +59,14 @@
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "5.0.2",
     "prompts": "2.4.0",
+    "qrcode.react": "^1.0.1",
     "react": "^17.0.0",
     "react-app-polyfill": "^2.0.0",
     "react-dev-utils": "^11.0.3",
     "react-dom": "^17.0.0",
-    "react-error-overlay": "^6.0.9",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
+    "redux": "^4.1.2",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "^10.0.5",
@@ -85,10 +86,6 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
-  },
-  "resolutions": {
-    "//": "See https://github.com/facebook/create-react-app/issues/11773",
-    "react-error-overlay": "6.0.9"
   },
   "eslintConfig": {
     "extends": [
@@ -114,7 +111,6 @@
     ]
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.11",
     "axios": "^0.24.0",
     "node-sass": "^6.0.1"
   },

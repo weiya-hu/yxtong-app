@@ -4,104 +4,82 @@ import './myTask.scss'
 import MyScore from './component/myScore'
 import CommonButton from './component/commonButton'
 import Task from './component/task'
-import { signInInfo,signIn,tasks,userTasks } from "../../service/user";
-import $message from "../component/message/index";
-import {imgs} from '../../utils/taskImg'
+import { signIn,userTasks,isSignIns } from "service/user";
+import {imgs} from 'utils/taskImg'
 
-import signinimg from '../../public/images/user/signin.png'
-import signinedimg from '../../public/images/user/signined.png'
+import signinimg from 'public/images/user/signin.png'
+import signinedimg from 'public/images/user/signined.png'
 
-import giftimg from '../../public/images/user/gift.png'
-import gift7img from '../../public/images/user/gift7.png'
-import gift14img from '../../public/images/user/gift14.png'
-import gift30img from '../../public/images/user/gift30.png'
-import giftSIgnimg from '../../public/images/user/giftSIgn.png'
-import giftSIgnNoimg from '../../public/images/user/giftSIgnNo.png'
-import dianimg from '../../public/images/user/dian.png'
+import giftimg from 'public/images/user/gift.png'
+import gift7img from 'public/images/user/gift7.png'
+import gift14img from 'public/images/user/gift14.png'
+import gift30img from 'public/images/user/gift30.png'
+import giftSIgnimg from 'public/images/user/giftSIgn.png'
+import giftSIgnNoimg from 'public/images/user/giftSIgnNo.png'
+import dianimg from 'public/images/user/dian.png'
 
-import emailimg from '../../public/images/user/email.png'
-import chaimg from '../../public/images/user/cha.png'
+import chaimg from 'public/images/user/cha.png'
 
 export default class MyTask extends Component{
     state={
          signArr:[1,2,3,4,5,6,7],//签到前六天的循环数组
          signinSuccess:0,//签到成功是否显示
          signInTitle:[
-           {name:'连续7天',signInImg:gift7img},
-           {name:'连续14天',signInImg:gift14img},
-           {name:'连续30天',signInImg:gift30img}],
+           {name:'连续7天',signInImg:gift7img,val:7},
+           {name:'连续14天',signInImg:gift14img,val:14},
+           {name:'连续30天',signInImg:gift30img,val:30}],
          signInfo:{giftTitleIndex:-2},
          signInfoAll:{},
-         isSignIn:null,
+         isSignIn:false,
+         contDay:0,//签到天数
+         signList:[],
          tasks:[],
     }
     doperfect=(val)=>{
       console.log(val)
     }
-    getSign=(num,str)=>{
-      let item
-      // if(num ===0){
-      //    item={index:num-1,start:1,giftIndex:6,giftTitleIndex:-1,score:str.sevenDay.value,daily:str.daily.value}
-      // }
-      if(num<=6 && num >=0){
-         item={index:num-1,start:1,giftIndex:6,giftTitleIndex:-1,score:str.sevenDay.value,daily:str.daily.value}
+    getIntegral(day:number){//获取积分
+      let dayValue = this.state.signList[0]?this.state.signList[0].value:0
+      switch (day) {
+          case 7 :
+              return this.state.signList[1]&&this.state.signList[1].value + dayValue
+              break;
+          case 14 :
+              return this.state.signList[2]&&this.state.signList[2].value + dayValue
+              break;
+          case 30 :
+              return this.state.signList[3]&&this.state.signList[3].value + dayValue
+              break;
+          default :
+              return this.state.signList[0]&&this.state.signList[0].value 
+              break;
       }
-      if(num === 7){
-         item={index:5,start:2,giftIndex:5,giftTitleIndex:0,score:str.sevenDay.value,daily:str.daily.value}
-      }
-      if(num >=8 && num <=13){
-         item={index:num%7-1,start:8,giftIndex:6,giftTitleIndex:0,score:str.fourteenDay.value,daily:str.daily.value}
-      }
-      if(num === 14){
-         item={index:5,start:9,giftIndex:5,giftTitleIndex:1,score:str.fourteenDay.value,daily:str.daily.value}
-      }
-      if(num <=19 && num>=15){
-         item={index:num%15,start:15,giftIndex:6,giftTitleIndex:1,score:str.thirtyDay.value,daily:str.daily.value}
-      }
-      if(num <=23 && num>=20){
-         item={index:num%20,start:20,giftIndex:6,giftTitleIndex:1,score:str.thirtyDay.value,daily:str.daily.value}
-      }
-      if(num <30 && num>=24){
-         item={index:num%24,start:24,giftIndex:6,giftTitleIndex:1,score:str.thirtyDay.value,daily:str.daily.value}
-      }
-      if(num === 30){
-         item={index:num%24,start:24,giftIndex:6,giftTitleIndex:2,score:str.thirtyDay.value,daily:str.daily.value}
-      }
-      return item
     }
     //签到按钮
     signIn=async()=>{
-       const {isSignIn,signInfoAll} = this.state
+       const {isSignIn} = this.state
        if(!isSignIn){
-         // const res = await signIn()
-         if(1){
-            let item = this.getSign(signInfoAll.contDay+1,signInfoAll)
+         const {body,status} = await signIn()
+         if(status){
+            const result = await userTasks()
+            const res = await isSignIns()
             this.setState({
-               signInfo:item,
-               signinSuccess:5,
-               isSignIn:true
+               isSignIn:res.body,
+               contDay:result.body.signin[0].completed,
+               signinSuccess:body,  //签到获得的分数看接口是哪个参数再改一下
             })
+            console.log(this.state)
          }
          // res && $message.info(res.message)
        }
     }
+    //去完成任务
+    todoTask=()=>{
+      window.location.href='/developmenting.html'
+    }
     componentDidMount=async()=>{
-        const res =await signInInfo()
-      //   const rest = await tasks()
-        if(res.status){
-           let item=this.getSign(res.body.contDay,res.body)
-           this.setState({
-             signInfo:item,
-             signInfoAll:res.body,
-             isSignIn:res.body.isSignIn
-           })
-        }
-      //   if(rest.status){
-      //    this.setState({
-      //       tasks:rest.body
-      //    })
-      //   }
         const result = await userTasks()
+        const res = await isSignIns()
         if(result.status){
             const tasks=result.body.tasks
             let arr=[],ary=[],limitType=tasks[0].limit_type
@@ -118,12 +96,29 @@ export default class MyTask extends Component{
                   ary.push(arr)
                }
             }
-            this.setState({tasks:ary})
+            this.setState({
+               tasks:ary,
+               signList:result.body.signin,
+               isSignIn:res.body,
+               contDay:result.body.signin[0].completed,
+            },()=>{console.log(this.state.contDay);
+            })
          }
     }
     render(){
-      let {signInTitle,signInfo,signArr,signInfoAll,isSignIn,signinSuccess,tasks,img,imgtxt} = this.state
-       return(
+      let {signInTitle,isSignIn,signinSuccess,tasks,contDay} = this.state
+      let dateArr:any = []
+      // contDay = 28
+      if(contDay<7){
+         dateArr = [1,2,3,4,5,6,7]
+      }else if(contDay>=7&&contDay<14){
+         dateArr = [8,9,10,11,12,13,14]
+      }else if(contDay>=14&&contDay<24){
+         dateArr = [contDay,contDay+1,contDay+2,contDay+3,contDay+4,contDay+5,30]
+      }else{
+         dateArr = [24,25,26,27,28,29,30]
+      }
+      return(
           <div className='myTask flexbl'>
              <div className='myTask-son'>
                <MyScore size='small'/>
@@ -136,8 +131,8 @@ export default class MyTask extends Component{
                      <div className="myTask-gift flexr">
                         {signInTitle.map((item,index)=><div key={index} className="flexl">
                               <div className="fleximgc">
-                                 <div className={this.state.signInfo.giftTitleIndex>=index?'font12':'font12 color3'}>{item.name}</div>
-                                 <div className="fleximg giftimg"><img src={this.state.signInfo.giftTitleIndex>=index?item.signInImg:giftimg} alt="gift" /></div>
+                                 <div className={contDay>=item.val?'font12':'font12 color3'}>{item.name}</div>
+                                 <div className="fleximg giftimg"><img src={contDay>=item.val?item.signInImg:giftimg} alt="gift" /></div>
                               </div>
                               {index<=1 && <div className="fleximg dianimg"><img src={dianimg} alt="and" /></div>}
                            </div>
@@ -145,13 +140,13 @@ export default class MyTask extends Component{
                      </div>
                   </div>
                   <div className='flexb sign-arr'>
-                     {signArr.map((val,index)=><div className={index<=signInfo.index?"fleximgc sign-in-item sign-item":"fleximgc sign-item"} key={index}>
-                        <div className="font12">第{signInfo.start>=15 && index === 6?30 :signInfo.start+index}天</div>
-                        {signInfo.giftIndex===index?<div className='fleximg giftimg'><img src={signInfo.index===index?giftSIgnNoimg:giftSIgnimg} alt="gift" /></div>:
-                           <div className='fleximg signimg'><img src={index <= signInfo.index?signinedimg:signinimg} alt="signin" /></div>
+                     {dateArr.map((val,index)=><div className={val<=contDay?"fleximgc sign-in-item sign-item":"fleximgc sign-item"} key={index}>
+                        <div className="font12">第{val}天</div>
+                        {index==dateArr.length-1?<div className='fleximg giftimg'><img src={val<=contDay?giftSIgnNoimg:giftSIgnimg} alt="gift" /></div>:
+                           <div className='fleximg signimg'><img src={val<=contDay?signinedimg:signinimg} alt="signin" /></div>
                         }
-                        <div className="font12">{signInfo.giftIndex===index?signInfo.score:signInfo.daily}积分</div> 
-                        {signInfo.giftIndex===index && <div className="sign-surprise fleximg">
+                        <div className="font12">{this.getIntegral(val)}积分</div>
+                        {index==dateArr.length-1&& <div className="sign-surprise fleximg">
                               <span>惊喜礼包</span> 
                               <div></div>
                            </div>
@@ -160,8 +155,8 @@ export default class MyTask extends Component{
                   </div>
                   <div 
                      onClick={this.signIn}
-                     className={isSignIn?'signined-button fleximg':'signin-button fleximg'}
-                  >{isSignIn?`已连续签到${signInfoAll.contDay+1}天`:'签到'}</div>
+                     className={isSignIn?'signined-button fleximg':'signin-button fleximg pointer'}
+                  >{isSignIn?`已连续签到${contDay}天`:'签到'}</div>
                </div>
                {tasks.map((item,index)=><div className='task' key={index}>
                   <div className='task-title'>{item[0].limit_type ===0?'新手任务积分':item[0].limit_type ===1?'每日赚积分':'任务赚积分'}</div>
@@ -171,7 +166,7 @@ export default class MyTask extends Component{
                               
                               <Task title={val.name} score={`+${val.value}积分`} />
                            </div>
-                           <div>
+                           <div className="pointer" onClick={this.todoTask}>
                               <CommonButton onclicked={this.doperfect} isBefore={!val.finish} wordBefore={imgs[val.tag].beforeText} wordAfter='已完成'/>
                            </div>
                         </div> 

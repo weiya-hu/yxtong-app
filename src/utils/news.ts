@@ -1,4 +1,7 @@
-import { token } from "../service/login";
+//@ts-nocheck
+import { token,getUser } from "service/login";
+import store from "store";
+import { setUserInfo } from "store/actionCreators";
 export const util = {
     getScrollTop : () => {
         var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
@@ -34,11 +37,19 @@ export const util = {
     getIsTOBottom:()=>{
         return util.getScrollHeight() - util.getScrollTop() - util.getWindowHeight()
     },
-    firstToken:async()=>{
+    firstTokenUserinfo:async()=>{
         let firstToken =localStorage.getItem('firstToken')
         if(!firstToken){
             const res = await token()
             localStorage.setItem('firstToken',res.body)
+            
         } 
+        const result = await getUser()
+        result.status && store.dispatch(setUserInfo(result.body))
+    },
+    getUrlParam:(name)=>{
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substring(1).match(reg);
+        if(r!=null)return  decodeURI(r[2]); return null;
     }
 }

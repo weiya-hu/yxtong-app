@@ -3,27 +3,25 @@ import { Component } from 'react'
 import './register.scss'
 import { Form , Button} from 'antd';
 import InputComponent from './component/inputComponent';
-import { util } from '../../utils/user'
-import { Link,Redirect } from 'react-router-dom';
-import {doreg} from '../../service/login'
-import $message from '../component/message';
+import { util } from 'utils/user'
+import {doreg} from 'service/login'
+import $message from 'views/component/message';
 
 
-import logoimg from '../../public/images/logo.png'
-import warnimg from '../../public/images/warn.png'
-import unselectimg from '../../public/images/unselect.png'
-import selectimg from '../../public/images/select.png'
+import logoimg from 'public/images/logo.png'
+import warnimg from 'public/images/warn.png'
+import unselectimg from 'public/images/unselect.png'
+import selectimg from 'public/images/select.png'
 
 export default class Register extends Component {
     state={
         isForget:'',//模式选择，是忘记密码还是注册，候选值有forget,next,register
         warnMessage:'',//input框验证错误
         registermessage:'密码长度在6~18之间,不能只是数字或字母',
-        inviteCode:'',//邀请码默认值
+        inviteCode:sessionStorage.getItem('inviteCode')?sessionStorage.getItem('inviteCode'):'',//邀请码默认值
         agree:false,//是否阅读并同意协议的默认值
         mobileValue:'',
         acode:'86',
-        loginFlag:false
     }
     nextSubmit=(value)=>{
         console.log(value)
@@ -58,12 +56,11 @@ export default class Register extends Component {
             if(!this.state.agree){
                 this.setState({warnMessage:'请阅读并同意《药智网用户须知》'})
             }else{
-                console.log(value)
                 value.acode='+'+value.acode
                 const res =await doreg({...value})
                 if(res.status){
-                    setTimeout(()=>{this.setState({loginFlag:true})},1000)                    
-                }
+                    window.localStorage.href='/'
+                }            
                 $message.info(res.message)
             }            
         }      
@@ -72,16 +69,14 @@ export default class Register extends Component {
         let { location } = this.props as { location }
         let pathname = location.pathname.split('/')
         this.setState({isForget:pathname[3]})
+        document.title = pathname[3] === 'forget' ? '康州数智-找回密码':pathname[3] === 'register'?'康州数智-注册':'康州数智-找回密码'
+        console.log(pathname[3])
     }
     render(){
-        let {isForget,warnMessage,registermessage,mobileValue,acode,loginFlag} = this.state
-        if(loginFlag){
-            return <Redirect to={{ pathname: "/app/login" }} />;
-            // return <Redirect to='/' />;
-        }
+        let {isForget,warnMessage,registermessage,mobileValue,acode} = this.state
         return <div id='register'>
             <div className='content'>
-                <div className='logoimg flexl'><img src={logoimg} alt="logo" /></div>
+                <div className='logoimg fleximg'><img src={logoimg} alt="logo" /></div>
                 {(isForget === 'forget')?(
                     <div className='forget'>
                         <div className='forgettitle'>找回密码</div>

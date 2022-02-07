@@ -12,7 +12,7 @@ $(function() {
         if ($(this).attr('disabled')) return;
         $(this).addClass('active').siblings().removeClass('active');
         var $cons = $('[tab-content="' + $(this).parent().attr('data-tab') + '"]').children();
-
+        // console.log($cons);
         $cons.eq($(this).index()).show().siblings().hide();
     })
 })

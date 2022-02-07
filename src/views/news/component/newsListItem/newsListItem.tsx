@@ -6,8 +6,8 @@ import Collect from '../collect/collect';
 import Share from '../share/share';
 import moment from 'moment'
 
-import readimg from '../../../../public/images/user/read.png'
-import falseimg from '../../../../public/images/user/false.png'
+import readimg from 'public/images/user/read.png'
+import falseimg from 'public/images/user/false.png'
 
 interface item{
   time:string
@@ -44,14 +44,14 @@ export default class NewsListItem extends Component<NewsListItemState>{
           <div className={size==='big'?'flexcbl news-list-item-right  news-list-item-right-big':'flexcbl news-list-item-right'} >
             <div>
               <div className='title'>{item.title}</div>
-              <div className='item-content'>{item.content}</div>
+              <div className='item-content' dangerouslySetInnerHTML = {{__html:item.content}}></div>
             </div>
             <div className='flexb news-list-item-bottom'>
               <div className='color3'>{item.creator_name}</div>
               <div className='flexr'>
                 <div className='color3'>{moment(item.update_time).format('YYYY年MM月DD日')}</div>
                 <div className='flexl share'>
-                  <Share css='justify' />
+                  <Share css='justify' item={item}/>
                 </div>
                 <div className='flexl star'>
                   <Collect css='justify' item={item}/>

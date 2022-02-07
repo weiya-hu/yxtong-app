@@ -1,7 +1,7 @@
 
 import { Component } from 'react'
 import './dataOverview.scss'
-import upimg from '../../../../public/images/user/up.png'
+import upimg from 'public/images/user/up.png'
 
 type DataOverviewState={
     item:{

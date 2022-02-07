@@ -3,101 +3,140 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>药智器械 - 行业导航</title>
+    <title>数智器械 - 行业导航</title>
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="icon" href="static/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="static/css/common.css" />
     <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
 </head>
 
-<!-- <body onload="load_data()"> -->
+
 
 <body>
 
 
+
     <div class="topbar">
-        <div class="wrapper">
-            <div class="topbar-left">
-                <span>你好，欢迎登陆康洲数智官网！</span>
-                <a target="_blank" href="https://job.yaozh.com/">药智人才</a>
+        <div class="tips">你好，欢迎登陆康洲数智官网！</div>
+        <div class="links">
+            <div class="content">
+                <a target="_blank" href="https://qx.yaozh.com/home">药智器械</a>
+                <a target="_blank" href="https://job.yaozh.com/">数智人才</a>
                 <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
-                <a target="_blank" href="https://report.yaozh.com/">药智咨询</a>
-                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">药智汇</a>
-                <a target="_blank" href="https://s.yaozh.com">药智通</a>
-                <a target="_blank" href="https://edu.yaozh.com/">药智大讲堂</a>
+                <a target="_blank" href="https://report.yaozh.com/">数智咨询</a>
+                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">数智汇</a>
+                <a target="_blank" href="https://s.yaozh.com">数智通</a>
+                <a target="_blank" href="https://edu.yaozh.com/">数智大讲堂</a>
                 <a target="_blank" href="https://aiyun.yaozh.com/">产业大脑</a>
                 <a target="_blank" href="https://bbs.yaozh.com">论坛交流</a>
                 <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
                 <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
-                <a target="_blank" href="https://gu.yaozh.com/ ">药智谷</a>
-                <a target="_blank" href="https://nav.yaozh.com/">药智搜</a>
+                <a target="_blank" href="https://gu.yaozh.com/ ">数智谷</a>
             </div>
-            <div class="topbar-right">
+            <div class="login" id="login">
+                <div class="default-show">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50" xml:space="preserve">
+                            <rect x="0" y="9.22656" width="4" height="12.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="10" y="5.22656" width="4" height="20.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="20" y="8.77344" width="4" height="13.4531" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                        </svg>
+                    <sprn style="margin-left:15px;">加载中...</sprn>
+                </div>
+                <div class="nologin">
+                    <a target="_blank" href="/app/login">登录</a>
+                    <span class="split">|</span>
+                    <a target="_blank" href="/app/register/register">注册</a>
+                </div>
+                <div class="logined">
+                    <!-- <div class="info-messages">消息</div>
+                    <div class="info-numbers"><span>0</span></div> -->
+                    <img id="header" src="static/images/icon-avatar.png" alt="">
+                    <div id="uname"></div>
+                    <div class="info-quit">退出</div>
+                </div>
 
-                <a class="active" target="_blank" href="/app/login">登录</a>
-                <span class="split">|</span>
-                <a target="_blank" href="/app/register/register">注册</a>
-                <!--
-            	<a target="_blank" href="//www-dev.yaozh.com/member/">用户名称</a>
-            	<i class="fa"></i> 退出</a>
-            	-->
-            </div>
-            <div class="topbar-login">
-
-                <div class="info-messages">消息</div>
-                <div class="info-numbers"><span>0</span></div>
-                <div class="info-avatar"><img src="static/images/psc.png" alt=""></div>
-                <div class="info-username">阳光之下</div>
-                <div class="info-quit"><img src="static/images/icon-quit.png" alt=""><span>退出</span></div>
             </div>
         </div>
+        <div class="zw"></div>
+
+
     </div>
 
     <div class="navs">
         <div class="wrapper">
             <a class="logo" href="/">
-                <img src="static/images/logo.png" title="药智器械">
+                <img src="static/images/logo.png" title="数智器械">
             </a>
             <div class="navbar" id="navbar">
                 <ul>
-                    <li class="active"><a href="index.html">首页</a></li>
-                    <li>
-                        <a href="product.html">产品与服务</a>
-                        <div class="navchild">
+                    <li class="active"><a href="/index.html">首页</a></li>
+                    <li class="" id="li-propuct"><a href="/product.html">产品与服务</a>
+                        <div class="navchild1">
                             <ul>
-                                <li class=""><a href="marketing.html">智能APP营销<br>机器人矩阵系统</a></li>
-                                <li><a href="/developmenting.html">企业名片<br>SCRM系统</a></li>
-                                <li><a href="developmenting.html">智能短信<br>SMS系统</a></li>
-                                <li><a href="developmenting.html">智能E-mail<br>营销系统</a></li>
-                                <li><a href="developmenting.html">无感营销系统</a></li>
-                                <li><a href="developmenting.html">智能电话机器人<br>营销系统</a></li>
-                                <li><a href="developmenting.html">企业网站<br>建设运营服务</a></li>
-                                <li><a href="developmenting.html">药智网<br>站内广告投放</a></li>
+                                <li class="marketing"><a href="/member_news.html?id=1">营销通</a><span>|</span>
+
+                                    <div class="barchild">
+                                        <div class="bar-tip"></div>
+                                        <ul>
+                                            <li><a href="/developmenting.html">CMS</a></li>
+                                            <li><a href="/developmenting.html">CDP</a></li>
+                                            <li><a href="/marketing.html">APP机器人</a></li>
+                                            <li><a href="/developmenting.html">DMP</a></li>
+                                            <li><a href="/developmenting.html">广告系统</a></li>
+                                            <li><a href="/developmenting.html">SCRM</a></li>
+                                            <li><a href="/developmenting.html">快速建站</a></li>
+                                            <li><a href="/developmenting.html">SMS</a></li>
+                                            <li><a href="/developmenting.html">EDM</a></li>
+                                            <li><a href=" /app/news">资讯平台</a></li>
+                                            <li><a href="/benefits.html">会员裂变</a></li>
+                                            <li><a href="/developmenting.html">直播</a></li>
+                                            <li><a href="/developmenting.html">智能客服</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li><a href="https://qx.yaozh.com/login">器械通</a><span>|</span></li>
+
+
+                                <li><a href="/spread.html">优销通</a><span>|</span></li>
+                                <li><a href="/material.html">营销通</a></li>
+
                             </ul>
                         </div>
                     </li>
-                    <li><a href="sales.html">药智营销通</a></li>
-                    <li><a href="vipdata.html">药智器械通</a></li>
-                    <li><a href="attract.html">商务合作</a></li>
+                    <li><a href="/sales.html">数智营销通</a></li>
+                    <li><a href="/vipdata.html">药智器械</a></li>
+                    <li><a href="/attract.html">商务合作</a></li>
                     <li><a href="/app/news">资讯中心</a></li>
                     <li>
-                        <a href="member.html">会员中心</a>
+                        <a href="/member.html">会员中心</a>
                         <div class="navchild2">
                             <ul>
-                                <li><a href="member_news.html?id=1">通知公告</a></li>
-                                <li><a href="benefits.html">VIP权益</a></li>
-                                <li><a href="spread.html">我要推广</a></li>
-                                <li><a href="material.html">营销素材</a></li>
-                                <li><a href="member.html#feedback">客户反馈</a></li>
+                                <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li>
+                                <li><a href="/benefits.html">VIP权益</a><span>|</span></li>
+
+                                <li><a href="/spread.html">我要推广</a><span>|</span></li>
+                                <li><a href="/material.html">营销素材</a><span>|</span></li>
+                                <li><a href="/member.html#feedback">客户反馈</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li><a href="help.html">帮助中心</a></li>
-                    <li><a href="navigation.html">行业导航</a></li>
+                    <li><a href="/help.html">帮助中心</a></li>
+                    <li><a href="/navigation.html">行业导航</a></li>
 
                 </ul>
 
@@ -110,161 +149,92 @@
         </div>
     </div>
 
+
+
     <script>
-        // // 退出按钮
+        $('.marketing').mouseenter(function() {
+            $('.navchild1').css('overflow', 'revert')
+            $('.barchild').css('height', '86px')
+            $('.bar-tip').show()
+        })
+        $('.marketing').mouseleave(function() {
+            $('.navchild1').css('overflow', 'hidden')
+            $('.bar-tip').hide()
 
-        $('.topbar-login').mousemove(function() {
-
-            $('.info-quit').slideDown('nomal', function() {
-                console.log('滑动显示动画结束了');
-            });
         })
     </script>
-
     <script>
-        function getUser() {
-            const token = localStorage.getItem('firstToken')
-            const isLogin = localStorage.getItem('isLogin')
-            if (token) {
+        var token = localStorage.getItem('firstToken');
+        // loaded page
+        $(document).ready(function() {
+            if (!token) {
                 $.ajax({
                     method: 'get',
-                    headers: {
-                        Authorization: token
-                    },
-                    url: "/api/user/my-center/info",
+                    url: "/api/user/public/token",
                     dataType: "json",
                     success: function(res) {
-                        if (res.status == 1) { //本地有token并且token登录了就是已登录
-                            console.log(res.body);
-                            console.log(123)
-                            const avatar = ("<div><img  <span>{res.name}</span></div>")
+                        // console.log(res.body)
+                        localStorage.setItem("firstToken", res.body);
 
-
-                        } else {
-                            // window.location.href = '/login/dologin'
-                        }
-                    }
+                        isUser()
+                    },
                 })
-            } else {
-                // window.location.href = '/login/dologin'
+                return
             }
 
-        }
-        $(document).ready(function() {
-            console.log(1);
-            getUser()
-                // isLogin()
+            initLogin(token)
+
+            $('#uname').click(function() {
+                location.href = '/app/user'
+            })
+
         })
 
-        // 判断是否登录
-        function isLogin() {
+        // 点击退出
+        $('.info-quit').on('click', function() {
             $.ajax({
                 method: 'get',
-                url: "/api/login/dologin",
+                headers: {
+                    Authorization: token
+                },
+                url: "/api/login/login-out",
                 dataType: "json",
                 success: function(res) {
-                    console.log(res)
-                    if (status) {
-                        console.log("已登录")
-                        $.ajax({
-                            method: 'get',
-                            url: "/api/login/login-out",
-                            dataType: "json",
-                            success: function(res) {
-                                console.log(res)
-                                if (status) {
-                                    console.log('退出失败')
-                                } else {
-                                    console.log('退出成功')
-                                }
-                            }
-                        })
-                    } else {
-                        console.log("未登录")
-                            // const avatar = "<div style='border:1px solid #f30;width:200px;height:100px;'></div>";
-                            // $('.topbar-right').append(avatar)
-                            // $('.topbar-right').html('111').css('color', ' #ccc')
-                        $('.topbar-right').html("<div style='border:1px solid #f30;width:150px;height:40px;'>退出</div>").css('color', ' #ccc')
-                    }
-                }
+                    isUser()
+                    localStorage.removeItem('userInfo')
+                },
+            })
+        })
+        console.log(token)
+
+        function initLogin(token) {
+            $.ajax({
+                method: 'get',
+                headers: {
+                    Authorization: token
+                },
+                url: "/api/user/public/get-user",
+                dataType: "json",
+                success: function(res) {
+                    res.status ? isUser(res.body) : isUser()
+                    res.status && localStorage.setItem('userInfo', res.body)
+                },
             })
         }
 
-
-
-
-        // function getUser() {
-        //     $.ajax({
-        //         method: 'get',
-        //         url: "/api/user/public/token",
-        //         dataType: "json",
-        //         success: function(res) {
-        //             console.log(res)
-        //             console.log('token', res.body)
-        //             if (res.status == 1) {
-        // $.ajax({
-        //     method: 'get',
-        //     headers: {
-        //         Authorization: res.body,
-        //     },
-        //     url: "/api/user/public/get-user",
-        //     dataType: "json",
-        //     success: function(res) {
-        //         console.log(res)
-        //         console.log(111)
-        //     }
-        // })
-
-        //             }
-        //         }
-        //     })
-        // }
-
-
-
-        // 登录
-        //用户登录
-        // function ulogin() {
-        //     //获取用户名和密码,登录成功以后，把用户名存储在session里面，然后显示在首页里面
-        //     var username = $("#uusername").val();
-        //     var password = $("#password").val();
-        //     $.ajax({
-        //         method: 'post',
-        //         url: "/login/dologin",
-        //         dataType: "text",
-        //         data: {
-        //             username: username,
-        //             password: password
-        //         },
-        //         success: function(res) {
-        //             //提示注册成功
-        //             if (res == "success") {
-        //                 //关闭模态框
-        //                 $("#close_lo").click();
-        //                 //把用户名密码存储在session里面，首页显示用户名称
-        //                 localStorage.setItem("username", username);
-        //                 load_data();
-        //             } else {
-        //                 alert("用户名或者密码输入错误，请重新输入");
-        //                 $("#password").val('');
-        //             }
-        //         }
-        //     })
-        // }
-
-
-        //页面刚加载的时候，开始判断，如果有用户名，就显示在页面上，如果没有用户名的话，就显示登录名称
-        // function load_data() {
-        //     var theme = localStorage.getItem("username");
-        //     if (theme == null || theme == "") {
-        //         $("#cue").show();
-        //         $("#uname").html('');
-        //     } else {
-        //         $("#cue").hide();
-        //         $("#uname").html(theme);
-        //     }
-
-        // }
+        function isUser(userInfo) {
+            console.log(userInfo)
+            $('.default-show').hide()
+            if (!userInfo) {
+                $('.nologin').css('display', 'flex')
+                $('.logined').css('display', 'none')
+            } else {
+                $('.nologin').css('display', 'none')
+                $('.logined').css('display', 'flex')
+                $('#header').attr('src', userInfo.head)
+                $('#uname').text(userInfo.name)
+            }
+        }
     </script>
 <link rel="stylesheet" type="text/css" href="static/css/marketing.css" />
 
@@ -838,7 +808,7 @@
         <dl>
             <dt>会员中心</dt>
             <dd><a target="_blank" href="member.html">VIP权限</a></dd>
-            <dd><a target="_blank" href="member.html">我要推广</a></dd>
+            <dd><a target="_blank" href="/spread.html">我要推广</a></dd>
             <dd><a target="_blank" href="member.html">营销素材</a></dd>
             <dd><a target="_blank" href="member.html">客户反馈</a></dd>
         </dl>
@@ -852,11 +822,11 @@
         </dl>
         <div class="item-qrcode">
             <div class="qrcode-1">
-                <img width="110" height="110" src="static/images/qr1.png" alt="">
+                <img width="110" height="105" src="static/images/qr2.jpg" alt="">
                 <div>扫一扫关注药智器械</div>
             </div>
             <div class="qrcode-1">
-                <img width="110" height="110" src="static/images/qr2.png" alt="">
+                <img width="110" height="105" src="static/images/qr2.png" alt="">
                 <div>扫一扫加入客服群</div>
             </div>
 

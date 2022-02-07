@@ -12,7 +12,7 @@ export default class CommonButton extends Component<any> {
                         let isBefore = JSON.parse(JSON.stringify(this.props.isBefore))
                         this.props.onclicked(!isBefore)
                     }}
-                    className={isBefore?'before fleximg':'after fleximg'}
+                    className={isBefore?'before fleximg pointer':'after fleximg'}
                 >
                 {isBefore?wordBefore:wordAfter}
             </div>

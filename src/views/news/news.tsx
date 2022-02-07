@@ -6,18 +6,31 @@ import NewsListItem from './component/newsListItem/newsListItem'
 import NewsNav from './component/newsNav/newsNav';
 import FollowButton from './component/followButton/followButton';
 import MoreTxt from './component/moreTxt/moreTxt';
-import {util} from '../../utils/news'
-import {newsNewsList,newsAList} from '../../service/news'
+import {util} from 'utils/news'
+import {newsNewsList,newsAList,newsCreatorDate} from 'service/news'
+import PopupLogin from 'views/login/popupLogin';
 
-import writeimg from '../../public/images/user/write.png'
-import exchangeimg from '../../public/images/user/exchange.png'
-import headerimg from '../../public/images/user/header.png'
+import store from 'store';
+import { loginShow } from 'store/actionCreators';
+
+import writeimg from 'public/images/user/write.png'
+import exchangeimg from 'public/images/user/exchange.png'
+import headerimg from 'public/images/user/header.png'
+
 
 
 export default class News extends Component{
+  constructor(props) {
+    super(props)
+    // 监听state状态改变
+    store.subscribe(() => {
+      const state = store.getState()
+      this.setState({loginShow:state.loginShow})
+    })
+  }
   state={
     isLogin:true,//是否登录了
-    newsTypeActive:0,//新闻类型的默认值
+    newsTypeActive:1,//新闻类型的默认值
     mayInterestList:[],
     newsList:[],
     hasMore: true,// 判断接口是否还有数据，通过接口设置
@@ -28,6 +41,7 @@ export default class News extends Component{
     userInfo:null,
     newsTypeId:null,
     exchangeRotate:false,//换一换旋转的图标是否转动
+    UserAnalysis:{}
   }
   loadMoreData=()=>{
     this.getNewslist(this.state.newsTypeId)
@@ -59,14 +73,17 @@ export default class News extends Component{
       
     }else{
       let param = this.props.location.query
+      this.setState({
+        newsTypeId:item.id
+      })
       if(param){
         this.getNewslist(param.item.id)
         this.setState({newsTypeActive:param.index})
-        console.log(this.state.newsTypeActive)
       }else{
         this.getNewslist(item.id)
       }
     }
+    
     if(val === 0){
       this.getFavorlist()
     }
@@ -99,9 +116,9 @@ export default class News extends Component{
   }
   //跳转新闻详情页
   toNewsDetail=(item)=>{
-    console.log(item)
-    this.props.history.push( { pathname : '/app/newsdetail/?id='+item.id})
-   
+    // this.props.history.push( { pathname : '/app/newsdetail/?newsId='+item.id})
+    window.open(window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+item.id, "_blank"); 
+    // window.scrollTo (0,0);
   }
   getFavorlist=async()=>{
     const {interestPage,interestSize}=this.state
@@ -118,11 +135,29 @@ export default class News extends Component{
       })
     }
   }
-
+  //用户数据统计
+  getUserAnalysis=async()=>{
+    const res = await newsCreatorDate()
+    if(res.status){
+      this.setState({
+        UserAnalysis:res.body
+      })
+    }
+    
+  }
+  toUser=()=>{
+    let userInfo = store.getState().userInfo
+    if(userInfo){
+      this.props.history.push({pathname:'/app/user',query :[2,1]})
+    }else{
+      store.dispatch(loginShow())
+    }
+    
+  }
   componentDidMount(){
+    this.getUserAnalysis()
     window.addEventListener('scroll', this.handleScroll, false)
-    console.log(this.props.location.query)
-
+    document.title = '康州数智-新闻资讯'
   }
   componentWillUnmount(): void {
     window.removeEventListener('scroll', this.handleScroll)
@@ -131,9 +166,9 @@ export default class News extends Component{
     }
   }
   render(){
-    const {isLogin,exitNone,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate}=this.state
+    const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate,loginShow}=this.state
     return (
-      <div id='news'>
+      <div id='news' className='back-color'>
         <div className='news-header'>
           <Header />  
         </div> 
@@ -151,25 +186,25 @@ export default class News extends Component{
               <div className='flexa'>
                 <div className='fleximgc'>
                   <div className='font12'>今日阅读</div>
-                  <div className='today-read'>200</div>
-                  <div className='yeterday-profit'>昨日阅读 <span>8</span></div>
+                  <div className='today-read'>{UserAnalysis.readt}</div>
+                  <div className='yeterday-profit'>昨日阅读 <span>{UserAnalysis.ready}</span></div>
                 </div>
                 <div className='fleximgc'>
                   <div className='font12'>今日分享</div>
-                  <div className='today-read'>200</div>
-                  <div className='yeterday-profit'>昨日分享 <span>8</span></div>
+                  <div className='today-read'>{UserAnalysis.sharet}</div>
+                  <div className='yeterday-profit'>昨日分享 <span>{UserAnalysis.sharey}</span></div>
                 </div>
                 <div className='fleximgc'>
                   <div className='font12'>今日收益</div>
-                  <div className='today-read'>200</div>
-                  <div className='yeterday-profit'>昨日收益 <span >8</span></div>
+                  <div className='today-read'>{UserAnalysis.integralt}</div>
+                  <div className='yeterday-profit'>昨日收益 <span >{UserAnalysis.integraly}</span></div>
                 </div>
               </div>
-              <div className='button fleximg' onClick={()=>{this.props.history.push({pathname:'/app/user',query :[2,1]}) }}>进入内容中心</div>
+              <div className='button fleximg pointer' onClick={this.toUser}>进入内容中心</div>
             </div>
           </div>
         </div>
-        <div className='width flexbl'>
+        <div className='width flexbl ' >
           <div className='news-main news-position-left'>
             {newsTypeActive === 0 &&
               <div className='may-interest'>
@@ -199,13 +234,14 @@ export default class News extends Component{
             <div className='news-list'  >
               {newsList.map((item,index)=>(
                 <div key={index} onClick={()=>this.toNewsDetail(item)}>
-                  <NewsListItem item={item}/>
+                  <NewsListItem key={item.id}  item={item}/>
                 </div>
               ))}
             </div>
               <MoreTxt hasMore={hasMore}/>
           </div>
         </div>
+        {loginShow &&  <PopupLogin />}
       </div>
     )
   }

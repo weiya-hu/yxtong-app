@@ -11,6 +11,7 @@
         height: 140px;
         .news-list-item-bottom{
           width: 100%;
+          
           .share{
             margin: 0 16px;
           }
@@ -45,6 +46,21 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         margin-top: 4px;
+        font-size: 14px !important;
+        a{
+          color: #363636;
+          font-size: 14px !important;
+        }
+        span{
+          font-size: 14px !important;
+        }
+        p{
+          font-size: 14px !important;
+        }
+        img{
+          display: none;
+        }
+        .kline{display: none;}
       }
     .interest-button{
         width: 70px;

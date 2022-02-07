@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import Router from './router/index'
-import reportWebVitals from './reportWebVitals';
-import {util} from './utils/news'
+import 'index.scss';
+import Router from 'router/index'
+import reportWebVitals from 'reportWebVitals';
+import {util} from 'utils/news'
 
-util.firstToken().then(()=>{
+util.firstTokenUserinfo().then(()=>{
   ReactDOM.render(
     <React.StrictMode>
       <Router />

@@ -1,14 +1,14 @@
 import { Component } from 'react'
 import './inputComponent.scss'
 import { Form, Select} from 'antd'
-import {areaNum} from '../../../public/js/areaNum'
-import downselectimg from '../../../public/images/downselect.png'
-import openimg from '../../../public/images/open.png'
-import closeimg from '../../../public/images/close.png'
-import { util } from '../../../utils/user'
-import {sendSms,sendSmsreg,captcha} from '../../../service/login'
+import {areaNum} from 'public/js/areaNum'
+import downselectimg from 'public/images/downselect.png'
+import openimg from 'public/images/open.png'
+import closeimg from 'public/images/close.png'
+import { util } from 'utils/user'
+import {sendSms,sendSmsreg,captcha} from 'service/login'
 
-import message from '../../component/message/index'
+import message from 'views/component/message/index'
 
 const { Option } = Select;
 //五个参数，name：组件的标识，formName：表单name，和后端传的数据名有关，title：组件前面的label，可传可不传，在登录密码、确认密码这两个中必传，defaultValue一般指邀请码的默认值
@@ -141,9 +141,9 @@ export default class InputComponent extends Component<any> {
                                     onChange={(e)=>{this.setState({mobileInput :e.target.value });this.props.MobileValue(e.target.value)}} 
                                     type="tel" 
                                     placeholder='请输入手机号' 
-                                    ref={(ref) => {
-                                        this.userInputRef = ref
-                                    }}
+                                    // ref={(ref) => {
+                                    //     this.userInputRef = ref
+                                    // }}
                                     onBlur={(e)=>{this.inputBlur(e,name)}}
                                 />
                             </Form.Item>
@@ -315,17 +315,16 @@ export default class InputComponent extends Component<any> {
                 )
                 break;
             case 'inviteCode':
-                    console.log(defaultValue)
                     component = (
                         <div id='inviteCode'  className={height?'phone flexb height':'phone flexb'}>
                             <div className='flexl'>
                                 <div className='yzmTXT'>{title?title:'邀请码'}</div>
-                                <Form.Item name={formName}>
+                                <Form.Item name={formName} >
                                     <input 
                                         autoComplete='off' 
                                         type="text" 
                                         defaultValue={defaultValue} 
-                                        disabled={defaultValue?true:false}
+                                        // disabled={defaultValue?true:false}
                                         placeholder='请输入邀请码' 
                                     />
                                 </Form.Item>

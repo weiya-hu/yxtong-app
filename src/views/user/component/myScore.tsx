@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component } from 'react'
 import CommonButton from './commonButton'
-import { userMycenterInfo } from '../../../service/user'
+import { userMycenterInfo } from 'service/user'
 import './myScore.scss'
 import {withRouter} from "react-router-dom";
 
@@ -11,7 +11,7 @@ class MyScore extends Component<any> {
         userInfo:{},
     }
     exchangeScore=(val)=>{
-        this.props.history.push('/developmenting.html')
+        window.location.href='/developmenting.html'
     }
     componentDidMount=async()=>{
         //接口，获取积分

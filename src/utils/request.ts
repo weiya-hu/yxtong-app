@@ -18,16 +18,22 @@ import { AxisPointerComponent } from "echarts/components";
    (config) => {   
      config.data = JSON.stringify(config.data);
       let firstToken = window.localStorage.getItem("firstToken")
+      let type = localStorage.getItem('type')
     if(firstToken){
         config.headers = {
             "Content-Type": "application/json",
             "Authorization": firstToken
           };
-    }else{
+    }else {
         config.headers = {
             "Content-Type": "application/json"
           };
     }
+    // if(type){
+    //   config.headers = {
+    //     "Content-Type": "multipart/form-data"
+    //   };
+    // }
      return config;
    },
    (error) => {
@@ -43,7 +49,8 @@ import { AxisPointerComponent } from "echarts/components";
      if (response.data.errno === 10620) {
        console.log("登录状态过期");
        localStorage.removeItem('userInfo')
-       window.location.href='/app/login?url='+window.location.pathname
+       let url = window.location.pathname==='/app/login'?'/app/login':'/app/login?url='+window.location.pathname
+       window.location.href=url
        message.info('登录状态过期，请再次登录')
      }
      if(response.data.errno === 10403){

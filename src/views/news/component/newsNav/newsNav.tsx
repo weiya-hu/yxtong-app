@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component } from 'react'
 import './newsNav.scss'
-import {newsTypeList} from '../../../../service/news'
+import {newsTypeList} from 'service/news'
 
 interface NewsNavState{
     newsIndexChange:(val:number)=>void
@@ -31,7 +31,7 @@ export default class NewsNav extends Component<NewsNavState> {
                 {newsType.map((item,index)=>(
                 <div 
                     key = {index}
-                    className={newsTypeActive === index ?'news-type-item news-type-item-active':'news-type-item'}
+                    className={newsTypeActive === index ?'news-type-item news-type-item-active pointer':'news-type-item pointer'}
                     onClick={()=>{
                         // this.setState({newsTypeActive:index})
                         this.props.newsIndexChange(index,item,1)

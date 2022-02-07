@@ -5,12 +5,24 @@ import Header from './component/header/header'
 import FollowButton from './component/followButton/followButton'
 import NewsListItem from './component/newsListItem/newsListItem'
 import MoreTxt from './component/moreTxt/moreTxt'
-import {util} from '../../utils/news'
-import {newsWorksList } from '../../service/news'
+import {util} from 'utils/news'
+import {newsWorksList } from 'service/news'
+import PopupLogin from 'views/login/popupLogin';
 
-import headerimg from '../../public/images/user/header.png'
+import store from 'store';
+import { loginShow } from 'store/actionCreators';
+
+import headerimg from 'public/images/user/header.png'
 
 export default class AuthorMore extends Component{
+  constructor(props) {
+    super(props)
+    // 监听state状态改变
+    store.subscribe(() => {
+      const state = store.getState()
+      this.setState({loginShow:state.loginShow})
+    })
+  }
     state={
         types:['全部','文章'],
         typeActiveIndex:0,
@@ -19,6 +31,7 @@ export default class AuthorMore extends Component{
         authorInfo:null,
         current:1,
         size:10,
+        loginShow:false
     }
     loadMoreData=()=>{
         let array=this.state.newsList
@@ -57,7 +70,9 @@ export default class AuthorMore extends Component{
           }
     }
     getArticleList=async()=>{
-      let id = window.location.search.split('=')[1]
+      // let url = window.location.href
+      // let id=url.substring(url.indexOf('=')+1,url.length)
+      let id = util.getUrlParam('newsId')
       let {current,size,newsList}=this.state
       let data={
         creatorId:id,
@@ -74,18 +89,19 @@ export default class AuthorMore extends Component{
     }
     //跳转新闻页
     toNewsDetail=(item)=>{
-      console.log(item)
-      this.props.history.push( { pathname : '/app/newsdetail/?id='+item.id})
+      // this.props.history.push( { pathname : '/app/newsdetail/?newsId='+item.id})
+      window.open(window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+item.id, "_blank"); 
     }
     componentDidMount(){
       this.getArticleList()
       window.addEventListener('scroll', this.handleScroll, false)
+      document.title = '康州数智-新闻资讯'
     }
     componentWillUnmount(): void {
         window.removeEventListener('scroll', this.handleScroll)
     }
     render(){
-        const {types,typeActiveIndex,newsList,hasMore,authorInfo}=this.state
+        const {types,typeActiveIndex,newsList,hasMore,authorInfo,loginShow}=this.state
         return(
             <div className='authorMore'>
                 <div className='more-header'>
@@ -131,6 +147,7 @@ export default class AuthorMore extends Component{
                     </div>
                     
                 </div>
+                {loginShow &&  <PopupLogin />}
             </div>
         )
     }

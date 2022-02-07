@@ -14,10 +14,15 @@ export const signInInfo =():Promise<API.IResult>=>{
 }
 
 
+//签到
 export const signIn =():Promise<API.IResult>=>{
-    return  post('user/my-center/sign-in',{})
+    return  post('user/singin',{})
 }
 
+//是否签到
+export const isSignIns =():Promise<API.IResult>=>{
+    return  get('user/is-singin')
+}
 
 export const tasks =():Promise<API.IResult>=>{
     return  get('user/my-center/tasks')
@@ -36,4 +41,14 @@ export const dataScreening =(data):Promise<API.IResult>=>{
 
 export const contentList =(data):Promise<API.IResult>=>{
     return  get('news/writing/contentList',data)
+}
+
+//oss上传图片
+export const uploadolicy =():Promise<API.IResult>=>{
+    return  get('user/upload-policy')
+}
+//发布文章
+
+export const newsPublish =(data):Promise<API.IResult>=>{
+    return  post('news/writing/publish',data)
 }
