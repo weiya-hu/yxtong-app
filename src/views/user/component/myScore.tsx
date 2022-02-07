@@ -10,7 +10,7 @@ class MyScore extends Component<any> {
     state={
         userInfo:{},
     }
-    exchangeScore=(val)=>{
+    exchangeScore=()=>{
         window.location.href='/developmenting.html'
     }
     componentDidMount=async()=>{
@@ -20,23 +20,25 @@ class MyScore extends Component<any> {
             this.setState({
               userInfo:res.body
             })
+            console.log(this.state.userInfo.today_integral)
           }
     }
     render(){
-        let {userInfo} = this.state
-        const {size} = this.props
+        let userinfo = this.state.userInfo
+        const {size,todayScore} = this.props
+        const userInfo= todayScore?todayScore:userinfo
         return <div>
             {size === 'big'?(
                 <div className='myscore flexb padding'>
                     <div className='flexl'>
                         <div className='todayscorepre'>
                             <span className='bold'>今日积分：</span>
-                            <span className='todayscore bold'>{userInfo.integral}</span>
+                            <span className='todayscore bold'>{userInfo.today_integral}</span>
                         </div>
                         <div className='todayscorepre fleximg'>
                             <span className='bold'>我的积分：</span>
                             <span className='todayscore bold'>{userInfo.accumulat}</span>
-                            <span className='scoremoney'>约{userInfo.balance}元</span>
+                            {/* <span className='scoremoney'>约{userInfo.balance}元</span> */}
                         </div>
                     </div>
                     <div>
@@ -49,10 +51,10 @@ class MyScore extends Component<any> {
                         <div className='flexl todayscorepre-up'>
                             <div className='todayscorepre'>
                                 <span className='bold'>今日积分：</span>
-                                <span className='todayscore bold'>{userInfo.integral}</span>
+                                <span className='todayscore bold'>{userInfo.today_integral}</span>
                             </div>
                             <div className='todayscorepre '>
-                                <span className='bold'>赠送代币券</span>
+                                <span className='bold'>赠送代币券：</span>
                                 <span className='todayscore bold'>56000</span>
                             </div>
                         </div>
@@ -60,7 +62,7 @@ class MyScore extends Component<any> {
                         <div className='todayscorepre fleximg'>
                             <span className='bold'>我的积分：</span>
                             <span className='todayscore bold'>{userInfo.accumulat}</span>
-                            <span className='scoremoney'>约{userInfo.balance}元</span>
+                            {/* <span className='scoremoney'>约{userInfo.balance}元</span> */}
                         </div>
                         
                     </div>

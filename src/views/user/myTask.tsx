@@ -4,7 +4,7 @@ import './myTask.scss'
 import MyScore from './component/myScore'
 import CommonButton from './component/commonButton'
 import Task from './component/task'
-import { signIn,userTasks,isSignIns } from "service/user";
+import { signIn,userTasks,isSignIns,userMycenterInfo } from "service/user";
 import {imgs} from 'utils/taskImg'
 
 import signinimg from 'public/images/user/signin.png'
@@ -34,6 +34,7 @@ export default class MyTask extends Component{
          contDay:0,//签到天数
          signList:[],
          tasks:[],
+         todayScore:null
     }
     doperfect=(val)=>{
       console.log(val)
@@ -63,10 +64,12 @@ export default class MyTask extends Component{
          if(status){
             const result = await userTasks()
             const res = await isSignIns()
+            const rest = await userMycenterInfo()
             this.setState({
                isSignIn:res.body,
                contDay:result.body.signin[0].completed,
                signinSuccess:body,  //签到获得的分数看接口是哪个参数再改一下
+               todayScore:rest.body,//给积分组件传值，签到后积分有改变
             })
             console.log(this.state)
          }
@@ -76,6 +79,7 @@ export default class MyTask extends Component{
     //去完成任务
     todoTask=()=>{
       window.location.href='/developmenting.html'
+
     }
     componentDidMount=async()=>{
         const result = await userTasks()
@@ -106,7 +110,7 @@ export default class MyTask extends Component{
          }
     }
     render(){
-      let {signInTitle,isSignIn,signinSuccess,tasks,contDay} = this.state
+      let {signInTitle,isSignIn,signinSuccess,tasks,contDay,todayScore} = this.state
       let dateArr:any = []
       // contDay = 28
       if(contDay<7){
@@ -121,7 +125,7 @@ export default class MyTask extends Component{
       return(
           <div className='myTask flexbl'>
              <div className='myTask-son'>
-               <MyScore size='small'/>
+               <MyScore size='small' todayScore={todayScore}/>
                <div className='signin'>
                   <div className="flexbl">
                      <div className='flexcbl title'>

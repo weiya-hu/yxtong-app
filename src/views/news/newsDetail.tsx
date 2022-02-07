@@ -103,7 +103,7 @@ export default class NewsDetail extends Component {
     //跳转作者作品页
     toNewsAuthor=()=>{
         let {newsDetail} =this.state
-        this.props.history.push('/app/newsauthormore/?creatorId='+newsDetail.creator_id)
+        this.props.history.push('/app/newsauthormore?creatorId='+newsDetail.creator_id)
     }
     //点击nav跳转新闻列表
     navChange=(val,item,flag)=>{

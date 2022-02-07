@@ -70,9 +70,8 @@ export default class AuthorMore extends Component{
           }
     }
     getArticleList=async()=>{
-      // let url = window.location.href
-      // let id=url.substring(url.indexOf('=')+1,url.length)
-      let id = util.getUrlParam('newsId')
+      let id = util.getUrlParam('creatorId')
+      console.log(id)
       let {current,size,newsList}=this.state
       let data={
         creatorId:id,

@@ -33,6 +33,7 @@ export default class ArticleDetail extends Component<ArticleDetailProps>{
     }
     render(): ReactNode {
         let {newsDetail,isPreview}= this.props
+        console.log(newsDetail)
         return(
             newsDetail && 
             <div className='articleDetail position'>
@@ -42,7 +43,7 @@ export default class ArticleDetail extends Component<ArticleDetailProps>{
                 <div className='title'>{newsDetail.title}</div>
                 <div className='flexb detail-info'>
                     <div className='flexl'>
-                        <div>{moment(newsDetail.create_time).format('YYYY月MM日DD HH:mm')}</div>
+                        <div>{moment(newsDetail.update_time).format('YYYY年MM月DD日 HH:mm')}</div>
                         <div className='detail-from'>来源：{newsDetail.creator_name}</div>
                     </div>
                     <div>阅读量： {newsDetail.readed}</div>
