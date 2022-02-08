@@ -28,7 +28,7 @@ export default class AuthorMore extends Component{
         typeActiveIndex:0,
         newsList:[],
         hasMore:true,
-        authorInfo:null,
+        authorInfo:{},
         current:1,
         size:10,
         loginShow:false
@@ -121,7 +121,7 @@ export default class AuthorMore extends Component{
                                     <div className='more-auther-name'>{authorInfo && authorInfo.creatorName}</div>
                                 </div>
                                 <div>
-                                    <FollowButton item={{is_attention:null}} size='big'/>
+                                    <FollowButton item={authorInfo} size='big'/>
                                 </div>
                             </div>
                             <div className='flexl'>

@@ -73,7 +73,7 @@ class Header extends Component<any,HeaderState>{
     let {links,exitActive,exitNone,}=this.state
     let userInfo = store.getState().userInfo
     return (
-      <div className='header' >
+      <div className='header position' >
         <div className='width flexb'>
           <div className='linkspre'>
             <div className='flexl links'>
