@@ -236,21 +236,25 @@
             }
         }
     </script>
-<div id="content" style="height: 222px;z-index: 1001;">
-    <div class="content-weixi">
-        <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
-        <span>微信咨询</span>
+<script src="static/lib/dragdealer/dragdealer.js"></script>
 
-    </div>
-    <div class="content-tel">
-        <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
-        <span>电话咨询</span>
-
-    </div>
-    <div class="content-source">
-        <div>
-            <img src="static/images/icon-content-source.png" alt="" style="user-select: none;">
-            <span>智能客服</span>
+<div id="kfcontentbox">
+    <div id="content" class="handle">
+        <div class="content-weixi">
+            <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
+            <span>微信咨询</span>
+    
+        </div>
+        <div class="content-tel">
+            <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
+            <span>电话咨询</span>
+    
+        </div>
+        <div class="content-source">
+            <div>
+                <img src="static/images/icon-content-source.png" alt="" style="user-select: none;">
+                <span>智能客服</span>
+            </div>
         </div>
     </div>
 </div>
@@ -279,90 +283,119 @@
 </div>
 
 <script>
-    let old_left = 0
-    let old_top = 0
-    let old_position_left = 0
-    let old_position_top = 0
-
-    let timer = null;
-    let isDrag = false;
-    $(document).on('mouseup',()=>{
-        if (!isDrag) {
-            clearTimeout(timer);
-        } else {
-            setTimeout(() => {
-                isDrag = false;
-                $('.udesk-client-btn').css('z-index','999')
-                $('#content').css('cursor','pointer')
-            }, 200);
-        }
-    })
-    $('#content').on('mousedown', function(event) {
-        isDrag = false;
-        old_left = event.pageX;
-        old_top = event.pageY;
-        old_position_left = $(this).position().left;
-        old_position_top = $(this).position().top;
-        timer = setTimeout(() => {
-            isDrag = true
+    let isDrag = false;//是否拖拽，用于处理点击和推拽的冒泡
+    new Dragdealer('kfcontentbox',{
+        horizontal: false,
+        vertical: true,
+        top:110,
+        animationCallback:function(x,y){
+            console.log('animationCallback');
             $('.udesk-client-btn').css('z-index','-1')
             $('#content').css('cursor','s-resize')
-        }, 100);
-    })
-    $('#content').on('mouseup', (e) => {
-        if (!isDrag) {
-            clearTimeout(timer);
-        } else {
-            setTimeout(() => {
-                isDrag = false;
-                $('.udesk-client-btn').css('z-index','999')
-                $('#content').css('cursor','pointer')
-            }, 200);
-        }
-    })
-    $('#content').on('mousemove', () => {
-        if (isDrag) {
-            let new_left = event.pageX;
-            let new_top = event.pageY;
-            let chang_x = new_left - old_left;
-            let change_y = new_top - old_top;
-            let new_position_left = old_position_left + chang_x;
-            let new_position_top = old_position_top + change_y;
-            if (new_position_top < 0) {
-                new_position_top = 0;
-            }
-            if (new_position_top > $(document).height() - $('#content').height()) {
-                new_position_top = $(document).height() - $('#content').height();
-            }
+            isDrag = true;
+        },
+        dragStopCallback:function(x,y){
+            console.log('dragStop');
+            $('.udesk-client-btn').css('z-index','999')
+            $('#content').css('cursor','pointer')
+            isDrag = false;
+        },
+    });
+    // let old_left = 0
+    // let old_top = 0
+    // let old_position_left = 0
+    // let old_position_top = 0
 
-            $('#content').css({
-                top: new_position_top + 'px'
-            })
-        } else {
-            $(document).off("mousemove");
-        }
-    })
-    $('#content .content-weixi').on('mouseup', () => {
-        setTimeout(() => {
-            if (!isDrag) {
-                $('.content-tips-wechat').show()
+    // let timer = null;
+    // let isDrag = false;
+    // $(document).on('mouseup',()=>{
+    //     if (!isDrag) {
+    //         clearTimeout(timer);
+    //     } else {
+    //         setTimeout(() => {
+    //             isDrag = false;
+    //             $('.udesk-client-btn').css('z-index','999')
+    //             $('#content').css('cursor','pointer')
+    //         }, 200);
+    //     }
+    // })
+    // $('#content').on('mousedown', function(event) {
+    //     isDrag = false;
+    //     old_left = event.pageX;
+    //     old_top = event.pageY;
+    //     old_position_left = $(this).position().left;
+    //     old_position_top = $(this).position().top;
+    //     timer = setTimeout(() => {
+    //         isDrag = true
+    //         $('.udesk-client-btn').css('z-index','-1')
+    //         $('#content').css('cursor','s-resize')
+    //     }, 100);
+    // })
+    // $('#content').on('mouseup', (e) => {
+    //     if (!isDrag) {
+    //         clearTimeout(timer);
+    //     } else {
+    //         setTimeout(() => {
+    //             isDrag = false;
+    //             $('.udesk-client-btn').css('z-index','999')
+    //             $('#content').css('cursor','pointer')
+    //         }, 200);
+    //     }
+    // })
+    // $('#content').on('mousemove', () => {
+    //     if (isDrag) {
+    //         let new_left = event.pageX;
+    //         let new_top = event.pageY;
+    //         let chang_x = new_left - old_left;
+    //         let change_y = new_top - old_top;
+    //         let new_position_left = old_position_left + chang_x;
+    //         let new_position_top = old_position_top + change_y;
+    //         if (new_position_top < 0) {
+    //             new_position_top = 0;
+    //         }
+    //         if (new_position_top > $(document).height() - $('#content').height()) {
+    //             new_position_top = $(document).height() - $('#content').height();
+    //         }
 
-            }
-        }, 100);
-    })
-    $('#content .content-tel').on('mouseup', () => {
-            setTimeout(() => {
-                if (!isDrag) {
-                    $('.content-tips-tel').show()
+    //         $('#content').css({
+    //             top: new_position_top + 'px'
+    //         })
+    //     } else {
+    //         $(document).off("mousemove");
+    //     }
+    // })
+    // $('#content .content-weixi').on('mouseup', () => {
+    //     setTimeout(() => {
+    //         if (!isDrag) {
+    //             $('.content-tips-wechat').show()
 
-                }
-            }, 100);
-        })
-        // 弹框消失
+    //         }
+    //     }, 100);
+    // })
+    // $('#content .content-tel').on('mouseup', () => {
+    //         setTimeout(() => {
+    //             if (!isDrag) {
+    //                 $('.content-tips-tel').show()
+
+    //             }
+    //         }, 100);
+    //     })
+
+    // 弹框消失
     function able() {
         $('.content-tips-tel').hide()
         $('.content-tips-wechat').hide()
     }
+    $('#content .content-weixi').on('mouseup', () => {
+        if(!isDrag){
+            $('.content-tips-wechat').show()
+        }
+    })
+    $('#content .content-tel').on('mouseup', () => {
+        if(!isDrag){
+            $('.content-tips-tel').show()
+        }
+    })
 </script>
 
 
@@ -390,15 +423,7 @@
     let getFftimer = setInterval(() => {
         kfBtn = $('#udesk_btn .udesk-client-btn')
         if (kfBtn.length) {
-            kfBtn.addClass('myfkbtn').appendTo('#content').mouseup((e) => {
-                if (!isDrag) {
-                    clearTimeout(timer);
-                } else {
-                    setTimeout(() => {
-                        isDrag = false;
-                    }, 200);
-                }
-            })
+            kfBtn.addClass('myfkbtn').appendTo('#content')
             clearInterval(getFftimer)
         }
     }, 100);
