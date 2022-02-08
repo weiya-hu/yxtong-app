@@ -59,7 +59,7 @@ export default class Register extends Component {
                 value.acode='+'+value.acode
                 const res =await doreg({...value})
                 if(res.status){
-                    window.localStorage.href='/'
+                    window.location.href='/'
                 }            
                 $message.info(res.message)
             }            
