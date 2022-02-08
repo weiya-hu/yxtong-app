@@ -52,6 +52,7 @@ export default class FollowButton extends Component<FollowButtonProps> {
     
     render(){
         const {item} = this.state,{size}=this.props
+        console.log(item)
         return size==='big'?(
             // size='big'
             <div onClick={this.follow} className={item.is_attention?'big-interest-button-gray fleximg pointer':'fleximg big-interest-button pointer'}>

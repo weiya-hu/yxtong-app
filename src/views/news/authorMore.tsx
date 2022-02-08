@@ -71,7 +71,6 @@ export default class AuthorMore extends Component{
     }
     getArticleList=async()=>{
       let id = util.getUrlParam('creatorId')
-      console.log(id)
       let {current,size,newsList}=this.state
       let data={
         creatorId:id,
@@ -83,7 +82,8 @@ export default class AuthorMore extends Component{
         authorInfo:res.body,
         newsList:newsList.concat(res.body.worksList),
         hasMore:res.body.total>current*size,
-        current:res.body.total>current*size?current+1:current
+        current:res.body.total>current*size?current+1:current,
+        is_attention:res.body.is_attention
       })
     }
     //跳转新闻页
@@ -121,7 +121,9 @@ export default class AuthorMore extends Component{
                                     <div className='more-auther-name'>{authorInfo && authorInfo.creatorName}</div>
                                 </div>
                                 <div>
-                                    <FollowButton item={authorInfo} size='big'/>
+                                  {
+                                    authorInfo.creatorId && <FollowButton item={{is_attention:authorInfo.is_attention}} size='big'/>
+                                  }
                                 </div>
                             </div>
                             <div className='flexl'>
