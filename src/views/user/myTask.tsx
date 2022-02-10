@@ -6,6 +6,7 @@ import CommonButton from './component/commonButton'
 import Task from './component/task'
 import { signIn,userTasks,isSignIns,userMycenterInfo } from "service/user";
 import {imgs} from 'utils/taskImg'
+import { withRouter } from 'react-router-dom';
 
 import signinimg from 'public/images/user/signin.png'
 import signinedimg from 'public/images/user/signined.png'
@@ -20,7 +21,7 @@ import dianimg from 'public/images/user/dian.png'
 
 import chaimg from 'public/images/user/cha.png'
 
-export default class MyTask extends Component{
+class MyTask extends Component{
     state={
          signArr:[1,2,3,4,5,6,7],//签到前六天的循环数组
          signinSuccess:0,//签到成功是否显示
@@ -36,8 +37,14 @@ export default class MyTask extends Component{
          tasks:[],
          todayScore:null
     }
-    doperfect=(val)=>{
-      console.log(val)
+    doperfect=(val,task)=>{
+      console.log(val,task)
+      if(task === 'browse_news'){
+         this.props.history.push('/app/news');
+      }else{
+         window.location.href='/developmenting.html'
+      }
+      
     }
     getIntegral(day:number){//获取积分
       let dayValue = this.state.signList[0]?this.state.signList[0].value:0
@@ -75,11 +82,6 @@ export default class MyTask extends Component{
          }
          // res && $message.info(res.message)
        }
-    }
-    //去完成任务
-    todoTask=()=>{
-      window.location.href='/developmenting.html'
-
     }
     componentDidMount=async()=>{
         const result = await userTasks()
@@ -170,8 +172,8 @@ export default class MyTask extends Component{
                               
                               <Task title={val.name} score={`+${val.value}积分`} />
                            </div>
-                           <div className="pointer" onClick={this.todoTask}>
-                              <CommonButton onclicked={this.doperfect} isBefore={!val.finish} wordBefore={imgs[val.tag].beforeText} wordAfter='已完成'/>
+                           <div className="pointer">
+                              <CommonButton onclicked={(value)=>this.doperfect(value,val.tag)} isBefore={!val.finish} wordBefore={imgs[val.tag].beforeText} wordAfter='已完成'/>
                            </div>
                         </div> 
                      )}
@@ -201,3 +203,4 @@ export default class MyTask extends Component{
        )
     }
 } 
+export default withRouter(MyTask);

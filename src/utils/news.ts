@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { token,getUser } from "service/login";
+import { getUser } from "service/login";
 import store from "store";
 import { setUserInfo } from "store/actionCreators";
 export const util = {
@@ -38,12 +38,12 @@ export const util = {
         return util.getScrollHeight() - util.getScrollTop() - util.getWindowHeight()
     },
     firstTokenUserinfo:async()=>{
-        let firstToken =localStorage.getItem('firstToken')
-        if(!firstToken){
-            const res = await token()
-            localStorage.setItem('firstToken',res.body)
+        // let firstToken =localStorage.getItem('firstToken')
+        // if(!firstToken){
+        //     const res = await token()
+        //     localStorage.setItem('firstToken',res.body)
             
-        } 
+        // } 
         const result = await getUser()
         result.status && store.dispatch(setUserInfo(result.body))
     },

@@ -20,7 +20,6 @@ class MyScore extends Component<any> {
             this.setState({
               userInfo:res.body
             })
-            console.log(this.state.userInfo.today_integral)
           }
     }
     render(){

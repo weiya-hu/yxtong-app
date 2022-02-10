@@ -69,11 +69,11 @@ export default class NewsDetail extends Component {
       }
       //获取新闻详情
     getNewsDetail=async(id)=>{
-        if(!id){
-            id = util.getUrlParam('newsId')
-        }
+        // if(!id){
+        //     id = util.getUrlParam('newsId')
+        // }
         let data={
-            newsId:id
+            newsId:util.getUrlParam('newsId')
         }
         let res =await newsDetail(data)
         if(res.status){
@@ -162,7 +162,7 @@ export default class NewsDetail extends Component {
                 <div className='newsDetail-article'>
                     
                     <div className='newsDetail-article-detail'>
-                        <ArticleDetail newsDetail={newsDetail}/>
+                        <ArticleDetail />
                     </div>
                     <div className='Report-div' id='comment'>
                         <Report />

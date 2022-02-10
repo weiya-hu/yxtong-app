@@ -5,7 +5,7 @@ import { Form , Button} from 'antd';
 import InputComponent from './inputComponent';
 import { util } from 'utils/user'
 import { Link } from 'react-router-dom';
-import {dologin,token,getUser} from 'service/login'
+import {dologin,getUser} from 'service/login'
 import $message from 'views/component/message';
 
 import store from "store/index";
@@ -69,24 +69,7 @@ export default class LoginComponent extends Component {
                 }
                 $message.info(res.message)
             }else{
-                if(res.errno === 10403 || res.errno === 10401){
-                    let tokenRes = await token()                  
-                    if(tokenRes.status){
-                        localStorage.setItem('firstToken',res.body)
-                        let dologinRes = await dologin(data)
-                        if(dologinRes.status){
-                            let userInfoRes= await getUser()
-                            localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body))
-                            store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
-                            if(url){
-                                window.location.href=url.split('=')[1]
-                            }else{
-                                window.location.href='/'
-                            }
-                        }
-                        $message.info(dologinRes.message)
-                    }
-                }else if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
+                if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
                     this.setState({captchaShow:true})
                 }else{
                     $message.info(res.message)

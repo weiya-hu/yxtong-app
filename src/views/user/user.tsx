@@ -10,6 +10,7 @@ import ArticleDetail from './articleDetail'
 import {loginOut } from 'service/login'
 import { getUser } from 'service/login'
 import { Redirect ,withRouter} from 'react-router-dom';
+import { util } from 'utils/news'
 
 import store from "store/index";
 import { removeUserInfo} from "store/actionCreators.js";
@@ -22,11 +23,12 @@ import headerimg from 'public/images/user/header.png'
 import realnamedimg from 'public/images/user/realnamed.png'
 import phoneimg from 'public/images/user/phone.png'
 
+let UNLISTEN;
 class User extends Component {
     state={
-        nav:['我的任务','我的收益','创作中心','我的消息','设置'],
+        nav:['我的任务','我的收益','创作中心','设置'],
         // aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
-        aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['我的消息'],['设置']],//侧边栏的导航文字
+        aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['设置'],['我的消息']],//侧边栏的导航文字
         navActiveIndex:0,//导航active的下标
         asideActive:0,//侧边栏active的下标
         isArticleDetail:0,//是否是详情页
@@ -42,12 +44,12 @@ class User extends Component {
       e.stopPropagation()
       this.setState({exitNone:!this.state.exitNone})
     }
-    //返回登录
+    //退出登录,跳到首页
     exitlogin=async(e)=>{
       e.stopPropagation()
       let res = await loginOut()
       if(res.status){
-        this.props.history.push('/app/login?url=/app/user')
+        window.location.href='/'
         localStorage.removeItem('userInfo')
         store.dispatch(removeUserInfo())
       }
@@ -81,21 +83,47 @@ class User extends Component {
         isPreview:true
       })
     }
+    navChange=(index)=>{
+      this.props.history.push('/app/user?navActiveIndex='+index+'&asideActive=0')
+      window.scrollTo (0,0);
+    }
+    asideNavChange=(index)=>{
+      this.props.history.push('/app/user?navActiveIndex='+util.getUrlParam('navActiveIndex')+'&asideActive='+index)
+      window.scrollTo (0,0);
+      // this.setState({asideActive:index,isArticleDetail:0,editItem:this.state.editItem})
+    }
     componentDidMount=()=>{
       document.title = '康州数智-个人中心'
-      let local=this.props.location
-      if(local.query){
-        this.setState({
-          navActiveIndex:local.query[0],
-          asideActive:local.query[1]
-        })
-      }
+      this.setState({
+        navActiveIndex:util.getUrlParam('navActiveIndex') || 0,//路径里面没有值就默认0
+        asideActive:util.getUrlParam('asideActive') || 0,//路径里面没有值就默认0
+        isArticleDetail:util.getUrlParam('readNewsId')
+      })
+      console.log(util.getUrlParam('navActiveIndex'),util.getUrlParam('asideActive'),util.getUrlParam('readNewsId'))
       this.getUserInfo()
+      //监听路由变化切换组件显示
+      UNLISTEN = this.props.history.listen(route => { 
+        let navIndex = util.getUrlParam('navActiveIndex')
+      let asideIndex = util.getUrlParam('asideActive')
+      let isArticleDetail=util.getUrlParam('readNewsId')
+        console.log(navIndex,asideIndex,isArticleDetail)
+        this.setState({
+          navActiveIndex:navIndex,
+          asideActive:asideIndex,
+          isArticleDetail:isArticleDetail
+        })
+      });
+    }
+
+    componentWillUnmount(){
+      UNLISTEN && UNLISTEN(); // 监听路由变化执行解绑
     }
     render(){
-        let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag,newsDetail,editItem,isPreview} = this.state
-        let asideActive = navActiveIndex === 2?this.state.asideActive:0
+        let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag,newsDetail,editItem,isPreview,asideActive} = this.state
+        // let asideActive = navActiveIndex === 2?this.state.asideActive:0
+        console.log(navActiveIndex)
         if(loginFlag){
+
           return <Redirect to='/app/login?url=/app/user' />;
         }
         return <div id='user' onClick={()=>{this.setState({exitNone:true})}}>
@@ -132,8 +160,8 @@ class User extends Component {
                         {nav.map((item,index)=>(
                             <div 
                               key={index}
-                              className={navActiveIndex === index?'fleximg navactive pointer':'fleximg pointer'}
-                              onClick={()=>{this.setState({navActiveIndex:index});window.scrollTo (0,0);}}
+                              className={navActiveIndex == index?'fleximg navactive pointer':'fleximg pointer'}
+                              onClick={()=>this.navChange(index)}
                             >{item}</div>                            
                         ))}
                     </div>                    
@@ -159,10 +187,8 @@ class User extends Component {
                   {aside[navActiveIndex].map((item,index)=>(
                     <div 
                       key={index}
-                      className={asideActive === index?'aside-active pointer':'pointer' }
-                      onClick={()=>{
-                        this.setState({asideActive:index,isArticleDetail:0,editItem:this.state.editItem})
-                      }}
+                      className={asideActive == index?'aside-active pointer':'pointer' }
+                      onClick={()=>this.asideNavChange(index)}
                       >{item}</div>
                   ))}
                 </div>
@@ -170,25 +196,24 @@ class User extends Component {
               
               <div className='usermain'>
                 {
-                  navActiveIndex === 0 ? <MyTask /> :
-                  navActiveIndex === 1 ? <Profit /> :
-                  (navActiveIndex === 2 && asideActive === 0)? <Writing 
+                  navActiveIndex == 0 ? <MyTask /> :
+                  navActiveIndex ==1 ? <Profit /> :
+                  (navActiveIndex == 2 && asideActive == 0)? <Writing 
                         preview={(val,item)=>{this.writingPreview(val,item)}} 
                         item={editItem} 
                         publish={(val)=>{this.setState({editItem:null})}}
                         save={(val)=>{this.setState({editItem:val})}}
                   />:
-                  (navActiveIndex === 2 && asideActive === 2) ? <DataAnalysis />:
-                  (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 0) ? 
+                  (navActiveIndex == 2 && asideActive == 2) ? <DataAnalysis />:
+                  (navActiveIndex == 2 && asideActive == 1 && !isArticleDetail) ? 
                     <ArticleList 
-                      edit={(val,item)=>{this.setState({asideActive:val,editItem:item})}}
                       dataAnalysis={(val)=>{this.setState({asideActive:val})}}
                       articleDetail={(val,item)=>{this.setState({isArticleDetail:val,newsDetail:item,isPreview:false})}}
                       
                     />:
-                  (navActiveIndex === 2 && asideActive === 1 && isArticleDetail === 1) && 
+                  (navActiveIndex == 2 && asideActive == 1 && isArticleDetail) && 
                   <div className='usermain-ArticleDetail'>
-                    <ArticleDetail newsDetail={newsDetail} isPreview={isPreview} backReview={(val)=>{this.setState({asideActive:0})}}/>
+                    <ArticleDetail isPreview={isPreview} backReview={(val)=>{this.setState({asideActive:0})}}/>
                   </div>
                    
                 }

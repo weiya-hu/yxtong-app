@@ -131,7 +131,8 @@ export default class News extends Component{
     if(res.status){
       this.setState({
         mayInterestList:res.body.interestList,
-        exchangeRotate:false
+        exchangeRotate:false,
+        interestPage:res.body.pages>interestPage?interestPage+1:1
       })
     }
   }
@@ -158,6 +159,7 @@ export default class News extends Component{
     this.getUserAnalysis()
     window.addEventListener('scroll', this.handleScroll, false)
     document.title = '康州数智-新闻资讯'
+    window.scrollTo (0,0);
   }
   componentWillUnmount(): void {
     window.removeEventListener('scroll', this.handleScroll)

@@ -144,7 +144,7 @@
             <div class="header-phone">
                 <img src="static/images/header-phone.png" alt="">
                 <span>咨询电话：</span>
-                <span>400-890-9020</span>
+                <span>400-805-6906</span>
             </div>
         </div>
     </div>
@@ -164,25 +164,17 @@
         })
     </script>
     <script>
-        var token = localStorage.getItem('firstToken');
         // loaded page
         $(document).ready(function() {
-            if (!token) {
-                $.ajax({
-                    method: 'get',
-                    url: "/api/user/public/token",
-                    dataType: "json",
-                    success: function(res) {
-                        // console.log(res.body)
-                        localStorage.setItem("firstToken", res.body);
 
-                        isUser()
-                    },
-                })
-                return
-            }
-
-            initLogin(token)
+            $.ajax({
+                method: 'get',
+                url: "/api/user/public/get-user",
+                dataType: "json",
+                success: function(res) {
+                    res.status ? isUser(res.body) : isUser()
+                },
+            })
 
             $('#uname').click(function() {
                 location.href = '/app/user'
@@ -194,36 +186,16 @@
         $('.info-quit').on('click', function() {
             $.ajax({
                 method: 'get',
-                headers: {
-                    Authorization: token
-                },
                 url: "/api/login/login-out",
                 dataType: "json",
                 success: function(res) {
                     isUser()
-                    localStorage.removeItem('userInfo')
                 },
             })
         })
-        console.log(token)
 
-        function initLogin(token) {
-            $.ajax({
-                method: 'get',
-                headers: {
-                    Authorization: token
-                },
-                url: "/api/user/public/get-user",
-                dataType: "json",
-                success: function(res) {
-                    res.status ? isUser(res.body) : isUser()
-                    res.status && localStorage.setItem('userInfo', res.body)
-                },
-            })
-        }
 
         function isUser(userInfo) {
-            console.log(userInfo)
             $('.default-show').hide()
             if (!userInfo) {
                 $('.nologin').css('display', 'flex')
@@ -243,12 +215,12 @@
         <div class="content-weixi">
             <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
             <span>微信咨询</span>
-    
+
         </div>
         <div class="content-tel">
             <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
             <span>电话咨询</span>
-    
+
         </div>
         <div class="content-source">
             <div>
@@ -283,21 +255,22 @@
 </div>
 
 <script>
-    let isDrag = false;//是否拖拽，用于处理点击和推拽的冒泡
-    new Dragdealer('kfcontentbox',{
+    let isDrag = false; //是否拖拽，用于处理点击和推拽的冒泡
+    new Dragdealer('kfcontentbox', {
+        y: 0.9,
         horizontal: false,
         vertical: true,
-        top:110,
-        animationCallback:function(x,y){
+        top: 110,
+        animationCallback: function(x, y) {
             console.log('animationCallback');
-            $('.udesk-client-btn').css('z-index','-1')
-            $('#content').css('cursor','s-resize')
+            $('.udesk-client-btn').css('z-index', '-1')
+            $('#content').css('cursor', 's-resize')
             isDrag = true;
         },
-        dragStopCallback:function(x,y){
+        dragStopCallback: function(x, y) {
             console.log('dragStop');
-            $('.udesk-client-btn').css('z-index','999')
-            $('#content').css('cursor','pointer')
+            $('.udesk-client-btn').css('z-index', '999')
+            $('#content').css('cursor', 'pointer')
             isDrag = false;
         },
     });
@@ -387,12 +360,12 @@
         $('.content-tips-wechat').hide()
     }
     $('#content .content-weixi').on('mouseup', () => {
-        if(!isDrag){
+        if (!isDrag) {
             $('.content-tips-wechat').show()
         }
     })
     $('#content .content-tel').on('mouseup', () => {
-        if(!isDrag){
+        if (!isDrag) {
             $('.content-tips-tel').show()
         }
     })

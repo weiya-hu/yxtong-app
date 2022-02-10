@@ -5,6 +5,7 @@ import './profit.scss'
 import moment from 'moment'
 import MyScore from "./component/myScore";
 import {integralRecord} from 'service/user'
+import { withRouter } from 'react-router-dom';
 
 const columns = [
     {
@@ -31,7 +32,7 @@ const columns = [
     },
 ];
 
-export default class Profit extends Component{
+class Profit extends Component{
     constructor(props){
         super(props)
     }
@@ -63,6 +64,7 @@ export default class Profit extends Component{
         }
     }
     componentDidMount=async()=>{
+        // this.props.history.push('/app/user?navActiveIndex=1&asideActive=0');
         let {current,pageSize}=this.state
         this.getList(current,pageSize)
         
@@ -102,3 +104,5 @@ export default class Profit extends Component{
         )
     }
 }
+
+export default withRouter(Profit);

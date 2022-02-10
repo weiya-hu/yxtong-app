@@ -3,24 +3,27 @@ import { Component } from 'react'
 import './writing.scss'
 import { Editor } from '@tinymce/tinymce-react'
 import AliyunOSSUpload from './component/ossImg'
-import { Form} from 'antd'
 import message from 'views/component/message/index';
 import {newsPublish} from 'service/user'
+import {getEditNews} from 'service/news'
 import OSSUpload from './component/ossTest'
+import {withRouter} from 'react-router-dom'
+import store from 'store';
+import {util} from 'utils/news'
 
 import addimg from 'public/images/user/add.png'
 import warnimg from 'public/images/warn.png'
 import falseimg from 'public/images/user/false.png'
 
-export default class Writing extends Component{
+class Writing extends Component{
     state={
         titleMessage:'',//标题的错误message
         textMessage:'',//文章的错误message
-        coverImgurl:this.props.item?this.props.item.thumb_url?this.props.item.thumb_url:falseimg:'',
-        sendCoverImgurl:this.props.item?this.props.item.sendCoverImgurl:'',
-        title:this.props.item?this.props.item.title:'',
-        content:this.props.item?this.props.item.content:'',
-        edit:this.props.item?this.props.item.content:''
+        coverImgurl:'',
+        sendCoverImgurl:'',
+        title:'',
+        content:'',
+        edit:''
     }
     //富文本编辑器文本有改变
     EditorChange=(val)=>{
@@ -70,6 +73,7 @@ export default class Writing extends Component{
    //预览文章
    preView=()=>{
         const {title,edit,coverImgurl,sendCoverImgurl} = this.state
+        
         if(!title){
             message.info('请输入标题')
             this.setState({titleMessage:'必填项'})
@@ -85,10 +89,14 @@ export default class Writing extends Component{
                 thumb_url:coverImgurl,
                 title:title,
                 update_time: new Date(),
-                sendCoverImgurl:sendCoverImgurl
+                sendCoverImgurl:sendCoverImgurl,
+                creator_name:store.getState().userInfo.name
             }
-            this.props.preview(1,item)
+            // this.props.preview(1,item)
+            localStorage.setItem('previewNews',JSON.stringify(item) )
+            this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&readNewsId=preview')
         }
+        
    }
    //发布文章
    publishNews=async()=>{
@@ -124,10 +132,30 @@ export default class Writing extends Component{
         }
    }
   
-    componentDidMount(){
-        // tinymce.activeEditor.getBody().setAttribute('contenteditable', false);
-        console.log(this.props.item,this.state.coverImgurl)
-
+    componentDidMount=async()=>{
+        //如果路径中带有editNewsId表示是编辑功能，不是从0创作功能，要获取编辑的文章内容再赋值
+        let newsId=util.getUrlParam('editNewsId')
+        if(newsId === 'previewBack'){
+            let previewNews= JSON.parse(localStorage.getItem('previewNews'))
+            this.setState({
+                coverImgurl:previewNews.thumb_url,
+                sendCoverImgurl:previewNews.thumb_url,
+                title:previewNews.title,
+                content:previewNews.content,
+                edit:previewNews.content
+            })
+        }else if(newsId){
+            const {body,status}= await getEditNews({newsId:newsId})
+            status && this.setState({
+                coverImgurl:body.thumb_url,
+                sendCoverImgurl:body.thumb_url,
+                title:body.title,
+                content:body.content,
+                edit:body.content
+            })
+        }
+            
+        
     }
     getObjectURL=(file)=> {
         var url = null;
@@ -141,8 +169,8 @@ export default class Writing extends Component{
         return url;
     }
     coverIMgChange=(val,sendval)=>{
-        console.log(val)
-        console.log(sendval)
+        // console.log(val)
+        // console.log(sendval)
         // var objectURL = window.URL.createObjectURL(val)
         // console.log(objectURL)
 
@@ -154,13 +182,12 @@ export default class Writing extends Component{
     }
     render(){
         let {titleMessage,coverImgurl,textMessage,title,content}=this.state
-        let str=content
         return(
             <div className='writing' id='writing'>
                 <div className='top flexb'>
                     <div>
                         <span className='writing-txt'>发布文章</span>
-                        <span  className='font12 color3'>草稿自动保存</span>
+                        {/* <span  className='font12 color3'>草稿自动保存</span> */}
                     </div>
                     <div className='flexr'>
                         <div className='writing-buttton fleximg pointer' onClick={this.publishNews}>发布文章</div>
@@ -215,7 +242,7 @@ export default class Writing extends Component{
                     <div className='font16 bold'>文章内容</div>
                     <div className='editor position'>
                         <Editor
-                            initialValue={str}
+                            initialValue={content}
                             id={"tincyEditor"}
                             tinymceScriptSrc={'../tinymce/js/tinymce/tinymce.min.js'}
                             apiKey="mabgo7mjxmpeaukhcqge4rtd5gvtay0595bkvv931xewl7yf"
@@ -249,3 +276,5 @@ export default class Writing extends Component{
         )
     }
 }
+
+export default withRouter(Writing)

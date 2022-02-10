@@ -144,7 +144,7 @@
             <div class="header-phone">
                 <img src="static/images/header-phone.png" alt="">
                 <span>咨询电话：</span>
-                <span>400-890-9020</span>
+                <span>400-805-6906</span>
             </div>
         </div>
     </div>
@@ -164,25 +164,17 @@
         })
     </script>
     <script>
-        var token = localStorage.getItem('firstToken');
         // loaded page
         $(document).ready(function() {
-            if (!token) {
-                $.ajax({
-                    method: 'get',
-                    url: "/api/user/public/token",
-                    dataType: "json",
-                    success: function(res) {
-                        // console.log(res.body)
-                        localStorage.setItem("firstToken", res.body);
 
-                        isUser()
-                    },
-                })
-                return
-            }
-
-            initLogin(token)
+            $.ajax({
+                method: 'get',
+                url: "/api/user/public/get-user",
+                dataType: "json",
+                success: function(res) {
+                    res.status ? isUser(res.body) : isUser()
+                },
+            })
 
             $('#uname').click(function() {
                 location.href = '/app/user'
@@ -194,36 +186,16 @@
         $('.info-quit').on('click', function() {
             $.ajax({
                 method: 'get',
-                headers: {
-                    Authorization: token
-                },
                 url: "/api/login/login-out",
                 dataType: "json",
                 success: function(res) {
                     isUser()
-                    localStorage.removeItem('userInfo')
                 },
             })
         })
-        console.log(token)
 
-        function initLogin(token) {
-            $.ajax({
-                method: 'get',
-                headers: {
-                    Authorization: token
-                },
-                url: "/api/user/public/get-user",
-                dataType: "json",
-                success: function(res) {
-                    res.status ? isUser(res.body) : isUser()
-                    res.status && localStorage.setItem('userInfo', res.body)
-                },
-            })
-        }
 
         function isUser(userInfo) {
-            console.log(userInfo)
             $('.default-show').hide()
             if (!userInfo) {
                 $('.nologin').css('display', 'flex')
@@ -243,12 +215,12 @@
         <div class="content-weixi">
             <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
             <span>微信咨询</span>
-    
+
         </div>
         <div class="content-tel">
             <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
             <span>电话咨询</span>
-    
+
         </div>
         <div class="content-source">
             <div>
@@ -283,21 +255,22 @@
 </div>
 
 <script>
-    let isDrag = false;//是否拖拽，用于处理点击和推拽的冒泡
-    new Dragdealer('kfcontentbox',{
+    let isDrag = false; //是否拖拽，用于处理点击和推拽的冒泡
+    new Dragdealer('kfcontentbox', {
+        y: 0.9,
         horizontal: false,
         vertical: true,
-        top:110,
-        animationCallback:function(x,y){
+        top: 110,
+        animationCallback: function(x, y) {
             console.log('animationCallback');
-            $('.udesk-client-btn').css('z-index','-1')
-            $('#content').css('cursor','s-resize')
+            $('.udesk-client-btn').css('z-index', '-1')
+            $('#content').css('cursor', 's-resize')
             isDrag = true;
         },
-        dragStopCallback:function(x,y){
+        dragStopCallback: function(x, y) {
             console.log('dragStop');
-            $('.udesk-client-btn').css('z-index','999')
-            $('#content').css('cursor','pointer')
+            $('.udesk-client-btn').css('z-index', '999')
+            $('#content').css('cursor', 'pointer')
             isDrag = false;
         },
     });
@@ -387,12 +360,12 @@
         $('.content-tips-wechat').hide()
     }
     $('#content .content-weixi').on('mouseup', () => {
-        if(!isDrag){
+        if (!isDrag) {
             $('.content-tips-wechat').show()
         }
     })
     $('#content .content-tel').on('mouseup', () => {
-        if(!isDrag){
+        if (!isDrag) {
             $('.content-tips-tel').show()
         }
     })
@@ -502,16 +475,17 @@
     <div class="sales-split">
         <div class="wrapper">
             <h2 class="wow fadeInUp">一个员工的企业成本，百人团队的营销效果</h2>
-            <p class="wow fadeInDown">您只需每年支付1名员工的费用，即可享受数智营销通全域智能营销SaaS集成平台为您带来的百人团队所拥有的营销效果，让数智化营销成为企业赢得未来市场的利器<br>让智能营销机器人团队代替成百上千人力帮助您做生意</p>
+            <p class="wow fadeInDown">您只需每年支付1名员工的费用，即可享受数智营销通全域智能营销SaaS集成平台为您带来的百人团队所拥有的营销效果 <br> 让数智化营销成为企业赢得未来市场的利器，让智能营销机器人团队代替成百上千人力帮助您做生意让智能营销机器人团队代替成百上千人力帮助您做生意
+            </p>
         </div>
     </div>
 
     <div class="sales-matrix">
         <div class="sales-tit">
-            <h2 class="wow fadeInUp">药智营销通产品矩阵</h2>
+            <h2 class="wow fadeInUp">药智营销通产品示意图</h2>
             <p class="wow fadeInDown">Product matrix</p>
         </div>
-        <div class="subtitle">为客户提供全面、专业、高效的数字营销自动化工具</div>
+        <div class="subtitle">为客户提供全面、专业、高效的数字营销自动化服务</div>
         <div class="wrapper bigimg">
             <div class="toptitle">
                 <div class="item sfitem1">
@@ -530,7 +504,7 @@
                 </div>
             </div>
             <div class="bigarrowbox">
-                <div class="btxt">方案调整  内容优化</div>
+                <div class="btxt">方案调整<br>内容优化</div>
                 <div class="bigarrow">
                     <div class="arrow"></div>
                 </div>
@@ -542,31 +516,32 @@
                         <div class="arrow"></div>
                         <div class="arrow">
                             <div class="arrowtxt">
-                                <div>为中小企业</div>
-                                <div>提供初始数据</div>
+                                <div>为中小<br>企业</div>
+                                <div>提供初始<br>数据</div>
                             </div>
                         </div>
                     </div>
                     <div class="rt">
                         <div class="hvr-ripple-out bgg crp" data-surl="/developmenting.html">
                             <div class="stitle">CMS系统</div>
-                            <div class="bgg1 mbtn">营销方案策划</div>
-                            <div class="bgg1 mbtn mt10">广告内容制作</div>
+                            <div class="bgg1 mbtn nbtn">营销方案策划</div>
+                            <div class="bgg1 mbtn nbtn mt10">广告内容制作</div>
                         </div>
                         <div class="hvr-ripple-out bgg crp" data-surl="/developmenting.html">
                             <div class="stitle">
-                                <img src="static/images/sm-star.png" class="smstar" alt="">
-                                DMP系统
+                                <img src="static/images/sm-star.png" class="smstar" alt=""> DMP系统
                             </div>
                             <div class="scbtn bgg1 bt1">
-                                <div>精准目标客户内容</div>
-                                <span>(三大运营商提供支持)</span>
+                                <div class="nbtn nbt1">精准目标客户内容</div>
+                                <span>三大运营商提供支持</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="simg simg1">
+                    <div class="split" style="height: 600px;"></div>
                     <img src="static/images/g-right.png" alt="">
+                    <div class="split" style="height: 900px;"></div>
                 </div>
                 <div class="sitem sitem2">
                     <div class="lt">
@@ -577,8 +552,7 @@
                                 <div class="mbtns">
                                     <div class="mbtn" data-surl="/app/news">资讯平台</div>
                                     <div class="mbtn" data-surl="/developmenting.html">
-                                        <img src="static/images/sm-star.png" class="smstar" alt="">
-                                        企业快速建站
+                                        <img src="static/images/sm-star.png" class="smstar" alt=""> 企业快速建站
                                     </div>
                                     <div class="mbtn mt10" data-surl="/developmenting.html">第三方投放整合</div>
                                     <div class="mbtn mt10" data-surl="/developmenting.html">效果数据采集与分析</div>
@@ -588,8 +562,7 @@
                                 <div class="stitle1">推送系统</div>
                                 <div class="mbtns">
                                     <div class="mbtn" data-surl="https://robot.yxtong.com/user/qq/devicesRun.html">
-                                        <img src="static/images/sm-star.png" class="smstar" alt="">
-                                        APP营销机器人矩阵
+                                        <img src="static/images/sm-star.png" class="smstar" alt=""> APP营销机器人矩阵
                                     </div>
                                     <div class="mbtn" data-surl="/developmenting.html">5G短信 (SMS)</div>
                                     <div class="mbtn mt10" data-surl="/developmenting.html">Email邮件 (EDM)</div>
@@ -618,13 +591,13 @@
                         </div>
                         <div class="arrow">
                             <div class="arrowtxt tt1">数据收集</div>
-                            <div class="arrowtxt">效果分析</div>
+                            <div class="arrowtxt tt2">效果分析</div>
                         </div>
                     </div>
-                    <div class="hvr-ripple-out rt bgb crp" data-surl="/developmenting.html">
+                    <div class="hvr-ripple-out rt bgb crp midd2" data-surl="/developmenting.html">
+
                         <div class="stitle">
-                            <img src="static/images/sm-star.png" class="smstar" alt="">
-                            CDP系统
+                            <img src="static/images/sm-star.png" class="smstar" alt=""> <br>CDP系统
                         </div>
                         <div class="bds">
                             <div></div>
@@ -636,22 +609,26 @@
                     </div>
                 </div>
                 <div class="simg stimg">
+                    <div class="split" style="height: 100px;"></div>
                     <div class="simg-t">
-                        <img src="static/images/b-right.png" alt="">
+
+                        <img src="static/images/g-right.png" alt="">
                         <div class="simgtxt">精准客户</div>
                     </div>
+                    <div class="split" style="height: 400px;"></div>
                     <div class="simg-b">
-                        <img src="static/images/p-left.png" alt="">
+
+                        <img src="static/images/g-right.png" alt="">
                         <div class="simgtxt">客户回流</div>
                     </div>
+                    <div class="split" style="height: 50px;"></div>
                 </div>
                 <div class="sitem sitem3">
                     <div class="hvr-ripple-out s3item bgp">
                         <div class="ltitle">售前</div>
                         <div>
                             <div class="stitle">
-                                <img src="static/images/sm-star.png" class="smstar" alt="">
-                                SCRM系统
+                                <img src="static/images/sm-star.png" class="smstar" alt=""> SCRM系统
                             </div>
                             <div class="mbtns">
                                 <div class="mbtn" data-surl="/developmenting.html">线索管理</div>
@@ -664,10 +641,10 @@
                     <div class="barrowbox">
                         <div class="arrow"></div>
                     </div>
-                    <div class="hvr-ripple-out s3item bgp s3item2">
+                    <div class="hvr-ripple-out midd1 s3item bgp s3item2">
                         <div class="ltitle">售中</div>
                         <div>
-                            <div class="stitle">落地实施  成交变现</div>
+                            <div class="stitle">落地实施 成交变现</div>
                             <div class="mbtns">
                                 <div class="mbtn bgp1" data-surl="/developmenting.html">订单管理</div>
                                 <div class="mbtn bgp1" data-surl="/developmenting.html">支付管理</div>
@@ -836,12 +813,10 @@
 
     //静态演示用，绑程序时删除 end
 
-    $('[data-surl]').on('click',function(){
+    $('[data-surl]').on('click', function() {
         let url = $(this).attr('data-surl')
         location.href = url
     })
-
-
 </script>
 
 </body>

@@ -19,7 +19,7 @@ export const integralRecord =(data):Promise<API.IResult>=>{
     return  post('user/my-center/integral-record',data)
 }
 
-//新闻详情
+//新闻资讯新闻详情
 export const newsDetail =(data):Promise<API.IResult>=>{
     return  get('news/public/detail',data)
 }
@@ -72,7 +72,16 @@ export const newsCreatorDate =():Promise<API.IResult>=>{
 }
 
 //添加阅读记录
-
 export const addReadLog =(data):Promise<API.IResult>=>{
     return  post('news/do-read',data)
+}
+
+//个人中心新闻详情 
+export const writingDetail =(data):Promise<API.IResult>=>{
+    return get('news/writing/detail',data)
+}
+
+//个人中心编辑获取的新闻详情
+export const getEditNews =(data):Promise<API.IResult>=>{
+    return get('news/writing/getEditNews',data)
 }

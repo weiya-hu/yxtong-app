@@ -1,9 +1,11 @@
 
+//@ts-nocheck
 import { Component } from 'react'
 import './articleList.scss'
 import ArticleItem from './component/articleItem'
 import { Pagination } from 'antd';
 import {contentList} from 'service/user'
+import {withRouter} from 'react-router-dom'
 
 interface ArticleItemState{
   imgurl:string;
@@ -19,7 +21,7 @@ interface ArticleListState{
   dataAnalysis:(val:number)=>void
 }
 
-export default class ArticleList extends Component<ArticleListState>{
+class ArticleList extends Component<ArticleListState>{
 
     state={
       list:[],//文章列表
@@ -45,7 +47,11 @@ export default class ArticleList extends Component<ArticleListState>{
       })
     }
   }
+  toNewsDetail=(id)=>{
+    this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&readNewsId='+id);
+  }
   componentDidMount(){
+    // this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&isArticleDetail=0');
     const {current,size} =this.state
     this.contentList(current,size)
   }
@@ -53,12 +59,10 @@ export default class ArticleList extends Component<ArticleListState>{
     let {list,current,size,total} = this.state
       return <div className='article-list'>
         <div className='content-txt'>内容管理</div>
-        {list.map((item,index)=><div className='list-item' key={item.id}>
+        {list.map((item,index)=><div className='list-item' key={item.id} >
             <ArticleItem 
-               key={item.id}
+              key={item.id}
               item={item} 
-              //传回来的val是true则asideActive是0，跳转编辑页面
-              edit={(val:boolean)=>{this.props.edit(val?0:1,item)}} 
               //传回来的val是true则asideActive是2，跳转数据分析页面
               dataAnalysis={(val)=>{this.setState({asideActive:val?2:1});this.props.dataAnalysis(val?2:1)}} 
               //传回来的val是true则isArticleDetail是1，跳转文章详情页面
@@ -79,3 +83,5 @@ export default class ArticleList extends Component<ArticleListState>{
   }
     
 }
+
+export default withRouter(ArticleList)

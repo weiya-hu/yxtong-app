@@ -3,7 +3,6 @@
  */
  import axios from "axios";
  import message from '../views/component/message/index'
- import {token} from '../service/login'
 import { AxisPointerComponent } from "echarts/components";
 
  axios.defaults.timeout = 10000;
@@ -40,12 +39,7 @@ import { AxisPointerComponent } from "echarts/components";
        message.info('登录状态过期，请再次登录')
      }
      if(response.data.errno === 10403){
-        token().then(res=>{
-          if(res.status){
-            localStorage.setItem('firstToken',res.body)
-            window.location.reload()
-          }
-        })
+      message.info('非法token')
      }
      return response;
    },

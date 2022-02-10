@@ -1,9 +1,5 @@
 import {get, post} from '../utils/request'
 
-export const token = (): Promise<API.IResult> => {
-    return get('user/public/token')
-}
-
 export const dologin =(data):Promise<API.IResult>=>{
     return  post('login/dologin',data)
 }
