@@ -28,7 +28,7 @@ class User extends Component {
     state={
         nav:['我的任务','我的收益','创作中心','设置'],
         // aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
-        aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['设置'],['我的消息']],//侧边栏的导航文字
+        aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['基本信息','账户安全','实名认证'],['我的消息']],//侧边栏的导航文字
         navActiveIndex:0,//导航active的下标
         asideActive:0,//侧边栏active的下标
         isArticleDetail:0,//是否是详情页
@@ -36,9 +36,6 @@ class User extends Component {
         exitNone:true,//退出登录是否显示
         userInfo:{},
         loginFlag:false,
-        newsDetail:{},//文章详情
-        editItem:null,
-        isPreview:false,//文章详情页是否为预览
     }
     exitloginpre=(e)=>{
       e.stopPropagation()
@@ -66,7 +63,6 @@ class User extends Component {
         this.setState({
           userInfo:result.body
         })
-        localStorage.setItem('userInfo',JSON.stringify(result.body))
       }else{
         this.setState({
           loginFlag:true
@@ -78,9 +74,6 @@ class User extends Component {
       this.setState({
         isArticleDetail:val,
         asideActive:val,
-        newsDetail:item,
-        editItem:item,
-        isPreview:true
       })
     }
     navChange=(index)=>{
@@ -90,23 +83,21 @@ class User extends Component {
     asideNavChange=(index)=>{
       this.props.history.push('/app/user?navActiveIndex='+util.getUrlParam('navActiveIndex')+'&asideActive='+index)
       window.scrollTo (0,0);
-      // this.setState({asideActive:index,isArticleDetail:0,editItem:this.state.editItem})
     }
     componentDidMount=()=>{
       document.title = '康州数智-个人中心'
+      //根据页面路径显示相应的组件
       this.setState({
         navActiveIndex:util.getUrlParam('navActiveIndex') || 0,//路径里面没有值就默认0
         asideActive:util.getUrlParam('asideActive') || 0,//路径里面没有值就默认0
         isArticleDetail:util.getUrlParam('readNewsId')
       })
-      console.log(util.getUrlParam('navActiveIndex'),util.getUrlParam('asideActive'),util.getUrlParam('readNewsId'))
       this.getUserInfo()
       //监听路由变化切换组件显示
       UNLISTEN = this.props.history.listen(route => { 
         let navIndex = util.getUrlParam('navActiveIndex')
-      let asideIndex = util.getUrlParam('asideActive')
-      let isArticleDetail=util.getUrlParam('readNewsId')
-        console.log(navIndex,asideIndex,isArticleDetail)
+        let asideIndex = util.getUrlParam('asideActive')
+        let isArticleDetail=util.getUrlParam('readNewsId')
         this.setState({
           navActiveIndex:navIndex,
           asideActive:asideIndex,
@@ -119,11 +110,8 @@ class User extends Component {
       UNLISTEN && UNLISTEN(); // 监听路由变化执行解绑
     }
     render(){
-        let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag,newsDetail,editItem,isPreview,asideActive} = this.state
-        // let asideActive = navActiveIndex === 2?this.state.asideActive:0
-        console.log(navActiveIndex)
+        let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag,asideActive} = this.state
         if(loginFlag){
-
           return <Redirect to='/app/login?url=/app/user' />;
         }
         return <div id='user' onClick={()=>{this.setState({exitNone:true})}}>
@@ -198,26 +186,12 @@ class User extends Component {
                 {
                   navActiveIndex == 0 ? <MyTask /> :
                   navActiveIndex ==1 ? <Profit /> :
-                  (navActiveIndex == 2 && asideActive == 0)? <Writing 
-                        preview={(val,item)=>{this.writingPreview(val,item)}} 
-                        item={editItem} 
-                        publish={(val)=>{this.setState({editItem:null})}}
-                        save={(val)=>{this.setState({editItem:val})}}
-                  />:
+                  (navActiveIndex == 2 && asideActive == 0)? <Writing />:
                   (navActiveIndex == 2 && asideActive == 2) ? <DataAnalysis />:
-                  (navActiveIndex == 2 && asideActive == 1 && !isArticleDetail) ? 
-                    <ArticleList 
-                      dataAnalysis={(val)=>{this.setState({asideActive:val})}}
-                      articleDetail={(val,item)=>{this.setState({isArticleDetail:val,newsDetail:item,isPreview:false})}}
-                      
-                    />:
+                  (navActiveIndex == 2 && asideActive == 1 && !isArticleDetail) ? <ArticleList />:
                   (navActiveIndex == 2 && asideActive == 1 && isArticleDetail) && 
-                  <div className='usermain-ArticleDetail'>
-                    <ArticleDetail isPreview={isPreview} backReview={(val)=>{this.setState({asideActive:0})}}/>
-                  </div>
-                   
+                  <div className='usermain-ArticleDetail'><ArticleDetail /></div>
                 }
-                
               </div>
             </div> 
           </div>

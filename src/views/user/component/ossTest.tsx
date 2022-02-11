@@ -3,7 +3,7 @@ import { Upload} from 'antd';
 import  React  from 'react';
 import {uploadolicy} from 'service/user'
 import moment from 'moment'
-import {post} from 'utils/request'
+import {post} from 'utils/ossRequest'
 import axios from "axios";
 export default class OSSUpload extends React.Component{
     render(){
@@ -72,6 +72,15 @@ uploadFile = (info) => {
             console.log(formData.getAll('signature'))
             localStorage.setItem('type','oss')
             //请求oss上传
+            // axios.post(url, formData,{headers:{"Content-Type": "multipart/form-data"}}).then(
+            //     (response) => {
+            //       //关闭进度条
+            //       console.log(response)
+            //     },
+            //     (err) => {
+            //         console.log(err)
+            //     }
+            //   );
             post(url,formData).then(res=>{
                 console.log(res)
             })

@@ -60,7 +60,6 @@ export default class LoginComponent extends Component {
             let url =window.location.search
             if(res.status){
                 let userInfoRes= await getUser()
-                localStorage.setItem('userInfo',JSON.stringify(userInfoRes.body) )
                 store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
                 if(url){
                     window.location.href=url.split('=')[1]

@@ -25,7 +25,7 @@ import React, {Component} from "react";
          const targetRouterConfig = routerConfig.find(
              (item) => item.path === pathname
          );
-         console.log(targetRouterConfig);
+        //  console.log(targetRouterConfig);
          if (targetRouterConfig && !targetRouterConfig.auth && !isLogin) {
              const {component} = targetRouterConfig;
              return <Route exact path={pathname} component={component}/>;

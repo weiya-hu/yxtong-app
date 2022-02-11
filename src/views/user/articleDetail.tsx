@@ -41,7 +41,6 @@ class ArticleDetail extends Component<ArticleDetailProps>{
                     newsDetail:JSON.parse(localStorage.getItem('previewNews')) ,
                     isPreview:true
                 })
-                console.log(JSON.parse(localStorage.getItem('previewNews')) )
             }else{
                 let data={
                     newsId:id

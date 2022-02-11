@@ -19,61 +19,36 @@ class Writing extends Component{
     state={
         titleMessage:'',//标题的错误message
         textMessage:'',//文章的错误message
-        coverImgurl:'',
-        sendCoverImgurl:'',
-        title:'',
-        content:'',
-        edit:''
+        coverImgurl:'',//本地显示的封面地址
+        sendCoverImgurl:'',//发送的封面图片地址
+        title:'',//文章标题
+        content:'',//富文本的值
+        edit:'',//富文本的值，实时值，编辑器有改变时实时保存的值
     }
     //富文本编辑器文本有改变
     EditorChange=(val)=>{
-        const {title,edit,coverImgurl,sendCoverImgurl} = this.state
        this.setState({
             edit:val,
             textMessage:val?'':'必填项'
        })
-       let item={
-            commented: 0,
-            content: val,
-            readed: 0,
-            thumb_url:coverImgurl,
-            title:title,
-            update_time: new Date(),
-            sendCoverImgurl:sendCoverImgurl
-        }
-        this.props.save(item)
-    
     }
     //标题输入有改变
     titleChange=(e)=>{
-        const {edit,coverImgurl,sendCoverImgurl} = this.state
         this.setState({
             title:e.target.value,
             titleMessage:e.target.value?'':'必填项'
         })
-        let item={
-            commented: 0,
-            content: edit,
-            readed: 0,
-            thumb_url:coverImgurl,
-            title:e.target.value,
-            update_time: new Date(),
-            sendCoverImgurl:sendCoverImgurl
-        }
-        this.props.save(item)
     }
     imageEditor= (blobInfo, success, failure)=>{
-        console.log(blobInfo.base64(),blobInfo.uri())
-        console.log(blobInfo.blobUri())
+        // console.log(blobInfo.base64(),blobInfo.uri())
+        // console.log(blobInfo.blobUri())
         if (blobInfo.blob()){
             success('data:image/jpeg;base64,'+blobInfo.base64())
         }
-
    }
    //预览文章
    preView=()=>{
         const {title,edit,coverImgurl,sendCoverImgurl} = this.state
-        
         if(!title){
             message.info('请输入标题')
             this.setState({titleMessage:'必填项'})
@@ -92,16 +67,13 @@ class Writing extends Component{
                 sendCoverImgurl:sendCoverImgurl,
                 creator_name:store.getState().userInfo.name
             }
-            // this.props.preview(1,item)
             localStorage.setItem('previewNews',JSON.stringify(item) )
             this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&readNewsId=preview')
-        }
-        
+        }        
    }
    //发布文章
    publishNews=async()=>{
         const {title,edit,sendCoverImgurl,coverImgurl} = this.state
-        console.log(sendCoverImgurl)
         if(!title){
             message.info('请输入标题')
             this.setState({titleMessage:'必填项'})
@@ -110,10 +82,12 @@ class Writing extends Component{
             this.setState({textMessage:'必填项'})
         }
         else{
+            let id = util.getUrlParam('editNewsId')
             let item={
                 content: edit,
                 thumb_url:sendCoverImgurl?sendCoverImgurl:coverImgurl,
-                title:title
+                title:title,
+                id:id?id:null
             }
             const res = await newsPublish(item)
             if(res.status){
@@ -131,7 +105,6 @@ class Writing extends Component{
             }
         }
    }
-  
     componentDidMount=async()=>{
         //如果路径中带有editNewsId表示是编辑功能，不是从0创作功能，要获取编辑的文章内容再赋值
         let newsId=util.getUrlParam('editNewsId')
@@ -178,7 +151,6 @@ class Writing extends Component{
             coverImgurl:val,
             sendCoverImgurl:sendval
         })
-        console.log(this.state.sendCoverImgurl)
     }
     render(){
         let {titleMessage,coverImgurl,textMessage,title,content}=this.state
@@ -216,7 +188,7 @@ class Writing extends Component{
                     
                     
                 </div>
-                {/* <div><OSSUpload /></div> */}
+                <div><OSSUpload /></div>
                 <div>
                 </div>
                 <div className='title'>
@@ -262,8 +234,6 @@ class Writing extends Component{
                                 images_upload_handler: (blobInfo, success, failure)=>{this.imageEditor(blobInfo, success, failure)}}}
                             onEditorChange={this.EditorChange}
                         />
-                       
-
                         {textMessage && 
                             <div className='flexl text-message'>
                                 <div className='warnimg fleximg'><img src={warnimg} alt="warning" /></div>

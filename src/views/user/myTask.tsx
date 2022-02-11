@@ -107,7 +107,6 @@ class MyTask extends Component{
                signList:result.body.signin,
                isSignIn:res.body,
                contDay:result.body.signin[0].completed,
-            },()=>{console.log(this.state.contDay);
             })
          }
     }

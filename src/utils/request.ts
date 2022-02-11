@@ -16,18 +16,10 @@ import { AxisPointerComponent } from "echarts/components";
  axios.interceptors.request.use(
    (config) => {   
      config.data = JSON.stringify(config.data);
-      let firstToken = window.localStorage.getItem("firstToken")
       let type = localStorage.getItem('type')
-    if(firstToken){
-        config.headers = {
-            "Content-Type": "application/json",
-            "Authorization": firstToken
-          };
-    }else {
-        config.headers = {
-            "Content-Type": "application/json"
-          };
-    }
+      config.headers = {
+        "Content-Type": "application/json"
+      };
     // if(type){
     //   config.headers = {
     //     "Content-Type": "multipart/form-data"

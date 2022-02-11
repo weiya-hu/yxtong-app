@@ -1,9 +1,9 @@
 /**
  * 网络请求配置
  */
+//@ts-nocheck
  import axios from "axios";
  import message from '../views/component/message/index'
-import { AxisPointerComponent } from "echarts/components";
 
  axios.defaults.timeout = 10000;
  axios.defaults.baseURL = "/api";
@@ -16,10 +16,14 @@ import { AxisPointerComponent } from "echarts/components";
  axios.interceptors.request.use(
    (config) => {   
      config.data = JSON.stringify(config.data);
-    // config.headers = {
-    //     "Content-Type": "multipart/form-data"
-    // };
-    config.headers['Content-Type']="multipart/form-data"
+    config.headers = {
+        "Content-Type": "multipart/form-data",
+        "post":{"Content-Type": "multipart/form-data"}
+    };
+   
+    // config.headers['Content-Type']="multipart/form-data"
+
+    console.log(config.headers)
      return config;
    },
    (error) => {
@@ -77,6 +81,7 @@ import { AxisPointerComponent } from "echarts/components";
   */
  
  export function post(url, data) {
+   console.log(url,data)
    return new Promise<API.IResult>((resolve, reject) => {
      axios.post(url, data).then(
        (response) => {

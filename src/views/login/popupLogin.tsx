@@ -63,7 +63,6 @@ export default class PopupLogin extends Component<PopupLoginState> {
             if(res.status){
                 let result = await getUser()
                if(result.status){
-                    localStorage.setItem('userInfo',JSON.stringify(result.body))
                     store.dispatch(setUserInfo(JSON.stringify(result.body)))
                } 
                 this.close()
