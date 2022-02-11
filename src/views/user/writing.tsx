@@ -188,7 +188,7 @@ class Writing extends Component{
                     
                     
                 </div>
-                <div><OSSUpload /></div>
+                {/* <div><OSSUpload /></div> */}
                 <div>
                 </div>
                 <div className='title'>
