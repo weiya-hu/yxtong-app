@@ -7,6 +7,7 @@ import Writing from './writing'
 import ArticleList from './articleList'
 import DataAnalysis from './dataAnalysis'
 import ArticleDetail from './articleDetail'
+import Certificate from './certificate'
 import {loginOut } from 'service/login'
 import { getUser } from 'service/login'
 import { Redirect ,withRouter} from 'react-router-dom';
@@ -26,9 +27,9 @@ import phoneimg from 'public/images/user/phone.png'
 let UNLISTEN;
 class User extends Component {
     state={
-        nav:['我的任务','我的收益','创作中心','设置'],
+        nav:['我的任务','我的收益','创作中心','设置','企业管理'],
         // aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
-        aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['基本信息','账户安全','实名认证'],['我的消息']],//侧边栏的导航文字
+        aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['基本信息','账户安全','实名认证'],['企业认证'],['我的消息']],//侧边栏的导航文字
         navActiveIndex:0,//导航active的下标
         asideActive:0,//侧边栏active的下标
         isArticleDetail:0,//是否是详情页
@@ -83,6 +84,17 @@ class User extends Component {
     asideNavChange=(index)=>{
       this.props.history.push('/app/user?navActiveIndex='+util.getUrlParam('navActiveIndex')+'&asideActive='+index)
       window.scrollTo (0,0);
+    }
+    //根据URL传的值切换组件
+    getComponent=(navActiveIndex,asideActive,isArticleDetail)=>{
+      return navActiveIndex == 0 ? <MyTask /> :
+        navActiveIndex ==1 ? <Profit /> :
+        (navActiveIndex == 2 && asideActive == 0)? <Writing />:
+        (navActiveIndex == 2 && asideActive == 2) ? <DataAnalysis />:
+        (navActiveIndex == 2 && asideActive == 1 && !isArticleDetail) ? <ArticleList />:
+        (navActiveIndex == 2 && asideActive == 1 && isArticleDetail) ? 
+        <div className='usermain-ArticleDetail'><ArticleDetail /></div>:
+        (navActiveIndex == 4 )&&<Certificate></Certificate>
     }
     componentDidMount=()=>{
       document.title = '康州数智-个人中心'
@@ -183,15 +195,7 @@ class User extends Component {
               </div>
               
               <div className='usermain'>
-                {
-                  navActiveIndex == 0 ? <MyTask /> :
-                  navActiveIndex ==1 ? <Profit /> :
-                  (navActiveIndex == 2 && asideActive == 0)? <Writing />:
-                  (navActiveIndex == 2 && asideActive == 2) ? <DataAnalysis />:
-                  (navActiveIndex == 2 && asideActive == 1 && !isArticleDetail) ? <ArticleList />:
-                  (navActiveIndex == 2 && asideActive == 1 && isArticleDetail) && 
-                  <div className='usermain-ArticleDetail'><ArticleDetail /></div>
-                }
+                {this.getComponent(navActiveIndex,asideActive,isArticleDetail)}
               </div>
             </div> 
           </div>

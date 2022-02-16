@@ -18,7 +18,6 @@
      config.data = JSON.stringify(config.data);
     config.headers = {
         "Content-Type": "multipart/form-data",
-        "post":{"Content-Type": "multipart/form-data"}
     };
    
     // config.headers['Content-Type']="multipart/form-data"

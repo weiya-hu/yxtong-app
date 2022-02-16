@@ -3,7 +3,8 @@ import { Upload} from 'antd';
 import  React  from 'react';
 import {uploadolicy} from 'service/user'
 import moment from 'moment'
-import {post} from 'utils/ossRequest'
+// import {post} from 'utils/ossRequest'
+import {post} from 'utils/request'
 import axios from "axios";
 export default class OSSUpload extends React.Component{
     render(){
@@ -81,9 +82,19 @@ uploadFile = (info) => {
             //         console.log(err)
             //     }
             //   );
-            post(url,formData).then(res=>{
+            post('user/my-center/integral-record',{"current": 1, "size": 10}).then(res=>{
                 console.log(res)
             })
+            // axios.post(url, formData,{headers: {'Content-Type': 'multipart/form-data'}}).then(
+            //     (response) => {
+            //       //关闭进度条
+            //       console.log(response);
+            //     },
+            //     (err) => {
+            //     //  message.info(err.data.message)
+            //     console.log(err);
+            //     }
+            //   );
             // axios.post(url,formData,{
             //     header:{
             //         "Content-Type": "multipart/form-data"
