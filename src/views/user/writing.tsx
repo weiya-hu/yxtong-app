@@ -91,7 +91,7 @@ class Writing extends Component{
             }
             const res = await newsPublish(item)
             if(res.status){
-                this.props.publish(true)
+                message.info('发布成功')
                 this.setState({
                     coverImgurl:'',
                     title:'',
@@ -101,7 +101,7 @@ class Writing extends Component{
                     edit:'',
                     sendCoverImgurl:''
                 })
-                message.info('发布成功')
+                this.props.history.push('/app/user?navActiveIndex=2&asideActive=1')
             }
         }
    }
@@ -188,7 +188,7 @@ class Writing extends Component{
                     
                     
                 </div>
-                <div><OSSUpload /></div>
+                {/* <div><OSSUpload /></div> */}
                 <div>
                 </div>
                 <div className='title'>

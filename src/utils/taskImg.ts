@@ -32,7 +32,7 @@ export const imgs={
     post_video:{img:post_video,beforeText:'去创作',afterText:'已完成'},
     real_name:{img:real_name,beforeText:'去完成',afterText:'已完成'},
     set_pass:{img:set_pass,beforeText:'去完成',afterText:'已完成'},
-    share_article:{img:share_article,beforeText:'去转发',afterText:'已完成'},
+    share_article:{img:share_article,beforeText:'去分享',afterText:'已完成'},
     share_pic:{img:share_pic,beforeText:'去分享',afterText:'已完成'},
     share_video:{img:share_video,beforeText:'去分享',afterText:'已完成'}
 }

@@ -95,7 +95,8 @@ export default class AliyunOSSUpload extends React.Component {
     }
 
     const suffix = file.name.slice(file.name.lastIndexOf('.'));
-    const filename = Date.now() +suffix;
+    // const filename = Date.now() +suffix;
+    const filename = OSSData.uuid +suffix;
     file.url = OSSData.dir + filename;
 
    
@@ -117,13 +118,14 @@ export default class AliyunOSSUpload extends React.Component {
       data: this.getExtraData,
       UploadFile:this.uploadFile,
       beforeUpload: this.beforeUpload,
-      onPreview:this.handlePreview
+      onPreview:this.handlePreview,
+      multiple:true
       // customRequest:this.upload
     };
     return (
       <Form labelCol={{ span: 4 }}>
         <Form.Item name="photos">
-          <Upload {...props}>
+          <Upload {...props} maxCount={2}>
             <Button icon={<UploadOutlined/>}>Click to Upload</Button>
           </Upload>
           </Form.Item>

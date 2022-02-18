@@ -39,7 +39,7 @@ class MyTask extends Component{
     }
     doperfect=(val,task)=>{
       console.log(val,task)
-      if(task === 'browse_news'){
+      if(task === 'browse_news' || task === 'share_article'){
          this.props.history.push('/app/news');
       }else{
          window.location.href='/developmenting.html'

@@ -38,14 +38,37 @@
                 outline:none;
             }
             .ant-input:focus {
-                border: none;
-                border-bottom: 1px solid white !important;
                 box-shadow: none;
             }
+            
         }
+        // 行业分类的样式
+        .ant-select-selector{
+            width: 300px;
+            height: 42px;
+        }
+        // 行业分类的样式
+        .ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
+            padding: 0 16px;
+        }
+        // 行业分类的样式
+        .ant-select-selection-placeholder,.ant-select-selection-item{
+            display: flex;
+            align-items: center;
+        }   
     }
+    //表单form.item的默认样式修改
     .ant-form-item{
         margin-bottom:0
+    }
+    // input出错时提醒文字隐藏
+    .ant-form-item-explain, .ant-form-item-explain-connected{
+        display: none;
+    }
+    //input表单出错时的border框样式
+    .ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input{
+        background-color: #fff;
+        border-color: #ff4d4f;
     }
     .certinput-message{
         .warnimg{

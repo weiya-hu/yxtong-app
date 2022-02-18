@@ -7,12 +7,15 @@ import moment from 'moment'
 import {post} from 'utils/request'
 import axios from "axios";
 export default class OSSUpload extends React.Component{
+    
     render(){
+        let header={"Content-Type": "multipart/form-data"}
         return <Upload 
         name="file" 
         onChange={this.uploadFile}
         showUploadList={false}
         // data={uploadParmas}
+        headers={header}
         beforeUpload={this.beforeUpload}
         >
             <div>上传</div>
@@ -73,18 +76,18 @@ uploadFile = (info) => {
             console.log(formData.getAll('signature'))
             localStorage.setItem('type','oss')
             //请求oss上传
-            // axios.post(url, formData,{headers:{"Content-Type": "multipart/form-data"}}).then(
-            //     (response) => {
-            //       //关闭进度条
-            //       console.log(response)
-            //     },
-            //     (err) => {
-            //         console.log(err)
-            //     }
-            //   );
-            post('user/my-center/integral-record',{"current": 1, "size": 10}).then(res=>{
-                console.log(res)
-            })
+            axios.post(url, formData,{headers:{"Content-Type": "multipart/form-data"}}, {withCredentials: false}).then(
+                (response) => {
+                  //关闭进度条
+                  console.log(response)
+                },
+                (err) => {
+                    console.log(err)
+                }
+              );
+            // post('user/my-center/integral-record',{"current": 1, "size": 10}).then(res=>{
+            //     console.log(res)
+            // })
             // axios.post(url, formData,{headers: {'Content-Type': 'multipart/form-data'}}).then(
             //     (response) => {
             //       //关闭进度条

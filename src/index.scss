@@ -26,6 +26,7 @@ div,span{
   font-family: Microsoft YaHei;
   color: #363636;
   font-size: 14px;
+  box-sizing: border-box;
 }
 .position{
   position: relative;
@@ -105,6 +106,12 @@ div,span{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+}
+.flexcc{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
   align-items: center;
 }
 .back{

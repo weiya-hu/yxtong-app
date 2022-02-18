@@ -2,8 +2,11 @@
 import { Component } from 'react'
 import './articleItem.scss'
 import {withRouter} from 'react-router-dom'
+import { Modal, Button } from 'antd'
 import editimg from 'public/images/user/edit.png'
 import falseimg from 'public/images/user/false.png'
+import deleteimg from 'public/images/user/delete.png'
+
 
 interface Item{
   commented: number
@@ -35,6 +38,9 @@ class ArticleItem extends Component<ArticleItemState> {
     toNewsDetail=(id)=>{
       this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&readNewsId='+id);
     }
+    deleteNews=(id)=>{
+     
+    }
     render(){
         let {item} =this.props
         return <div className='flexb article-item' onClick={()=>{this.toNewsDetail(item.id)}}>
@@ -51,14 +57,15 @@ class ArticleItem extends Component<ArticleItemState> {
                 <span>评论 {item.commented}</span>
               </div>
               <div className='flexr'>
+              <div className='fleximg article-item-button' onClick={()=>{this.deleteNews(item.id)}}>
+                  <div className='editimg fleximg'><img src={deleteimg} alt="deleteButton" /></div>
+                  <div>删除</div>
+                </div>
                 <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
                   <div className='editimg fleximg'><img src={editimg} alt="editButton" /></div>
                   <div>编辑</div>
                 </div>
-                {/* <div className='fleximg article-item-button' onClick={()=>{this.props.dataAnalysis(true)}}>
-                  <div className='editimg fleximg'><img src={dataimg} alt="dataButton" /></div>
-                  <div>数据</div>
-                </div> */}
+                
               </div>
             </div>
           </div>

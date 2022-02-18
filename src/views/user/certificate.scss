@@ -19,5 +19,44 @@
     }
     .cert-input-item{
         margin-top: 24px;
+        .certinput-left{
+            width: 110px;
+            .certinput-star{
+                color: #D00000;
+                font-size: 14px;
+                font-weight: bold;
+                width: 14px;
+                position: relative;
+                top: 2px;
+            }
+            .certinput-label{
+                width: 84px;
+                .problemimg{
+                    width: 12px;
+                }
+            }
+        }
+        .cert-right{
+            .cert-image-add{
+                width: 100px;
+                height: 100px;
+                background: #FFFFFF;
+                border: 1px dashed rgba(220,220,220,1);
+                border-radius: 2px;
+                .addImageimg{
+                    width: 28px;
+                    margin-bottom: 10px;
+                }
+                .cert-image-add-txt{
+                    font-size: 12px;
+                    color: #666666;
+                }
+            }
+            .cert-image-tips{
+                font-size: 12px;
+                color: #999999;
+                margin-top: 15px;
+            }
+        }
     }
 }
