@@ -15,6 +15,7 @@ function getBase64(file) {
 export default class AliyunOSSUpload extends React.Component {
   state = {
     OSSData: {},
+    uuid:['image1','image2']
   };
 
   async componentDidMount() {
@@ -84,16 +85,16 @@ export default class AliyunOSSUpload extends React.Component {
   };
 
 
-  beforeUpload = async file => {
-   
+  beforeUpload = async (file,fileList) => {
+   console.log(file,fileList)
     
-    const { OSSData } = this.state;
+    const { OSSData,uuid } = this.state;
     const expire = OSSData.expire * 1000;
 
     if (expire < Date.now()) {
       await this.init();
     }
-
+    // let uuuid=file.uid === fileList[0].uid?uuid[0]:uuid[1]
     const suffix = file.name.slice(file.name.lastIndexOf('.'));
     // const filename = Date.now() +suffix;
     const filename = OSSData.uuid +suffix;
@@ -119,7 +120,7 @@ export default class AliyunOSSUpload extends React.Component {
       UploadFile:this.uploadFile,
       beforeUpload: this.beforeUpload,
       onPreview:this.handlePreview,
-      multiple:true
+      // multiple:true
       // customRequest:this.upload
     };
     return (

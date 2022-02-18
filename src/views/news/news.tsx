@@ -149,7 +149,7 @@ export default class News extends Component{
   toUser=()=>{
     let userInfo = store.getState().userInfo
     if(userInfo){
-      this.props.history.push({pathname:'/app/user',query :[2,1]})
+      this.props.history.push({pathname:'/app/user?navActiveIndex=2&asideActive=1'})
     }else{
       store.dispatch(loginShow())
     }

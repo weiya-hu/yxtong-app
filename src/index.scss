@@ -186,4 +186,29 @@ div,span{
 .tox-tinymce-inline {
   z-index: 709826032 !important;
 }
+// 资质问题样式
+.ant-modal{
+  width: 300px !important;
+  height: 108px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.15);
+  border-radius: 2px;
+  left: -49px;
+  top: 390px;
+  .ant-modal-header,.ant-modal-footer,.ant-modal-close{
+    display: none;
+  }
+}
+.ant-picker-footer{
+  display: none
+}
+.ant-modal-mask{
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 101%;
+}
+.ant-scrolling-effect{
+  overflow-y: scroll !important;
+  width: 100% !important;
+}
+
 

@@ -13,14 +13,13 @@ class MyScore extends Component<any> {
     exchangeScore=()=>{
         window.location.href='/developmenting.html'
     }
-    componentDidMount=async()=>{
+    getScore=async()=>{
         //接口，获取积分
-        const res = await userMycenterInfo()
-        if(res.status){
-            this.setState({
-              userInfo:res.body
-            })
-          }
+        const {status,body} = await userMycenterInfo()
+        status && this.setState({userInfo:body})
+    }
+    componentDidMount(){
+        this.getScore()
     }
     render(){
         let userinfo = this.state.userInfo

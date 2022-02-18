@@ -41,6 +41,38 @@
                 box-shadow: none;
             }
             
+            textarea{
+                width: 760px;
+                height: 130px;
+                background: #FFFFFF;
+                border: 1px solid rgba(220,220,220,1);
+                border-radius: 2px;
+                padding:10px 16px;
+                resize:none
+            }
+            
+        }
+        
+        //日期选择器的样式
+        .ant-picker{
+            border-color: rgba(220,220,220,1);
+            width: 300px;
+            height: 42px;
+            input{
+                border: none;
+                width: 250px;
+                height: 30px;
+                padding: 0 5px;
+            }
+           
+        }
+        .ant-picker-footer{display: none !important;}
+        //日期选择器的样式
+        .ant-picker-focused{
+            border-color: rgba(220,220,220,1);
+            width: 300px;
+            height: 42px;
+            box-shadow:none
         }
         // 行业分类的样式
         .ant-select-selector{
@@ -70,6 +102,7 @@
         background-color: #fff;
         border-color: #ff4d4f;
     }
+    
     .certinput-message{
         .warnimg{
             width: 12px;

@@ -33,6 +33,7 @@
                 width: 84px;
                 .problemimg{
                     width: 12px;
+                    cursor: pointer;
                 }
             }
         }
@@ -59,4 +60,27 @@
             }
         }
     }
+    .cert-buttons{
+        margin-top: 50px;
+        //按钮样式
+        button[type='button']{
+            width: 76px;
+            height: 32px;
+            background: #FFFFFF;
+            border: 1px solid rgba(48,79,151,1);
+            margin-left: 20px;
+            span{
+                color: #304F97;
+            }
+        }
+        button[type='submit']{
+            width: 76px;
+            height: 32px;
+            background: #304F97;
+            span{
+                color: #FFFFFF;
+            }
+        }
+    }
+    
 }
