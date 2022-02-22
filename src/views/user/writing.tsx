@@ -142,11 +142,6 @@ class Writing extends Component{
         return url;
     }
     coverIMgChange=(val,sendval)=>{
-        // console.log(val)
-        // console.log(sendval)
-        // var objectURL = window.URL.createObjectURL(val)
-        // console.log(objectURL)
-
         this.setState({
             coverImgurl:val,
             sendCoverImgurl:sendval
@@ -173,11 +168,7 @@ class Writing extends Component{
                             <div className='addimg'><img src={addimg} alt="add" /></div>
                             <div>添加封面</div>
                             <div>
-                                {/* <Form labelCol={{ span: 4 }}>
-                                    <Form.Item name="photos"> */}
-                                        <AliyunOSSUpload className='img-upload' change={((val,sendval)=>{this.coverIMgChange(val,sendval)  })} />
-                                    {/* </Form.Item>
-                                </Form> */}
+                                <AliyunOSSUpload change={((val,sendval)=>{this.coverIMgChange(val,sendval)  })} />
                             </div>
                             
                         </div>

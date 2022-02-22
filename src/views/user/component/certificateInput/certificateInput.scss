@@ -102,7 +102,11 @@
         background-color: #fff;
         border-color: #ff4d4f;
     }
-    
+    //日期表单出错时的border框样式
+    .ant-form-item-has-error .ant-input-number, .ant-form-item-has-error .ant-picker {
+        background-color: #fff;
+        border-color: #ff4d4f !important;
+    }
     .certinput-message{
         .warnimg{
             width: 12px;

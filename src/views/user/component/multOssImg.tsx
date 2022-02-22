@@ -14,7 +14,8 @@ function getBase64(file) {
 
 export default class AliyunOSSUpload extends React.Component {
   state = {
-    OSSData: {}
+    OSSData: {},
+    uuid:[]
   };
 
   async componentDidMount() {
@@ -24,23 +25,43 @@ export default class AliyunOSSUpload extends React.Component {
   init = async () => {
     try {
       const OSSData = await uploadolicy();
+      const OSSData1 = await uploadolicy();
       this.setState({
-        OSSData:OSSData.body,
+        OSSData:OSSData1.body,
+        uuid:[OSSData.body.uuid,OSSData1.body.uuid]
       });
     } catch (error) {
       message.error(error);
     }
   };
+
+  // Mock get OSS api
+  // https://help.aliyun.com/document_detail/31988.html
+  mockGetOSSData = () => ({
+    dir: 'user-dir/',
+    expire: '1577811661',
+    host: '//www.mocky.io/v2/5cc8019d300000980a055e76',
+    accessId: 'c2hhb2RhaG9uZw==',
+    policy: 'eGl4aWhhaGFrdWt1ZGFkYQ==',
+    signature: 'ZGFob25nc2hhbw==',
+  });
+
   onChange = async({file, fileList ,event}) => {
+
     const { onChange } = this.props;
     const {OSSData} = this.state
 
-    // if (onChange) {
-    //   onChange([...fileList]);
-    // }
-    // let sendUrl= OSSData.host+'/'+ file.url
-    let imgurl = await getBase64(file.originFileObj);
-    this.props.change(imgurl,OSSData.host+'/'+ file.url)
+    // this.props.change(OSSData.host+'/'+ fileList[0].url)
+    if (onChange) {
+      onChange([...fileList]);
+    }
+      let sendUrl= OSSData.host+'/'+ file.url
+      let imgurl = await getBase64(file.originFileObj);
+      this.props.change(imgurl,OSSData.host+'/'+ file.url)
+      // this.props.sendUrlchange(OSSData.host+'/'+ file.url)
+
+    // console.log(sendUrl,imgurl )
+
   };
 
   onRemove = file => {
@@ -50,6 +71,9 @@ export default class AliyunOSSUpload extends React.Component {
       onChange(files);
     }
   };
+  uploadFile=(a,b,s)=>{
+    console.log(a,b,s)
+  }
   getExtraData = file => {
     const { OSSData } = this.state;
     return {
@@ -63,25 +87,41 @@ export default class AliyunOSSUpload extends React.Component {
 
 
   beforeUpload = async (file,fileList) => {
-   const { OSSData} = this.state;
+   console.log(file,fileList)
+   console.log(this.state.uuid)
+   const { OSSData,uuid } = this.state;
+   const {imgLength} = this.props
+   let uuuid
     const expire = OSSData.expire * 1000;
     if (expire < Date.now()) {
       await this.init();
     }
- 
+   
+    if(imgLength === 1 && fileList.length === 1){
+        uuuid=uuid[1]
+    }else{
+        uuuid=file.uid === fileList[0].uid?uuid[0]:uuid[1]
+    }
+    
+    
     const suffix = file.name.slice(file.name.lastIndexOf('.'));
     // const filename = Date.now() +suffix;
-    const filename = OSSData.uuid + suffix;
+    const filename = uuuid + suffix;
     file.url = OSSData.dir + filename;
+
+   
     return file;
     
   };
+  upload=()=>{
+    console.log(55666)
+  }
   render() {
     const { value } = this.props;
     const props = {
       name: 'file',
       fileList: value,
-      accept:'.jpeg,.png',
+      accept:'.jpeg,.png,.jpg',
       action: this.state.OSSData.host,
       onChange: this.onChange,
       onRemove: this.onRemove,
@@ -89,11 +129,13 @@ export default class AliyunOSSUpload extends React.Component {
       UploadFile:this.uploadFile,
       beforeUpload: this.beforeUpload,
       onPreview:this.handlePreview,
+      multiple:true
+      // customRequest:this.upload
     };
     return (
       <Form labelCol={{ span: 4 }}>
-        <Form.Item name="license" >
-          <Upload {...props}>
+        <Form.Item name="license">
+          <Upload {...props} maxCount={2}>
             <Button icon={<UploadOutlined/>}></Button>
           </Upload>
           </Form.Item>
@@ -101,3 +143,11 @@ export default class AliyunOSSUpload extends React.Component {
     );
   }
 }
+const FormPage = () => (
+  <Form labelCol={{ span: 4 }}>
+    <Form.Item label="Photos" name="photos">
+      <AliyunOSSUpload />
+    </Form.Item>
+  </Form>
+);
+// ReactDOM.render(<FormPage />, mountNode);
