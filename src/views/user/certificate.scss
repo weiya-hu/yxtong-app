@@ -31,28 +31,14 @@
             color: #1DC11D;
         }
     }
-    .topStatus-yellow{
-        width: 870px;
-        height: 36px;
-        background: #FFF9E5;
-        padding: 0 16px;
-        margin-bottom: 24px;
-        .auditedimg{
-            width: 12px;
-            margin-right: 10px;
-        }
-        .topStatus-txt{
-            font-size: 12px;
-            color: #FF8800;
-        }
-    }
+    
     .topStatus-red{
         width: 870px;
         height: 36px;
         background: rgba(208,0,0,0.1);
         padding: 0 16px;
         margin-bottom: 24px;
-        .unauditimg{
+        .auditingimg{
             width: 12px;
             margin-right: 10px;
         }
@@ -192,6 +178,14 @@
         }
         
         button[type='submit']{
+            width: 76px;
+            height: 32px;
+            background: #304F97;
+            span{
+                color: #FFFFFF;
+            }
+        }
+        button[type='button']{
             width: 76px;
             height: 32px;
             background: #304F97;

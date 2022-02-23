@@ -4,7 +4,7 @@ import './certificateInput.scss'
 import {withRouter} from 'react-router-dom'
 import {Form,Cascader,Input,DatePicker} from 'antd'
 import locale from 'antd/lib/locale/zh_CN';
-import { util } from 'utils/user'
+import {util} from 'utils/user.ts'
 import moment from 'moment';
 
 import warnimg from 'public/images/warn.png'
@@ -15,6 +15,7 @@ interface CertificateInputProps{
     name:string
     placeholder:string
     require:boolean
+    disabled:boolean
     extraData?:any
 }
   
@@ -31,9 +32,10 @@ class CertificateInput extends Component<CertificateInputProps,any>{
         this.setState({message:message})
     }
     CascaderChange(value) {
-        console.log(value);
+        
       }
     phoneValidate = (rule, value, callback) => {
+
         let message = util.validate_mobile(value)
         this.setState({message:util.validate_mobile(value)})
         if(message){
@@ -52,13 +54,14 @@ class CertificateInput extends Component<CertificateInputProps,any>{
         }
     };
     getInput=()=>{
-        const {formName,name,placeholder,require,extraData}=this.props
+        const {formName,name,placeholder,require,extraData,disabled}=this.props
        
         let component
         switch(name){
             case 'text':
                 component = (
                     <Form.Item name={formName}
+                        initialValue = 'jdhfks'
                         rules={require?[{validator:this.requirValidate}]:null} 
                     >
                         <Input 
@@ -66,6 +69,7 @@ class CertificateInput extends Component<CertificateInputProps,any>{
                             placeholder={placeholder}    
                             onBlur={(e)=>{this.inputBlur(e,name)}}
                             autoComplete="off" 
+                            disabled={disabled}
                         />
                     </Form.Item>)
                 break;
@@ -73,25 +77,29 @@ class CertificateInput extends Component<CertificateInputProps,any>{
                 component=(
                     <Form.Item name={formName}
                         rules={[{validator:this.requirValidate}]}
+                        initialValue = {["A", "01", "011"]}
                     >
                         <Cascader
                             fieldNames={{ label: 'name', value: 'industryId', children: 'children' }}
                             options={extraData}
                             onChange={this.CascaderChange}
                             placeholder={placeholder}
-                            
+                            disabled={disabled}
                         />
                     </Form.Item>)
                 break;
             case 'date':
                 component = (
                     <Form.Item name={formName}
+                            initialValue = {moment(1632996799)}
                         rules={[{validator:this.requirValidate}]}
                     >
                         <DatePicker  
+
                             locale={locale}
                             placeholder={placeholder}
                             onChange={(val)=>{console.log(moment(val.releasedTimestamp).unix())}}
+                            disabled={disabled}
                         />
                     </Form.Item>)
                 break;
@@ -99,24 +107,28 @@ class CertificateInput extends Component<CertificateInputProps,any>{
                 component = (
                     <Form.Item name={formName}
                         validateTrigger='onBlur'
+                        initialValue = '18580529122'
                         rules={[{validator:this.phoneValidate}]}
                     >
                         <Input  
                             type="tel"
                             placeholder={placeholder}
                             autoComplete="off" 
+                            disabled={disabled}
                         />
                     </Form.Item>)
                 break;
             case 'textarea':
                 component = (
                     <Form.Item name={formName}
+                        initialValue = '2020-02-03'
                         validateTrigger='onBlur'
                     >
                         <Input.TextArea
                             placeholder={placeholder}
                             autoSize={false}
                             autoComplete="off" 
+                            disabled={disabled}
                         />
                     </Form.Item>)
                 break;

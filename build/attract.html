@@ -109,7 +109,7 @@
                                     </div>
                                 </li>
 
-                                <li><a href="https://qx.yaozh.com/login">器械通</a><span>|</span></li>
+                                <li><a href="/vipdata.html">器械通</a><span>|</span></li>
 
 
                                 <li><a href="/developmenting.html">优销通</a><span>|</span></li>
@@ -136,7 +136,6 @@
                         </div>
                     </li>
                     <li><a href="/help.html">帮助中心</a></li>
-                    <li><a href="/help.html">帮助中心</a></li>
                     <li><a href="/navigation.html">行业导航</a></li>
 
                 </ul>
@@ -153,16 +152,28 @@
 
 
     <script>
-        $('.marketing').mouseenter(function() {
-            $('.navchild1').css('overflow', 'revert')
-            $('.barchild').css('height', '86px')
-            $('.bar-tip').show()
-        })
-        $('.marketing').mouseleave(function() {
-            $('.navchild1').css('overflow', 'hidden')
-            $('.bar-tip').hide()
+        $('.marketing').hover(
+            function() {
+                $('.navchild1').css('overflow', 'revert')
+                $('.barchild').css('height', '86px')
+                $('.bar-tip').slideDown(200)
+            },
+            function() {
+                $('.navchild1').css('overflow', 'hidden')
+                $('.bar-tip').slideUp(200)
 
-        })
+            })
+
+        // $('.marketing').mouseenter(function() {
+        //     $('.navchild1').css('overflow', 'revert')
+        //     $('.barchild').css('height', '86px')
+        //     $('.bar-tip').show()
+        // })
+        // $('.marketing').mouseleave(function() {
+        //     $('.navchild1').css('overflow', 'hidden')
+        //     $('.bar-tip').hide()
+
+        // })
     </script>
     <script>
         // loaded page
@@ -439,7 +450,7 @@
                 <div class="tab" data-tab="tab-padsq">
                     <a class="active">按会员购买</a>
                     <a>按类型购买</a>
-                    <a>单个数据库购买</a>
+                    <a>定制化服务</a>
                 </div>
             </div>
             <div class="tab-content tab-content" tab-content="tab-padsq">
@@ -1131,7 +1142,7 @@
                                 <tr>
                                     <td rowspan="11" style="font-size: 30px;">上市器械</td>
                                     <td>中国上市器械</td>
-                                    <td rowspan="11" style="font-size: 30px;">14800</td>
+                                    <td rowspan="11" style="font-size: 30px;">询价</td>
                                 </tr>
                                 <tr>
                                     <td>中国上市器械（历史）</td>
@@ -1167,7 +1178,7 @@
                                 <tr>
                                     <td rowspan="6" style="font-size: 30px;">市场</td>
                                     <td>中国医疗器械网络交易第三方平台</td>
-                                    <td rowspan="6" style="font-size: 30px;">14800</td>
+                                    <td rowspan="6" style="font-size: 30px;">询价</td>
                                 </tr>
                                 <tr>
                                     <td>中国耗材中标数据库</td>
@@ -1188,7 +1199,7 @@
                                 <tr>
                                     <td rowspan="14" style="font-size: 30px;">研发</td>
                                     <td>中国器械创新和优先审批</td>
-                                    <td rowspan="14" style="font-size: 30px;">14800</td>
+                                    <td rowspan="14" style="font-size: 30px;">询价</td>
                                 </tr>
                                 <tr>
                                     <td>中国医疗器械标准</td>
@@ -1233,7 +1244,7 @@
                                 <tr>
                                     <td rowspan="17" style="font-size: 30px;">机构</td>
                                     <td>中国专业检测机构</td>
-                                    <td rowspan="17" style="font-size: 30px;">14800</td>
+                                    <td rowspan="17" style="font-size: 30px;">询价</td>
                                 </tr>
                                 <tr>
                                     <td>中国科研机构</td>
@@ -1289,447 +1300,10 @@
                     </div>
                 </div>
                 <div class="tab-content-item">
-                    <div class="table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>序号</th>
-                                    <th>数据库名称</th>
-                                    <th>数据源</th>
-                                    <th>API</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>中国医疗器械分类目录</td>
-                                    <td>20000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>中国专业检测机构</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>中国科研机构</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>中国行业协会</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>中国上市企业信息</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>中国大健康产业园区</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>中国医疗器械经营企业</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>中国新三板企业</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>中国投融资企业</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>中国物流资质企业</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>中国高校</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>中国医疗器械生产企业</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td>中国医疗器械临床试验机构</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>14</td>
-                                    <td>中国医疗政策信息</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>15</td>
-                                    <td>中国医疗法规信息</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>16</td>
-                                    <td>中国医疗服务收费编码及价格</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>17</td>
-                                    <td>中国医疗服务标准</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>18</td>
-                                    <td>CNAS医学实验室检测能力</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>19</td>
-                                    <td>CNAS认证实验室检测能力</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>20</td>
-                                    <td>知识库</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>21</td>
-                                    <td>中国上市器械</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>22</td>
-                                    <td>中国上市器械（历史）</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>23</td>
-                                    <td>中国一类器械备案</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>24</td>
-                                    <td>中国医疗器械网络交易第三方平台</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>25</td>
-                                    <td>中国耗材中标数据库</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>26</td>
-                                    <td>中国医保耗材分类与相关产品</td>
-                                    <td>20000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>27</td>
-                                    <td>中国器械创新和优先审批</td>
-                                    <td>20000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>28</td>
-                                    <td>中国医疗器械标准</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>29</td>
-                                    <td>中国医疗器械第三终端</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>30</td>
-                                    <td>中国医疗机构信息</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>31</td>
-                                    <td>中国医疗器械唯一标识</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>32</td>
-                                    <td>法国注册器械</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>33</td>
-                                    <td>医保耗材信息（27位）</td>
-                                    <td>60000</td>
-                                    <td>20000</td>
-                                </tr>
-                                <tr>
-                                    <td>34</td>
-                                    <td>中国医疗器械带量采购</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>35</td>
-                                    <td>中国医疗器械委托生产备案</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>36</td>
-                                    <td>全球临床试验数据库</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>37</td>
-                                    <td>中国临床试验</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>38</td>
-                                    <td>中国医疗器械注册发补记录</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>39</td>
-                                    <td>中国医疗器械注册核查</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>40</td>
-                                    <td>中国医疗器械审查指导原则</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>41</td>
-                                    <td>全国医院数据库</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>42</td>
-                                    <td>中国医疗器械和药品政策法规</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>43</td>
-                                    <td>药智通VIP会员</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>44</td>
-                                    <td>中国台湾上市器械及说明书</td>
-                                    <td>40000</td>
-                                    <td>20000</td>
-                                </tr>
-                                <tr>
-                                    <td>45</td>
-                                    <td>美国上市器械</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>46</td>
-                                    <td>日本上市器械及说明书</td>
-                                    <td>60000</td>
-                                    <td>20000</td>
-                                </tr>
-                                <tr>
-                                    <td>47</td>
-                                    <td>澳大利亚上市器械</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>48</td>
-                                    <td>英国注册器械</td>
-                                    <td>20000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>49</td>
-                                    <td>加拿大上市器械</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>50</td>
-                                    <td>意大利注册器械</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>51</td>
-                                    <td>科研专利信息</td>
-                                    <td>20000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>52</td>
-                                    <td>中国医疗器械注册审评数据库</td>
-                                    <td>80000</td>
-                                    <td>30000</td>
-                                </tr>
-                                <tr>
-                                    <td>53</td>
-                                    <td>中国医疗器械注册审批报告</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>54</td>
-                                    <td>美国医疗器械分类目录</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                </tr>
-                                <tr>
-                                    <td>55</td>
-                                    <td>新加坡医疗器械指导文件</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>56</td>
-                                    <td>中国医护人员信息</td>
-                                    <td>40000</td>
-                                    <td>20000</td>
-                                </tr>
-                                <tr>
-                                    <td>57</td>
-                                    <td>欧盟医疗器械主管部门</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>58</td>
-                                    <td>欧盟医疗器械公关机构</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>59</td>
-                                    <td>意大利亚定制医疗设备制造商信息</td>
-                                    <td>30000</td>
-                                    <td>20000</td>
-                                </tr>
-                                <tr>
-                                    <td>60</td>
-                                    <td>美国医疗器械唯一标识</td>
-                                    <td>50000</td>
-                                    <td>30000</td>
-                                </tr>
-                                <tr>
-                                    <td>61</td>
-                                    <td>欧盟医疗器械唯一标识</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>62</td>
-                                    <td>中国家用医疗器械零售信息</td>
-                                    <td>60000</td>
-                                    <td>20000</td>
-                                </tr>
-                                <tr>
-                                    <td>63</td>
-                                    <td>欧盟进出口企业名录</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>64</td>
-                                    <td>日本医疗器械销售数据</td>
-                                    <td>70000</td>
-                                    <td>25000</td>
-                                </tr>
-                                <tr>
-                                    <td>65</td>
-                                    <td>美国FDA器械指导原则</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>66</td>
-                                    <td>美国FDA认可器械标准</td>
-                                    <td>30000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>67</td>
-                                    <td>加拿大医疗器械认可标准</td>
-                                    <td>20000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>68</td>
-                                    <td>国外器械不良事件</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>69</td>
-                                    <td>药智专利通</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>70</td>
-                                    <td>国内外文献</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>71</td>
-                                    <td>国外药典（器械部分）</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <img src="static/images/icon-contact-customer.png" alt="">
+                    <p>定制化服务，请通过在线客服询价</p>
                 </div>
+
             </div>
         </div>
     </div>
@@ -2139,23 +1713,23 @@
 <script>
     // 医疗数据通处，改变div高度
 
-    // let a = $(".attract-padsq .tab a")
-    // for (var i = 0; i < a.length; i++) {
+    let a = $(".attract-padsq .tab a")
+    for (var i = 0; i < a.length; i++) {
 
-    //     console.log(a[i])
-    //         // console.log(aa[i])
+        console.log(a[i])
+            // console.log(aa[i])
 
-    //     a.click(function() {
-    //         console.log(i)
-    //         const e = $(this).index()
-    //         console.log(e)
-    //         if (e !== 0) {
-    //             $(".attract-padsq").css('height', '1026px')
-    //         } else {
-    //             $(".attract-padsq").css('height', '1410px')
-    //         }
-    //     })
-    // }
+        a.click(function() {
+            console.log(i)
+            const e = $(this).index()
+            console.log(e)
+            if (e == 2) {
+                $(".attract-padsq").css('height', '1026px')
+            } else {
+                $(".attract-padsq").css('height', '1410px')
+            }
+        })
+    }
 </script>
 </body>
 

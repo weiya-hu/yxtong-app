@@ -21,6 +21,11 @@ class MyScore extends Component<any> {
     componentDidMount(){
         this.getScore()
     }
+    componentWillUnmount = () => {
+        this.setState = (state,callback)=>{
+          return
+        }
+    }
     render(){
         let userinfo = this.state.userInfo
         const {size,todayScore} = this.props

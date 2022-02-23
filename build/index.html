@@ -109,7 +109,7 @@
                                     </div>
                                 </li>
 
-                                <li><a href="https://qx.yaozh.com/login">器械通</a><span>|</span></li>
+                                <li><a href="/vipdata.html">器械通</a><span>|</span></li>
 
 
                                 <li><a href="/developmenting.html">优销通</a><span>|</span></li>
@@ -136,7 +136,6 @@
                         </div>
                     </li>
                     <li><a href="/help.html">帮助中心</a></li>
-                    <li><a href="/help.html">帮助中心</a></li>
                     <li><a href="/navigation.html">行业导航</a></li>
 
                 </ul>
@@ -153,16 +152,28 @@
 
 
     <script>
-        $('.marketing').mouseenter(function() {
-            $('.navchild1').css('overflow', 'revert')
-            $('.barchild').css('height', '86px')
-            $('.bar-tip').show()
-        })
-        $('.marketing').mouseleave(function() {
-            $('.navchild1').css('overflow', 'hidden')
-            $('.bar-tip').hide()
+        $('.marketing').hover(
+            function() {
+                $('.navchild1').css('overflow', 'revert')
+                $('.barchild').css('height', '86px')
+                $('.bar-tip').slideDown(200)
+            },
+            function() {
+                $('.navchild1').css('overflow', 'hidden')
+                $('.bar-tip').slideUp(200)
 
-        })
+            })
+
+        // $('.marketing').mouseenter(function() {
+        //     $('.navchild1').css('overflow', 'revert')
+        //     $('.barchild').css('height', '86px')
+        //     $('.bar-tip').show()
+        // })
+        // $('.marketing').mouseleave(function() {
+        //     $('.navchild1').css('overflow', 'hidden')
+        //     $('.bar-tip').hide()
+
+        // })
     </script>
     <script>
         // loaded page

@@ -87,8 +87,6 @@ export default class AliyunOSSUpload extends React.Component {
 
 
   beforeUpload = async (file,fileList) => {
-   console.log(file,fileList)
-   console.log(this.state.uuid)
    const { OSSData,uuid } = this.state;
    const {imgLength} = this.props
    let uuuid

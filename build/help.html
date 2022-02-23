@@ -109,7 +109,7 @@
                                     </div>
                                 </li>
 
-                                <li><a href="https://qx.yaozh.com/login">器械通</a><span>|</span></li>
+                                <li><a href="/vipdata.html">器械通</a><span>|</span></li>
 
 
                                 <li><a href="/developmenting.html">优销通</a><span>|</span></li>
@@ -136,7 +136,6 @@
                         </div>
                     </li>
                     <li><a href="/help.html">帮助中心</a></li>
-                    <li><a href="/help.html">帮助中心</a></li>
                     <li><a href="/navigation.html">行业导航</a></li>
 
                 </ul>
@@ -153,16 +152,28 @@
 
 
     <script>
-        $('.marketing').mouseenter(function() {
-            $('.navchild1').css('overflow', 'revert')
-            $('.barchild').css('height', '86px')
-            $('.bar-tip').show()
-        })
-        $('.marketing').mouseleave(function() {
-            $('.navchild1').css('overflow', 'hidden')
-            $('.bar-tip').hide()
+        $('.marketing').hover(
+            function() {
+                $('.navchild1').css('overflow', 'revert')
+                $('.barchild').css('height', '86px')
+                $('.bar-tip').slideDown(200)
+            },
+            function() {
+                $('.navchild1').css('overflow', 'hidden')
+                $('.bar-tip').slideUp(200)
 
-        })
+            })
+
+        // $('.marketing').mouseenter(function() {
+        //     $('.navchild1').css('overflow', 'revert')
+        //     $('.barchild').css('height', '86px')
+        //     $('.bar-tip').show()
+        // })
+        // $('.marketing').mouseleave(function() {
+        //     $('.navchild1').css('overflow', 'hidden')
+        //     $('.bar-tip').hide()
+
+        // })
     </script>
     <script>
         // loaded page
@@ -496,95 +507,20 @@
         </div>
         <div class="wrapper">
             <div class="left tab" data-tab="tab-qa">
-                <a class="active">问题类型一</a>
-                <a>问题类型二</a>
-                <a>问题类型三</a>
+                <a class="active">药智器械相关问题</a>
+                <!-- <a>问题类型二</a>
+                <a>问题类型三</a> -->
             </div>
             <div class="right">
                 <div class="tab-content" tab-content="tab-qa">
                     <div class="tab-content-item" style="display: block;">
-                        <dl>
-                            <dt>问题类型一</dt>
-                            <dd class="active">
+                        <dl id="dl">
+                            <dt>药智器械相关问题</dt>
+                            <!-- <dd class="active">
                                 <div class="toggle"></div>
                                 <div class="tit"><span class="num">01</span>如何注册药智器械的会员？</div>
                                 <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">02</span>为什么老是提示用户名或者密码错误？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">03</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">04</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">05</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">06</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">07</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">08</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">09</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">10</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">05</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">06</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">07</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">08</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">09</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
-                            <dd>
-                                <div class="toggle"></div>
-                                <div class="tit"><span class="num">10</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd>
+                            </dd> -->
                         </dl>
                     </div>
                     <div class="tab-content-item">
@@ -598,7 +534,7 @@
                         </dl>
                     </div>
                     <div class="tab-content-item">
-                        <dl>
+                        <dl id="dl">
                             <dt>问题类型三</dt>
                             <dd>
                                 <div class="toggle"></div>
@@ -731,7 +667,7 @@
         </div>
     </div>
 
-    <div class="help-train">
+    <!-- <div class="help-train">
         <div class="help-tit">
             <h2 class="wow fadeInUp">培训计划</h2>
             <p class="wow fadeInDown">training plan</p>
@@ -768,12 +704,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
     <div class="help-down">
-        <div class="help-tit white">
+        <div class="help-tit">
             <h2 class="wow fadeInUp">下载中心</h2>
             <p class="wow fadeInDown">DOWNLOAD CENTER</p>
         </div>
@@ -841,7 +777,7 @@
     </div>
 
     <div class="help-contact">
-        <div class="help-tit">
+        <div class="help-tit white">
             <h2 class="wow fadeInUp">联系我们</h2>
             <p class="wow fadeInDown">CONTACT US</p>
         </div>
@@ -887,12 +823,12 @@
                     </div>
                     <div class="qrcode">
                         <div class="item">
-                            <img src="static/images/qrcode2.png" width="120" height="120">
+                            <img src="static/images/lizhengfei.jpg" width="120" height="120">
                             <p><span>微信扫一扫</span><strong>直达产品经理</strong></p>
                         </div>
                         <div class="item">
-                            <img src="static/images/qrcode2.png" width="120" height="120">
-                            <p><span>微信扫一扫</span><strong>直达产品经理</strong></p>
+                            <img src="static/images/lijiaxing.jpg" width="120" height="120">
+                            <p><span>微信扫一扫</span><strong>直达销售总监</strong></p>
                         </div>
                     </div>
                 </div>
@@ -1018,7 +954,6 @@
 
     })
 
-
     // }
     // 弹框消失
     function able() {
@@ -1056,8 +991,29 @@
     });
 
     //常见问题
-    $('.help-qa dd').on('click', function() {
+    $('.help-qa dl').on('click', 'dd', function() {
+        console.log($(this));
         $(this).addClass('active').siblings().removeClass('active');
+    })
+
+    // 加载json数据
+    // 常见问题
+    $(document).ready(function() {
+        $.getJSON("./static/json/yz_zsk.json", function(data) {
+            $.each(data, function(i, info) {
+                var tit = info['wt']
+                var answer = info['da']
+                var index = i + 1 < 9 ? "0" + (i + 1) : i + 1
+                    // console.log(index);
+                    // console.log(data, info, tit, index)
+                $('#dl').append(`<dd class = "${index=='01'?'active':''}">
+                                    <div class="toggle"></div>
+                                    <div class="tit"><span class="num">` + index + `</span>` + tit + `</div>
+                                    <p>` + answer + `</p>
+                                </dd>`)
+            })
+        })
+
     })
 </script>
 

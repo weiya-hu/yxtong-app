@@ -7,9 +7,8 @@ import {util} from 'utils/news'
 
 util.firstTokenUserinfo().then(()=>{
   ReactDOM.render(
-    <React.StrictMode>
-      <Router />
-    </React.StrictMode>,
+
+      <Router />,
     document.getElementById('root')
   );
 })

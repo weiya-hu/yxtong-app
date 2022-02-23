@@ -110,6 +110,11 @@ class MyTask extends Component{
             })
          }
     }
+    componentWillUnmount = () => {
+      this.setState = (state,callback)=>{
+        return
+      }
+   }
     render(){
       let {signInTitle,isSignIn,signinSuccess,tasks,contDay,todayScore} = this.state
       let dateArr:any = []
