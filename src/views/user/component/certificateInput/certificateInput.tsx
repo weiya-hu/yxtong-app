@@ -91,7 +91,7 @@ class CertificateInput extends Component<CertificateInputProps,any>{
             case 'date':
                 component = (
                     <Form.Item name={formName}
-                            initialValue = {moment(1632996799)}
+                            initialValue = {moment(0)}
                         rules={[{validator:this.requirValidate}]}
                     >
                         <DatePicker  
