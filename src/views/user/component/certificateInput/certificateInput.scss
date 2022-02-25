@@ -50,6 +50,9 @@
                 padding:10px 16px;
                 resize:none;
             }
+            .ant-input[disabled]{
+                color: #363636;
+            }
             
         }
         
@@ -65,6 +68,9 @@
                 padding: 0 5px;
             }
            
+        }
+        .ant-picker.ant-picker-disabled{
+            background: #FFFFFF;
         }
         .ant-picker-footer{display: none !important;}
         //日期选择器的样式
@@ -88,6 +94,9 @@
             display: flex;
             align-items: center;
         }   
+        .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+            background: #FFFFFF;
+        }
     }
     //表单form.item的默认样式修改
     .ant-form-item{

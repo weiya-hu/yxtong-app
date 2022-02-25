@@ -16,6 +16,7 @@ interface CertificateInputProps{
     placeholder:string
     require:boolean
     disabled:boolean
+    initialValue: null | string | string[] | number
     extraData?:any
 }
   
@@ -54,14 +55,13 @@ class CertificateInput extends Component<CertificateInputProps,any>{
         }
     };
     getInput=()=>{
-        const {formName,name,placeholder,require,extraData,disabled}=this.props
-       
+        const {formName,name,placeholder,require,extraData,disabled,initialValue}=this.props
         let component
         switch(name){
             case 'text':
                 component = (
                     <Form.Item name={formName}
-                        initialValue = 'jdhfks'
+                        initialValue = {initialValue}
                         rules={require?[{validator:this.requirValidate}]:null} 
                     >
                         <Input 
@@ -77,7 +77,7 @@ class CertificateInput extends Component<CertificateInputProps,any>{
                 component=(
                     <Form.Item name={formName}
                         rules={[{validator:this.requirValidate}]}
-                        initialValue = {["A", "01", "011"]}
+                        initialValue = {initialValue}
                     >
                         <Cascader
                             fieldNames={{ label: 'name', value: 'industryId', children: 'children' }}
@@ -91,14 +91,14 @@ class CertificateInput extends Component<CertificateInputProps,any>{
             case 'date':
                 component = (
                     <Form.Item name={formName}
-                            initialValue = {moment(0)}
+                            initialValue = {initialValue?moment(initialValue):null}
                         rules={[{validator:this.requirValidate}]}
                     >
                         <DatePicker  
 
                             locale={locale}
                             placeholder={placeholder}
-                            onChange={(val)=>{console.log(moment(val.releasedTimestamp).unix())}}
+                            // onChange={(val)=>{console.log(moment(val.releasedTimestamp).unix())}}
                             disabled={disabled}
                         />
                     </Form.Item>)
@@ -107,7 +107,7 @@ class CertificateInput extends Component<CertificateInputProps,any>{
                 component = (
                     <Form.Item name={formName}
                         validateTrigger='onBlur'
-                        initialValue = '18580529122'
+                        initialValue = {initialValue}
                         rules={[{validator:this.phoneValidate}]}
                     >
                         <Input  
@@ -121,7 +121,7 @@ class CertificateInput extends Component<CertificateInputProps,any>{
             case 'textarea':
                 component = (
                     <Form.Item name={formName}
-                        initialValue = '2020-02-03'
+                        initialValue = {initialValue}
                         validateTrigger='onBlur'
                     >
                         <Input.TextArea

@@ -74,6 +74,7 @@ export default class Certificate extends Component{
             }
             let submitFlag = JSON.parse(localStorage.getItem('submit')) 
             const res = submitFlag ? await submitCompany(data): await saveCompany(data)
+            if(res.status===1 && submitFlag){this.getRecord()}
             $message.info(res.message)
         }
     };
@@ -85,7 +86,22 @@ export default class Certificate extends Component{
     //获取企业认证状态和相关信息
     getRecord=async()=>{
         const {status, body} = await getAuditRecord()
-        status && this.setState({AuditRecord:body,status:body.status,disabled:(body.status === 0 || body.status === 1)?false:true})
+        let imgs=[]
+        if(status){
+            let list = body.license.split(',')
+            list.forEach(element => {
+                let item={showUrl:element,sendUrl:element}
+                imgs.push(item)
+            });
+            this.setState({
+                AuditRecord:body,
+                status:body.status,
+                disabled:(body.status === 0 || body.status === 1)?false:true,
+                // status:1,
+                // disabled:false,
+                images:imgs
+            })
+        }
     }
     //行业分类
     getIndustryType=async()=>{
@@ -104,11 +120,16 @@ export default class Certificate extends Component{
     }
     //保存和上传按钮通过传值区分
     save=(val)=>{
+        console.log('按了保存')
         localStorage.setItem('submit',val)
     }
     //修改状态值
     switchStatus=(val)=>{
-        this.setState({status:val})
+        
+        this.setState({
+            status:val,
+            disabled:false
+        })
     }
     componentDidMount(){
         this.getRecord()
@@ -121,7 +142,9 @@ export default class Certificate extends Component{
     }
     render(){
         const {modalVisible,IndustryType,images,message,status,disabled,AuditRecord} =this.state
-        return <div id='certificate'>
+        let flag = AuditRecord.status >=0
+        return flag &&
+        <div id='certificate'>
             {this.topStatusDom()}
             <div className='flexll'>
                 <span className='cert-title-txt'>认证主体</span>
@@ -133,33 +156,39 @@ export default class Certificate extends Component{
             <Form onFinish={this.onFinish} onFinishFailed={this.falseFinish}>
                 <div className='cert-input-item'>
                     <CertificateInput
+                        key={0}
                         require={true}
                         label='行业分类'
                         placeholder='请选择行业'
                         formName='industry_id'
                         name='cascader'
                         disabled={disabled}
+                        initialValue={AuditRecord.industry_id}
                         extraData={IndustryType}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item'>
                     <CertificateInput
+                    key={1}
                         require={true}
                         label='企业名称'
                         name='text'
                         placeholder='请填写企业名称'
                         formName='name'
                         disabled={disabled}
+                        initialValue={AuditRecord.name}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item'>
                     <CertificateInput
+                         key={3}
                         require={true}
                         label='统一社会信用代码'
                         placeholder='请填写统一社会信用代码'
                         formName='code'
                         name='text'
                         disabled={disabled}
+                        initialValue={AuditRecord.code?AuditRecord.code:''}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item flexll'>
@@ -204,62 +233,74 @@ export default class Certificate extends Component{
                 </div>
                 <div className='cert-input-item'>
                     <CertificateInput
+                         key={4}
                         require={true}
                         label='证件有效期'
                         placeholder='请选择日期'
                         formName='left_time'
                         name='date'
                         disabled={disabled}
+                        initialValue={AuditRecord.left_time*1000}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item'>
                     <CertificateInput
+                         key={5}
                         require={true}
                         label='联系人'
                         name='text'
                         placeholder='请填写联系人姓名'
                         formName='legal_person'
                         disabled={disabled}
+                        initialValue={AuditRecord.legal_person}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item'>
                     <CertificateInput
+                         key={6}
                         require={true}
                         label='联系电话'
                         name='phone'
                         placeholder='请填写联系电话'
                         formName='contact'
                         disabled={disabled}
+                        initialValue={AuditRecord.contact}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item'>
                     <CertificateInput
+                         key={7}
                         require={false}
                         label='官方网站'
                         placeholder='请填写官方网站'
                         formName='url'
                         name='text'
                         disabled={disabled}
+                        initialValue={AuditRecord.url}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item'>
                     <CertificateInput
+                     key={8}
                         require={false}
                         label='详细地址'
                         placeholder='请填写详细地址'
                         formName='address'
                         name='text'
                         disabled={disabled}
+                        initialValue={AuditRecord.address}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item'>
                     <CertificateInput
+                     key={9}
                         require={false}
                         label='经营范围'
                         placeholder='请填写经营范围'
                         formName='business_scope'
                         name='textarea'
                         disabled={disabled}
+                        initialValue={AuditRecord.business_scope}
                     ></CertificateInput>
                 </div>
                 
@@ -269,6 +310,7 @@ export default class Certificate extends Component{
                         <Button htmlType="submit" onClick={()=>this.save(false)}>保存</Button>
                     </div>
                 </div>:(status === 2 || status ===3)?<div></div>:<div className='cert-buttons flexl'>
+                    <div className='button-unvisible'><Button htmlType="submit"></Button></div> 
                     <Button onClick={()=>this.switchStatus(1)}>修改</Button>
                 </div>
                 }
@@ -281,5 +323,6 @@ export default class Certificate extends Component{
             >   
             </Modal>
         </div>
+
     }
 }
