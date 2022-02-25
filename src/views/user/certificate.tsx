@@ -88,7 +88,7 @@ export default class Certificate extends Component{
         const {status, body} = await getAuditRecord()
         let imgs=[]
         if(status){
-            let list = body.license.split(',')
+            let list = body.license?body.license.split(','):[]
             list.forEach(element => {
                 let item={showUrl:element,sendUrl:element}
                 imgs.push(item)
