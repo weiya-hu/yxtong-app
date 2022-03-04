@@ -57,10 +57,10 @@ class ArticleItem extends Component<ArticleItemState> {
                 <span>评论 {item.commented}</span>
               </div>
               <div className='flexr'>
-                {/* <div className='fleximg article-item-button' onClick={()=>{this.deleteNews(item.id)}}>
+                <div className='fleximg article-item-button' onClick={()=>{this.deleteNews(item.id)}}>
                   <div className='editimg fleximg'><img src={deleteimg} alt="deleteButton" /></div>
                   <div>删除</div>
-                </div> */}
+                </div>
                 <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
                   <div className='editimg fleximg'><img src={editimg} alt="editButton" /></div>
                   <div>编辑</div>

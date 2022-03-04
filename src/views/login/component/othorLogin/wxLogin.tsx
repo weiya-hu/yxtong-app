@@ -1,7 +1,6 @@
 //@ts-nocheck
 import { Component } from 'react'
 
-
 export default class WxLogin extends Component {
     componentDidMount() {
         var obj = new window.WxLogin({
@@ -9,7 +8,7 @@ export default class WxLogin extends Component {
             id: "wxLogin",
             appid: 'wx70dec1c67a586ee2',
             scope: "snsapi_login",
-            redirect_uri: 'https%3A%2F%2Fdev.yxtong.com%2F',
+            redirect_uri: encodeURI('https://dev.yxtong.com/app/otherlogin'),
             state: "1",
             style: "",
             href: ""

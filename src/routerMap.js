@@ -27,6 +27,14 @@ const NewsDetail = loadable(()=> import('views/news/newsDetail'), {
 const NewsAuthorMore = loadable(()=> import('views/news/authorMore'), {
     LoadingComponent: Loading,
 })
+//第三方登录页面，空白页面，承载逻辑，分流跳转到相应页面，目前只有微信登录
+const otherLogin = loadable(()=> import('views/login/component/othorLogin/otherLoginIndex'), {
+    LoadingComponent: Loading,
+})
+//手机绑定页面,验证成功后会登陆
+const phoneBindLogin = loadable(()=> import('views/login/component/othorLogin/phoneBindLogin/phoneBindLogin'), {
+    LoadingComponent: Loading,
+})
 
 
 export const routerMap = [
@@ -37,4 +45,6 @@ export const routerMap = [
     {path: "/app/news", name: "News", component: News},
     {path: "/app/newsdetail", name: "NewsDetail", component: NewsDetail},
     {path: "/app/newsauthormore", name: "NewsAuthorMore", component: NewsAuthorMore},
+    {path: "/app/otherlogin", name: "otherLogin", component: otherLogin},
+    {path: "/app/bindphone", name: "phoneBindLogin", component: phoneBindLogin},
 ];

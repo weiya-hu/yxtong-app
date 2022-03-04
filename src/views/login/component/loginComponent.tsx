@@ -80,7 +80,7 @@ export default class LoginComponent extends Component {
                     
         }
     }
-    //资质问号modal是否显示切换
+    //微信登录modal是否显示切换
     toggleVisible=(val)=>{
         this.setState({modalVisible:val})
     }
@@ -164,21 +164,20 @@ export default class LoginComponent extends Component {
                             <div><img src={warnimg} alt="warn" /></div>
                             <span>{warnMessage}</span>
                         </div>
-                    }
-                    
+                    }                   
                     <Button className='loginbt' htmlType="submit">登录</Button>
                 </Form>
                 {loginSwitch?
                     <div className='forget flexb'>
-                        <Link to='/app/register/forget'><span>忘记密码？</span></Link>
-                        
+                        <Link to='/app/register/forget'><span>忘记密码？</span></Link>                        
                         <Link to='/app/register/register'><span>免费注册</span></Link>
                     </div>:
-                    <div></div>
+                    <div className='forget flexr'>                        
+                        <Link to='/app/register/register'><span>免费注册</span></Link>
+                    </div>
                 }
                 <div className='fleximg'>
-                    {/* <div className='fleximg wechartimg'  onClick={()=>this.toggleVisible(true)}> */}
-                    <div className='fleximg wechartimg'>
+                    <div className='fleximg wechartimg'  onClick={()=>this.toggleVisible(true)}>
                         <img src={wechartimg}/>
                     </div>
                     <div className='fleximg wechartimg'>

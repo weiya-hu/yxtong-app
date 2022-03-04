@@ -12,11 +12,14 @@ export default class Login extends Component {
         document.title = '康州数智-登录'
         document.body.style.overflow='hidden'
     }
+    toIndex=()=>{
+        window.location.href='/'
+    }
     render(){
         return (
             <div id='login'>
                 <div className='contain'>
-                    <div className='logo fleximg'>
+                    <div className='logo fleximg' onClick={this.toIndex}>
                         <img src={logowhite} alt="logo" />
                     </div>
                     <div className='main flexl'>

@@ -70,7 +70,8 @@ export default class Certificate extends Component{
             let data={
                 ...values,
                 left_time:moment(values.left_time.releasedTimestamp).unix(),
-                license:imgs.join(',')
+                license:imgs.join(','),
+                industry_id:values.industry_id.join(',')
             }
             let submitFlag = JSON.parse(localStorage.getItem('submit')) 
             const res = submitFlag ? await submitCompany(data): await saveCompany(data)
@@ -87,6 +88,7 @@ export default class Certificate extends Component{
     getRecord=async()=>{
         const {status, body} = await getAuditRecord()
         let imgs=[]
+        console.log(body)
         if(status){
             let list = body.license?body.license.split(','):[]
             list.forEach(element => {
@@ -132,8 +134,9 @@ export default class Certificate extends Component{
         })
     }
     componentDidMount(){
-        this.getRecord()
+        
         this.getIndustryType()
+        this.getRecord()
     }
     componentWillUnmount = () => {
         this.setState = (state,callback)=>{
@@ -163,7 +166,7 @@ export default class Certificate extends Component{
                         formName='industry_id'
                         name='cascader'
                         disabled={disabled}
-                        initialValue={AuditRecord.industry_id}
+                        initialValue={AuditRecord.industry_id?AuditRecord.industry_id.split(','):[]}
                         extraData={IndustryType}
                     ></CertificateInput>
                 </div>
