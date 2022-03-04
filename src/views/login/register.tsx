@@ -8,7 +8,7 @@ import {doreg} from 'service/login'
 import $message from 'views/component/message';
 
 
-import logoimg from 'public/images/logo.png'
+import logoimg from 'public/images/logow.png'
 import warnimg from 'public/images/warn.png'
 import unselectimg from 'public/images/unselect.png'
 import selectimg from 'public/images/select.png'
@@ -71,6 +71,7 @@ export default class Register extends Component {
         this.setState({isForget:pathname[3]})
         document.title = pathname[3] === 'forget' ? '康州数智-找回密码':pathname[3] === 'register'?'康州数智-注册':'康州数智-找回密码'
         console.log(pathname[3])
+        document.body.style.overflow='hidden'
     }
     render(){
         let {isForget,warnMessage,registermessage,mobileValue,acode} = this.state

@@ -320,6 +320,8 @@ export default class Certificate extends Component{
                 title="Modal"
                 visible={this.state.modalVisible}
                 onCancel={()=>this.toggleVisible(false)}
+                wrapClassName='cert-modal'
+                maskStyle={{background: 'rgba(0, 0, 0,0.1)'}}
             >   
             </Modal>
         </div>

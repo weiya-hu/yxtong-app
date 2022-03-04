@@ -87,34 +87,42 @@
                     <li class="" id="li-propuct"><a href="/product.html">产品与服务</a>
                         <div class="navchild1">
                             <ul>
-                                <li class="marketing"><a href="/member_news.html?id=1">营销通</a><span>|</span>
-
+                                <li class="marketing">
+                                    <a href="/member_news.html?id=1">
+                                        <span>数智营销通</span>
+                                        <span>中小企业专享</span>
+                                    </a>
                                     <div class="barchild">
                                         <div class="bar-tip"></div>
                                         <ul>
-                                            <li><a href="/developmenting.html">CMS</a></li>
-                                            <li><a href="/developmenting.html">CDP</a></li>
-                                            <li><a href="/marketing.html">APP机器人</a></li>
-                                            <li><a href="/developmenting.html">DMP</a></li>
-                                            <li><a href="/developmenting.html">广告系统</a></li>
-                                            <li><a href="/developmenting.html">SCRM</a></li>
-                                            <li><a href="/developmenting.html">快速建站</a></li>
-                                            <li><a href="/developmenting.html">SMS</a></li>
-                                            <li><a href="/developmenting.html">EDM</a></li>
-                                            <li><a href=" /app/news">资讯平台</a></li>
-                                            <li><a href="/benefits.html">会员裂变</a></li>
-                                            <li><a href="/developmenting.html">直播</a></li>
-                                            <li><a href="/developmenting.html">智能客服</a></li>
+                                            <li><a href="/developmenting.html">CMS 内容管理</a></li>
+                                            <li><a href="/developmenting.html">DMP 精准数据</a></li>
+                                            <li><a href="/marketing.html">DSP 广告投放</a></li>
+                                            <li><a href="/developmenting.html">DSP 数据服务</a></li>
+                                            <li><a href="/developmenting.html">CDP 数据分析</a></li>
+                                            <li><a href="/developmenting.html">SCRM 私域流量</a></li>
+                                            <li><a href="/developmenting.html">信息资讯中心</a></li>
+                                            <li><a href="/developmenting.html">APP机器人矩阵</a></li>
+                                            <li><a href="/developmenting.html">SMS 5G短信</a></li>
+                                            <li><a href=" /app/news">EDM 电子邮件</a></li>
+                                            <li><a href="/benefits.html">会员裂变管理</a></li>
+                                            <li><a href="/developmenting.html">线上直播</a></li>
                                         </ul>
                                     </div>
                                 </li>
+                                <li><a href="/developmenting.html"><span>数智赢效通</span>
+                                        <span>全套解决方案</span></a></li>
+                                <li><a href="/vipdata.html"><span>数智优销通</span>
+                                            <span>微B/C端客户专享</span></a></li>
+                                <li><a href="/developmenting.html"><span>数智医销通</span>
+                                    <span>医 药 行 业 专 属                  </span></a></li>
 
-                                <li><a href="/vipdata.html">器械通</a><span>|</span></li>
+                                <div class="line"></div>
 
-
-                                <li><a href="/developmenting.html">优销通</a><span>|</span></li>
-                                <li><a href="/developmenting.html">营销通</a></li>
-
+                                <li><a href="/developmenting.html"><span>药 智 器 械</span>
+                                    <span>医疗器械数据服务</span></a></li>
+                                <li><a href="/developmenting.html"><span>数智医械通</span>
+                                        <span>医疗器械数据服务</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -224,10 +232,13 @@
 
 <div id="kfcontentbox">
     <div id="content" class="handle">
-        <div class="content-weixi">
+        <div class="content-login">
+            <img src="static/images/icon-content-login.png" alt="" style="user-select: none;">
+            <span>立即登录</span>
+        </div>
+        <div class="content-weixin" style="background: #1BAC4B;  height: 74px;">
             <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
             <span>微信咨询</span>
-
         </div>
         <div class="content-tel">
             <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
@@ -366,12 +377,29 @@
     //         }, 100);
     //     })
 
+    // 登录药智器械页面
+    var text = 'vipdata'
+    var url = window.location.href
+
     // 弹框消失
     function able() {
         $('.content-tips-tel').hide()
         $('.content-tips-wechat').hide()
     }
-    $('#content .content-weixi').on('mouseup', () => {
+    $('#content .content-login').on('mouseup', () => {
+        if (!isDrag) {
+            if (url.indexOf(text) >= 0) {
+                window.open("https://qx.yaozh.com", "_blank")
+                console.log(11)
+            } else {
+                window.open("/app/login", "_self")
+                console.log(222);
+            }
+
+
+        }
+    })
+    $('#content .content-weixin').on('mouseup', () => {
         if (!isDrag) {
             $('.content-tips-wechat').show()
         }
@@ -577,8 +605,69 @@
         </div>
     </div>
 
+
+
+    <div class="index-customer">
+        <div class="wrapper relative">
+            <div class="index-tit white">
+                <h2 class="wow fadeInUp">合作客户</h2>
+                <p class="wow fadeInDown">CORPORATE CLIENT</p>
+            </div>
+            <div class="map">
+
+                <div class="point"></div>
+                <div class="point"></div>
+                <div class="point"></div>
+                <div class="point"></div>
+                <div class="point"></div>
+                <canvas id="canvas" width="1500" height="1000" class="ctx"></canvas>
+            </div>
+            <div class="lst">
+                <div class="item">
+                    <strong>400</strong>
+                    <span>生产类企业</span>
+                </div>
+                <div class="item">
+                    <strong>240</strong>
+                    <span>加工类企业</span>
+                </div>
+                <div class="item">
+                    <strong>560</strong>
+                    <span>销售类企业</span>
+                </div>
+                <div class="item">
+                    <strong>320</strong>
+                    <span>其他企业</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="index-flink">
+        <div class="wrapper">
+            <div class="lst clearfix">
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.1.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.2.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.3.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.4.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.5.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.6.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.11.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/26.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.13.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.16.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.17.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.1.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.21.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.22.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/27.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.15.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.10.png" alt=""></div>
+                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.16.png" alt=""></div>
+            </div>
+        </div>
+    </div>
     <div class="index-news">
-        <div class="index-tit white">
+        <div class="index-tit">
             <h2 class="wow fadeInUp">相关动态</h2>
             <p class="wow fadeInDown">RELATED NEWS</p>
         </div>
@@ -679,63 +768,7 @@
         </div>
     </div>
 
-    <div class="index-customer">
-        <div class="wrapper relative">
-            <div class="index-tit">
-                <h2 class="wow fadeInUp">合作客户</h2>
-                <p class="wow fadeInDown">CORPORATE CLIENT</p>
-            </div>
-            <div class="map">
-                <div class="point"></div>
-                <div class="point"></div>
-                <div class="point"></div>
-                <div class="point"></div>
-            </div>
-            <div class="lst">
-                <div class="item">
-                    <strong>400</strong>
-                    <span>生产类企业</span>
-                </div>
-                <div class="item">
-                    <strong>240</strong>
-                    <span>加工类企业</span>
-                </div>
-                <div class="item">
-                    <strong>560</strong>
-                    <span>销售类企业</span>
-                </div>
-                <div class="item">
-                    <strong>320</strong>
-                    <span>其他企业</span>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="index-flink">
-        <div class="wrapper">
-            <div class="lst clearfix">
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.1.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.2.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.3.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.4.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.5.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.6.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.11.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/26.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.13.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.16.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.17.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.1.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.21.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/1.22.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/27.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.15.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.10.png" alt=""></div>
-                <div class="item"><img src="https://pdi-dev.yaozh.com/assets/2021/images/media/2.16.png" alt=""></div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="bottom-navs">
@@ -834,6 +867,184 @@
             window.location.href = 'member_newsdetail.html?did=' + did
         }
     })
+
+    // 地图路线
+    var canvas = document.getElementById('canvas');
+
+    let ctx1 = canvas.getContext('2d');
+
+    ctx1.lineWidth = 2;
+
+    function animate() {
+        let ctx = this.ctx
+
+        ctx.clearRect(0, 0, 1500, 1500); //清除
+        for (let i = 0; i < this.arr.length; i++) {
+            const item = this.arr[i]
+            let center = item.c;
+            let radius = item.r;
+            let curveness = item.e
+
+            let angle = Math.PI * item.p
+
+            let x = center[0] + radius * Math.sin(angle);
+            let y = center[1] + radius * Math.cos(angle);
+
+            drawCurvePath(
+                ctx,
+                center, [x, y],
+                curveness,
+                this.arr[i].percent / this.arr[i].s,
+                this.arr[i].f,
+                this.arr[i].l
+            );
+
+            ctx.stroke();
+
+            this.arr[i].percent = (this.arr[i].percent + 1) % this.arr[i].s
+        }
+
+        requestAnimationFrame(animate.bind(this)); //类似于setInterval 浏览器按照屏幕刷新率执行函数
+
+    }
+
+    function drawCurvePath(ctx, start, end, curveness, t, f, l) {
+        let cp = [
+            (start[0] + end[0]) / f[0] - (start[1] - end[1]) * curveness,
+            (start[1] + end[1]) / f[1] - (end[0] - start[0]) * curveness
+        ];
+
+        ctx.beginPath();
+        ctx.lineTo(start[0], start[1]);
+        ctx.strokeStyle = '#18296A';
+        ctx.quadraticCurveTo(cp[0], cp[1], end[0], end[1]);
+        ctx.stroke();
+        ctx.beginPath();
+
+        let p0 = start;
+        let p1 = cp;
+        let p2 = end;
+
+        let v01 = [p1[0] - p0[0], p1[1] - p0[1]]; // 向量<p0, p1>
+        let v12 = [p2[0] - p1[0], p2[1] - p1[1]]; // 向量<p1, p2>
+
+        let q0 = [p0[0] + v01[0] * t, p0[1] + v01[1] * t];
+        let q1 = [p1[0] + v12[0] * t, p1[1] + v12[1] * t];
+
+        let v = [q1[0] - q0[0], q1[1] - q0[1]]; // 向量<q0, q1>
+
+        let b = [q0[0] + v[0] * t, q0[1] + v[1] * t];
+
+        // let gradient = ctx.createLinearGradient(b[0], b[1], parseInt(b[0] - l[0]), parseInt(b[1] - l[1]) * t);
+        let gradient = ctx.createLinearGradient(b[0], b[1], Math.round(b[0] - l[0]), Math.round(b[1] - l[1]));
+        gradient.addColorStop("0", "#00FFB6");
+        gradient.addColorStop("1.0", "rgba(255,255,255,0)");
+        ctx.strokeStyle = gradient
+
+        ctx.moveTo(p0[0], p0[1]);
+        ctx.quadraticCurveTo(
+            q0[0], q0[1],
+            b[0], b[1]
+        );
+    }
+
+    let obj1 = {
+        arr: [{
+            c: [290, 150], //起始位置 px
+            r: 410, //大小
+            p: 2.55, //位置
+            e: 0.48, //曲度
+            f: [2, 2], //曲度位置
+            s: 100, //速度
+            percent: 50, //线条动画第一次执行的起始位置
+            l: [150, 0], //偏移长度,可为负值 [x,y]
+            l1: 150
+        }, {
+            c: [690, 120], //起始位置 px
+            r: 380, //大小
+            p: -2.45, //位置
+            e: 0.33, //曲度
+            f: [2, 2],
+            s: 200,
+            percent: 100,
+            l: [-150, 0],
+            l1: -150
+        }, {
+            c: [935, 140],
+            r: 210,
+            p: 1.45,
+            e: -0.48,
+            f: [2, 2], //曲度位置
+            s: 100, //速度
+            percent: 50, //线条动画第一次执行的起始位置
+            l: [-150, 0],
+            l1: -150
+        }, {
+            c: [1000, 345], //起始位置 px
+            r: 280, //大小
+            p: 1.44, //位置
+            e: 0.38, //曲度
+            f: [2, 2],
+            s: 200,
+            percent: 50,
+            l: [-150, 0],
+            l1: -150
+        }, {
+            c: [293, 185],
+            r: 400,
+            p: 2.42,
+            e: -0.39,
+            f: [2, 2], //曲度位置
+            s: 100, //速度
+            percent: 50, //线条动画第一次执行的起始位置
+            l: [150, 0],
+            l1: 150
+        }, {
+            c: [960, 170],
+            r: 170, //大小
+            p: 2.13, //位置
+            e: 0.48, //曲度
+            f: [2, 2],
+            s: 200,
+            percent: 100,
+            l: [0, 50],
+            l1: 0
+        }, {
+            c: [1010, 320], //起始位置 px
+            r: 145, //大小
+            p: 1.13, //位置
+            e: 0.48, //曲度
+            f: [2, 2],
+            s: 100,
+            percent: 50,
+            l: [0, -150],
+            l1: 0
+        }, {
+            c: [725, 277],
+            r: 240,
+            p: -1.35,
+            e: -0.48,
+            f: [2, 2], //曲度位置
+            s: 200, //速度
+            percent: 50, //线条动画第一次执行的起始位置
+            l: [150, 0],
+            l1: 0
+        }, {
+            c: [940, 150],
+            r: 260,
+            p: 1.63,
+            e: -0.48,
+            f: [2, 2],
+            s: 100,
+            percent: 50,
+            l: [-150, -150],
+            l1: 0
+        }],
+        ctx: ctx1,
+        fn: null,
+    }
+    obj1.fn = animate.bind(obj1),
+        obj1.fn()
 </script>
 
 </body>

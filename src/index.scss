@@ -187,27 +187,49 @@ div,span{
   z-index: 709826032 !important;
 }
 // 资质问题样式
-.ant-modal{
-  width: 0 !important;
-  height: 0;
-  background: #FFFFFF;
-  left: -49px;
-  top: 390px;
-  opacity: 0;
-  .ant-modal-header,.ant-modal-footer,.ant-modal-close{
+.cert-modal{
+  .ant-modal{
+    width: 0 !important;
+    height: 0;
+    background: #FFFFFF;
+    left: -49px;
+    top: 390px;
     opacity: 0;
+    .ant-modal-header,.ant-modal-footer,.ant-modal-close{
+      opacity: 0;
+    }
   }
 }
 .ant-picker-footer{
   display: none
 }
+.wxlogin-modal{
+  .ant-modal{
+    width: 400px;
+    top:25%;
+    .ant-modal-content{ 
+      width: 400px;
+      overflow: hidden;
+      .ant-modal-body{
+        padding:24px 24px 0;
+      }
+      .ant-modal-header,.ant-modal-footer{
+        display: none;
+      }
+    }
+  }
+  
+}
 .ant-modal-mask{
-  background-color: rgba(0, 0, 0, 0.1);
-  height: 101%;
+  background:none
 }
 .ant-scrolling-effect{
   overflow-y: scroll !important;
   width: 100% !important;
 }
-
+#wxLogin{
+  iframe{
+    display: block;
+  }
+}
 

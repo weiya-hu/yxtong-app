@@ -1,8 +1,9 @@
 
 import React,{ Component } from 'react'
 import './loginComponent.scss'
-import { Form , Button} from 'antd';
+import { Form , Button,Modal} from 'antd';
 import InputComponent from './inputComponent';
+import WxLogin from 'views/login/component/othorLogin/wxLogin'
 import { util } from 'utils/user'
 import { Link } from 'react-router-dom';
 import {dologin,getUser} from 'service/login'
@@ -23,6 +24,7 @@ export default class LoginComponent extends Component {
        mobileValue:'',
        acode:'86',
        captchaShow:false,
+       modalVisible:false
     }
     
     submit=async(value)=>{
@@ -78,7 +80,10 @@ export default class LoginComponent extends Component {
                     
         }
     }
-
+    //资质问号modal是否显示切换
+    toggleVisible=(val)=>{
+        this.setState({modalVisible:val})
+    }
     render(){
         let {loginSwitch,warnMessage,mobileValue,acode,captchaShow} = this.state
         return(
@@ -172,6 +177,7 @@ export default class LoginComponent extends Component {
                     <div></div>
                 }
                 <div className='fleximg'>
+                    {/* <div className='fleximg wechartimg'  onClick={()=>this.toggleVisible(true)}> */}
                     <div className='fleximg wechartimg'>
                         <img src={wechartimg}/>
                     </div>
@@ -182,6 +188,15 @@ export default class LoginComponent extends Component {
                         <img src={weiboimg}/>
                     </div>
                 </div>
+                <Modal
+                    title="Modal"
+                    visible={this.state.modalVisible}
+                    onCancel={()=>this.toggleVisible(false)}
+                    wrapClassName='wxlogin-modal'
+                    maskStyle={{background: 'rgba(0, 0, 0,0.5)'}}
+                >   
+                    <WxLogin />
+                </Modal>
             </div>
         )
     }

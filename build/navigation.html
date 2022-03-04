@@ -87,34 +87,42 @@
                     <li class="" id="li-propuct"><a href="/product.html">产品与服务</a>
                         <div class="navchild1">
                             <ul>
-                                <li class="marketing"><a href="/member_news.html?id=1">营销通</a><span>|</span>
-
+                                <li class="marketing">
+                                    <a href="/member_news.html?id=1">
+                                        <span>数智营销通</span>
+                                        <span>中小企业专享</span>
+                                    </a>
                                     <div class="barchild">
                                         <div class="bar-tip"></div>
                                         <ul>
-                                            <li><a href="/developmenting.html">CMS</a></li>
-                                            <li><a href="/developmenting.html">CDP</a></li>
-                                            <li><a href="/marketing.html">APP机器人</a></li>
-                                            <li><a href="/developmenting.html">DMP</a></li>
-                                            <li><a href="/developmenting.html">广告系统</a></li>
-                                            <li><a href="/developmenting.html">SCRM</a></li>
-                                            <li><a href="/developmenting.html">快速建站</a></li>
-                                            <li><a href="/developmenting.html">SMS</a></li>
-                                            <li><a href="/developmenting.html">EDM</a></li>
-                                            <li><a href=" /app/news">资讯平台</a></li>
-                                            <li><a href="/benefits.html">会员裂变</a></li>
-                                            <li><a href="/developmenting.html">直播</a></li>
-                                            <li><a href="/developmenting.html">智能客服</a></li>
+                                            <li><a href="/developmenting.html">CMS 内容管理</a></li>
+                                            <li><a href="/developmenting.html">DMP 精准数据</a></li>
+                                            <li><a href="/marketing.html">DSP 广告投放</a></li>
+                                            <li><a href="/developmenting.html">DSP 数据服务</a></li>
+                                            <li><a href="/developmenting.html">CDP 数据分析</a></li>
+                                            <li><a href="/developmenting.html">SCRM 私域流量</a></li>
+                                            <li><a href="/developmenting.html">信息资讯中心</a></li>
+                                            <li><a href="/developmenting.html">APP机器人矩阵</a></li>
+                                            <li><a href="/developmenting.html">SMS 5G短信</a></li>
+                                            <li><a href=" /app/news">EDM 电子邮件</a></li>
+                                            <li><a href="/benefits.html">会员裂变管理</a></li>
+                                            <li><a href="/developmenting.html">线上直播</a></li>
                                         </ul>
                                     </div>
                                 </li>
+                                <li><a href="/developmenting.html"><span>数智赢效通</span>
+                                        <span>全套解决方案</span></a></li>
+                                <li><a href="/vipdata.html"><span>数智优销通</span>
+                                            <span>微B/C端客户专享</span></a></li>
+                                <li><a href="/developmenting.html"><span>数智医销通</span>
+                                    <span>医 药 行 业 专 属                  </span></a></li>
 
-                                <li><a href="/vipdata.html">器械通</a><span>|</span></li>
+                                <div class="line"></div>
 
-
-                                <li><a href="/developmenting.html">优销通</a><span>|</span></li>
-                                <li><a href="/developmenting.html">营销通</a></li>
-
+                                <li><a href="/developmenting.html"><span>药 智 器 械</span>
+                                    <span>医疗器械数据服务</span></a></li>
+                                <li><a href="/developmenting.html"><span>数智医械通</span>
+                                        <span>医疗器械数据服务</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -224,10 +232,13 @@
 
 <div id="kfcontentbox">
     <div id="content" class="handle">
-        <div class="content-weixi">
+        <div class="content-login">
+            <img src="static/images/icon-content-login.png" alt="" style="user-select: none;">
+            <span>立即登录</span>
+        </div>
+        <div class="content-weixin" style="background: #1BAC4B;  height: 74px;">
             <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
             <span>微信咨询</span>
-
         </div>
         <div class="content-tel">
             <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
@@ -366,12 +377,29 @@
     //         }, 100);
     //     })
 
+    // 登录药智器械页面
+    var text = 'vipdata'
+    var url = window.location.href
+
     // 弹框消失
     function able() {
         $('.content-tips-tel').hide()
         $('.content-tips-wechat').hide()
     }
-    $('#content .content-weixi').on('mouseup', () => {
+    $('#content .content-login').on('mouseup', () => {
+        if (!isDrag) {
+            if (url.indexOf(text) >= 0) {
+                window.open("https://qx.yaozh.com", "_blank")
+                console.log(11)
+            } else {
+                window.open("/app/login", "_self")
+                console.log(222);
+            }
+
+
+        }
+    })
+    $('#content .content-weixin').on('mouseup', () => {
         if (!isDrag) {
             $('.content-tips-wechat').show()
         }
