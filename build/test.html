@@ -1,0 +1,213 @@
+<script src="static/lib/dragdealer/dragdealer.js"></script>
+
+<div id="kfcontentbox">
+    <div id="content" class="handle">
+        <div class="content-login">
+            <img src="static/images/icon-content-login.png" alt="" style="user-select: none;">
+            <span>立即登录</span>
+        </div>
+        <div class="content-weixin" style="background: #1BAC4B;  height: 74px;">
+            <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
+            <span>微信咨询</span>
+        </div>
+        <div class="content-tel">
+            <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
+            <span>电话咨询</span>
+
+        </div>
+        <div class="content-source">
+            <div>
+                <img src="static/images/icon-content-source.png" alt="" style="user-select: none;">
+                <span>智能客服</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-tips-wechat">
+    <div class="tips-title">联系客服</div>
+
+    <img src="static/images/content-weixi.png" alt="" class="qrcodeimg">
+    <div class="tips-prompt">请扫描上方二维码，联系客服人员</div>
+    <div class="tips-bottom" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+
+<div class="content-tips-tel">
+    <span>电话咨询</span>
+    <span>客服咨询电话：023-62797926</span>
+    <div class="btn-tel" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+<script>
+    let isDrag = false; //是否拖拽，用于处理点击和推拽的冒泡
+    new Dragdealer('kfcontentbox', {
+        y: 0.9,
+        horizontal: false,
+        vertical: true,
+        top: 110,
+        animationCallback: function(x, y) {
+            console.log('animationCallback');
+            $('.udesk-client-btn').css('z-index', '-1')
+            $('#content').css('cursor', 's-resize')
+            isDrag = true;
+        },
+        dragStopCallback: function(x, y) {
+            console.log('dragStop');
+            $('.udesk-client-btn').css('z-index', '999')
+            $('#content').css('cursor', 'pointer')
+            isDrag = false;
+        },
+    });
+    // let old_left = 0
+    // let old_top = 0
+    // let old_position_left = 0
+    // let old_position_top = 0
+
+    // let timer = null;
+    // let isDrag = false;
+    // $(document).on('mouseup',()=>{
+    //     if (!isDrag) {
+    //         clearTimeout(timer);
+    //     } else {
+    //         setTimeout(() => {
+    //             isDrag = false;
+    //             $('.udesk-client-btn').css('z-index','999')
+    //             $('#content').css('cursor','pointer')
+    //         }, 200);
+    //     }
+    // })
+    // $('#content').on('mousedown', function(event) {
+    //     isDrag = false;
+    //     old_left = event.pageX;
+    //     old_top = event.pageY;
+    //     old_position_left = $(this).position().left;
+    //     old_position_top = $(this).position().top;
+    //     timer = setTimeout(() => {
+    //         isDrag = true
+    //         $('.udesk-client-btn').css('z-index','-1')
+    //         $('#content').css('cursor','s-resize')
+    //     }, 100);
+    // })
+    // $('#content').on('mouseup', (e) => {
+    //     if (!isDrag) {
+    //         clearTimeout(timer);
+    //     } else {
+    //         setTimeout(() => {
+    //             isDrag = false;
+    //             $('.udesk-client-btn').css('z-index','999')
+    //             $('#content').css('cursor','pointer')
+    //         }, 200);
+    //     }
+    // })
+    // $('#content').on('mousemove', () => {
+    //     if (isDrag) {
+    //         let new_left = event.pageX;
+    //         let new_top = event.pageY;
+    //         let chang_x = new_left - old_left;
+    //         let change_y = new_top - old_top;
+    //         let new_position_left = old_position_left + chang_x;
+    //         let new_position_top = old_position_top + change_y;
+    //         if (new_position_top < 0) {
+    //             new_position_top = 0;
+    //         }
+    //         if (new_position_top > $(document).height() - $('#content').height()) {
+    //             new_position_top = $(document).height() - $('#content').height();
+    //         }
+
+    //         $('#content').css({
+    //             top: new_position_top + 'px'
+    //         })
+    //     } else {
+    //         $(document).off("mousemove");
+    //     }
+    // })
+    // $('#content .content-weixi').on('mouseup', () => {
+    //     setTimeout(() => {
+    //         if (!isDrag) {
+    //             $('.content-tips-wechat').show()
+
+    //         }
+    //     }, 100);
+    // })
+    // $('#content .content-tel').on('mouseup', () => {
+    //         setTimeout(() => {
+    //             if (!isDrag) {
+    //                 $('.content-tips-tel').show()
+
+    //             }
+    //         }, 100);
+    //     })
+
+    // 登录药智器械页面
+    var text = 'vipdata'
+    var url = window.location.href
+
+    // 弹框消失
+    function able() {
+        $('.content-tips-tel').hide()
+        $('.content-tips-wechat').hide()
+    }
+    $('#content .content-login').on('mouseup', () => {
+        if (!isDrag) {
+            if (url.indexOf(text) >= 0) {
+                window.open("https://qx.yaozh.com", "_blank")
+                console.log(11)
+            } else {
+                window.open("/app/login", "_self")
+                console.log(222);
+            }
+
+
+        }
+    })
+    $('#content .content-weixin').on('mouseup', () => {
+        if (!isDrag) {
+            $('.content-tips-wechat').show()
+        }
+    })
+    $('#content .content-tel').on('mouseup', () => {
+        if (!isDrag) {
+            $('.content-tips-tel').show()
+        }
+    })
+</script>
+
+
+<script>
+    (function(a, h, c, b, f, g) {
+        a["UdeskApiObject"] = f;
+        a[f] = a[f] || function() {
+            (a[f].d = a[f].d || []).push(arguments)
+        };
+        g = h.createElement(c);
+        g.async = 1;
+        g.charset = "utf-8";
+        g.src = b;
+        c = h.getElementsByTagName(c)[0];
+        c.parentNode.insertBefore(g, c)
+    })(window, document, "script", "https://assets-cli.udesk.cn/im_client/js/udeskApi.js", "ud");
+
+    ud({
+        "code": "4a67504g",
+        "link": "https://1537030.udesk.cn/im_client/?web_plugin_id=179991"
+    });
+
+
+    let kfBtn
+    let getFftimer = setInterval(() => {
+        kfBtn = $('#udesk_btn .udesk-client-btn')
+        if (kfBtn.length) {
+            kfBtn.addClass('myfkbtn').appendTo('#content')
+            clearInterval(getFftimer)
+        }
+    }, 100);
+</script>

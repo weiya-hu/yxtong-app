@@ -88,7 +88,7 @@
                         <div class="navchild1">
                             <ul>
                                 <li class="marketing">
-                                    <a href="/member_news.html?id=1">
+                                    <a href="/sales.html">
                                         <span>数智营销通</span>
                                         <span>中小企业专享</span>
                                     </a>
@@ -96,30 +96,30 @@
                                         <div class="bar-tip"></div>
                                         <ul>
                                             <li><a href="/developmenting.html">CMS 内容管理</a></li>
-                                            <li><a href="/developmenting.html">DMP 精准数据</a></li>
-                                            <li><a href="/marketing.html">DSP 广告投放</a></li>
+                                            <li><a href="/dmp_intro.html">DMP 精准数据</a></li>
+                                            <li><a href="/developmenting.html">DSP 广告投放</a></li>
                                             <li><a href="/developmenting.html">DSP 数据服务</a></li>
                                             <li><a href="/developmenting.html">CDP 数据分析</a></li>
                                             <li><a href="/developmenting.html">SCRM 私域流量</a></li>
-                                            <li><a href="/developmenting.html">信息资讯中心</a></li>
-                                            <li><a href="/developmenting.html">APP机器人矩阵</a></li>
+                                            <li><a href="/app/news">信息资讯中心</a></li>
+                                            <li><a href="/sales.html">APP机器人矩阵</a></li>
                                             <li><a href="/developmenting.html">SMS 5G短信</a></li>
-                                            <li><a href=" /app/news">EDM 电子邮件</a></li>
-                                            <li><a href="/benefits.html">会员裂变管理</a></li>
+                                            <li><a href="/developmenting.html">EDM 电子邮件</a></li>
+                                            <li><a href="/developmenting.html">会员裂变管理</a></li>
                                             <li><a href="/developmenting.html">线上直播</a></li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li><a href="/developmenting.html"><span>数智赢效通</span>
                                         <span>全套解决方案</span></a></li>
-                                <li><a href="/vipdata.html"><span>数智优销通</span>
+                                <li><a href="/developmenting.html"><span>数智优销通</span>
                                             <span>微B/C端客户专享</span></a></li>
                                 <li><a href="/developmenting.html"><span>数智医销通</span>
                                     <span>医 药 行 业 专 属                  </span></a></li>
 
                                 <div class="line"></div>
 
-                                <li><a href="/developmenting.html"><span>药 智 器 械</span>
+                                <li><a href="/vipdata.html"><span>药 智 器 械</span>
                                     <span>医疗器械数据服务</span></a></li>
                                 <li><a href="/developmenting.html"><span>数智医械通</span>
                                         <span>医疗器械数据服务</span></a></li>
@@ -215,16 +215,29 @@
         })
 
 
+
         function isUser(userInfo) {
             $('.default-show').hide()
             if (!userInfo) {
                 $('.nologin').css('display', 'flex')
                 $('.logined').css('display', 'none')
+                $('.content-login').css('display', 'block')
+
             } else {
                 $('.nologin').css('display', 'none')
                 $('.logined').css('display', 'flex')
                 $('#header').attr('src', userInfo.head)
                 $('#uname').text(userInfo.name)
+                    // 立即登录按钮
+                $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
+                $('.content-login').css('display', 'none')
+                    // 登录药智器械页面
+                var text = 'vipdata'
+                var url = window.location.href
+                if (url.indexOf(text) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                }
             }
         }
     </script>
@@ -1744,8 +1757,8 @@
     let a = $(".attract-padsq .tab a")
     for (var i = 0; i < a.length; i++) {
 
-        console.log(a[i])
-            // console.log(aa[i])
+        // console.log(a[i])
+
 
         a.click(function() {
             console.log(i)
