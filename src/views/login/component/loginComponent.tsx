@@ -177,7 +177,8 @@ export default class LoginComponent extends Component {
                     </div>
                 }
                 <div className='fleximg'>
-                    <div className='fleximg wechartimg'  onClick={()=>this.toggleVisible(true)}>
+                    {/* <div className='fleximg wechartimg'  onClick={()=>this.toggleVisible(true)}> */}
+                    <div className='fleximg wechartimg'>
                         <img src={wechartimg}/>
                     </div>
                     <div className='fleximg wechartimg'>

@@ -53,6 +53,11 @@ export const getIndustry =():Promise<API.IResult>=>{
     return  get('dim/get-industry')
 }
 
+//获取省市地区 
+export const getGeo =():Promise<API.IResult>=>{
+    return  get('dim/get-geo')
+}
+
 //保存个人认证信息
 export const saveCompany =(data):Promise<API.IResult>=>{
     return  post('company/save-company',data)

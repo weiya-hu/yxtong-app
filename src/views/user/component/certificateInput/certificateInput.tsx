@@ -33,7 +33,7 @@ class CertificateInput extends Component<CertificateInputProps,any>{
         this.setState({message:message})
     }
     CascaderChange(value) {
-        
+        console.log(value)
       }
     phoneValidate = (rule, value, callback) => {
 
@@ -81,6 +81,21 @@ class CertificateInput extends Component<CertificateInputProps,any>{
                     >
                         <Cascader
                             fieldNames={{ label: 'name', value: 'industryId', children: 'children' }}
+                            options={extraData}
+                            onChange={this.CascaderChange}
+                            placeholder={placeholder}
+                            disabled={disabled}
+                        />
+                    </Form.Item>)
+                break;
+            case 'cascader_city':
+                component=(
+                    <Form.Item name={formName}
+                        rules={[{validator:this.requirValidate}]}
+                        initialValue = {initialValue}
+                    >
+                        <Cascader
+                            fieldNames={{ label: 'name', value: 'code', children: 'children' }}
                             options={extraData}
                             onChange={this.CascaderChange}
                             placeholder={placeholder}

@@ -8,7 +8,7 @@ import $message from 'views/component/message/index'
 
 import CertificateInput from './component/certificateInput/certificateInput'
 import AliyunOSSUpload from './component/multOssImg'
-import {getAuditRecord,getIndustry,saveCompany,submitCompany} from 'service/user'
+import {getAuditRecord,getIndustry,saveCompany,submitCompany,getGeo} from 'service/user'
 
 import problemimg from 'public/images/problem.png'
 import addImageimg from 'public/images/user/addImage.png'
@@ -22,6 +22,7 @@ export default class Certificate extends Component{
         modalVisible:false,//照片问题modal是否显示
         AuditRecord:{},//认证记录
         IndustryType:[],//行业分类全类
+        cityType:[],//省市区全类
         images:[],//上传的照片
         message:'',//上传照片表单出错message
         status:null,//企业认证的状态，0：未填写，1：保存，2：审核中，3：审核工作，4：审核不通过
@@ -71,7 +72,10 @@ export default class Certificate extends Component{
                 ...values,
                 left_time:moment(values.left_time.releasedTimestamp).unix(),
                 license:imgs.join(','),
-                industry_id:values.industry_id.join(',')
+                industry_id:values.industry_id.join(','),
+                province:values.city[0],
+                city:values.city[1],
+                district:values.city[2],
             }
             let submitFlag = JSON.parse(localStorage.getItem('submit')) 
             const res = submitFlag ? await submitCompany(data): await saveCompany(data)
@@ -110,6 +114,11 @@ export default class Certificate extends Component{
         const {status, body} = await getIndustry()
         status && this.setState({IndustryType:body})
     }
+    //省市区
+    getCityType=async()=>{
+        const {status, body} = await getGeo()
+        status && this.setState({cityType:body})
+    }
     //上传照片组件传过来值
     licenseIMgChange=(val,sendval)=>{
         const {images}=this.state
@@ -137,6 +146,7 @@ export default class Certificate extends Component{
         
         this.getIndustryType()
         this.getRecord()
+        this.getCityType()
     }
     componentWillUnmount = () => {
         this.setState = (state,callback)=>{
@@ -144,7 +154,7 @@ export default class Certificate extends Component{
         };
     }
     render(){
-        const {modalVisible,IndustryType,images,message,status,disabled,AuditRecord} =this.state
+        const {modalVisible,IndustryType,images,message,status,disabled,AuditRecord,cityType} =this.state
         let flag = AuditRecord.status >=0
         return flag &&
         <div id='certificate'>
@@ -166,7 +176,7 @@ export default class Certificate extends Component{
                         formName='industry_id'
                         name='cascader'
                         disabled={disabled}
-                        initialValue={AuditRecord.industry_id?AuditRecord.industry_id.split(','):[]}
+                        initialValue={AuditRecord.industry_id?AuditRecord.industry_id.split(','):''}
                         extraData={IndustryType}
                     ></CertificateInput>
                 </div>
@@ -270,16 +280,18 @@ export default class Certificate extends Component{
                         initialValue={AuditRecord.contact}
                     ></CertificateInput>
                 </div>
+                
                 <div className='cert-input-item'>
                     <CertificateInput
-                         key={7}
-                        require={false}
-                        label='官方网站'
-                        placeholder='请填写官方网站'
-                        formName='url'
-                        name='text'
+                        key={10}
+                        require={true}
+                        label='省份地区'
+                        placeholder='请选择地区'
+                        formName='city'
+                        name='cascader_city'
                         disabled={disabled}
-                        initialValue={AuditRecord.url}
+                        initialValue={AuditRecord.district?[AuditRecord.province,AuditRecord.city,AuditRecord.district]:''}
+                        extraData={cityType}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item'>
@@ -292,6 +304,18 @@ export default class Certificate extends Component{
                         name='text'
                         disabled={disabled}
                         initialValue={AuditRecord.address}
+                    ></CertificateInput>
+                </div>
+                <div className='cert-input-item'>
+                    <CertificateInput
+                         key={7}
+                        require={false}
+                        label='官方网站'
+                        placeholder='请填写官方网站'
+                        formName='url'
+                        name='text'
+                        disabled={disabled}
+                        initialValue={AuditRecord.url}
                     ></CertificateInput>
                 </div>
                 <div className='cert-input-item'>

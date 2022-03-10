@@ -242,6 +242,219 @@
             }
         }
     </script>
+<script src="static/lib/dragdealer/dragdealer.js"></script>
+
+<div id="kfcontentbox">
+    <div id="content" class="handle">
+        <div class="content-login">
+            <img src="static/images/icon-content-login.png" alt="" style="user-select: none;">
+            <span>立即登录</span>
+        </div>
+        <div class="content-weixin" style="background: #1BAC4B;  height: 74px;">
+            <img src="static/images/icon-content-weixi.png" alt="" style="user-select: none;">
+            <span>微信咨询</span>
+        </div>
+        <div class="content-tel">
+            <img src="static/images/icon-content-phone.png" alt="" style="user-select: none;">
+            <span>电话咨询</span>
+
+        </div>
+        <div class="content-source">
+            <div>
+                <img src="static/images/icon-content-source.png" alt="" style="user-select: none;">
+                <span>智能客服</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-tips-wechat">
+    <div class="tips-title">联系客服</div>
+
+    <img src="static/images/content-weixi.png" alt="" class="qrcodeimg">
+    <div class="tips-prompt">请扫描上方二维码，联系客服人员</div>
+    <div class="tips-bottom" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+
+<div class="content-tips-tel">
+    <span>电话咨询</span>
+    <span>客服咨询电话：023-62797926</span>
+    <div class="btn-tel" onclick="able()">
+        <div class="tips-know">
+            我知道了
+        </div>
+    </div>
+</div>
+
+<script>
+    let isDrag = false; //是否拖拽，用于处理点击和推拽的冒泡
+    new Dragdealer('kfcontentbox', {
+        y: 0.9,
+        horizontal: false,
+        vertical: true,
+        top: 110,
+        animationCallback: function(x, y) {
+            console.log('animationCallback');
+            $('.udesk-client-btn').css('z-index', '-1')
+            $('#content').css('cursor', 's-resize')
+            isDrag = true;
+        },
+        dragStopCallback: function(x, y) {
+            console.log('dragStop');
+            $('.udesk-client-btn').css('z-index', '999')
+            $('#content').css('cursor', 'pointer')
+            isDrag = false;
+        },
+    });
+    // let old_left = 0
+    // let old_top = 0
+    // let old_position_left = 0
+    // let old_position_top = 0
+
+    // let timer = null;
+    // let isDrag = false;
+    // $(document).on('mouseup',()=>{
+    //     if (!isDrag) {
+    //         clearTimeout(timer);
+    //     } else {
+    //         setTimeout(() => {
+    //             isDrag = false;
+    //             $('.udesk-client-btn').css('z-index','999')
+    //             $('#content').css('cursor','pointer')
+    //         }, 200);
+    //     }
+    // })
+    // $('#content').on('mousedown', function(event) {
+    //     isDrag = false;
+    //     old_left = event.pageX;
+    //     old_top = event.pageY;
+    //     old_position_left = $(this).position().left;
+    //     old_position_top = $(this).position().top;
+    //     timer = setTimeout(() => {
+    //         isDrag = true
+    //         $('.udesk-client-btn').css('z-index','-1')
+    //         $('#content').css('cursor','s-resize')
+    //     }, 100);
+    // })
+    // $('#content').on('mouseup', (e) => {
+    //     if (!isDrag) {
+    //         clearTimeout(timer);
+    //     } else {
+    //         setTimeout(() => {
+    //             isDrag = false;
+    //             $('.udesk-client-btn').css('z-index','999')
+    //             $('#content').css('cursor','pointer')
+    //         }, 200);
+    //     }
+    // })
+    // $('#content').on('mousemove', () => {
+    //     if (isDrag) {
+    //         let new_left = event.pageX;
+    //         let new_top = event.pageY;
+    //         let chang_x = new_left - old_left;
+    //         let change_y = new_top - old_top;
+    //         let new_position_left = old_position_left + chang_x;
+    //         let new_position_top = old_position_top + change_y;
+    //         if (new_position_top < 0) {
+    //             new_position_top = 0;
+    //         }
+    //         if (new_position_top > $(document).height() - $('#content').height()) {
+    //             new_position_top = $(document).height() - $('#content').height();
+    //         }
+
+    //         $('#content').css({
+    //             top: new_position_top + 'px'
+    //         })
+    //     } else {
+    //         $(document).off("mousemove");
+    //     }
+    // })
+    // $('#content .content-weixi').on('mouseup', () => {
+    //     setTimeout(() => {
+    //         if (!isDrag) {
+    //             $('.content-tips-wechat').show()
+
+    //         }
+    //     }, 100);
+    // })
+    // $('#content .content-tel').on('mouseup', () => {
+    //         setTimeout(() => {
+    //             if (!isDrag) {
+    //                 $('.content-tips-tel').show()
+
+    //             }
+    //         }, 100);
+    //     })
+
+    // 登录药智器械页面
+    var text = 'vipdata'
+    var url = window.location.href
+
+    // 弹框消失
+    function able() {
+        $('.content-tips-tel').hide()
+        $('.content-tips-wechat').hide()
+    }
+    $('#content .content-login').on('mouseup', () => {
+        if (!isDrag) {
+            if (url.indexOf(text) >= 0) {
+                window.open("https://qx.yaozh.com", "_blank")
+                console.log(11)
+            } else {
+                window.open("/app/login", "_self")
+                console.log(222);
+            }
+
+
+        }
+    })
+    $('#content .content-weixin').on('mouseup', () => {
+        if (!isDrag) {
+            $('.content-tips-wechat').show()
+        }
+    })
+    $('#content .content-tel').on('mouseup', () => {
+        if (!isDrag) {
+            $('.content-tips-tel').show()
+        }
+    })
+</script>
+
+
+<script>
+    (function(a, h, c, b, f, g) {
+        a["UdeskApiObject"] = f;
+        a[f] = a[f] || function() {
+            (a[f].d = a[f].d || []).push(arguments)
+        };
+        g = h.createElement(c);
+        g.async = 1;
+        g.charset = "utf-8";
+        g.src = b;
+        c = h.getElementsByTagName(c)[0];
+        c.parentNode.insertBefore(g, c)
+    })(window, document, "script", "https://assets-cli.udesk.cn/im_client/js/udeskApi.js", "ud");
+
+    ud({
+        "code": "4a67504g",
+        "link": "https://1537030.udesk.cn/im_client/?web_plugin_id=179991"
+    });
+
+
+    let kfBtn
+    let getFftimer = setInterval(() => {
+        kfBtn = $('#udesk_btn .udesk-client-btn')
+        if (kfBtn.length) {
+            kfBtn.addClass('myfkbtn').appendTo('#content')
+            clearInterval(getFftimer)
+        }
+    }, 100);
+</script>
 <link rel="stylesheet" type="text/css" href="static/css/marketing.css" />
 
 <div id="container">
@@ -404,7 +617,7 @@
                 <a>今日头条</a>
                 <a>抖音</a>
                 <a>微博</a>
-                <span disabled>…</span>
+                <a>20+APP</a>
             </div>
             <div class="tab-content" tab-content="tab-marketing-model">
                 <div class="tab-content-item" style="display: block;">
@@ -625,177 +838,286 @@
                         </dl>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="marketing-adv">
-        <div class="wrapper">
-            <div class="marketing-tit white">
-                <h2 class="wow fadeInUp">十二大优势</h2>
-                <P class="wow fadeInDown">App Marketing Robot</P>
-            </div>
-            <div class="lst clearfix">
-                <div class="left">
-                    <div class="item item-01">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">01</div>
-                                <h3>技术领先</h3>
-                            </div>
-                            <div class="bd">
-                                <p>技术的大幅改进，安全性能大幅度提升，国内唯一一家采用三种技术合一的智能营销机器人系统。</p>
-                                <p>基于操作系统底层代码的改进；融合了人工智能（AI）的图像识别技术的应用；同时采用了混沌技术来模拟单个和群体App运营号的行为，使系统真正做到极致接近真实个人的操作行为。</p>
-                                <p>大幅度提高了各种App运营号（如QQ号，微信号）的安全性，同时可以实现一机无限多号；而且一号一IP一环境参数。</p>
+                <div class="tab-content-item">
+                    <div class="item-top">
+                        <div class="left">
+                            <div class="txt">
+                                国内APP
                             </div>
                         </div>
-                    </div>
-                    <div class="item item-03">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">03</div>
-                                <h3>高自动化</h3>
-                            </div>
-                            <div class="bd">
-                                <p>自动化程度高。</p>
-                                <p>1，一键设置参数，用户“傻瓜式”操作，简单易学。</p>
-                                <p>2，可按天数，或按周，或按月，提前设置机器人的操作行为，做到真正的完全自动化。</p>
-                                <p>3，提供智能客服系统，机器人系统可以自动回复客户的一般提问，大幅度节省了用户的工作时间。</p>
-                            </div>
+                        <div class="right">
+                            <ul>
+                                <li>
+                                    <div class="icon-marketing">
+                                        <img src="static/images/marketing-icon-chat.png" alt="">
+                                        <span>微信</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-chat.png" alt=""><span>微信</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-wx.png" alt=""><span>企业微信</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-qq.png" alt=""><span>QQ</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-dy.png" alt=""><span>抖音</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-wb.png" alt=""><span>微博</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-ks.png" alt=""><span>快手</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-red.png" alt=""><span>小红书</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-know.png" alt=""><span>知乎</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-fish.png" alt=""><span>闲鱼</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-db.png" alt=""><span>豆瓣</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-li.png" alt=""><span>Bilibili</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-dd.png" alt=""><span>钉钉</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-baidu.png" alt=""><span>百度贴吧</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-dytk.png" alt=""><span>TikTok</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-zfb.png" alt=""><span>支付宝</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-pdd.png" alt=""><span>拼多多</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-tb.png" alt=""><span>淘宝</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-more.png" alt=""><span>更多</span></div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="item item-05">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">05</div>
-                                <h3>生态系统完善</h3>
-                            </div>
-                            <div class="bd">
-                                <p>本营销机器人系统平台不仅可以提供APP的各项宣传推广功能，还可以提供每个APP系统应有的上中下游完善的产业链服务，诸如：注册，采集，解冻并提供各种App运营号的等。</p>
+                    <div class="item-bottom">
+                        <div class="left">
+                            <div class="txt">
+                                国外APP
                             </div>
                         </div>
-                    </div>
-                    <div class="item item-07">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">07</div>
-                                <h3>数据库全</h3>
-                            </div>
-                            <div class="bd">
-                                <p>大数据智能营销机器人自带To B及 To C的数据库，全国1.6亿企业数据库和10以以上个人手机号段。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item item-09">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">09</div>
-                                <h3>信息类型丰富</h3>
-                            </div>
-                            <div class="bd">
-                                <p>本智能营销机器人系统是目前国内发送广告信息的种类最多，最完整的平台。</p>
-                                <p>可以发放的广告类型包括：文本消息，文档文件，图片文件，视频文件，音频文件，链接网址等。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item item-11">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">11</div>
-                                <h3>适用范围广泛</h3>
-                            </div>
-                            <div class="bd">
-                                <p>1，适用于各行各业，各种商业项目的宣传推广：如App推广，网站网址推广，产品/技术/服务推广。</p>
-                                <p>2，适用于不同年龄阶层的人：上至七，八十岁的老人；下至七，八岁/十几岁的小学生/中学生皆可使用，让机器人帮您挣钱，您专注学习，从事兴趣爱好，享受生活，不再是梦想！</p>
-                                <p>3、适合不同的类型的主体使用：既是适合于个人的创业法宝； 也是适合于家庭财富的倍增器；也是适合于大中小微各种企业推广产品宣传，提升产品销售业绩的神器。</p>
-                                <p>4、适合于不同的商业类型和商业模式的开发，比如：自媒体作品的推广；基于微信群的社交微商。</p>
-                                <p>5、国际化程度高，适合各种经营外贸业务的企业和个人开展外贸业务。本系统开发了目前世界上最流行的APP，即将推出包括Facebook，Twitter，WhatsApp, LinkedIn, Messenger, Youtube, Instagram等平台的营销机器人系统。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="right">
-                    <div class="item item-02">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">02</div>
-                                <h3>规模庞大</h3>
-                            </div>
-                            <div class="bd">
-                                <p>宣传推广能力和规模的大幅度提升</p>
-                                <p>国内唯一一家可以将大规模营销宣传推广的能力赋能予个人的系统。一个人就可以打败一家大型公司，甚至是颠覆一个行业的市场格局，将不再是梦想！！！</p>
-                                <p>1，单一手机的宣传效能（在连续24小时内）大幅度的提升：是其他同类产品的5~10倍。</p>
-                                <p>2，单一手机可以在多App平台推广：能从数以百计不同的APP平台进行宣传推广，供客户自由选用。</p>
-                                <p>3，可以为客户提供不同App运营号定制增号的服务，可以客户定制开发任何APP平台的宣传推广功能。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item item-04">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">04</div>
-                                <h3>价格优惠</h3>
-                            </div>
-                            <div class="bd">
-                                <p>价格大幅度的下降，可永久免费使用，还可以赚取巨额佣金（目前是国内性价比最优惠，绝对价格最低的营销机器人系统）。</p>
-                                <p>1，首期推出的5个App平台（包括微信，QQ，今日头条，抖音，新浪微博），每个软件的基础功能月付费用仅仅99元至198元。同时开通5个App推广平台基础功能的优惠方案仅仅支付398元/每月（平均仅70多元/月/软件）。</p>
-                                <p>2，平台同时提供极其优惠的裂变推广返佣政策，首创分级返佣模式，让用户可以通过积分兑换，享受几乎永久的免费的使用本营销机器人系统，并可以赚取可观的推广佣金：每月可高达几千至几万不等。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item item-06">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">06</div>
-                                <h3>远程监控</h3>
-                            </div>
-                            <div class="bd">
-                                <p>可以随时远程监控管理，轻轻松松移动办公，不需要额外设置中控系统。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item item-08">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">08</div>
-                                <h3>降低运营成本</h3>
-                            </div>
-                            <div class="bd">
-                                <p>本智能营销机器人系统大幅度降低了各种人工成本，场地成本，税费成本，约占公司费用80~90%以上。</p>
-                                <p>减少了90%以上人力成本（包括销售人员，客服人员以及行政管理人员的数量）；</p>
-                                <p>减少了90%以上场地成本（员工数量减少，办公场地必然减少）。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item item-10">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">10</div>
-                                <h3>广告联盟服务</h3>
-                            </div>
-                            <div class="bd">
-                                <p>加入广告联盟，每年可以免费享受多次全平台数以万计，十万计，百万计，甚至千万计的微信号，QQ号，抖音号，微博号等不同的平台的广告内容推送服务。为加盟客户做产品技术的巨量免费引流。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item item-12">
-                        <div class="inner">
-                            <div class="hd">
-                                <div class="number">12</div>
-                                <h3>自主产权</h3>
-                            </div>
-                            <div class="bd">
-                                <p>可以根据不同目标APP平台规则的改变而随时修改，从而保证用户能长期稳定的使用本营销系统。</p>
-                            </div>
+                        <div class="right">
+                            <ul>
+                                <li>
+                                    <div class="icon-marketing">
+                                        <img src="static/images/marketing-icon-fb.png" alt="">
+                                        <span>Facebook</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-tw.png" alt=""><span>Twitter</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-you.png" alt=""><span>Youtube</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-WhatsApp.png" alt=""><span>WhatsApp</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-ig.png" alt=""><span>Instagram</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-in.png" alt=""><span>Linkedln</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-mess.png" alt=""><span>Messenger</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-more.png" alt=""><span>more</span></div>
+                                </li>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="bottom-navs">
+        <div class="marketing-adv">
+            <div class="wrapper">
+                <div class="marketing-tit white">
+                    <h2 class="wow fadeInUp">十二大优势</h2>
+                    <P class="wow fadeInDown">App Marketing Robot</P>
+                </div>
+                <div class="lst clearfix">
+                    <div class="left">
+                        <div class="item item-01">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">01</div>
+                                    <h3>技术领先</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>技术的大幅改进，安全性能大幅度提升，国内唯一一家采用三种技术合一的智能营销机器人系统。</p>
+                                    <p>基于操作系统底层代码的改进；融合了人工智能（AI）的图像识别技术的应用；同时采用了混沌技术来模拟单个和群体App运营号的行为，使系统真正做到极致接近真实个人的操作行为。</p>
+                                    <p>大幅度提高了各种App运营号（如QQ号，微信号）的安全性，同时可以实现一机无限多号；而且一号一IP一环境参数。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-03">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">03</div>
+                                    <h3>高自动化</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>自动化程度高。</p>
+                                    <p>1，一键设置参数，用户“傻瓜式”操作，简单易学。</p>
+                                    <p>2，可按天数，或按周，或按月，提前设置机器人的操作行为，做到真正的完全自动化。</p>
+                                    <p>3，提供智能客服系统，机器人系统可以自动回复客户的一般提问，大幅度节省了用户的工作时间。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-05">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">05</div>
+                                    <h3>生态系统完善</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>本营销机器人系统平台不仅可以提供APP的各项宣传推广功能，还可以提供每个APP系统应有的上中下游完善的产业链服务，诸如：注册，采集，解冻并提供各种App运营号的等。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-07">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">07</div>
+                                    <h3>数据库全</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>大数据智能营销机器人自带To B及 To C的数据库，全国1.6亿企业数据库和10以以上个人手机号段。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-09">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">09</div>
+                                    <h3>信息类型丰富</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>本智能营销机器人系统是目前国内发送广告信息的种类最多，最完整的平台。</p>
+                                    <p>可以发放的广告类型包括：文本消息，文档文件，图片文件，视频文件，音频文件，链接网址等。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-11">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">11</div>
+                                    <h3>适用范围广泛</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>1，适用于各行各业，各种商业项目的宣传推广：如App推广，网站网址推广，产品/技术/服务推广。</p>
+                                    <p>2，适用于不同年龄阶层的人：上至七，八十岁的老人；下至七，八岁/十几岁的小学生/中学生皆可使用，让机器人帮您挣钱，您专注学习，从事兴趣爱好，享受生活，不再是梦想！</p>
+                                    <p>3、适合不同的类型的主体使用：既是适合于个人的创业法宝； 也是适合于家庭财富的倍增器；也是适合于大中小微各种企业推广产品宣传，提升产品销售业绩的神器。</p>
+                                    <p>4、适合于不同的商业类型和商业模式的开发，比如：自媒体作品的推广；基于微信群的社交微商。</p>
+                                    <p>5、国际化程度高，适合各种经营外贸业务的企业和个人开展外贸业务。本系统开发了目前世界上最流行的APP，即将推出包括Facebook，Twitter，WhatsApp, LinkedIn, Messenger, Youtube, Instagram等平台的营销机器人系统。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="item item-02">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">02</div>
+                                    <h3>规模庞大</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>宣传推广能力和规模的大幅度提升</p>
+                                    <p>国内唯一一家可以将大规模营销宣传推广的能力赋能予个人的系统。一个人就可以打败一家大型公司，甚至是颠覆一个行业的市场格局，将不再是梦想！！！</p>
+                                    <p>1，单一手机的宣传效能（在连续24小时内）大幅度的提升：是其他同类产品的5~10倍。</p>
+                                    <p>2，单一手机可以在多App平台推广：能从数以百计不同的APP平台进行宣传推广，供客户自由选用。</p>
+                                    <p>3，可以为客户提供不同App运营号定制增号的服务，可以客户定制开发任何APP平台的宣传推广功能。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-04">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">04</div>
+                                    <h3>价格优惠</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>价格大幅度的下降，可永久免费使用，还可以赚取巨额佣金（目前是国内性价比最优惠，绝对价格最低的营销机器人系统）。</p>
+                                    <p>1，首期推出的5个App平台（包括微信，QQ，今日头条，抖音，新浪微博），每个软件的基础功能月付费用仅仅99元至198元。同时开通5个App推广平台基础功能的优惠方案仅仅支付398元/每月（平均仅70多元/月/软件）。</p>
+                                    <p>2，平台同时提供极其优惠的裂变推广返佣政策，首创分级返佣模式，让用户可以通过积分兑换，享受几乎永久的免费的使用本营销机器人系统，并可以赚取可观的推广佣金：每月可高达几千至几万不等。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-06">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">06</div>
+                                    <h3>远程监控</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>可以随时远程监控管理，轻轻松松移动办公，不需要额外设置中控系统。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-08">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">08</div>
+                                    <h3>降低运营成本</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>本智能营销机器人系统大幅度降低了各种人工成本，场地成本，税费成本，约占公司费用80~90%以上。</p>
+                                    <p>减少了90%以上人力成本（包括销售人员，客服人员以及行政管理人员的数量）；</p>
+                                    <p>减少了90%以上场地成本（员工数量减少，办公场地必然减少）。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-10">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">10</div>
+                                    <h3>广告联盟服务</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>加入广告联盟，每年可以免费享受多次全平台数以万计，十万计，百万计，甚至千万计的微信号，QQ号，抖音号，微博号等不同的平台的广告内容推送服务。为加盟客户做产品技术的巨量免费引流。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-12">
+                            <div class="inner">
+                                <div class="hd">
+                                    <div class="number">12</div>
+                                    <h3>自主产权</h3>
+                                </div>
+                                <div class="bd">
+                                    <p>可以根据不同目标APP平台规则的改变而随时修改，从而保证用户能长期稳定的使用本营销系统。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-navs">
     <div class="wrapper clearfix">
         <div class="item-contact">
             <img class="logo" src="static/images/logo-bottom.png" alt="药智器械">
@@ -877,35 +1199,35 @@
 </div> -->
 <script src="static/lib/vendor.js"></script>
 <script src="static/js/common.js"></script>
-<script src="static/lib/swiper/4.4.6/swiper.min.js"></script>
-<script>
-    //首页顶部轮播
-    var marketingTopSwiper = new Swiper('#marketing-top-swiper', {
-        //effect : 'fade',
-        loop: true,
-        autoplay: {
-            delay: 8000,
-        },
-        pagination: {
-            el: '.marketing-top-swiper-pagination',
-            clickable: true
-        },
-        navigation: {
-            nextEl: '.marketing-top-swiper-button-next',
-            prevEl: '.marketing-top-swiper-button-prev'
-        }
-    });
-</script>
-<script>
-    //静态演示用，绑程序时删除 star
-    document.title = '药智器械 - APP营销机器人';
-    $('#navbar>ul').children('li').eq(1).addClass('active').siblings().removeClass();
-    $('#navbar>ul').children('li').eq(1).find('li').eq(0).addClass('active');
+    <script src="static/lib/swiper/4.4.6/swiper.min.js"></script>
+    <script>
+        //首页顶部轮播
+        var marketingTopSwiper = new Swiper('#marketing-top-swiper', {
+            //effect : 'fade',
+            loop: true,
+            autoplay: {
+                delay: 8000,
+            },
+            pagination: {
+                el: '.marketing-top-swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '.marketing-top-swiper-button-next',
+                prevEl: '.marketing-top-swiper-button-prev'
+            }
+        });
+    </script>
+    <script>
+        //静态演示用，绑程序时删除 star
+        document.title = '药智器械 - APP营销机器人';
+        $('#navbar>ul').children('li').eq(1).addClass('active').siblings().removeClass();
+        $('#navbar>ul').children('li').eq(1).find('li').eq(0).addClass('active');
 
 
-    //静态演示用，绑程序时删除 end
-</script>
+        //静态演示用，绑程序时删除 end
+    </script>
 
-</body>
+    </body>
 
-</html>
+    </html>
