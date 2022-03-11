@@ -5,6 +5,7 @@ import './phoneBindLogin.scss'
 import { Form , Button} from 'antd';
 import InputComponent from 'views/login/component/inputComponent';
 import { util } from 'utils/user'
+
 import {doBindPhone} from 'service/login'
 import $message from 'views/component/message';
 
@@ -22,6 +23,8 @@ export default class phoneBindLogin extends Component {
         mobileValue:'',
         acode:'86',
         captchaShow:false,//图形验证码是否显示
+        header:'',//用户微信头像
+        name:'',//用户微信名
     }
     
     registerSubmit=async(value)=>{
@@ -60,18 +63,31 @@ export default class phoneBindLogin extends Component {
     toIndex=()=>{
         window.location.href='/'
     }
+    getUrlParam=(name)=>{
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substring(1).match(reg);
+        if(r!=null)return  decodeURI(r[2]); return null;
+    }
     componentDidMount(){
         document.title = '康州数智-绑定手机号码'
         document.body.style.overflow='hidden'
+        this.setState({
+            header:this.getUrlParam('headimgurl'),//用户微信头像
+            name:this.getUrlParam('nickname'),//用户微信名
+        })
     }
     render(){
-        let {warnMessage,mobileValue,acode,captchaShow} = this.state
+        let {warnMessage,mobileValue,acode,captchaShow,header,name} = this.state
         return <div id='register'>
             <div className='content'>
                 <div className='logoimg fleximg'><img src={logoimg} alt="logo" onClick={this.toIndex} /></div>
                 
                     <div className='forget'>
                         <div className='forgettitle'>手机号绑定</div>
+                        <div className='fleximgc wx-info'>
+                            <div className='headerimg fleximg'><img src={header} alt="header" /></div>
+                            <div>{name}</div>
+                        </div>
                         <div className='forgetform'>
                             <Form
                                 onFinish={this.registerSubmit}

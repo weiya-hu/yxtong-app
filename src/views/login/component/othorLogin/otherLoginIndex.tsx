@@ -14,7 +14,8 @@ export default class OtherLoginIndex extends Component {
                 window.location.href='/'
             }else{
                 if(res.errno === 10200 ){
-                    this.props.history.push('/app/bindphone');
+                    let url = '/app/bindphone?nickname='+res.body.nickname+'&headimgurl='+res.body.headimgurl
+                    this.props.history.push(url);
                 }
             }
         })

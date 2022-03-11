@@ -31,16 +31,17 @@ import { AxisPointerComponent } from "echarts/components";
   */
  axios.interceptors.response.use(
    (response) => {
-     if (response.data.errno === 10620) {
-       console.log("登录状态过期");
-       let url = window.location.pathname==='/app/login'?'/app/login':'/app/login?url='+window.location.pathname
-       window.location.href=url
-       message.info('登录状态过期，请再次登录')
-     }
-     if(response.data.errno === 10403){
-        message.info('非法token')
+    errnoMsg(response)
+    //  if (response.data.errno === 10620) {
+    //    console.log("登录状态过期");
+    //    let url = window.location.pathname==='/app/login'?'/app/login':'/app/login?url='+window.location.pathname
+    //    window.location.href=url
+    //    message.info('登录状态过期，请再次登录')
+    //  }
+    //  if(response.data.errno === 10403){
+    //     message.info('非法token')
         
-     }
+    //  }
      return response;
    },
    (error) => {
@@ -163,7 +164,28 @@ import { AxisPointerComponent } from "echarts/components";
      }
    });
  }
- 
+ //统一接口status为0，errno的不同值做处理
+ function errnoMsg(res){
+   if(!res.data.status){
+     switch(res.data.errno){
+       case 10500: message.info('服务器未知错误');break;
+       case 10400: message.info('错误的请求');break;
+       case 10403: message.info('非法token');break;
+       case 10600: message.info('业务异常');break;
+       case 10610: message.info('参数校验失败');break;
+       case 10611: message.info('参数转换失败');break;
+       case 10620: 
+         message.info('身份认证失败');
+          window.location.pathname==='/app/user' && (window.location.href='/app/login?url='+window.location.pathname)
+        break;
+       case 10621: message.info('未授权');break;
+       case 10622: message.info('用户未找到');break;
+       case 10623: message.info('用户已禁用');break;
+       case 10624: message.info('密码错误');break;
+       case 10625: message.info('用户绑定失败');
+     }
+   }
+ }
  //失败提示
  function msag(err) {
    if (err && err.response) {
@@ -209,8 +231,6 @@ import { AxisPointerComponent } from "echarts/components";
  
        case 505:
          alert("HTTP版本不受支持");
-         break;
-       default:
      }
    }
  }

@@ -1,15 +1,20 @@
 //@ts-nocheck
 import { Component } from 'react'
 
-export default class WxLogin extends Component {
+interface WxLoginProps{
+    url?:string,
+    state?:string
+}
+export default class WxLogin extends Component<any,WxLoginProps> {
     componentDidMount() {
+        const {url,state} =this.props
         var obj = new window.WxLogin({
             self_redirect: false,
             id: "wxLogin",
             appid: 'wx70dec1c67a586ee2',
             scope: "snsapi_login",
-            redirect_uri: encodeURI('http://dev.yxtong.com/app/otherlogin'),
-            state: "1",
+            redirect_uri: encodeURI(url),
+            state: state,
             style: "",
             href: ""
         });

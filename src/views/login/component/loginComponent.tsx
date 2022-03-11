@@ -24,7 +24,9 @@ export default class LoginComponent extends Component {
        mobileValue:'',
        acode:'86',
        captchaShow:false,
-       modalVisible:false
+       modalVisible:false,
+       wxUrl:'',//微信登录跳转地址
+        wxState:'',//微信登录设置的state
     }
     
     submit=async(value)=>{
@@ -83,9 +85,15 @@ export default class LoginComponent extends Component {
     //微信登录modal是否显示切换
     toggleVisible=(val)=>{
         this.setState({modalVisible:val})
+        val && (
+            this.setState({
+                wxUrl:'https://dev.yxtong.com/app/otherlogin',
+                wxState:'2'
+            })
+        )
     }
     render(){
-        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow} = this.state
+        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow,wxUrl,wxState} = this.state
         return(
             <div id='logincomponent'>
                 <div className='loginswitch flexl'>
@@ -195,7 +203,7 @@ export default class LoginComponent extends Component {
                     wrapClassName='wxlogin-modal'
                     maskStyle={{background: 'rgba(0, 0, 0,0.5)'}}
                 >   
-                    <WxLogin />
+                    <WxLogin  url={wxUrl} state={wxState}/>
                 </Modal>
             </div>
         )

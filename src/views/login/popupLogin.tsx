@@ -1,12 +1,13 @@
 import { Component } from 'react'
 import * as ReactDOM from 'react-dom';
 import './popupLogin.scss'
-import { Form , Button} from 'antd';
+import { Form , Button,Modal} from 'antd';
 import InputComponent from './component/inputComponent';
 import { util } from 'utils/user'
 import {BrowserRouter as Router, Link } from 'react-router-dom';
 import {dologin,getUser} from 'service/login'
 import $message from 'views/component/message';
+import WxLogin from 'views/login/component/othorLogin/wxLogin'
 
 import store from "store/index";
 import { setUserInfo,loginRemove} from "store/actionCreators.js";
@@ -29,7 +30,10 @@ export default class PopupLogin extends Component<PopupLoginState> {
         warnMessage:'',
         mobileValue:'',
         acode:'86',
-        captchaShow:false
+        captchaShow:false,
+        modalVisible:false,
+        wxUrl:'',//微信登录跳转地址
+        wxState:'',//微信登录设置的state
      }
      submit=async(value)=>{
         console.log(value)
@@ -81,8 +85,18 @@ export default class PopupLogin extends Component<PopupLoginState> {
     componentDidMount(){
 
     }
+     //微信登录modal是否显示切换
+     toggleVisible=(val)=>{
+        this.setState({modalVisible:val})
+        val && (
+            this.setState({
+                wxUrl:'https://dev.yxtong.com/app/otherlogin',
+                wxState:'2'
+            })
+        )
+    }
     render(){
-        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow}=this.state
+        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow,wxUrl,wxState}=this.state
         return (
             <div className='popuplogin-item fleximg' id='popuplogin-item'>0
                 <div className='flexll popuplogin'>
@@ -180,10 +194,12 @@ export default class PopupLogin extends Component<PopupLoginState> {
                                 
                                 <Link to='/app/register/register'><span>免费注册</span></Link>
                             </div>:
-                            <div></div>
+                            <div className='forget flexr'>
+                                <Link to='/app/register/register'><span>免费注册</span></Link>
+                            </div>
                         }
                         <div className='fleximg'>
-                            <div className={!loginSwitch?'fleximg wechartimg':'fleximg wechartimg wechartimguser'}>
+                            <div className={!loginSwitch?'fleximg wechartimg':'fleximg wechartimg wechartimguser'} onClick={()=>this.toggleVisible(true)}>
                                 <img src={wechartimg}/>
                             </div>
                             <div className={!loginSwitch?'fleximg wechartimg':'fleximg wechartimg wechartimguser'}>
@@ -198,6 +214,15 @@ export default class PopupLogin extends Component<PopupLoginState> {
                         <img src={chaimg} alt="×" />
                     </div>
                 </div>
+                <Modal
+                    title="Modal"
+                    visible={this.state.modalVisible}
+                    onCancel={()=>this.toggleVisible(false)}
+                    wrapClassName='wxlogin-modal'
+                    maskStyle={{background: 'rgba(0, 0, 0,0.5)'}}
+                >   
+                    <WxLogin url={wxUrl} state={wxState}/>
+                </Modal>
             </div>
         )
         
