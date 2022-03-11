@@ -89,7 +89,7 @@ export default class NewsDetail extends Component {
     newsReadLists=async () => {
         let res = await newsReadList({current:1,size:5})
         res.status && this.setState({
-            readRank:res.body.readList
+            readRank:res.body.read_list
         })
     }
     //作者信息和作品列表
@@ -178,15 +178,15 @@ export default class NewsDetail extends Component {
                 <div className='newsDetail-author'>
                     <div className='newsDetail-author-info'>
                         <div className='newsDetail-author-info-top fleximgc'>
-                            <div className='authorimg fleximg'><img src={newsDetail.head_ur?newsDetail.head_url:headerimg} alt="author" onError={(e) => { e.target.src = headerimg }}/></div>
-                            <div className=''>{hotArticleList.creatorName}</div>
+                            <div className='authorimg fleximg'><img src={newsDetail.head_url || headerimg} alt="author" onError={(e) => { e.target.src = headerimg }}/></div>
+                            <div className=''>{hotArticleList.creator_name}</div>
                             <div><FollowButton item={newsDetail} key={newsDetail.creator_id}/></div>
                         </div>
                         <div className='hot'>
                             <div>TA的热门作品</div>
                         </div>
                         <div>
-                            {hotArticleList.worksList && hotArticleList.worksList.map((item,index)=>(
+                            {hotArticleList.works_list && hotArticleList.works_list.map((item,index)=>(
                                 <div 
                                     key={index}
                                     onClick={()=>{this.articleChange(item.id)}}

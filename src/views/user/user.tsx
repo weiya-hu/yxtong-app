@@ -49,7 +49,6 @@ class User extends Component {
       let res = await loginOut()
       if(res.status){
         window.location.href='/'
-        localStorage.removeItem('userInfo')
         store.dispatch(removeUserInfo())
       }
       
@@ -136,7 +135,7 @@ class User extends Component {
                       <span className='colorw'>返回官网首页</span>
                     </div>
                     <div className='flexr cursor position' onClick={this.exitloginpre}>
-                      <div className='headerimg fleximgtop'><img src={headerimg} alt="username" /></div>
+                      <div className='headerimg fleximgtop'><img src={userInfo.head || headerimg } alt="username" /></div>
                       <span className='colorw user-name'>{userInfo.name}</span>
                         <div 
                           className={this.state.exitNone?'fleximg exitnone exit':'fleximg exit'}
@@ -174,8 +173,8 @@ class User extends Component {
             <div className='flexbl width'>
               <div>
                 <div className='userinfo'>
-                  <div className='headerimg fleximg position'>
-                    <img src={headerimg} alt="header" />
+                  <div className='headerimgpre fleximg position'>
+                    <div className='headerimg  fleximg'><img src={userInfo.head || headerimg} alt="header" /></div>
                     <div className='userlevel fleximg'><span>LV.{userInfo.level}</span></div>
                   </div>
                   <div className='userphone'>{userInfo.mobile}</div>

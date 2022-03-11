@@ -80,7 +80,7 @@ class CertificateInput extends Component<CertificateInputProps,any>{
                         initialValue = {initialValue}
                     >
                         <Cascader
-                            fieldNames={{ label: 'name', value: 'industryId', children: 'children' }}
+                            fieldNames={{ label: 'name', value: 'industry_id', children: 'children' }}
                             options={extraData}
                             onChange={this.CascaderChange}
                             placeholder={placeholder}

@@ -28,3 +28,14 @@ export const doreg =(data):Promise<API.IResult>=>{
 export const loginOut =():Promise<API.IResult>=>{
     return  get('login/login-out')
 }
+
+//微信扫码获取code后传后端
+export const doWechat =(data):Promise<API.IResult>=>{
+    return  post('login/wechat',data)
+}
+
+//绑定手机号
+export const doBindPhone =(data):Promise<API.IResult>=>{
+    return  post('login/bind.do',data)
+}
+

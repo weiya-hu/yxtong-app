@@ -32,6 +32,8 @@
               margin-right: 6px;
               position: relative;
               top: -1px;
+              border-radius: 50%;
+              overflow: hidden;
             }
             .exitimg{
               width: 14px;
@@ -100,9 +102,15 @@
         padding: 40px 0;
         height:216px;
         width: 260px;
-        .headerimg{
+        .headerimgpre{
           width: 80px;
           margin: 0 auto;
+         
+          .headerimg{
+            width: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+          }
           .userlevel{
             width: 24px;
             height: 12px;

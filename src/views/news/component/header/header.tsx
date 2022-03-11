@@ -48,7 +48,6 @@ class Header extends Component<any,HeaderState>{
     let res = await loginOut()
     if(res.status){
       // this.props.history.push('/app/login?url=/app/news')
-      localStorage.removeItem('userInfo')
       store.dispatch(removeUserInfo())
       this.setState({userInfo:null})
     }
@@ -101,7 +100,7 @@ class Header extends Component<any,HeaderState>{
                 onMouseEnter ={()=>{this.setState({exitNone:true})}} 
                 onMouseLeave ={()=>{this.setState({exitNone:false})}} 
               >
-                <div className='fleximg headerimg'><img src={headerimg} alt="header" /></div>
+                <div className='fleximg headerimg'><img src={userInfo.head || headerimg} alt="header" /></div>
                 <div className='name'>{userInfo.name}</div>
                 <div 
                   className={exitNone?'fleximg  exit':'fleximg exitnone exit'}

@@ -16,15 +16,9 @@ import { AxisPointerComponent } from "echarts/components";
  axios.interceptors.request.use(
    (config) => {   
      config.data = JSON.stringify(config.data);
-      let type = localStorage.getItem('type')
       config.headers = {
         "Content-Type": "application/json"
       };
-    // if(type){
-    //   config.headers = {
-    //     "Content-Type": "multipart/form-data"
-    //   };
-    // }
      return config;
    },
    (error) => {
@@ -39,7 +33,6 @@ import { AxisPointerComponent } from "echarts/components";
    (response) => {
      if (response.data.errno === 10620) {
        console.log("登录状态过期");
-       localStorage.removeItem('userInfo')
        let url = window.location.pathname==='/app/login'?'/app/login':'/app/login?url='+window.location.pathname
        window.location.href=url
        message.info('登录状态过期，请再次登录')

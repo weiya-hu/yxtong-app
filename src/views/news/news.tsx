@@ -130,7 +130,7 @@ export default class News extends Component{
     const res = await newsAList(data)
     if(res.status){
       this.setState({
-        mayInterestList:res.body.interestList,
+        mayInterestList:res.body.interest_list,
         exchangeRotate:false,
         interestPage:res.body.pages>interestPage?interestPage+1:1
       })

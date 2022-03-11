@@ -29,11 +29,11 @@ export default class LoginComponent extends Component {
     
     submit=async(value)=>{
         console.log(value)
-        let {loginSwitch} = this.state,message
+        let {loginSwitch,captchaShow} = this.state,message
         if(loginSwitch){    
             let username = util.validate_mobile(value.mobile)
            
-            if(value.captcha){
+            if(captchaShow){
                 let captcha =  util.validate_captcha(value.captcha)
                 message = username?username:captcha?captcha:util.validate_password(value.pass) 
             }else{
@@ -43,7 +43,7 @@ export default class LoginComponent extends Component {
         }else{
             let mobile = util.validate_mobile(value.mobile)  
             
-            if(value.captcha){
+            if(captchaShow){
                 let captcha =  util.validate_captcha(value.captcha)
                 message = mobile?mobile:captcha?captcha:util.validate_yzm(value.sms)   
             }else{
@@ -177,8 +177,8 @@ export default class LoginComponent extends Component {
                     </div>
                 }
                 <div className='fleximg'>
-                    {/* <div className='fleximg wechartimg'  onClick={()=>this.toggleVisible(true)}> */}
-                    <div className='fleximg wechartimg'>
+                    <div className='fleximg wechartimg'  onClick={()=>this.toggleVisible(true)}>
+                    {/* <div className='fleximg wechartimg'> */}
                         <img src={wechartimg}/>
                     </div>
                     <div className='fleximg wechartimg'>

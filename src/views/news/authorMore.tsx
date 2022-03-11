@@ -80,7 +80,7 @@ export default class AuthorMore extends Component{
       let res = await newsWorksList(data)
       res.status && this.setState({
         authorInfo:res.body,
-        newsList:newsList.concat(res.body.worksList),
+        newsList:newsList.concat(res.body.works_list),
         hasMore:res.body.total>current*size,
         current:res.body.total>current*size?current+1:current,
         is_attention:res.body.is_attention
@@ -118,11 +118,11 @@ export default class AuthorMore extends Component{
                                         onError={(e) => { e.target.src = headerimg }}
                                       />
                                     </div>
-                                    <div className='more-auther-name'>{authorInfo && authorInfo.creatorName}</div>
+                                    <div className='more-auther-name'>{authorInfo && authorInfo.creator_name}</div>
                                 </div>
                                 <div>
                                   {
-                                    authorInfo.creatorId && <FollowButton item={{is_attention:authorInfo.is_attention}} size='big'/>
+                                    authorInfo.creator_id && <FollowButton item={{is_attention:authorInfo.is_attention}} size='big'/>
                                   }
                                 </div>
                             </div>
