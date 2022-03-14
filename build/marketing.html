@@ -226,7 +226,9 @@
             } else {
                 $('.nologin').css('display', 'none')
                 $('.logined').css('display', 'flex')
-                $('#header').attr('src', userInfo.head)
+                $('#header').attr('src', userInfo.head ? userInfo.head : './static/images/icon-avatar.png').attr('onclick', windows.location.href('app/user'))
+
+
                 $('#uname').text(userInfo.name)
                     // 立即登录按钮
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
@@ -847,12 +849,7 @@
                         </div>
                         <div class="right">
                             <ul>
-                                <li>
-                                    <div class="icon-marketing">
-                                        <img src="static/images/marketing-icon-chat.png" alt="">
-                                        <span>微信</span>
-                                    </div>
-                                </li>
+
                                 <li>
                                     <div class="icon-marketing"><img src="static/images/marketing-icon-chat.png" alt=""><span>微信</span></div>
                                 </li>
@@ -861,6 +858,9 @@
                                 </li>
                                 <li>
                                     <div class="icon-marketing"><img src="static/images/marketing-icon-qq.png" alt=""><span>QQ</span></div>
+                                </li>
+                                <li>
+                                    <div class="icon-marketing"><img src="static/images/marketing-icon-tt.png" alt=""><span>今日头条</span></div>
                                 </li>
                                 <li>
                                     <div class="icon-marketing"><img src="static/images/marketing-icon-dy.png" alt=""><span>抖音</span></div>

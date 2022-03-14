@@ -5,9 +5,10 @@ import { Form , Button,Modal} from 'antd';
 import InputComponent from './component/inputComponent';
 import { util } from 'utils/user'
 import {BrowserRouter as Router, Link } from 'react-router-dom';
-import {dologin,getUser} from 'service/login'
+import {dologin,getUser,wechatLink} from 'service/login'
 import $message from 'views/component/message';
 import WxLogin from 'views/login/component/othorLogin/wxLogin'
+import { Base64 } from 'js-base64';
 
 import store from "store/index";
 import { setUserInfo,loginRemove} from "store/actionCreators.js";
@@ -34,6 +35,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
         modalVisible:false,
         wxUrl:'',//微信登录跳转地址
         wxState:'',//微信登录设置的state
+        appid:'',//微信企业appid
      }
      submit=async(value)=>{
         console.log(value)
@@ -82,21 +84,23 @@ export default class PopupLogin extends Component<PopupLoginState> {
     close=()=>{
         store.dispatch(loginRemove())
     }
-    componentDidMount(){
-
-    }
      //微信登录modal是否显示切换
      toggleVisible=(val)=>{
         this.setState({modalVisible:val})
-        val && (
+    }
+    componentDidMount(){
+        let url = window.location.pathname+window.location.search+window.location.hash
+        let data={url:Base64.encode(url)}
+        wechatLink(data).then(res=>{
             this.setState({
-                wxUrl:'https://dev.yxtong.com/app/otherlogin',
-                wxState:'2'
+                wxUrl:res.body.callback_url,
+                wxState:res.body.state,
+                appid:res.body.app_id
             })
-        )
+        }) 
     }
     render(){
-        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow,wxUrl,wxState}=this.state
+        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow,wxUrl,wxState,appid}=this.state
         return (
             <div className='popuplogin-item fleximg' id='popuplogin-item'>0
                 <div className='flexll popuplogin'>
@@ -221,7 +225,7 @@ export default class PopupLogin extends Component<PopupLoginState> {
                     wrapClassName='wxlogin-modal'
                     maskStyle={{background: 'rgba(0, 0, 0,0.5)'}}
                 >   
-                    <WxLogin url={wxUrl} state={wxState}/>
+                    <WxLogin url={wxUrl} state={wxState} appid={appid}/>
                 </Modal>
             </div>
         )

@@ -3,17 +3,19 @@ import { Component } from 'react'
 
 interface WxLoginProps{
     url?:string,
-    state?:string
+    state?:string,
+    appid:string,
 }
 export default class WxLogin extends Component<any,WxLoginProps> {
     componentDidMount() {
-        const {url,state} =this.props
+        const {url,state,appid} =this.props
+        console.log(url,state,appid)
         var obj = new window.WxLogin({
             self_redirect: false,
             id: "wxLogin",
-            appid: 'wx70dec1c67a586ee2',
+            appid: appid,
             scope: "snsapi_login",
-            redirect_uri: encodeURI(url),
+            redirect_uri: url,
             state: state,
             style: "",
             href: ""

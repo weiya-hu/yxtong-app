@@ -226,7 +226,9 @@
             } else {
                 $('.nologin').css('display', 'none')
                 $('.logined').css('display', 'flex')
-                $('#header').attr('src', userInfo.head)
+                $('#header').attr('src', userInfo.head ? userInfo.head : './static/images/icon-avatar.png').attr('onclick', windows.location.href('app/user'))
+
+
                 $('#uname').text(userInfo.name)
                     // 立即登录按钮
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
@@ -565,54 +567,82 @@
     <div class="prod-data">
         <div class="wrapper">
             <div class="prod-tit black right">
-                <span>大数据+AI 技术加持的智能市场营销服务</span>
+                <span>全域智能营销SaaS集成平台</span>
                 <em class="split">/</em>
-                <h3>药智营销通</h3>
+                <h3>数智营销通</h3>
             </div>
             <div class="prod-disc black">
-                采用多平台矩阵、 全自动化、智能化、大数据化、同时顺应4G-5G的发展，顺应万物互联-物联网时代的多种营销推广方式
+                通过整合广告投放平台、整合信息推送渠道、打通营销各个环节的数据通道、构建支撑营销业务链上的各个数字化系统，帮助企业一站式解决数字营销的痛点和难题，打造服务于营销生态全域的数智化平台
             </div>
             <div class="clear"></div>
 
             <div class="lst">
                 <div class="item wow fadeInUp" data-wow-delay="0.2s">
-                    <em></em>
-                    <h4>数据库采集工具</h4>
+                    <div class="item-title">
+                        <div class="title-left">
+                            <div class="left-txt">精准客户采集 商业内容制作
+                            </div>
+                            <div class="left-tips"><span>营销前</span></div>
+                        </div>
+                        <div class="title-right"><img src="static/images/product-icon-1.png" alt=""></div>
+                    </div>
+
                     <ul>
-                        <li><span class="tit">科研信息数据采集软件</span><span class="type">重点推荐</span></li>
-                        <li><span class="tit">目标客户采集软件</span><span class="type">重点推荐</span></li>
-                        <li><span class="tit">市场信息数据采集软件</span></li>
-                        <li><span class="tit">大数据智能APP营销机器人矩阵系统</span></li>
+                        <h5>CMS内容管理系统</h5>
+                        <li><span class="tit">营销方案策划</span></li>
+                        <li><span class="tit">内容制作：视频/MG动画/三维动画</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">内容制作：H5落地页</span></li>
+                        <li><span class="tit">内容制作：图片/海报/DM单</span></li>
+                        <h5>DMP数据系统</h5>
+                        <li><span class="tit">康洲数智平台数据源</span></li>
+                        <li><span class="tit">第三方数据源</span></li>
+                        <li><span class="tit">自定义数据源</span></li>
                     </ul>
                 </div>
-                <div class="item wow fadeInUp" data-wow-delay="0.4s">
-                    <em></em>
-                    <h4>智能推送工具</h4>
+                <div class="item wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="item-title">
+                        <div class="title-left">
+                            <div class="left-txt">大规模私欲流量 整合
+                            </div>
+                            <div class="left-tips"><span>营销中</span></div>
+                        </div>
+                        <div class="title-right"><img src="static/images/product-icon-2.png" alt=""></div>
+                    </div>
+
                     <ul>
-                        <li><span class="tit">智能企业名片-药智CRM</span><span class="type">重点推荐</span></li>
-                        <li><span class="tit">智能E-mail营销系统</span><span class="type">重点推荐</span></li>
-                        <li><span class="tit">智能电话销售机器人</span><span class="type">重点推荐</span></li>
-                        <li><span class="tit">大数据智能APP营销机器人矩阵系统</span></li>
-                        <li><span class="tit">智能无感营销系统</span></li>
-                        <li><span class="tit">智能短信营销系统</span></li>
-                        <li><span class="tit">官网建设/Seo/</span></li>
-                        <li><span class="tit">药智网-站内广告投放</span></li>
+                        <h5>DSP广告系统</h5>
+                        <li><span class="tit">康洲数智平台广告</span></li>
+                        <li><span class="tit">第三方平台广告（微信、头条等）</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">推送渠道整合（短信、e-mail、第三方推送等）</span></li>
+                        <li><span class="tit">APP营销机器人矩阵系统</span></li>
+                        <h5>营销裂变系统</h5>
+                        <li><span class="tit">资讯媒体平台曝光</span></li>
+                        <li><span class="tit">会员系统</span></li>
+                        <li><span class="tit">线上商城</span></li>
+                        <h5>CDP数据分析系统</h5>
                     </ul>
                 </div>
-                <div class="item wow fadeInUp" data-wow-delay="0.6s">
-                    <em></em>
-                    <h4>智能客服工具</h4>
+                <div class="item wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="item-title">
+                        <div class="title-left">
+                            <div class="left-txt">快速建立大规模 智能私域流量池
+                            </div>
+                            <div class="left-tips"><span>营销后</span></div>
+                        </div>
+                        <div class="title-right"><img src="static/images/product-icon-3.png" alt=""></div>
+                    </div>
+
                     <ul>
-                        <li><span class="tit">智能语音客服</span><span class="type">重点推荐</span></li>
-                        <li><span class="tit">智能图文客服</span></li>
-                    </ul>
-                </div>
-                <div class="item wow fadeInUp" data-wow-delay="0.8s">
-                    <em></em>
-                    <h4>精算匹配系统</h4>
-                    <ul>
-                        <li><span class="tit">智能全网精准客户匹配系统</span><span class="type">重点推荐</span></li>
-                        <li><span class="tit">智能精准客户匹配系统</span></li>
+                        <h5>售前：SCRM私域客户管理系统</h5>
+                        <li><span class="tit">线索管理</span></li>
+                        <li><span class="tit">客户跟进/管理</span><span class="type">重点推荐</span></li>
+                        <li><span class="tit">人员管理</span></li>
+                        <li><span class="tit">货品管理</span></li>
+                        <h5>售中：订单/支付/物流管理</h5>
+                        <h5>售后：售后管理</h5>
+                        <li><span class="tit">智能客服</span></li>
+                        <li><span class="tit">社群运营</span></li>
+
                     </ul>
                 </div>
             </div>

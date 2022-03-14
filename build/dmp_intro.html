@@ -83,7 +83,10 @@
             <div class="nav-text">
                 <div class="nav-title">康州数智DMP</div>
                 <div class="nav-content">全国中小企业数据+三大运营商数据+第三方平台数据</div>
-                <div class="nav-btn" onclick="location='index.html'"><span>立即体验</span></div>
+                <!-- <div class="nav-btn" onclick="location='dmp.yxtong.com/index'"><span>立即体验</span></div> -->
+                <a href="https://dmp.yxtong.com/index">
+                    <div class="nav-btn"><span>立即体验</span></div>
+                </a>
             </div>
         </div>
 
@@ -175,7 +178,9 @@
                 </div>
 
             </div>
-            <div class="abi-btn" onclick="location='index.html'"><span>立即体验</span></div>
+            <a href="https://dmp.yxtong.com/index">
+                <div class="abi-btn"><span>立即体验</span></div>
+            </a>
 
         </div>
     </div>
@@ -218,11 +223,14 @@
             if (!userInfo) {
                 $('.nologin').css('display', 'flex')
                 $('.logined').css('display', 'none')
+                    // 未登录，点击“立即体验按钮”跳登录页面
+
             } else {
                 $('.nologin').css('display', 'none')
                 $('.logined').css('display', 'flex')
-                $('#header').attr('src', userInfo.head)
+                $('#header').attr('src', userInfo.head ? userInfo.head : './static/images/icon-avatar.png')
                 $('#uname').text(userInfo.name)
+
             }
         }
     </script>

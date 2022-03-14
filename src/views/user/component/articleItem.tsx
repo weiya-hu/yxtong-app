@@ -2,12 +2,15 @@
 import { Component } from 'react'
 import './articleItem.scss'
 import {withRouter} from 'react-router-dom'
-import { Modal, Button } from 'antd'
+import { Modal} from 'antd'
 import editimg from 'public/images/user/edit.png'
 import falseimg from 'public/images/user/false.png'
 import deleteimg from 'public/images/user/delete.png'
-
-
+import {deleteNews} from 'service/news'
+import { util } from 'utils/news'
+import $message from 'views/component/message'
+ 
+const { confirm } = Modal;
 interface Item{
   commented: number
   content: string
@@ -23,12 +26,13 @@ interface ArticleItemState{
   edit:(val:boolean)=>void;
   dataAnalysis:(val:boolean)=>void;
   articleDetail:(val:boolean)=>void;
+  delete:(val:boolean)=>void;
 }
 
 class ArticleItem extends Component<ArticleItemState> {
-  constructor(props,ArticleItemState){
-    super(props)
-  }
+    state={
+      modalVisible:false
+    }
     toEdit=(id)=>{
       let event = window.event || arguments.callee.caller.arguments[0]
       console.log(event)
@@ -38,11 +42,28 @@ class ArticleItem extends Component<ArticleItemState> {
     toNewsDetail=(id)=>{
       this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&readNewsId='+id);
     }
+    //删除按钮
     deleteNews=(id)=>{
-     
+      this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&deleteId='+id)
+      this.toggleVisible(true)
+    }
+    //删除确认按钮
+    deleteOk=()=>{
+      console.log(util.getUrlParam('deleteId'))
+      deleteNews({news_id:util.getUrlParam('deleteId')}).then(res=>{
+        $message.info(res.message)
+        this.props.delete(true)
+        this.toggleVisible(true)
+      })
+      
+    }
+    //删除modal是否显示切换
+    toggleVisible=(val)=>{
+      this.setState({modalVisible:val})
     }
     render(){
         let {item} =this.props
+        let {modalVisible} =this.state
         return <div className='flexb article-item' onClick={()=>{this.toNewsDetail(item.id)}}>
           <div className='coverimg fleximg'><img src={item.thumb_url} alt="cover" onError={(e) => { e.target.src = falseimg }}/></div>
           <div className='flexcbl article-right'>
@@ -57,7 +78,7 @@ class ArticleItem extends Component<ArticleItemState> {
                 <span>评论 {item.commented}</span>
               </div>
               <div className='flexr'>
-                <div className='fleximg article-item-button' onClick={()=>{this.deleteNews(item.id)}}>
+                <div className='fleximg article-item-button' onClick={(e)=>{this.deleteNews(item.id);e.stopPropagation()}}>
                   <div className='editimg fleximg'><img src={deleteimg} alt="deleteButton" /></div>
                   <div>删除</div>
                 </div>
@@ -69,6 +90,18 @@ class ArticleItem extends Component<ArticleItemState> {
               </div>
             </div>
           </div>
+          <Modal
+            title="操作提示"
+            visible={modalVisible}
+            onCancel={(e,)=>{this.toggleVisible(false);e.stopPropagation()}}
+            onOk={(e,)=>{this.deleteOk();e.stopPropagation()}}
+            wrapClassName='article-modal'
+            maskStyle={{background: 'rgba(0, 0, 0,0.5)'}}
+            cancelText='取消'
+            okText='确认'
+          >   
+            <div className='delete-text'>是否确认删除？</div>
+          </Modal>
         </div>
     }
     

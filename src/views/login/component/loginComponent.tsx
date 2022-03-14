@@ -6,8 +6,9 @@ import InputComponent from './inputComponent';
 import WxLogin from 'views/login/component/othorLogin/wxLogin'
 import { util } from 'utils/user'
 import { Link } from 'react-router-dom';
-import {dologin,getUser} from 'service/login'
+import {dologin,getUser,wechatLink} from 'service/login'
 import $message from 'views/component/message';
+import { Base64 } from 'js-base64';
 
 import store from "store/index";
 import { setUserInfo} from "store/actionCreators.js";
@@ -27,8 +28,17 @@ export default class LoginComponent extends Component {
        modalVisible:false,
        wxUrl:'',//微信登录跳转地址
         wxState:'',//微信登录设置的state
+        appid:'',//微信企业appid
     }
-    
+    componentDidMount(){
+        wechatLink({url:Base64.encode('/')}).then(res=>{
+            this.setState({
+                wxUrl:res.body.callback_url,
+                wxState:res.body.state,
+                appid:res.body.app_id
+            })
+        }) 
+    }
     submit=async(value)=>{
         console.log(value)
         let {loginSwitch,captchaShow} = this.state,message
@@ -85,15 +95,9 @@ export default class LoginComponent extends Component {
     //微信登录modal是否显示切换
     toggleVisible=(val)=>{
         this.setState({modalVisible:val})
-        val && (
-            this.setState({
-                wxUrl:'https://dev.yxtong.com/app/otherlogin',
-                wxState:'2'
-            })
-        )
     }
     render(){
-        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow,wxUrl,wxState} = this.state
+        let {loginSwitch,warnMessage,mobileValue,acode,captchaShow,wxUrl,wxState,appid} = this.state
         return(
             <div id='logincomponent'>
                 <div className='loginswitch flexl'>
@@ -203,7 +207,7 @@ export default class LoginComponent extends Component {
                     wrapClassName='wxlogin-modal'
                     maskStyle={{background: 'rgba(0, 0, 0,0.5)'}}
                 >   
-                    <WxLogin  url={wxUrl} state={wxState}/>
+                    <WxLogin  url={wxUrl} state={wxState} appid={appid}/>
                 </Modal>
             </div>
         )

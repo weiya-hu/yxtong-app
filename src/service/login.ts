@@ -31,11 +31,16 @@ export const loginOut =():Promise<API.IResult>=>{
 
 //微信扫码获取code后传后端
 export const doWechat =(data):Promise<API.IResult>=>{
-    return  post('login/wechat',data)
+    return  post('login/wechat/callback',data)
 }
 
 //绑定手机号
 export const doBindPhone =(data):Promise<API.IResult>=>{
-    return  post('login/bind.do',data)
+    return  post('login/wechat/bind.do',data)
+}
+
+//获取微信登录二维码链接
+export const wechatLink =(data):Promise<API.IResult>=>{
+    return  get('login/wechat/qrinfo',data)
 }
 

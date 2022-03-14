@@ -45,6 +45,6 @@ export const routerMap = [
     {path: "/app/news", name: "News", component: News},
     {path: "/app/newsdetail", name: "NewsDetail", component: NewsDetail},
     {path: "/app/newsauthormore", name: "NewsAuthorMore", component: NewsAuthorMore},
-    {path: "/app/otherlogin", name: "otherLogin", component: otherLogin},
+    {path: "/app/wechat/callback.do", name: "otherLogin", component: otherLogin},
     {path: "/app/bindphone", name: "phoneBindLogin", component: phoneBindLogin},
 ];

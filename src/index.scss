@@ -220,6 +220,20 @@ div,span{
   }
   
 }
+.article-modal{
+  .delete-text{
+    text-align: center;
+  }
+  .ant-modal{
+    width: 350px !important;
+    top: 35%;
+  }
+  .ant-btn-primary{
+    span{
+      color: #FFFFFF;
+    }
+  }
+}
 .ant-modal-mask{
   background:none
 }

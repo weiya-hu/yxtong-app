@@ -67,6 +67,7 @@ class ArticleList extends Component<ArticleListState>{
               dataAnalysis={(val)=>{this.setState({asideActive:val?2:1});this.props.dataAnalysis(val?2:1)}} 
               //传回来的val是true则isArticleDetail是1，跳转文章详情页面
               articleDetail={(val)=>{this.props.articleDetail(val?1:0,item);}}
+              delete={(val)=>{this.contentList(current,size)}}
             />
           </div>
         )}   
