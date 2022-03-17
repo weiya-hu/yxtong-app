@@ -198,7 +198,9 @@
                     res.status ? isUser(res.body) : isUser()
                 },
             })
-
+            $('#header').click(function() {
+                location.href = '/app/user'
+            })
             $('#uname').click(function() {
                 location.href = '/app/user'
             })

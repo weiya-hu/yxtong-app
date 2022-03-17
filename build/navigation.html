@@ -171,17 +171,6 @@
                 $('.bar-tip').slideUp(200)
 
             })
-
-        // $('.marketing').mouseenter(function() {
-        //     $('.navchild1').css('overflow', 'revert')
-        //     $('.barchild').css('height', '86px')
-        //     $('.bar-tip').show()
-        // })
-        // $('.marketing').mouseleave(function() {
-        //     $('.navchild1').css('overflow', 'hidden')
-        //     $('.bar-tip').hide()
-
-        // })
     </script>
     <script>
         // loaded page
@@ -195,7 +184,9 @@
                     res.status ? isUser(res.body) : isUser()
                 },
             })
-
+            $('#header').click(function() {
+                location.href = '/app/user'
+            })
             $('#uname').click(function() {
                 location.href = '/app/user'
             })
@@ -226,9 +217,7 @@
             } else {
                 $('.nologin').css('display', 'none')
                 $('.logined').css('display', 'flex')
-                $('#header').attr('src', userInfo.head ? userInfo.head : './static/images/icon-avatar.png').attr('onclick', windows.location.href('app/user'))
-
-
+                $('#header').attr('src', userInfo.head ? userInfo.head : './static/images/icon-avatar.png')
                 $('#uname').text(userInfo.name)
                     // 立即登录按钮
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
@@ -506,7 +495,7 @@
                     <div class="tit">药智网</div>
                     <p>中国健康产业大数据服务平台</p>
                 </a>
-                <a class="item" href="https://www.yxtong.com/" target="_blank">
+                <a class="item" href="https://dev.yxtong.com/" target="_blank">
                     <div class="img">
                         <img src="static/images/icon-nav-2.png" alt="">
                     </div>
