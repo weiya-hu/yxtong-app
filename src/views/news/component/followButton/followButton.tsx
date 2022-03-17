@@ -19,7 +19,8 @@ interface FollowButtonItem{
 interface FollowButtonProps{
     item?:FollowButtonItem,
     size?:string,
-    userInfo?:(val)=>void
+    userInfo?:(val)=>void,
+    change?:(val)=>void,
 }
 
 export default class FollowButton extends Component<FollowButtonProps> {
@@ -43,6 +44,7 @@ export default class FollowButton extends Component<FollowButtonProps> {
                 $message.info(data.types?'关注成功':'取消关注')
                 item.is_attention=!item.is_attention?'1':null
                 this.setState({item:item})
+                this.props.change(data)  
             }
         }else{
             store.dispatch(loginShow())

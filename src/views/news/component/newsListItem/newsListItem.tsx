@@ -32,6 +32,7 @@ interface item{
 interface NewsListItemState{
   item:item
   size?:string
+  followChange?:()=>void
 }
 
 export default class NewsListItem extends Component<NewsListItemState>{
@@ -61,7 +62,7 @@ export default class NewsListItem extends Component<NewsListItemState>{
                   <span className='color3'>{item.readed}</span>
                 </div>
                 <div>
-                  {!(size==='big') && <FollowButton item={item} userInfo={(val)=>{}}/>}                
+                  {!(size==='big') && <FollowButton key={item.is_attention} item={item} change={(val)=>{this.props.followChange(val)}}/>}                
                 </div>
               </div>
             </div>

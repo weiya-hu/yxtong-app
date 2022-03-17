@@ -51,8 +51,10 @@ class ArticleItem extends Component<ArticleItemState> {
     deleteOk=()=>{
       console.log(util.getUrlParam('deleteId'))
       deleteNews({news_id:util.getUrlParam('deleteId')}).then(res=>{
-        $message.info(res.message)
-        this.props.delete(true)
+        if(res.status){
+          $message.info(res.message);
+          this.props.delete(true);
+        }
         this.toggleVisible(true)
       })
       

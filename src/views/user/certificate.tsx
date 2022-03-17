@@ -214,7 +214,7 @@ export default class Certificate extends Component{
                         </div>
                         {modalVisible && <div className='photo-modal flexcl'>
                             <div className='photo-modal-title'>资质照片</div>
-                            <div className='photo-modal-detail'>营业执照上加盖的公章需清晰可见；营业执照请勿带有不想关的水印</div>
+                            <div className='photo-modal-detail'>营业执照上加盖的公章需清晰可见；营业执照请勿带有不相关的水印</div>
                         </div>}
                     </div>
                     <div className='cert-right'>

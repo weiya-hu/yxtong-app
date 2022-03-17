@@ -79,6 +79,9 @@ export default class News extends Component{
       if(param){
         this.getNewslist(param.item.id)
         this.setState({newsTypeActive:param.index})
+        if(param.index === 0){
+          this.getFavorlist()
+        }
       }else{
         this.getNewslist(item.id)
       }
@@ -155,6 +158,17 @@ export default class News extends Component{
     }
     
   }
+  followChange=(val)=>{
+    let list =JSON.parse(JSON.stringify(this.state.newsList))
+    let alist = JSON.parse(JSON.stringify(this.state.mayInterestList))
+    list.forEach((item) => {
+      (val.creator_id === item.creator_id) && (item.is_attention = val.types?'1':null)
+    });
+    alist.forEach((item) => {
+      (val.creator_id === item.creator_id) && (item.is_attention = val.types?'1':null)
+    });
+    this.setState({newsList:list,mayInterestList:alist})
+  }
   componentDidMount(){
     this.getUserAnalysis()
     window.addEventListener('scroll', this.handleScroll, false)
@@ -169,6 +183,7 @@ export default class News extends Component{
   }
   render(){
     const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate,loginShow}=this.state
+    console.log(newsList)
     return (
       <div id='news' className='back-color'>
         <div className='news-header'>
@@ -225,7 +240,7 @@ export default class News extends Component{
                       <div className='fleximg writeimg'><img src={item.head_url?item.head_url:headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
                       <div >{item.name}</div>
                       <div>
-                        <FollowButton item={item} />
+                        <FollowButton item={item} key={item.is_attention} change={this.followChange}/>
                       </div>
                     </div>
                   ))}
@@ -236,7 +251,7 @@ export default class News extends Component{
             <div className='news-list'  >
               {newsList.map((item,index)=>(
                 <div key={index} onClick={()=>this.toNewsDetail(item)}>
-                  <NewsListItem key={item.id}  item={item}/>
+                  <NewsListItem key={item.id}  item={item} followChange={this.followChange}/>
                 </div>
               ))}
             </div>

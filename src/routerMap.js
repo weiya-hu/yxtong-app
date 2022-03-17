@@ -35,6 +35,10 @@ const otherLogin = loadable(()=> import('views/login/component/othorLogin/otherL
 const phoneBindLogin = loadable(()=> import('views/login/component/othorLogin/phoneBindLogin/phoneBindLogin'), {
     LoadingComponent: Loading,
 })
+//用户须知页面
+const userAgreement = loadable(()=> import('views/login/userAgreement'), {
+    LoadingComponent: Loading,
+})
 
 
 export const routerMap = [
@@ -47,4 +51,5 @@ export const routerMap = [
     {path: "/app/newsauthormore", name: "NewsAuthorMore", component: NewsAuthorMore},
     {path: "/app/wechat/callback.do", name: "otherLogin", component: otherLogin},
     {path: "/app/bindphone", name: "phoneBindLogin", component: phoneBindLogin},
+    {path: "/app/useragreement", name: "userAgreement", component: userAgreement},
 ];

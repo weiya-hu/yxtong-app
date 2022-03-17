@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 import { Component } from 'react'
 import './register.scss'
 import { Form , Button} from 'antd';
@@ -164,8 +164,7 @@ export default class Register extends Component {
                                         (<div><img src={unselectimg} alt="unchecked" /></div> )
                                     }
                                     <span>我已阅读并同意</span>
-                                    <span className='Link'>《药智网用户须知》</span>
-                                    {/* <Link>《药智网用户须知》</Link>                                    */}
+                                    <span className='Link' onClick={()=>{this.props.history.push('/app/useragreement')}}>《药智网用户须知》</span>
                                 </div>
                             </Form>
                         </div>
