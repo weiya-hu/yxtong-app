@@ -99,14 +99,22 @@ export default class Certificate extends Component{
                 let item={showUrl:element,sendUrl:element}
                 imgs.push(item)
             });
-            this.setState({
-                AuditRecord:body,
-                status:body.status,
-                disabled:(body.status === 0 || body.status === 1)?false:true,
-                // status:1,
-                // disabled:false,
-                images:imgs
-            })
+            if(body.status){
+                this.setState({
+                    AuditRecord:body,
+                    status:body.status,
+                    disabled:body.status === 1?false:true,
+                    // status:1,
+                    // disabled:false,
+                    images:imgs
+                })
+            }else{
+                this.setState({
+                    status:0,
+                    disabled:false,
+                }) 
+            }
+            
         }
     }
     //行业分类
@@ -155,7 +163,7 @@ export default class Certificate extends Component{
     }
     render(){
         const {modalVisible,IndustryType,images,message,status,disabled,AuditRecord,cityType} =this.state
-        let flag = AuditRecord.status >=0
+        let flag = status >=0
         return flag &&
         <div id='certificate'>
             {this.topStatusDom()}

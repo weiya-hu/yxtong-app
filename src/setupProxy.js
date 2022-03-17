@@ -7,6 +7,7 @@ module.exports = function (app) {
     target: 'http://47.108.185.157:9000',
     // target: 'http://10.10.0.123:9000',
     // target: 'http://10.10.0.83:9000',
+    // target: 'http://10.10.0.93:9000',
     secure: false,
     changeOrigin: true,
     pathRewrite: {

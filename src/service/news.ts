@@ -87,7 +87,11 @@ export const getEditNews =(data):Promise<API.IResult>=>{
 }
 
 //个人中心删除文章
-
 export const deleteNews =(data):Promise<API.IResult>=>{
     return post('news/writing/delete-news',data)
+}
+
+//获取关注列表
+export const newsFavorList= (data): Promise<API.IResult> => {
+    return get('news/public/attention.list',data)
 }

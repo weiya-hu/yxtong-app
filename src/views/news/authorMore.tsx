@@ -80,7 +80,7 @@ export default class AuthorMore extends Component{
       let res = await newsWorksList(data)
       res.status && this.setState({
         authorInfo:res.body,
-        newsList:newsList.concat(res.body.works_list),
+        newsList:newsList.concat(res.body.records),
         hasMore:res.body.total>current*size,
         current:res.body.total>current*size?current+1:current,
         is_attention:res.body.is_attention

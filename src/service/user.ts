@@ -45,7 +45,7 @@ export const newsPublish =(data):Promise<API.IResult>=>{
 
 //获取企业认证的状态和相关信息 
 export const getAuditRecord =():Promise<API.IResult>=>{
-    return  get('company/get-audit-record')
+    return  get('company/get-company-info-audit')
 }
 
 //获取行业分类  

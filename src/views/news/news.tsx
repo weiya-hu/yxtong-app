@@ -7,15 +7,19 @@ import NewsNav from './component/newsNav/newsNav';
 import FollowButton from './component/followButton/followButton';
 import MoreTxt from './component/moreTxt/moreTxt';
 import {util} from 'utils/news'
-import {newsNewsList,newsAList,newsCreatorDate} from 'service/news'
+import {newsNewsList,newsAList,newsCreatorDate,newsFavorList} from 'service/news'
 import PopupLogin from 'views/login/popupLogin';
+
 
 import store from 'store';
 import { loginShow } from 'store/actionCreators';
 
 import writeimg from 'public/images/user/write.png'
 import exchangeimg from 'public/images/user/exchange.png'
-import headerimg from 'public/images/user/header.png'
+import headerimg from 'public/images/user/header2.png'
+import arrowimg from 'public/images/arrow.png'
+import arrowaimg from 'public/images/arrow_a.png'
+import loadingimg from 'public/images/user/loading.png'
 
 
 
@@ -30,18 +34,24 @@ export default class News extends Component{
   }
   state={
     isLogin:true,//是否登录了
-    newsTypeActive:1,//新闻类型的默认值
+    newsTypeActive:0,//新闻类型的默认值
     mayInterestList:[],
     newsList:[],
+    favorList:[],
     hasMore: true,// 判断接口是否还有数据，通过接口设置
     interestPage:1,
     interestSize:7,
+    interestLoading:false,
+    favorPage:1,
+    favorSize:7,
     newsPage:1,
     newsSize:5,
     userInfo:null,
     newsTypeId:null,
     exchangeRotate:false,//换一换旋转的图标是否转动
-    UserAnalysis:{}
+    UserAnalysis:{},
+    left:false,//关注中左箭头active状态
+    right:false,//关注中右箭头active状态
   }
   loadMoreData=()=>{
     this.getNewslist(this.state.newsTypeId)
@@ -69,7 +79,7 @@ export default class News extends Component{
         newsPage:1,
         newsTypeId:item.id,
         newsList:[]
-      },()=>{this.getNewslist(item.id)})
+      },()=>{this.getNewslist(item.id);})
       
     }else{
       let param = this.props.location.query
@@ -79,17 +89,24 @@ export default class News extends Component{
       if(param){
         this.getNewslist(param.item.id)
         this.setState({newsTypeActive:param.index})
-        if(param.index === 0){
+        if(param.index === 1){
           this.getFavorlist()
+        }
+        if(param.index === 0){
+          this.getInterestList(1)
         }
       }else{
         this.getNewslist(item.id)
       }
     }
     
-    if(val === 0){
+    if(val === 1){
       this.getFavorlist()
     }
+    if(val === 0){
+      this.getInterestList(1)
+    }
+
   }
   getInfo=()=>{
     let param = this.props.location.query
@@ -123,6 +140,7 @@ export default class News extends Component{
     window.open(window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+item.id, "_blank"); 
     // window.scrollTo (0,0);
   }
+  //获取可能感兴趣列表
   getFavorlist=async()=>{
     const {interestPage,interestSize}=this.state
     this.setState({exchangeRotate:true})
@@ -133,9 +151,38 @@ export default class News extends Component{
     const res = await newsAList(data)
     if(res.status){
       this.setState({
-        mayInterestList:res.body.interest_list,
+        mayInterestList:res.body.records,
         exchangeRotate:false,
         interestPage:res.body.pages>interestPage?interestPage+1:1
+      })
+    }
+  }
+  //获取关注列表,num（0,1）是是否是第一次加载，isright（0,1）是否是右箭头1，左箭头0被按了
+  getInterestList=async(num,isright)=>{
+    const {favorPage,favorSize,interestLoading} = this.state
+    if(num){
+      let data={
+        current:1,
+        size:favorSize
+      }
+      const res = await newsFavorList(data)
+      res.status && this.setState({
+        favorList:res.body.records,
+        favorPage:1,
+        right:res.body.pages>favorPage?true:false,
+      })
+    }else{
+      console.log(favorPage)
+      let data={
+        current:isright?favorPage+1:favorPage-1,
+        size:favorSize
+      }
+      const res = await newsFavorList(data)
+      res.status && this.setState({
+        favorList:res.body.records,
+        favorPage:data.current,
+        right:res.body.pages>data.current?true:false,
+        left:data.current>1?true:false
       })
     }
   }
@@ -182,7 +229,7 @@ export default class News extends Component{
     }
   }
   render(){
-    const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate,loginShow}=this.state
+    const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate,loginShow,left,right,favorList}=this.state
     console.log(newsList)
     return (
       <div id='news' className='back-color'>
@@ -223,7 +270,7 @@ export default class News extends Component{
         </div>
         <div className='width flexbl ' >
           <div className='news-main news-position-left'>
-            {newsTypeActive === 0 &&
+            {newsTypeActive === 1 &&
               <div className='may-interest'>
                 <div className='may-interest-title flexb'>
                   <div className='may-interest-title-txt'>您可能感兴趣</div>
@@ -245,6 +292,30 @@ export default class News extends Component{
                     </div>
                   ))}
                 </div>
+              </div>
+            }
+            {newsTypeActive === 0 &&
+              <div className='may-interest flexb'>
+                <div className='interest-arrow fleximg'  onClick={()=>{left && this.getInterestList(0,0)}}>
+                  <div className='fleximg arrowimg-left'>
+                    <img src={left?arrowaimg:arrowimg} alt="arrow" />
+                  </div>
+                </div>
+                
+                <div className='may-interest-list-ed flexl'>
+                  {favorList.map((item,index)=>(
+                    <div className='may-interest-item fleximgc' key={index}>
+                      <div className='fleximg writeimg'><img src={item.head_url || headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
+                      <div >{item.name}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className='interest-arrow fleximg' onClick={()=>{right && this.getInterestList(0,1)}}>
+                  <div className='fleximg arrowimg-right'>
+                    <img src={right?arrowaimg:arrowimg} alt="arrow" />
+                  </div>
+                </div>
+                
               </div>
             }
             

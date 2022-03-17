@@ -28,6 +28,21 @@
         .may-interest{
             border-bottom: 1px solid #F4F4F4; 
             padding: 26px 0 28px;
+            .interest-arrow{
+                width: 20px;
+                height: 40px;
+                background: #FFFFFF;
+                border: 1px solid rgb(238,238,238);
+                cursor: pointer;
+                .arrowimg-left{
+                    transform: rotate(180deg);
+                    width: 14px;
+                }
+                .arrowimg-right{
+                    width: 14px;
+                }
+            }
+            
             .may-interest-title{
                 margin-bottom: 20px;
                 .may-interest-title-txt{
@@ -46,12 +61,40 @@
                 .may-interest-item{
                     padding: 8px 20px;
                     height: 138px;
+                    cursor: pointer;
                     .writeimg{
                         width: 56px;
                         height: 56px;
                         border: 0.95px solid #EEEEEE;
                         border-radius: 50%;
                         overflow: hidden;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    
+                }
+            }
+            .may-interest-list-ed{
+                width: 774px;
+                .may-interest-item{
+                    padding: 6px 17px;
+                    height: 98px;
+                    margin: 0 12px;
+                    cursor: pointer;
+                    .writeimg{
+                        width: 56px;
+                        height: 56px;
+                        border: 0.95px solid #EEEEEE;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
                     }
                     
                 }
@@ -76,7 +119,9 @@
         right: 0;
         .writeimg{
             width: 38px;
+            height: 38px;
             margin: 20px 0 6px;
+            
         }
         .hr{
             width: 264px;

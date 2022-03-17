@@ -89,7 +89,7 @@ export default class NewsDetail extends Component {
     newsReadLists=async () => {
         let res = await newsReadList({current:1,size:5})
         res.status && this.setState({
-            readRank:res.body.read_list
+            readRank:res.body.records
         })
     }
     //作者信息和作品列表
@@ -186,7 +186,7 @@ export default class NewsDetail extends Component {
                             <div>TA的热门作品</div>
                         </div>
                         <div>
-                            {hotArticleList.works_list && hotArticleList.works_list.map((item,index)=>(
+                            {hotArticleList.records && hotArticleList.records.map((item,index)=>(
                                 <div 
                                     key={index}
                                     onClick={()=>{this.articleChange(item.id)}}

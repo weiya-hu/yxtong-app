@@ -135,7 +135,7 @@ export default class phoneBindLogin extends Component {
                                         (<div><img src={unselectimg} alt="unchecked" /></div> )
                                     }
                                     <span>我已阅读并同意</span>
-                                    <span className='Link' onClick={()=>{this.props.history.push('/app/useragreement')}}>《药智网用户须知》</span> 
+                                    <span className='Link' onClick={()=>{window.open(window.location.protocol+'//'+window.location.host+'/app/useragreement', "_blank");}}>《药智网用户须知》</span> 
                                 </div>
                             </Form>
                         </div>
