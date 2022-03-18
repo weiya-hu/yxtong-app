@@ -223,9 +223,17 @@
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
                 $('.content-login').css('display', 'none')
                     // 登录药智器械页面
-                var text = 'vipdata'
-                var url = window.location.href
-                if (url.indexOf(text) >= 0) {
+                var text1 = 'vipdata'
+                var url1 = window.location.href
+                if (url1.indexOf(text1) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+                // 进入APP机器人页面
+                var text2 = 'marketing'
+                var url2 = window.location.href
+                if (url2.indexOf(text2) >= 0) {
                     // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
@@ -383,8 +391,14 @@
     //     })
 
     // 登录药智器械页面
-    var text = 'vipdata'
-    var url = window.location.href
+    var text1 = 'vipdata'
+    var url1 = window.location.href
+
+    // 进入APP机器人页面
+    var text2 = 'marketing'
+    var url2 = window.location.href
+
+
 
     // 弹框消失
     function able() {
@@ -393,9 +407,12 @@
     }
     $('#content .content-login').on('mouseup', () => {
         if (!isDrag) {
-            if (url.indexOf(text) >= 0) {
+            if (url1.indexOf(text1) >= 0) {
                 window.open("https://qx.yaozh.com", "_blank")
                 console.log(11)
+            } else if (url2.indexOf(text2) >= 0) {
+                window.open("https://robot.yxtong.com/user/qq/devicesRun.html", "_blank")
+                console.log(111);
             } else {
                 window.open("/app/login", "_self")
                 console.log(222);
@@ -453,11 +470,15 @@
     <div class="prod-swiper">
         <div class="swiper-wrapper" id="prod-top-swiper">
             <div class="swiper-wrapper">
-                <a href="/service.html#00" target="_blank" class="swiper-slide" style="background-image: url(uploads/prod-swiper-1.png);">
+                <a href="/service.html#11" target="_blank" class="swiper-slide" style="background-image: url(uploads/prod-swiper-1.png);">
                     <div class="wrapper">
                     </div>
                 </a>
-                <a href="/service.html#11" target="_blank" class="swiper-slide" style="background-image: url(uploads/prod-swiper-1.png);">
+                <a href="/service.html#00" target="_blank" class="swiper-slide" style="background-image: url(static/images/product-banner1.jpg);">
+                    <div class="wrapper">
+                    </div>
+                </a>
+                <a href="/service.html#11" target="_blank" class="swiper-slide" style="background-image: url(static/images/product-banner2.jpg);">
                     <div class="wrapper">
                     </div>
                 </a>

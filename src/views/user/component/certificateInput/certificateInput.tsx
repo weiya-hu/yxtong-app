@@ -3,9 +3,11 @@ import { Component} from 'react'
 import './certificateInput.scss'
 import {withRouter} from 'react-router-dom'
 import {Form,Cascader,Input,DatePicker} from 'antd'
-import locale from 'antd/lib/locale/zh_CN';
+// import locale from 'antd/lib/locale/zh_CN';
 import {util} from 'utils/user.ts'
 import moment from 'moment';
+import 'moment/locale/zh-cn';
+import locale from 'antd/es/date-picker/locale/zh_CN';
 
 import warnimg from 'public/images/warn.png'
 

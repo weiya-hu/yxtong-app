@@ -34,7 +34,7 @@ export default class News extends Component{
   }
   state={
     isLogin:true,//是否登录了
-    newsTypeActive:0,//新闻类型的默认值
+    newsTypeActive:1,//新闻类型的默认值
     mayInterestList:[],
     newsList:[],
     favorList:[],
@@ -294,7 +294,7 @@ export default class News extends Component{
                 </div>
               </div>
             }
-            {newsTypeActive === 0 &&
+            {(newsTypeActive === 0 && favorList.length) &&
               <div className='may-interest flexb'>
                 <div className='interest-arrow fleximg'  onClick={()=>{left && this.getInterestList(0,0)}}>
                   <div className='fleximg arrowimg-left'>

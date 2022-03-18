@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { Upload} from 'antd';
+import { Upload,Form} from 'antd';
 import  React  from 'react';
 import {uploadolicy} from 'service/user'
 import moment from 'moment'
@@ -10,16 +10,22 @@ export default class OSSUpload extends React.Component{
     
     render(){
         let header={"Content-Type": "multipart/form-data"}
-        return <Upload 
-        name="file" 
-        onChange={this.uploadFile}
-        showUploadList={false}
-        // data={uploadParmas}
-        headers={header}
-        beforeUpload={this.beforeUpload}
-        >
-            <div>上传</div>
-    </Upload>
+        return (
+            <Form >
+                <Upload 
+                    name="file" 
+                    onChange={this.uploadFile}
+                    showUploadList={false}
+                    // data={uploadParmas}
+                    headers={header}
+                    beforeUpload={this.beforeUpload}
+                    >
+                        <div>上传</div>
+                </Upload>
+            </Form>
+        )
+        
+        
     }
 
 
@@ -76,7 +82,11 @@ uploadFile = (info) => {
             console.log(formData.getAll('signature'))
             localStorage.setItem('type','oss')
             //请求oss上传
-            axios.post(url, formData,{headers:{"Content-Type": "multipart/form-data"}}, {withCredentials: false}).then(
+            axios.post(url, 
+                formData,
+                {headers:{"Content-Type": "multipart/form-data"}},
+                {dataType:'jsonp'}
+                 ).then(
                 (response) => {
                   //关闭进度条
                   console.log(response)

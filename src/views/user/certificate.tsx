@@ -163,7 +163,7 @@ export default class Certificate extends Component{
     }
     render(){
         const {modalVisible,IndustryType,images,message,status,disabled,AuditRecord,cityType} =this.state
-        let flag = status >=0
+        let flag = status !==null
         return flag &&
         <div id='certificate'>
             {this.topStatusDom()}

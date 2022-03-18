@@ -223,9 +223,17 @@
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
                 $('.content-login').css('display', 'none')
                     // 登录药智器械页面
-                var text = 'vipdata'
-                var url = window.location.href
-                if (url.indexOf(text) >= 0) {
+                var text1 = 'vipdata'
+                var url1 = window.location.href
+                if (url1.indexOf(text1) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+                // 进入APP机器人页面
+                var text2 = 'marketing'
+                var url2 = window.location.href
+                if (url2.indexOf(text2) >= 0) {
                     // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
@@ -242,10 +250,10 @@
         <div class="wrapper">
             <h1>加入会员 成为VIP</h1>
             <p class="subtit">药智营销通利用智能机器人技术，为用户提供全方位覆盖的自动化营销方案，为企业节省大量营销成本</p>
-            <div class="btns">
+            <!-- <div class="btns">
                 <a href="###">个人版</a>
                 <a href="###">企业版</a>
-            </div>
+            </div> -->
             <!-- <div class="mycodes">
                 我的积分值：<span id="mycode">0</span>
             </div>

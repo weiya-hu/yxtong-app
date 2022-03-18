@@ -223,9 +223,17 @@
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
                 $('.content-login').css('display', 'none')
                     // 登录药智器械页面
-                var text = 'vipdata'
-                var url = window.location.href
-                if (url.indexOf(text) >= 0) {
+                var text1 = 'vipdata'
+                var url1 = window.location.href
+                if (url1.indexOf(text1) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+                // 进入APP机器人页面
+                var text2 = 'marketing'
+                var url2 = window.location.href
+                if (url2.indexOf(text2) >= 0) {
                     // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')

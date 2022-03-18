@@ -223,9 +223,17 @@
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
                 $('.content-login').css('display', 'none')
                     // 登录药智器械页面
-                var text = 'vipdata'
-                var url = window.location.href
-                if (url.indexOf(text) >= 0) {
+                var text1 = 'vipdata'
+                var url1 = window.location.href
+                if (url1.indexOf(text1) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+                // 进入APP机器人页面
+                var text2 = 'marketing'
+                var url2 = window.location.href
+                if (url2.indexOf(text2) >= 0) {
                     // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
@@ -383,8 +391,14 @@
     //     })
 
     // 登录药智器械页面
-    var text = 'vipdata'
-    var url = window.location.href
+    var text1 = 'vipdata'
+    var url1 = window.location.href
+
+    // 进入APP机器人页面
+    var text2 = 'marketing'
+    var url2 = window.location.href
+
+
 
     // 弹框消失
     function able() {
@@ -393,9 +407,12 @@
     }
     $('#content .content-login').on('mouseup', () => {
         if (!isDrag) {
-            if (url.indexOf(text) >= 0) {
+            if (url1.indexOf(text1) >= 0) {
                 window.open("https://qx.yaozh.com", "_blank")
                 console.log(11)
+            } else if (url2.indexOf(text2) >= 0) {
+                window.open("https://robot.yxtong.com/user/qq/devicesRun.html", "_blank")
+                console.log(111);
             } else {
                 window.open("/app/login", "_self")
                 console.log(222);
@@ -867,25 +884,26 @@
                 <div class="lst">
                     <div class="item">
                         <div class="hd">
-                            <a target="_blank" href="JavaScript:void(0)" data-bid="b1" class="userback">1、这是一个客户反馈的问题，也就是这段话的标题</a>
+                            <a target="_blank" href="JavaScript:void(0)" data-bid="b1" class="userback">1、数智营销通与传统营销的区别？</a>
                         </div>
-                        <div class="bd">A：这是一段我们针对客户疑问的和反馈的回答，由运营或技术、产品等人员编写，语言尽量简练直白。</div>
+                        <div class="bd">A:传统的营销业务，需要员工精心策划营销方案，准备营销素材，需要用大量的成本去各个渠道和媒体进行宣传推广，而不同渠道的效果和数据都难以把控，营销效果大打折扣。 数智营销通紧紧围绕“流量与数据”，通过整合广告投放平台、整合信息推送渠道、打通营销各个环节的数据通道、构建支撑营销业务链上的各个数字化系统，帮助企业一站式解决数字营销的痛点和难题，打造一名“全能型营销数智化员工”。通过一个平台，解决所有营销需求，极大提高企业的营销效率，为企业节省大量营销成本。
+                        </div>
                     </div>
                     <div class="item">
                         <div class="hd">
-                            <a target="_blank" href="JavaScript:void(0)" data-bid="b2" class="userback">2、这是一个客户反馈的问题，也就是这段话的标题，客户反馈…</a>
+                            <a target="_blank" href="JavaScript:void(0)" data-bid="b2" class="userback">2、数智营销通的广告系统的优势？</a>
                         </div>
-                        <div class="bd">A：这是一段我们针对客户疑问的和反馈的回答，由运营或技术、产品等人员编写，语言尽量简练直白，概括性强，能解决用户的疑问，或者对……</div>
+                        <div class="bd">A：营销通广告平台，除了提供常规的广告策划、广告内容制作、广告信息触达等服务外，最重要的是通过合作的方式将不同的广告平台进行整合，企业主只需在营销通的广告系统，即可同时面向不同的广告平台进行广告投放与管理，同时，各个平台产生的数据也能在营销通统一处理和分析，真正打通数据壁垒，降低广告成本，提升投放效率和广告效果！</div>
                     </div>
                     <div class="item">
                         <div class="hd">
-                            <a target="_blank" href="JavaScript:void(0)" data-bid="b3" class="userback">3、这是一个客户反馈的问题</a>
+                            <a target="_blank" href="JavaScript:void(0)" data-bid="b3" class="userback">3、数智营销通客户管理系统软件，能适配哪些行业？</a>
                         </div>
-                        <div class="bd">A：这是一段我们针对客户疑问的和反馈的回答，由运营或技术、产品等人员编写，语言尽量简练直白。</div>
+                        <div class="bd">A：数智营销通目前覆盖30+行业，30万+企业客户，包括外贸行业、快消行业、建筑行业、医药行业、金融行业、服务业、制造业、零售行业、教育行业等，因其标准化及免开发定制化特性，适配度高，开发周期短。</div>
                     </div>
                 </div>
                 <div>
-                    <a class="more" href="developmenting.html">查看全部 ></a>
+                    <!-- <a class="more" href="developmenting.html">查看全部 ></a> -->
                 </div>
             </div>
             <div class="form">

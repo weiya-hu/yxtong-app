@@ -223,9 +223,17 @@
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
                 $('.content-login').css('display', 'none')
                     // 登录药智器械页面
-                var text = 'vipdata'
-                var url = window.location.href
-                if (url.indexOf(text) >= 0) {
+                var text1 = 'vipdata'
+                var url1 = window.location.href
+                if (url1.indexOf(text1) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+                // 进入APP机器人页面
+                var text2 = 'marketing'
+                var url2 = window.location.href
+                if (url2.indexOf(text2) >= 0) {
                     // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
@@ -383,8 +391,14 @@
     //     })
 
     // 登录药智器械页面
-    var text = 'vipdata'
-    var url = window.location.href
+    var text1 = 'vipdata'
+    var url1 = window.location.href
+
+    // 进入APP机器人页面
+    var text2 = 'marketing'
+    var url2 = window.location.href
+
+
 
     // 弹框消失
     function able() {
@@ -393,9 +407,12 @@
     }
     $('#content .content-login').on('mouseup', () => {
         if (!isDrag) {
-            if (url.indexOf(text) >= 0) {
+            if (url1.indexOf(text1) >= 0) {
                 window.open("https://qx.yaozh.com", "_blank")
                 console.log(11)
+            } else if (url2.indexOf(text2) >= 0) {
+                window.open("https://robot.yxtong.com/user/qq/devicesRun.html", "_blank")
+                console.log(111);
             } else {
                 window.open("/app/login", "_self")
                 console.log(222);
@@ -457,13 +474,13 @@
                 <a href="product.html" class="swiper-slide" style="background-image: url(static/images/ib3.jpg);"></a>
                 <a href="product.html" class="swiper-slide" style="background-image: url(static/images/ib4.jpg);"></a>
                 <div class="swiper-slide swiper-video">
-                    <video src="static/video/index-vid.mp4" type="video/mkv" class="index-about-video" poster="static/images/ib5.jpg" preload="auto" controls="controls" loop="loop">
-						<source src="static/video/index-vid.mp4" type="video/mkv">您的浏览器不支持 video 标签。
+                    <video src="https://res.yxtong.com/web/index/vedio/index-banner-1.mp4" type="video/mkv" class="index-about-video" poster="static/images/ib5.jpg" preload="auto" controls="controls" loop="loop">
+						<source src="https://res.yxtong.com/web/index/vedio/index-banner-1.mp4" type="video/mkv">您的浏览器不支持 video 标签。
 			        </video>
                 </div>
                 <div class="swiper-slide swiper-video">
-                    <video src="static/video/mysql-new.mp4" type="video/mkv" class="index-about-video" poster="static/images/ib1.png" preload="auto" controls="controls" loop="loop">
-						<source src="static/video/mysql-new.mp4" type="video/mkv">您的浏览器不支持 video 标签。
+                    <video src="https://res.yxtong.com/web/index/vedio/index-banner-2.mp4" type="video/mkv" class="index-about-video" poster="static/images/ib1.png" preload="auto" controls="controls" loop="loop">
+						<source src="https://res.yxtong.com/web/index/vedio/index-banner-2.mp4" type="video/mkv">您的浏览器不支持 video 标签。
 			        </video>
                 </div>
             </div>
@@ -511,8 +528,8 @@
                 </div>
             </div>
             <div class="index-about-right  wow bounceInRight">
-                <video src="static/video/video-news.mkv" type="video/mkv" class="index-about-video" poster="static/images/index_1.png" preload="auto" controls="controls" loop="loop">
-                    <source src="static/video/video-news.mkv" type="video/mkv">您的浏览器不支持 video 标签。
+                <video src="https://res.yxtong.com/web/index/vedio/about-kzsz.mp4" type="video/mkv" class="index-about-video" poster="static/images/index_1.png" preload="auto" controls="controls" loop="loop">
+                    <source src="https://res.yxtong.com/web/index/vedio/about-kzsz.mp4" type="video/mkv">您的浏览器不支持 video 标签。
                 </video>
             </div>
         </div>
@@ -687,7 +704,7 @@
                         <a target="_blank" href="###"><img src="uploads/index-news-1.png" width="100%" alt=""></a>
                     </div>
                     <div class="con">
-                        <h3><a target="_blank" href="###">国家不得不发展，企业不得不标配的“云计算”</a></h3>
+                        <h3><a target="_blank" href="###">2022年，数智化的市场变革来临</a></h3>
                         <div class="bar">
                             <span class="items">07.24</span> 行业新闻
                             <em class="icon-view"></em> 336
@@ -701,7 +718,7 @@
                         <a target="_blank" href="###"><img src="uploads/index-news-2.png" width="100%" alt=""></a>
                     </div>
                     <div class="con">
-                        <h3><a target="_blank" href="">2021新药融资金额TOP榜发布！细分领域“龙头”霸榜</a></h3>
+                        <h3><a target="_blank" href="">企业数字化转型的的几个关键点</a></h3>
                         <div class="bar">
                             <span class="items">07.24</span> 行业新闻
                             <em class="icon-view"></em> 336
@@ -715,7 +732,7 @@
                         <a target="_blank" href="###"><img src="uploads/index-news-3.png" width="100%" alt=""></a>
                     </div>
                     <div class="con">
-                        <h3><a target="_blank" href="###">听说了吗，2022药智居然准备这样做了！</a></h3>
+                        <h3><a target="_blank" href="###">京东商智3.0上线背后：数智化营销时代来了</a></h3>
                         <div class="bar">
                             <span class="items">07.24</span> 行业新闻
                             <em class="icon-view"></em> 336
@@ -729,7 +746,7 @@
                         <a target="_blank" href="###"><img src="uploads/index-news-4.png" width="100%" alt=""></a>
                     </div>
                     <div class="con">
-                        <h3><a target="_blank" href="###">宝剑锋从磨砺出！祝贺药智网跻身国家中小企业公共服务示范平台！</a></h3>
+                        <h3><a target="_blank" href="###">数字经济时代，商业的底层逻辑变了</a></h3>
                         <div class="bar">
                             <span class="items">07.24</span> 行业新闻
                             <em class="icon-view"></em> 336

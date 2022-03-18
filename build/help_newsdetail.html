@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数智器械 - 行业导航</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="static/css/common.css" />
+    <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+</head>
+
+
+
+<body>
+
+
+
+    <div class="topbar">
+        <div class="tips">你好，欢迎登陆康洲数智官网！</div>
+        <div class="links">
+            <div class="content">
+                <a target="_blank" href="https://qx.yaozh.com/home">药智器械</a>
+                <a target="_blank" href="https://job.yaozh.com/">数智人才</a>
+                <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
+                <a target="_blank" href="https://report.yaozh.com/">数智咨询</a>
+                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">数智汇</a>
+                <a target="_blank" href="https://s.yaozh.com">数智通</a>
+                <a target="_blank" href="https://edu.yaozh.com/">数智大讲堂</a>
+                <a target="_blank" href="https://aiyun.yaozh.com/">产业大脑</a>
+                <a target="_blank" href="https://bbs.yaozh.com">论坛交流</a>
+                <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
+                <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
+                <a target="_blank" href="https://gu.yaozh.com/ ">数智谷</a>
+            </div>
+            <div class="login" id="login">
+                <div class="default-show">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50" xml:space="preserve">
+                            <rect x="0" y="9.22656" width="4" height="12.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="10" y="5.22656" width="4" height="20.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="20" y="8.77344" width="4" height="13.4531" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                        </svg>
+                    <sprn style="margin-left:15px;">加载中...</sprn>
+                </div>
+                <div class="nologin">
+                    <a target="_blank" href="/app/login">登录</a>
+                    <span class="split">|</span>
+                    <a target="_blank" href="/app/register/register">注册</a>
+                </div>
+                <div class="logined">
+                    <!-- <div class="info-messages">消息</div>
+                    <div class="info-numbers"><span>0</span></div> -->
+                    <img id="header" src="static/images/icon-avatar.png" alt="">
+                    <div id="uname"></div>
+                    <div class="info-quit">退出</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="zw"></div>
+
+
+    </div>
+
+    <div class="navs">
+        <div class="wrapper">
+            <a class="logo" href="/">
+                <img src="static/images/logo.png" title="数智器械">
+            </a>
+            <div class="navbar" id="navbar">
+                <ul>
+                    <li class="active"><a href="/index.html">首页</a></li>
+                    <li class="" id="li-propuct"><a href="/product.html">产品与服务</a>
+                        <div class="navchild1">
+                            <ul>
+                                <li class="marketing">
+                                    <a href="/sales.html">
+                                        <span>数智营销通</span>
+                                        <span>中小企业专享</span>
+                                    </a>
+                                    <div class="barchild">
+                                        <div class="bar-tip"></div>
+                                        <ul>
+                                            <li><a href="/developmenting.html">CMS 内容管理</a></li>
+                                            <li><a href="/dmp_intro.html">DMP 精准数据</a></li>
+                                            <li><a href="/developmenting.html">DSP 广告投放</a></li>
+                                            <li><a href="/developmenting.html">DSP 数据服务</a></li>
+                                            <li><a href="/developmenting.html">CDP 数据分析</a></li>
+                                            <li><a href="/developmenting.html">SCRM 私域流量</a></li>
+                                            <li><a href="/app/news">信息资讯中心</a></li>
+                                            <li><a href="/marketing.html">APP机器人矩阵</a></li>
+                                            <li><a href="/developmenting.html">SMS 5G短信</a></li>
+                                            <li><a href="/developmenting.html">EDM 电子邮件</a></li>
+                                            <li><a href="/developmenting.html">会员裂变管理</a></li>
+                                            <li><a href="/developmenting.html">线上直播</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="/developmenting.html"><span>数智赢效通</span>
+                                        <span>全套解决方案</span></a></li>
+                                <li><a href="/developmenting.html"><span>数智优销通</span>
+                                            <span>微B/C端客户专享</span></a></li>
+                                <li><a href="/developmenting.html"><span>数智医销通</span>
+                                    <span>医 药 行 业 专 属                  </span></a></li>
+
+                                <div class="line"></div>
+
+                                <li><a href="/vipdata.html"><span>药 智 器 械</span>
+                                    <span>医疗器械数据服务</span></a></li>
+                                <li><a href="/developmenting.html"><span>数智医械通</span>
+                                        <span>医疗器械数据服务</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/sales.html">数智营销通</a></li>
+                    <li><a href="/vipdata.html">药智器械</a></li>
+                    <li><a href="/attract.html">商务合作</a></li>
+                    <li><a href="/app/news">资讯中心</a></li>
+                    <li>
+                        <a href="/member.html">会员中心</a>
+                        <div class="navchild2">
+                            <ul>
+                                <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li>
+                                <li><a href="/benefits.html">VIP权益</a><span>|</span></li>
+
+                                <li><a href="/spread.html">我要推广</a><span>|</span></li>
+                                <li><a href="/material.html">营销素材</a><span>|</span></li>
+                                <li><a href="/member.html#feedback">客户反馈</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/help.html">帮助中心</a></li>
+                    <li><a href="/navigation.html">行业导航</a></li>
+
+                </ul>
+
+            </div>
+            <div class="header-phone">
+                <img src="static/images/header-phone.png" alt="">
+                <span>咨询电话：</span>
+                <span>400-805-6906</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        $('.marketing').hover(
+            function() {
+                $('.navchild1').css('overflow', 'revert')
+                $('.barchild').css('height', '86px')
+                $('.bar-tip').slideDown(200)
+            },
+            function() {
+                $('.navchild1').css('overflow', 'hidden')
+                $('.bar-tip').slideUp(200)
+
+            })
+    </script>
+    <script>
+        // loaded page
+        $(document).ready(function() {
+
+            $.ajax({
+                method: 'get',
+                url: "/api/user/public/get-user",
+                dataType: "json",
+                success: function(res) {
+                    res.status ? isUser(res.body) : isUser()
+                },
+            })
+            $('#header').click(function() {
+                location.href = '/app/user'
+            })
+            $('#uname').click(function() {
+                location.href = '/app/user'
+            })
+
+        })
+
+        // 点击退出
+        $('.info-quit').on('click', function() {
+            $.ajax({
+                method: 'get',
+                url: "/api/login/login-out",
+                dataType: "json",
+                success: function(res) {
+                    isUser()
+                },
+            })
+        })
+
+
+
+        function isUser(userInfo) {
+            $('.default-show').hide()
+            if (!userInfo) {
+                $('.nologin').css('display', 'flex')
+                $('.logined').css('display', 'none')
+                $('.content-login').css('display', 'block')
+
+            } else {
+                $('.nologin').css('display', 'none')
+                $('.logined').css('display', 'flex')
+                $('#header').attr('src', userInfo.head ? userInfo.head : './static/images/icon-avatar.png')
+                $('#uname').text(userInfo.name)
+                    // 立即登录按钮
+                $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
+                $('.content-login').css('display', 'none')
+                    // 登录药智器械页面
+                var text1 = 'vipdata'
+                var url1 = window.location.href
+                if (url1.indexOf(text1) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+                // 进入APP机器人页面
+                var text2 = 'marketing'
+                var url2 = window.location.href
+                if (url2.indexOf(text2) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+            }
+        }
+    </script>
+<link rel="stylesheet" type="text/css" href="static/css/member.css" />
+
+
+<div class="container bg-grey">
+    <div class="wrapper clearfix">
+        <div class="crumbs">
+            您当前位置：
+            <span id="nav1"><a href="member.html">会员中心</a></span> >
+            <span id="nav2">通知公告</span>
+        </div>
+        <div class="member-news-detail news1">
+            <h1>常用的网络营销策略，有哪些？</h1>
+            <div class="bar">
+
+                <span class="by-source bar1">来源：网络</span>
+                <span class="read-number bar1"><img src="static/images/read-number.png" alt=""> 2596</span>
+                <span class="release-date bar1"> 发布日期：2021年03月26日</span>
+
+            </div>
+            <div class="member-news-content">
+                <p>网络营销现如今已经成为了企业营销的首要手段，但值得注意的是许多企业关于网络营销缺少实践的经历。或者是才开始接触网络营销，不知道该怎么操作，接下来将跟大家介绍一些常用的营销策略来帮助大家更加快速的开始网络营销。</p>
+                <p>一、品牌策略</p>
+                <p>对于公司网络营销的来说，销售的产品必须有自己的品牌地位和品牌优势，通过网络使自己的产品很快得到推广，建立自己的品牌形象。网站的建设时企业品牌建设的基础，通过网络品牌价值的提高来带动产品的市场地位，进而促进企业的盈利。通过一系列的推广措施，使得消费者提高对产品和企业的认知和认可。</p>
+                <p>二、产品策略</p>
+                <p>在网络营销时，首先要确定自己产品的货源和产品的针对的目标客户，确保在市场扩大时有充足的货源，同时也可以通过对目标客户的明确，来有目的寻找自己产品的潜在客户，针对性的设计网站的销售方向。同时还要注意所选产品的质量，好的质量是网络营销确保成功的保障。</p>
+                <p>三、价格策略</p>
+                <p>产品的销售价格是消费者关注的焦点，如何能买到物美价廉的产品或许就是选择网店的关键所在。对于网络营销的最大优势就是降低成本和宣传费用，进而使产品的价格降低。随着网络信息化的公开，要想在价格上取胜就需要及时调整自己的不同价格。对于推广时期，企业也完全可以降低利润，用低价高品质来吸引消费者，市场成熟以后，也可以用低价促销的方式来回馈消费者。</p>
+                <p>四、促销策略</p>
+                <p>网络营销不同与传统销售模式的差别，主要是不需要专门的员工进行促销和产品销售，节约成本的同时通过网络宣传来达到促销的效果。所以，网络营销中的促销关键在于网络宣传广告的设计要能发掘自己产品的潜在客户，拓宽产品的销售层面。</p>
+                <p>五、渠道策略</p>
+                <p>网络营销的销售渠道需要从消费者的角度出发，可以根据消费者的需求来及时更新公司网站发布促销信息，新产品的信息和公司的促销活动信息等，同时要开通多种支付模式，增加消费者的选择，同时还要开通客户交流平台，让消费者能更进一步的了解产品的信息，加大产品的销售途径。</p>
+                <p>六、顾客服务策略</p>
+                <p>互动方式也是传统营销模式与网络营销的区别之一，对于网络营销中的客户服务模式，一般采用客服人工交流平台，根据自己产品的特色和客户群的特点，来增加企业文化的互动性，降低成本的一种新型的顾客服务模式。</p>
+            </div>
+
+
+        </div>
+        <div class="member-news-detail  news2">
+            <h1>传统企业如何做好网络营销推广?</h1>
+            <div class="bar">
+                <span class="by-source bar1">来源：网络</span>
+                <span class="read-number bar1"><img src="static/images/read-number.png" alt=""> 3651</span>
+                <span class="release-date bar1"> 发布日期：2021年12月31日</span>
+
+            </div>
+            <div class="member-news-content">
+                <p>不管是传统营销，还是网络营销，更终目标都是销售产品。消费者怎样才会购买你的产品?让你的产品物超所值，让消费者信任你并认同你产品的价值!如何搭建消费者对你产品的信任?花点钱建设公司网站就可以了吗?远远不够，搭建公司网站再配合不间断的网络营销推广，将公司产品信息发布到网络的各个平台，积少成多，才能达到销售的目的。那么我们又该如何做好网络营销推广，曼朗小编来告诉你。</p>
+                <p>网络营销推广的目标是什么?当然是让企业的目标客户找到你然后成交，传统的企业思维都是业务员去开拓市场，主动去寻找目标客户，在互联网时代这样的线下活动在慢慢的开始转移到线上，通过互联网的推广手段让客户主动来找你服务，百度一下你行业产品或服务的相关关键词，首页堆满了你的竞争对手在做网络营销推广。</p>
+                <br>
+                <p>一、做网络营销有哪些作用</p>
+                <p>明白网络营销能够产生什么作用，能帮助企业决策者对症下药，明确自身网络推广的目的，从而选择合适的服务商和营销方式。</p>
+                <p>1、宣传品牌</p>
+                <p>网络营销的重要任务便是在互联网上为企业的商品建立并推广品牌，以及让企业的品牌能够在互联网上得到延伸和拓展。网络营销为企业利用互联网建立品牌形象提供了可行性的条件，网络品牌的建设众所周知是以网站建设为基础，通过一系列的营销操作，达到顾客和大众对企业的认知到认可的一个过程。</p>
+                <p>2、 推广网站</p>
+                <p>网站推广旨在通过各种渠道提高网站的排名，使用户更快更容易地检索到企业的网站。网站SEO是网站推广的主要方式，尤其对于现在的企业而言，由于资源有限，传统意义上的市场营销策划企业资本难以承受，因此在互联网上进行网络推广便越发凸显其重要性。</p>
+                <p>3、 发布信息</p>
+                <p>网络营销过程中的信息发布，就是要挖掘与利用信息发布和传播的渠道资源，将企业营销信息以高效的手段向我们的目标用户、合作伙伴、公众等群体传递出去。</p>
+                <p>4、 促进销售</p>
+                <p>市场营销的基本目的是为更终增加销售提供支持，说白了就是为了公司和企业盈利，网络营销作为企业市场营销的手段之一，当然也不例外。适当的网络营销能够帮助企业实现阶段性的促销推广，短期提升产品销量和企业知名度。</p>
+                <br>
+                <p>二、核心产品定位</p>
+                <p>明确核心产品定位非常重要，现在很少有的产品，核心产品定位解决的是如何让你的产品在同类产品中脱颖而出，形成独特的卖点，形成核心竞争力。只有明确了核心产品定位，才能吸引目标客户，接到订单。</p>
+                <br>
+                <p>三、网络推广渠道定位</p>
+                <p>相对企业而言像电视广告、大型门户网站的广告费用都太过昂贵，更适合大型企业做新产品宣传推广，像服务性的企业比如软装公司、装修公司、家具定制厂家等更适合在百度、360好搜等搜索引擎推广，比如“软装”这个词在百度平均每天的搜索指数是709，就说平均每天有709个人在搜索与“软装”相关的信息，“软装公司”搜索的指数平均每天167次，“装修”搜索指数平均每天7597次，“装修公司”平均每天指数1832次，知道了你的客户在哪里获得相关的服务信息，你就在那里做网络推广，以更低的成本来获取精准的客户来源。</p>
+                <p>网络营销渠道的定位目的就是要让企业相关的服务信息更大限度的曝光在潜在目标客户的眼前，这是网络推广渠道所要完成的事情。</p>
+            </div>
+        </div>
+        <div class="member-news-detail  news3">
+            <h1>房产中介“投放获客”，应该注意什么？</h1>
+            <div class="bar">
+                <span class="by-source bar1">来源：网络</span>
+                <span class="read-number bar1"><img src="static/images/read-number.png" alt=""> 2759</span>
+                <span class="release-date bar1"> 发布日期：2021年12月14日</span>
+
+            </div>
+            <div class="member-news-content">
+                <p>受疫情影响，获客逻辑发生重大改变，寻找新的投放渠道做品牌曝光、引流获客，是每个房地产中介中介广告主迫在眉睫想要解决的问题。房地产中介投放广告渗透率正在逐渐提高 那么应该注意什么？
+                </p>
+                <p>在互联网时代，传统行业对互联网营销不太了解，无从下手，又想涉做投放获得一杯羹，利用互联网的优势达到营销目的，这几点一定要注意：</p>
+                <p>1、做互联网营销之前，需要了解互联网营销。</p>
+                <p>需要了解互联网人群、互联网信息流、互联网平台、互联网行为等，只有在不同的时间、地点、平台，不停地出现在用户的眼前，用户才会不停地加深对品牌/产品的印象以及品牌/产品所传达的价值信息。
+                </p>
+                <p>2、要明确自己的目的、方向</p>
+                <p>在开展互联网营销推广之前，广告主一定要明白为什么要做互联网营销，搞清楚做互联网营销的目的及需求，才能分析出更适合自己的推广方式，以及达到目的的解决方案。</p>
+                <br>
+                <p>一支投放团队的养成需要什么？</p>
+                <p>相比开发商行业和房产中介自己投放，选择一支专业的投放团队或平台，获得效果具有云泥之别，房产投放要想有精准获客，房产投放研究的深度、投放覆盖的宽度、投放经验打磨的厚度都需要时间和样本的积累，这对个体的人员和资金都有很高的要求。</p>
+                <p>如今成熟的投放团队，最少十年房产的大数据沉淀，能有效构建房产网销获客闭环的投放，以客户深度沟通促成带看成交为导向，围绕素材智能创作，给用户想看到的内容，内容质量高且专业，用户体验良好，满足内容基线，自动化创建广告计划，丰富的投放策略库沉淀，投放平台多样性，深度转化等等作用。</p>
+
+            </div>
+        </div>
+        <div class="member-news-detail  news4">
+            <h1>美容院你必须知道的三大精准有效的获客方法</h1>
+            <div class="bar">
+                <span class="by-source bar1">来源：网络</span>
+                <span class="read-number bar1"><img src="static/images/read-number.png" alt=""> 1753</span>
+                <span class="release-date bar1"> 发布日期：2021年12月13日</span>
+
+            </div>
+            <div class="member-news-content">
+                <p>现在很多行业的创业者、生意人、老板都在想怎么引流。怎么吸引更多的顾客，其实引流并没有特别的套路，接下来小编分享一下引流方面的三种方法？</p>
+                <p>1、低价产品引流模式</p>
+                <p>这个模式很常见，养生馆，美容院可以推出一个低价项目作为引流产品。比如说19.9元肩颈调理，把店内某一款产品低价卖，吸引客人到店消费，然后通过其他的盈利品赚钱，这就是低价引流模式。</p>
+                <p>2、低价套餐锁客模式</p>
+                <p>这是【低价产品引流模式】的升级版，因为低价引流产品还是不够有吸引力，而且也无法长期的锁住顾客，于是有了【低价套餐锁客模式】。 怎么操作呢？ 就是把一个产品超出预期的低价卖，不仅只卖一次，而是打包成多次消费卖给你。 我们操作过的365元汗蒸年卡模式，吸引顾客进店后推广其他理疗项目。
+                </p>
+                <p>3、超级赠品引流模式</p>
+                <p>超级赠品一般常用于储值阶段。 比如储值300元，送你价值398元的眼疗项目，再送你价值300元面膜，也就是你只要储值300元，就可以获得998元的大礼包，300元依然可以用于消费。
+                </p>
+                <br>
+                <p>以上的三种引流模式，都适用于养生馆美容院，你在网上看见的大多数引流的模式，都可以归结到以上这三个。无非就是店不同，低价引流的产品/套餐/赠品有所区别，或者优惠力度上有所不同而已。</p>
+                <p>但大多数引爆客流的神案例都是三者相结合起来的，下面就给大家一个引爆客流的案例：一个高档的美容店，生意不太好，策划个方案引流，让他做活动，充值980元，送1100元的高档红酒，再送你价值1200元的高档面膜。一共100张面膜！</p>
+                <p>这个案例就是将三种引流模式相结合，引流品（低额储值获赠品套餐）+长期锁客（100张面膜）+超级赠品（红酒），可以说这是一个非常好的引流模式了。</p>
+                <p>这里我再次强调上面的引流模式很好，活动推出来以后，肯定也会有效果。但你会发现这样的引流模式可能会越来越无效了。 商业的起点，一定是消费者的获益。所以美容院的老板一定要从消费者的利益出发。产品要做好，服务体制要完善，宣传要到位，因此引流始终是末端的事情，是表层的事情，只有在品牌定位、产品价值、服务周到。
+                </p>
+
+            </div>
+        </div>
+        <div class="member-news-detail  news5">
+            <h1>企业的IP营销怎么玩？</h1>
+            <div class="bar">
+                <span class="by-source bar1">来源：网络</span>
+                <span class="read-number bar1"><img src="static/images/read-number.png" alt=""> 2555</span>
+                <span class="release-date bar1"> 发布日期：2022年1月4日</span>
+
+            </div>
+            <div class="member-news-content">
+                <p>这是IP的时代，更是IP营销的时代</p>
+                <p>什么是IP：第一，它可以带来自己的流量，第二，它可以帮助企业圈粉，第三，它可以提升品牌的影响力，第四，它可以提升品牌的附加值。如今，IP营销已经成为许多品牌和企业的“营销标准行动”。 随着数字媒体的发展，获取信息不再困难，用户的需求也变得更加“精致”，他们渴望在自己的圈子里找到更专业、更有趣的东西来满足自己的需求。
+
+                </p>
+                <p>做好IP营销有两个核心点：一个是如何选择，另一个是如何玩。
+                </p>
+                <p>如何选择？</p>
+                <p>1、选择头部 IP：头部IP可以快速提升品牌知名度和影响力，快速传播品牌</p>
+                <p>2、IP的风格和类型：直接决定品牌营销传播的效果。不同的行业有不同的用户需求。无论是哪种类型，都需要以用户为出发点。</p>
+                <p>3、IP周期：IP流量值在不同的时间段内变化。在一定时间段内，流量越高，IP营销的效果越好。</p>
+                <p>如何玩？</p>
+                <p>1．利用IP产品创新实现品牌的新含义</p>
+                <p>2．线上线下联动，差异化营销，满足不同营销场景需求，构建线上线下营销闭环，实现品牌与效果的融合</p>
+                <p>3．洞察用户情感，赋予产品更多情感价值，打造品牌优质内容营销传播，让产品在用户使用场景中共存</p>
+                <p>4．新媒体渠道多方位链接用户，为品牌提供全链接营销价值，持续提升品牌知名度，挖掘数据</p>
+                <p>5．不同IP之间的跨境合作借助b-b-c沟通模式突破三个终端，实现品牌共赢</p>
+                <p>合作、IP赋能、品牌联动等，随着互联网在商业市场的逐步深入，以IP营销为主体的跨界合作已成为消费者心目中的新宠 IP营销不仅给市场化的营销模式带来颠覆性的变化，同时也为品牌赋能给予了新的时代价值。
+
+                </p>
+
+            </div>
+        </div>
+        <div class="member-news-detail  news6">
+            <h1>企业网络营销容易走进的误区</h1>
+            <div class="bar">
+                <span class="by-source bar1">来源： 网络</span>
+                <span class="read-number bar1"><img src="static/images/read-number.png" alt=""> 2788</span>
+                <span class="release-date bar1"> 发布日期：2021年01月11日</span>
+
+            </div>
+            <div class="member-news-content">
+                <p>
+                    数字营销是营销的一个子领域。因此，它汇集了旨在通过一个或多个数字渠道影响客户行为的所有措施。在其主要分支机构中，我们常见的有例如社群管理、在线广告、电子邮件等营销方式。
+                </p>
+                <p>在2021这一年，数字营销正在发生根本性的变化。曾经只在科幻电影中出现的人工智能和视觉研究等技术，也更多地在数字营销当中体现。在当前互联网和ICT（信息和通信技术）爆炸式增长时，衍生出更多的数字营销手段。结果，越来越多的公司正在使用它们来优化其数字营销活动。</p>
+                <p>
+                    人工智能是迄今为止最令人兴奋的技术进步之一，它可能会在很多方面改变我们的生活，其中一些我们甚至还没有考虑到。随着人工智能技术的进步，数字营销领域可能会发生很大变化，因为它为自动化创造了很多新机会。
+
+
+
+                </p>
+
+                <p>
+                    PPC（点击付费）广告是数字营销中非常重要的一部分，而通过PPC获得成功的最好方法就是使用自动化软件来管理广告活动。Machine Learning（机器学习）可以帮助管理竞价，与手工操作的PPC广告相比，自动化软件在某些行业的竞价广告中可以提高20%的转化率。</p>
+
+
+                <p>目前，该自动化软件使用的是较为基础的人工智能技术。随着技术的进步，人工智能能够根据用户的设备使用情况来识别情绪，所以，广告将变得比以往任何时候都更具针对性，这将导致更大的销售转化率增长。
+                </p>
+                <p>聊天机器人是数字营销的主要组成部分之一，其核心技术基于人工智能的使用。当前，越来越多的公司正在使用聊天机器人或计划在接下来的一年内使用它。截止目前，已有超过1亿的人次曾与聊天机器人进行交互。</p>
+                <p>聊天机器人对企业有很大的帮助，大量的品牌已将聊天机器人纳入到他们的客服系统中，比如LinkedIn, 星巴克等行业领军者。聊天机器人可以帮助客户了解其产品或服务，以更高的效率辅助咨询业务，降低企业人员成本。</p>
+                <p>经过调查，对比与呼叫中心的操作员直接沟通，许多用户其实更倾向与聊天机器人进行交互，因为聊天机器人可以迅速地作出回应并给出详细的解答。因此，用户可以节省不少的时间并享受良好的服务质量。</p>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="bottom-navs">
+    <div class="wrapper clearfix">
+        <div class="item-contact">
+            <img class="logo" src="static/images/logo-bottom.png" alt="药智器械">
+            <div class="phone">400-805-6906</div>
+            <div class="qq">2081288520</div>
+            <div class="email">szyxtong@qq.com</div>
+        </div>
+        <dl>
+            <dt>商务合作</dt>
+            <dd><a target="_blank" href="attract.html">产品及服务价格</a></dd>
+            <dd><a target="_blank" href="attract.html">招商加盟</a></dd>
+            <dd><a target="_blank" href="attract.html">项目合作</a></dd>
+            <dd><a target="_blank" href="attract.html">广告投放</a></dd>
+        </dl>
+
+        <dl>
+            <dt>会员中心</dt>
+            <dd><a target="_blank" href="member.html">VIP权限</a></dd>
+            <dd><a target="_blank" href="/spread.html">我要推广</a></dd>
+            <dd><a target="_blank" href="member.html">营销素材</a></dd>
+            <dd><a target="_blank" href="member.html">客户反馈</a></dd>
+        </dl>
+
+        <dl>
+            <dt>帮助中心</dt>
+            <dd><a target="_blank" href="###">医药知识库</a></dd>
+            <dd><a target="_blank" href="###">常见问题</a></dd>
+            <dd><a target="_blank" href="###">用户手册</a></dd>
+            <dd><a target="_blank" href="###">下载中心</a></dd>
+        </dl>
+        <div class="item-qrcode">
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr2.jpg" alt="">
+                <div>扫一扫关注药智器械</div>
+            </div>
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr2.png" alt="">
+                <div>扫一扫加入客服群</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper clearfix">
+        <div class="footer-navs">
+            <a href="###">首页</a>
+            <span class="split"></span>
+            <a href="product.html">产品与服务</a>
+            <a href="sales.html">药智营销通</a>
+            <a href="vipdata.html">药智医械通</a>
+            <!-- <a href="vipdata.html">医械数据通</a> -->
+            <span class="split"></span>
+            <!-- <a target="_blank" href="developmenting.html">器械商城</a>
+			<a target="_blank" href="https://job.yaozh.com/">求职招聘</a>
+			<span class="split"></span> -->
+            <a href="attract.html">商务合作</a>
+            <a href="developmenting.html">新闻中心</a>
+            <span class="split"></span>
+            <a href="member.html">会员中心</a>
+            <a href="help.html">帮助中心</a>
+            <span class="split"></span>
+            <a href="navigation.html">行业导航</a>
+        </div>
+        <div class="footer-navs2">
+            <a target="_blank" href="index.html">免责声明</a>
+            <a target="_blank" href="index.html">更新日志</a>
+            <a target="_blank" href="index.html">技术支持</a>
+        </div>
+        <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
+    </div>
+</div>
+<!-- 
+<div class="right-sidebar">
+    <a class="right-sidebar-qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1261826768&site=qq&menu=yes">
+        <span>在线咨询</span>
+    </a>
+    <a href="" class="right-sidebar-top"><span>返回顶部</span></a>
+</div> -->
+<script src="static/lib/vendor.js"></script>
+<script src="static/js/common.js"></script>
+
+
+<script>
+    //静态演示用，绑程序时删除 star
+    document.title = '通知公告';
+    // $('#navbar>ul').children('li').eq(6).addClass('active').siblings().removeClass();
+    // $('#navbar>ul').children('li').eq(6).find('li').eq(0).addClass('active').siblings().removeClass();
+
+    //静态演示用，绑程序时删除 end
+
+    let parms = window.location.search
+    if (parms.indexOf('hid') > -1 || parms.indexOf('pid') > -1) {
+        //mid营销素材，bid客户反馈,pid培训计划，hid营销学堂
+        document.title = '帮助中心'
+        $('#nav1').html('<a href="help.html">帮助中心</a>')
+        $('#nav2').html(parms.indexOf('hid') > -1 ? '营销学堂' : '培训计划')
+            // $('#navbar>ul').children('li').eq(7).addClass('active').siblings().removeClass();
+            // $('#navbar>ul').children('li').eq(7).find('li').eq(0).addClass('active').siblings().removeClass();
+    } else {
+        console.log(parms);
+        if (parms.indexOf('bid') > -1) {
+            $('#nav2').html('用户反馈')
+        }
+    }
+    // $('#nav1').html('123')
+
+
+    if (parms.indexOf('hid') > -1) {
+        $('#nav1').html('<a href="help.html">帮助中心</a>')
+        $('#nav2').html('热门文章')
+        $('.member-news-detail').hide()
+        console.log(parms)
+        switch (parms) {
+            case '?hid=1':
+                $('.news1').show()
+                break
+            case '?hid=2':
+                $('.news2').show()
+                break
+            case '?hid=3':
+                $('.news3').show()
+                break
+            case '?hid=4':
+                $('.news4').show()
+                break
+            case '?hid=5':
+                $('.news5').show()
+                break
+            case '?hid=6':
+                $('.news6').show()
+                break
+        }
+    }
+</script>
+
+</body>
+
+</html>

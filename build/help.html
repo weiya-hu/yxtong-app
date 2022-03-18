@@ -223,9 +223,17 @@
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
                 $('.content-login').css('display', 'none')
                     // 登录药智器械页面
-                var text = 'vipdata'
-                var url = window.location.href
-                if (url.indexOf(text) >= 0) {
+                var text1 = 'vipdata'
+                var url1 = window.location.href
+                if (url1.indexOf(text1) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+                // 进入APP机器人页面
+                var text2 = 'marketing'
+                var url2 = window.location.href
+                if (url2.indexOf(text2) >= 0) {
                     // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
@@ -383,8 +391,14 @@
     //     })
 
     // 登录药智器械页面
-    var text = 'vipdata'
-    var url = window.location.href
+    var text1 = 'vipdata'
+    var url1 = window.location.href
+
+    // 进入APP机器人页面
+    var text2 = 'marketing'
+    var url2 = window.location.href
+
+
 
     // 弹框消失
     function able() {
@@ -393,9 +407,12 @@
     }
     $('#content .content-login').on('mouseup', () => {
         if (!isDrag) {
-            if (url.indexOf(text) >= 0) {
+            if (url1.indexOf(text1) >= 0) {
                 window.open("https://qx.yaozh.com", "_blank")
                 console.log(11)
+            } else if (url2.indexOf(text2) >= 0) {
+                window.open("https://robot.yxtong.com/user/qq/devicesRun.html", "_blank")
+                console.log(111);
             } else {
                 window.open("/app/login", "_self")
                 console.log(222);
@@ -456,7 +473,15 @@
                     <div class="wrapper">
                     </div>
                 </div>
-                <div class="swiper-slide" style="background-image: url(uploads/help-swiper-1.png);">
+                <div class="swiper-slide" style="background-image: url(static/images/help-banner1.jpg);">
+                    <div class="wrapper">
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url(static/images/help-banner2.jpg);">
+                    <div class="wrapper">
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url(static/images/help-banner4.jpg);">
                     <div class="wrapper">
                     </div>
                 </div>
@@ -477,10 +502,10 @@
                 <div class="help-video-swiper" id="help-video-swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="http://news-files.yaozh.com/video/sunzong09.mp4">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/help-tutorial.mp4">
                                 <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
                                 <div class="info">
-                                    <h3>这是一行标题</h3>
+                                    <h3>数智官网使用指南</h3>
                                     <div>
                                         <span class="cls">视频分类</span>
                                         <em class="view">2456</em>
@@ -489,10 +514,10 @@
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/help-mysql1.mp4">
                                 <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
                                 <div class="info">
-                                    <h3>这是一行标题2</h3>
+                                    <h3>药智器械通使用手册（上）</h3>
                                     <div>
                                         <span class="cls">视频分类</span>
                                         <em class="view">2456</em>
@@ -501,10 +526,10 @@
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="url3">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/help-mysql2.mp4">
                                 <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
                                 <div class="info">
-                                    <h3>这是一行标题3</h3>
+                                    <h3>药智器械通使用手册（下）</h3>
                                     <div>
                                         <span class="cls">视频分类</span>
                                         <em class="view">2456</em>
@@ -513,10 +538,82 @@
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="url4">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/pro-qq1.mp4">
                                 <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
                                 <div class="info">
-                                    <h3>这是一行标题4</h3>
+                                    <h3>营销通产品QQ操作视频（一）</h3>
+                                    <div>
+                                        <span class="cls">视频分类</span>
+                                        <em class="view">2456</em>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/pro-qq2.mp4">
+                                <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
+                                <div class="info">
+                                    <h3>营销通产品QQ操作视频（二）</h3>
+                                    <div>
+                                        <span class="cls">视频分类</span>
+                                        <em class="view">2456</em>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/pro-qq3.mp4">
+                                <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
+                                <div class="info">
+                                    <h3>营销通产品QQ操作视频（三）</h3>
+                                    <div>
+                                        <span class="cls">视频分类</span>
+                                        <em class="view">2456</em>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/pro-qq4.mp4">
+                                <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
+                                <div class="info">
+                                    <h3>营销通产品QQ操作视频（四）</h3>
+                                    <div>
+                                        <span class="cls">视频分类</span>
+                                        <em class="view">2456</em>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/pro-WeChat1.mp4">
+                                <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
+                                <div class="info">
+                                    <h3>营销通产品微信操作视频（一）</h3>
+                                    <div>
+                                        <span class="cls">视频分类</span>
+                                        <em class="view">2456</em>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/pro-WeChat2.mp4">
+                                <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
+                                <div class="info">
+                                    <h3>营销通产品微信操作视频（二）</h3>
+                                    <div>
+                                        <span class="cls">视频分类</span>
+                                        <em class="view">2456</em>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/pro-WeChat3.mp4">
+                                <div class="img"><img src="uploads/help-video-1.png" width="100%" alt=""></div>
+                                <div class="info">
+                                    <h3>营销通产品微信操作视频（三）</h3>
                                     <div>
                                         <span class="cls">视频分类</span>
                                         <em class="view">2456</em>
@@ -529,7 +626,7 @@
             </div>
             <div class="swiper-button-next swiper-button-white help-video-swiper-button-next"></div>
             <div class="swiper-button-prev swiper-button-white help-video-swiper-button-prev"></div>
-            <a class="more" href="developmenting.html">全部视频</a>
+            <!-- <a class="more" href="developmenting.html">全部视频</a> -->
         </div>
     </div>
 
@@ -592,27 +689,27 @@
                 <div class="bd" id="hotnav">
                     <div class="item" data-hid="hid1">
                         <div class="num">1</div>
-                        <span>这是一行文章标题，厉害这是一行文章标题，厉害这是一行文章标题，厉害</span>
+                        <span>常用的网络营销策略，有哪些？</span>
                     </div>
                     <div class="item" data-hid="hid2">
                         <div class="num">2</div>
-                        <span>这是一行文章标题，厉害</span>
+                        <span>传统企业如何做好网络营销推广?</span>
                     </div>
                     <div class="item" data-hid="hid3">
                         <div class="num">3</div>
-                        <span>这是一行文章标题，厉害</span>
+                        <span>房产中介“投放获客”，应该注意什么？</span>
                     </div>
                     <div class="item" data-hid="hid4">
                         <div class="num">4</div>
-                        <span>这是一行文章标题，厉害</span>
+                        <span>美容院你必须知道的三大精准有效的获客方法</span>
                     </div>
                     <div class="item" data-hid="hid5">
                         <div class="num">5</div>
-                        <span>这是一行文章标题，厉害</span>
+                        <span>企业的IP营销怎么玩？</span>
                     </div>
                     <div class="item" data-hid="hid6">
                         <div class="num">6</div>
-                        <span>这是一行文章标题，厉害</span>
+                        <span>企业网络营销容易走进的误区</span>
                     </div>
                     <div class="item" data-hid="hid7">
                         <div class="num">7</div>
@@ -635,63 +732,63 @@
             <div class="r">
                 <div class="hd">热门视频</div>
                 <div class="bd">
-                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="url1">
+                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/help-hot1.mp4">
                         <img src="uploads/help-xt-1.png" alt="">
                         <div class="info">
-                            <h3>这是一行标题</h3>
+                            <h3>互联网营销——企业趁势而动</h3>
                             <div>
                                 <span class="cls">视频分类</span>
-                                <div class="view">2456</div>
+                                <div class="view">4521</div>
                             </div>
                         </div>
                     </a>
-                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="url2">
+                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/help-hot2.mp4">
                         <img src="uploads/help-xt-1.png" alt="">
                         <div class="info">
-                            <h3>这是一行标题</h3>
+                            <h3>企业要不要做网络营销？</h3>
                             <div>
                                 <span class="cls">视频分类</span>
-                                <div class="view">2456</div>
+                                <div class="view">2956</div>
                             </div>
                         </div>
                     </a>
-                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="url3">
+                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/help-hot3.mp4">
                         <img src="uploads/help-xt-1.png" alt="">
                         <div class="info">
-                            <h3>这是一行标题</h3>
+                            <h3>企业咨询行业拓客的方法</h3>
                             <div>
                                 <span class="cls">视频分类</span>
-                                <div class="view">2456</div>
+                                <div class="view">3256</div>
                             </div>
                         </div>
                     </a>
-                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="url4">
+                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/help-hot4.mp4">
                         <img src="uploads/help-xt-1.png" alt="">
                         <div class="info">
-                            <h3>这是一行标题</h3>
+                            <h3>体检行业怎么打造爆款</h3>
                             <div>
                                 <span class="cls">视频分类</span>
-                                <div class="view">2456</div>
+                                <div class="view">4356</div>
                             </div>
                         </div>
                     </a>
-                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="url5">
+                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/help-hot5.mp4">
                         <img src="uploads/help-xt-1.png" alt="">
                         <div class="info">
-                            <h3>这是一行标题</h3>
+                            <h3>以数字化营销模式为企业赋能</h3>
                             <div>
                                 <span class="cls">视频分类</span>
-                                <div class="view">2456</div>
+                                <div class="view">2557</div>
                             </div>
                         </div>
                     </a>
-                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="url6">
+                    <a class="item itemvidoe" href="JavaScript:void(0)" data-url="https://res.yxtong.com/web/index/vedio/help-hot6.mp4">
                         <img src="uploads/help-xt-1.png" alt="">
                         <div class="info">
-                            <h3>这是一行标题</h3>
+                            <h3>最容易复制成功的健身房变现方法</h3>
                             <div>
                                 <span class="cls">视频分类</span>
-                                <div class="view">2456</div>
+                                <div class="view">1836</div>
                             </div>
                         </div>
                     </a>
@@ -1104,7 +1201,7 @@
     $('#hotnav>.item').click(function(e) {
         if ($(this).attr('data-hid')) {
             let hid = $(this).attr('data-hid').substring(3)
-            window.location.href = 'member_newsdetail.html?hid=' + hid
+            window.location.href = 'help_newsdetail.html?hid=' + hid
         }
     })
     $('#pnav>.item').click(function(e) {

@@ -91,9 +91,9 @@ export default class AliyunOSSUpload extends React.Component {
    const {imgLength} = this.props
    let uuuid
     const expire = OSSData.expire * 1000;
-    if (expire < Date.now()) {
+    // if (expire < Date.now()) {
       await this.init();
-    }
+    // }
    
     if(imgLength === 1 && fileList.length === 1){
         uuuid=uuid[1]
