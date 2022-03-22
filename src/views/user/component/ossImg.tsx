@@ -2,7 +2,7 @@
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import React from 'react'
-import {uploadolicy} from '../../../service/user'
+import {uploadPolicy} from '../../../service/user'
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -23,7 +23,7 @@ export default class AliyunOSSUpload extends React.Component {
 
   init = async () => {
     try {
-      const OSSData = await uploadolicy();
+      const OSSData = await uploadPolicy();
       this.setState({
         OSSData:OSSData.body,
       });
@@ -65,9 +65,9 @@ export default class AliyunOSSUpload extends React.Component {
   beforeUpload = async (file,fileList) => {
    const { OSSData} = this.state;
     const expire = OSSData.expire * 1000;
-    if (expire < Date.now()) {
+    // if (expire < Date.now()) {
       await this.init();
-    }
+    // }
  
     const suffix = file.name.slice(file.name.lastIndexOf('.'));
     // const filename = Date.now() +suffix;

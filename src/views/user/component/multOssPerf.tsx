@@ -3,6 +3,15 @@ import { Upload} from 'antd';
 import  React  from 'react';
 import {uploadPolicy} from 'service/user'
 import axios from "axios";
+function getBase64(file) {
+    console.log(file)
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {resolve(reader.result)};
+      reader.onerror = error => {reject(error)};
+    });
+  }
 export default class OSSUpload extends React.Component{
     state={
         fileList:[]
@@ -10,31 +19,42 @@ export default class OSSUpload extends React.Component{
     render(){
         let header={"Content-Type": "multipart/form-data"}
         return (
-            <div>
+            <div className='upload'>
                 <Upload 
                     name="file" 
-                    // onChange={this.uploadFile}
+                    accept='.jpeg,.png,.jpg'
+                    multiple={true}
+                    maxCount={2}
                     showUploadList={false}
                     headers={header}
                     beforeUpload={this.beforeUpload}
                     >
-                        <div>上传</div>
-                        
+                        <div>上传</div>                       
                 </Upload>
-                <div onClick={this.uploadFile}>确定</div>
+                {/* <div onClick={this.uploadFile}>确定</div> */}
             </div>
-            
         )        
+    }
+    componentwillreceiveprops =()=>{
+        console.log(this.props)
     }
     //采用手动上传的方式,不立即上传
     beforeUpload = (file,fileList) => {
-        console.log(fileList)
-        this.setState({
-            fileList: fileList
+        let flist=this.state.fileList,base64list=[]
+        fileList.length === 1 && flist.push(file)
+        if(fileList.length > 1) {for(let i=0,l=2-flist.length;i<l;i++){flist.push(fileList[i])}}  
+        console.log(flist)
+        flist.forEach(async(item)=>{
+            const res= await getBase64(item)
+            
+            base64list.push({url:res,uid:item.uid})
+            this.props.change(base64list)
         })
+        this.setState({
+            fileList: flist
+        })      
         return false;
     }
-
     //上传图片
     uploadFile = () => {    
         let fileList =this.state.fileList

@@ -34,8 +34,8 @@ export const contentList =(data):Promise<API.IResult>=>{
 }
 
 //oss上传图片
-export const uploadolicy =():Promise<API.IResult>=>{
-    return  get('user/upload-policy')
+export const uploadPolicy =(data):Promise<API.IResult>=>{
+    return  get('user/upload.sign',data)
 }
 
 //发布文章

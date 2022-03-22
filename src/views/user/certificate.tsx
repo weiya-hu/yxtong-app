@@ -7,7 +7,7 @@ import $message from 'views/component/message/index'
 
 
 import CertificateInput from './component/certificateInput/certificateInput'
-import AliyunOSSUpload from './component/multOssImg'
+import AliyunOSSUpload from './component/multOssPerf'
 import {getAuditRecord,getIndustry,saveCompany,submitCompany,getGeo} from 'service/user'
 
 import problemimg from 'public/images/problem.png'
@@ -16,6 +16,7 @@ import warnimg from 'public/images/warn.png'
 import auditingimg from 'public/images/user/auditing.png'
 import auditedimg from 'public/images/user/audited.png'
 import unauditimg from 'public/images/user/unaudit.png'
+import certDeleteimg from 'public/images/user/cert-delete.png'
 
 export default class Certificate extends Component{
     state={
@@ -27,6 +28,7 @@ export default class Certificate extends Component{
         message:'',//上传照片表单出错message
         status:null,//企业认证的状态，0：未填写，1：保存，2：审核中，3：审核工作，4：审核不通过
         disabled:null,//表单是否为不能填写的状态
+        imgDelete:null,
     }
     //资质问号modal是否显示切换
     toggleVisible=(val)=>{
@@ -128,23 +130,20 @@ export default class Certificate extends Component{
         status && this.setState({cityType:body})
     }
     //上传照片组件传过来值
-    licenseIMgChange=(val,sendval)=>{
-        const {images}=this.state
-        let item ={showUrl:val,sendUrl:sendval}
-        let url = images.find(m=>m.sendUrl === sendval)
-        !url ? images.push(item) : images.splice(images.indexOf(url),1,item)       
-        let imgs= images.slice(-2,images.length)
+    licenseIMgChange=(list)=>{
         //赋值图片路径，有图片上传还要给错误message赋值为空字符串
-        this.setState({images:imgs,message:''})
+        this.setState({images:list,message:''})
+    }
+    //删除图片
+    imgDelete=(item)=>{
+        this.setState({imgDelete:1})
     }
     //保存和上传按钮通过传值区分
     save=(val)=>{
-        console.log('按了保存')
         localStorage.setItem('submit',val)
     }
     //修改状态值
-    switchStatus=(val)=>{
-        
+    switchStatus=(val)=>{        
         this.setState({
             status:val,
             disabled:false
@@ -162,8 +161,9 @@ export default class Certificate extends Component{
         };
     }
     render(){
-        const {modalVisible,IndustryType,images,message,status,disabled,AuditRecord,cityType} =this.state
+        const {modalVisible,IndustryType,images,message,status,disabled,AuditRecord,cityType,imgDelete} =this.state
         let flag = status !==null
+        console.log((!disabled || images.length <= 1))
         return flag &&
         <div id='certificate'>
             {this.topStatusDom()}
@@ -230,17 +230,27 @@ export default class Certificate extends Component{
                             <div className='cert-images flexl'>
                                 {/* <div>{images}</div> */}
                                 {images.map((item,index)=>
-                                    <div className='fleximg license-img' key={index}><img src={item.showUrl} alt="show" /></div>
+                                    <div className='fleximg license-img' key={index}>
+                                        <img src={item.url} alt="show" />
+                                        <div className='fleximg cert-delete-img' onClick={()=>this.imgDelete(item)}>
+                                            <img src={certDeleteimg} alt="delete" />
+                                        </div>
+                                    </div>
                                 )}
                             </div>
-                            {!disabled &&
+                            {(!disabled && images.length <= 1) &&(
                                 <div className={message?'cert-image-add flexcc cert-image-add-false':'cert-image-add flexcc'}>
-                                    <div className='addImageimg fleximg'>
-                                        <img src={addImageimg} alt="addImage" />
+                                    <div className='flexcc add-block'>
+                                        <div className='addImageimg fleximg'>
+                                            <img src={addImageimg} alt="addImage" />
+                                        </div>
+                                        <div className='cert-image-add-txt'>上传图片</div>
                                     </div>
-                                    <div className='cert-image-add-txt'>上传图片</div>
-                                    <AliyunOSSUpload imgLength={images.length} change={((val,sendval)=>{this.licenseIMgChange(val,sendval)})}/>
-                                </div>
+                                    
+                                    {/* <AliyunOSSUpload imgLength={images.length} change={((val,sendval)=>{this.licenseIMgChange(val,sendval)})}/> */}
+                                    <AliyunOSSUpload change={this.licenseIMgChange} delete={imgDelete}/>
+
+                                </div>)
                             }
                             {message && <div className='flexl certinput-message'>
                                 <div className='fleximg warnimg'><img src={warnimg} alt="警告" /></div>

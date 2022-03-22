@@ -15,7 +15,8 @@ import { AxisPointerComponent } from "echarts/components";
   */
  axios.interceptors.request.use(
    (config) => {   
-     config.data = JSON.stringify(config.data);
+
+    //  config.data = JSON.stringify(config.data);
       config.headers = {
         "Content-Type": "application/json"
       };

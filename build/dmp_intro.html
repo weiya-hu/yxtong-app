@@ -233,7 +233,9 @@
                 $('.logined').css('display', 'flex')
                 $('#header').attr('src', userInfo.head ? userInfo.head : './static/images/icon-avatar.png')
                 $('#uname').text(userInfo.name)
-
+                    // 立即登录按钮
+                $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
+                $('.content-login').css('display', 'none')
             }
         }
     </script>

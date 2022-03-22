@@ -15,14 +15,17 @@
   */
  axios.interceptors.request.use(
    (config) => {   
-     config.data = JSON.stringify(config.data);
+     console.log(config)
+     console.log(config.data)
+    //  config.data = JSON.stringify(config.data);
     config.headers = {
         "Content-Type": "multipart/form-data",
     };
    
     // config.headers['Content-Type']="multipart/form-data"
 
-    console.log(config.headers)
+    console.log(config)
+    console.log(config.headers) 
      return config;
    },
    (error) => {

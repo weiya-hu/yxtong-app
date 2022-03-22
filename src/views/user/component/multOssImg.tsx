@@ -2,7 +2,7 @@
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import React from 'react'
-import {uploadolicy} from '../../../service/user'
+import {uploadPolicy} from '../../../service/user'
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -24,8 +24,8 @@ export default class AliyunOSSUpload extends React.Component {
 
   init = async () => {
     try {
-      const OSSData = await uploadolicy();
-      const OSSData1 = await uploadolicy();
+      const OSSData = await uploadPolicy();
+      const OSSData1 = await uploadPolicy();
       this.setState({
         OSSData:OSSData1.body,
         uuid:[OSSData.body.uuid,OSSData1.body.uuid]
@@ -60,8 +60,6 @@ export default class AliyunOSSUpload extends React.Component {
       this.props.change(imgurl,OSSData.host+'/'+ file.url)
       // this.props.sendUrlchange(OSSData.host+'/'+ file.url)
 
-    // console.log(sendUrl,imgurl )
-
   };
 
   onRemove = file => {
@@ -87,6 +85,7 @@ export default class AliyunOSSUpload extends React.Component {
 
 
   beforeUpload = async (file,fileList) => {
+    console.log(fileList)
    const { OSSData,uuid } = this.state;
    const {imgLength} = this.props
    let uuuid
@@ -127,7 +126,8 @@ export default class AliyunOSSUpload extends React.Component {
       UploadFile:this.uploadFile,
       beforeUpload: this.beforeUpload,
       onPreview:this.handlePreview,
-      multiple:true
+      multiple:true,
+      maxCount:2
       // customRequest:this.upload
     };
     return (
