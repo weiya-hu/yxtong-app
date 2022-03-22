@@ -3,12 +3,16 @@ import { Component } from 'react'
 import './articleItem.scss'
 import {withRouter} from 'react-router-dom'
 import { Modal} from 'antd'
-import editimg from 'public/images/user/edit.png'
-import falseimg from 'public/images/user/false.png'
-import deleteimg from 'public/images/user/delete.png'
 import {deleteNews} from 'service/news'
 import { util } from 'utils/news'
 import $message from 'views/component/message'
+
+import editimg from 'public/images/user/edit.png'
+import falseimg from 'public/images/user/false.png'
+import deleteimg from 'public/images/user/delete.png'
+import submitimg from 'public/images/user/submit.png'
+import resonimg from 'public/images/user/reson.png'
+import dataimg from 'public/images/user/data.png'
  
 const { confirm } = Modal;
 interface Item{
@@ -74,21 +78,44 @@ class ArticleItem extends Component<ArticleItemState> {
               <div className='item-content' dangerouslySetInnerHTML = {{__html:item.content}}></div>
             </div>
             <div className='flexb article-bottom'>
-              <div className='article-bottom-detail'>
+              <div className='article-bottom-detail flexl'>
+                {item.state === 1 && <div className='draft fleximg'>草稿</div>}
+                {item.state === 2 && <div className='review fleximg'>审核中</div>}
+                {item.state === 3 && <div className='over fleximg'>已通过</div>}
+                {item.state === 4 && <div className='refuse fleximg'>已驳回</div>}
                 <span>{item.time}</span>
                 <span className='article-bottom-read'>阅读 {item.readed}</span>
                 <span>评论 {item.commented}</span>
               </div>
               <div className='flexr'>
+                {item.state === 4 && 
+                  <div className='fleximg article-item-button' onClick={(e)=>{this.deleteNews(item.id);e.stopPropagation()}}>
+                    <div className='editimg fleximg'><img src={resonimg} alt="deleteButton" /></div>
+                    <div>原因</div>
+                  </div>
+                }
                 <div className='fleximg article-item-button' onClick={(e)=>{this.deleteNews(item.id);e.stopPropagation()}}>
                   <div className='editimg fleximg'><img src={deleteimg} alt="deleteButton" /></div>
                   <div>删除</div>
                 </div>
-                <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
-                  <div className='editimg fleximg'><img src={editimg} alt="editButton" /></div>
-                  <div>编辑</div>
-                </div>
-                
+                {(item.state === 4 || item.state === 1) &&
+                  <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
+                    <div className='editimg fleximg'><img src={editimg} alt="editButton" /></div>
+                    <div>编辑</div>
+                  </div>
+                }
+                {(item.state === 1) &&
+                  <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
+                    <div className='editimg fleximg'><img src={submitimg} alt="editButton" /></div>
+                    <div>提交</div>
+                  </div>
+                }
+                {(item.state === 3) &&
+                  <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
+                    <div className='editimg fleximg'><img src={dataimg} alt="editButton" /></div>
+                    <div>数据</div>
+                  </div>
+                }
               </div>
             </div>
           </div>

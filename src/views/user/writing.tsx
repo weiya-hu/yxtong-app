@@ -163,8 +163,8 @@ class Writing extends Component{
                 </div>
                 <div className='cover'>
                     <div className='cover-txt'>上传封面</div>
-                    <div className='flexl'>
-                        <div className='cover-button'>
+                    <div className='flexl cover-img'>
+                        <div className='cover-button '>
                             <div className='addimg'><img src={addimg} alt="add" /></div>
                             <div>添加封面</div>
                             <div>
@@ -179,7 +179,7 @@ class Writing extends Component{
                     
                     
                 </div>
-                <div><OSSUpload /></div>
+                {/* <div><OSSUpload /></div> */}
                 <div>
                 </div>
                 <div className='title'>

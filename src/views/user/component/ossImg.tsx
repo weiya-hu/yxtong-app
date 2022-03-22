@@ -23,7 +23,7 @@ export default class AliyunOSSUpload extends React.Component {
 
   init = async () => {
     try {
-      const OSSData = await uploadPolicy();
+      const OSSData = await uploadPolicy({site:'news'});
       this.setState({
         OSSData:OSSData.body,
       });
@@ -72,7 +72,7 @@ export default class AliyunOSSUpload extends React.Component {
     const suffix = file.name.slice(file.name.lastIndexOf('.'));
     // const filename = Date.now() +suffix;
     const filename = OSSData.uuid + suffix;
-    file.url = OSSData.dir + filename;
+    file.url = OSSData.dir +'/'+ filename;
     return file;
     
   };

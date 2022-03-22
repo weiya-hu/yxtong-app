@@ -37,16 +37,24 @@
             position: relative;
             top: 3px;
             margin-left: 10px;
+            // image{
+            //     width: 100%;
+            //     height: 100%;
+            //     object-fit: cover;
+            // }
         }
         .cover-txt{
             font-size: 16px;
             font-weight: 600;
         }
+        .cover-img{
+            margin-top: 22px;
+        }
         .cover-button{
             width: 220px;
             height: 140px;
             background: #F4F4F4;
-            margin-top: 22px;
+            
             padding: 44px 0;
             text-align: center;
             .addimg{
