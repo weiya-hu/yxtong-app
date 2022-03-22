@@ -3,7 +3,7 @@ import { Component} from 'react'
 import './certificateInput.scss'
 import {withRouter} from 'react-router-dom'
 import {Form,Cascader,Input,DatePicker} from 'antd'
-// import locale from 'antd/lib/locale/zh_CN';
+import {checkCreditCode} from 'service/user'
 import {util} from 'utils/user.ts'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -30,7 +30,13 @@ class CertificateInput extends Component<CertificateInputProps,any>{
         let message,value=e.target.value
         switch(name){
             case 'text':
+                message = (value==='')?'必填项':'';break;
+            case 'textCode':
                 message = (value==='')?'必填项':''
+                checkCreditCode({code:value}).then(({status,message})=>{
+                    !status && (this.setState({message:message}))
+                    
+                })
         }
         this.setState({message:message})
     }
@@ -61,6 +67,21 @@ class CertificateInput extends Component<CertificateInputProps,any>{
         let component
         switch(name){
             case 'text':
+                component = (
+                    <Form.Item name={formName}
+                        initialValue = {initialValue}
+                        rules={require?[{validator:this.requirValidate}]:null} 
+                    >
+                        <Input 
+                            type="text" 
+                            placeholder={placeholder}    
+                            onBlur={(e)=>{this.inputBlur(e,name)}}
+                            autoComplete="off" 
+                            disabled={disabled}
+                        />
+                    </Form.Item>)
+                break;
+            case 'textCode':
                 component = (
                     <Form.Item name={formName}
                         initialValue = {initialValue}

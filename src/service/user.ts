@@ -67,3 +67,8 @@ export const saveCompany =(data):Promise<API.IResult>=>{
 export const submitCompany =(data):Promise<API.IResult>=>{
     return  post('company/submit-company',data)
 }
+
+//校验统一社会信用代码
+export const checkCreditCode =(data):Promise<API.IResult>=>{
+    return  post('company/check-credit-code',data)
+}
