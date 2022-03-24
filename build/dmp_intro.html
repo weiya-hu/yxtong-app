@@ -193,7 +193,7 @@
 
             $.ajax({
                 method: 'get',
-                url: "/api/user/public/get-user",
+                url: "/api/user/public/uinfo.get",
                 dataType: "json",
                 success: function(res) {
                     res.status ? isUser(res.body) : isUser()
@@ -212,7 +212,7 @@
         $('.info-quit').on('click', function() {
             $.ajax({
                 method: 'get',
-                url: "/api/login/login-out",
+                url: "/api/login/out.do",
                 dataType: "json",
                 success: function(res) {
                     isUser()

@@ -90,7 +90,7 @@
                                 <li class="marketing">
                                     <a href="/sales.html">
                                         <span>数智营销通</span>
-                                        <span>中小企业专享</span>
+                                        <span id="txt">中小企业专享</span>
                                     </a>
                                     <div class="barchild">
                                         <div class="bar-tip"></div>
@@ -111,7 +111,7 @@
                                     </div>
                                 </li>
                                 <li><a href="javascript:void(0);"><span>数智赢效通</span>
-                                        <span>全套解决方案</span></a></li>
+                                        <span id="txt">全套解决方案</span></a></li>
                                 <li><a href="javascript:void(0);"><span>数智优销通</span>
                                             <span>微B/C端客户专享</span></a></li>
                                 <li><a href="javascript:void(0);"><span>数智医销通</span>
@@ -177,7 +177,7 @@
 
             $.ajax({
                 method: 'get',
-                url: "/api/user/public/get-user",
+                url: "/api/user/public/uinfo.get",
                 dataType: "json",
                 success: function(res) {
                     res.status ? isUser(res.body) : isUser()
@@ -196,7 +196,7 @@
         $('.info-quit').on('click', function() {
             $.ajax({
                 method: 'get',
-                url: "/api/login/login-out",
+                url: "/api/login/out.do",
                 dataType: "json",
                 success: function(res) {
                     isUser()
@@ -1695,11 +1695,11 @@
             <span class="split"></span>
             <a href="navigation.html">行业导航</a>
         </div>
-        <div class="footer-navs2">
+        <!-- <div class="footer-navs2">
             <a target="_blank" href="index.html">免责声明</a>
             <a target="_blank" href="index.html">更新日志</a>
             <a target="_blank" href="index.html">技术支持</a>
-        </div>
+        </div> -->
         <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
     </div>
 </div>

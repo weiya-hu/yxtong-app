@@ -90,7 +90,7 @@
                                 <li class="marketing">
                                     <a href="/sales.html">
                                         <span>数智营销通</span>
-                                        <span>中小企业专享</span>
+                                        <span id="txt">中小企业专享</span>
                                     </a>
                                     <div class="barchild">
                                         <div class="bar-tip"></div>
@@ -111,7 +111,7 @@
                                     </div>
                                 </li>
                                 <li><a href="javascript:void(0);"><span>数智赢效通</span>
-                                        <span>全套解决方案</span></a></li>
+                                        <span id="txt">全套解决方案</span></a></li>
                                 <li><a href="javascript:void(0);"><span>数智优销通</span>
                                             <span>微B/C端客户专享</span></a></li>
                                 <li><a href="javascript:void(0);"><span>数智医销通</span>
@@ -177,7 +177,7 @@
 
             $.ajax({
                 method: 'get',
-                url: "/api/user/public/get-user",
+                url: "/api/user/public/uinfo.get",
                 dataType: "json",
                 success: function(res) {
                     res.status ? isUser(res.body) : isUser()
@@ -196,7 +196,7 @@
         $('.info-quit').on('click', function() {
             $.ajax({
                 method: 'get',
-                url: "/api/login/login-out",
+                url: "/api/login/out.do",
                 dataType: "json",
                 success: function(res) {
                     isUser()
@@ -612,22 +612,11 @@
                     <div class="lt">
                         <div class="hvr-ripple-out s2top bgb ">
                             <div class="stitle">DSP管理系统</div>
-                            <div class="bgb1 t1 dsp">
-                                <div class="dsp-left">
-                                    <div class="stitle1">康州数智投放</div>
-                                    <div class="mbtns">
-                                        <div class="mbtn mt10 ddd" data-surl="/app/news">资讯平台</div>
-                                        <div class="mbtn mt10 ddd" data-surl="/developmenting.html">企业快速建站</div>
-
-                                    </div>
-                                </div>
-                                <div class="lines"></div>
-                                <div class="dsp-right">
-                                    <div class="stitle1">第三方投放</div>
-                                    <div class="mbtns">
-                                        <div class="mbtn mt10 ddd" data-surl="/developmenting.html">第三方投放整合</div>
-                                        <div class="mbtn mt10 ddd" data-surl="/developmenting.html">效果数据采集与分析</div>
-                                    </div>
+                            <div class="bgb1 t1 ">
+                                <div class="stitle1">广告投放</div>
+                                <div class="mbtns">
+                                    <div class="mbtn mt10 ddd" data-surl="/app/news">营销通平台</div>
+                                    <div class="mbtn mt10 ddd" data-surl="/developmenting.html">第三方平台</div>
                                 </div>
                             </div>
 
@@ -640,6 +629,13 @@
                                     <div class="mbtn ddd" data-surl="/developmenting.html">5G短信 (SMS)</div>
                                     <div class="mbtn mt10 ddd" data-surl="/developmenting.html">Email邮件 (EDM)</div>
                                     <div class="mbtn mt10 ddd" data-surl="/developmenting.html">电销机器人</div>
+                                </div>
+                            </div>
+                            <div class="bgb1 t1 ">
+                                <div class="stitle1">统计分析</div>
+                                <div class="mbtns">
+                                    <div class="mbtn mt10 ddd" data-surl="/app/news">效果数据采集</div>
+                                    <div class="mbtn mt10 ddd" data-surl="/developmenting.html">投放分析</div>
                                 </div>
                             </div>
                         </div>
@@ -841,11 +837,11 @@
             <span class="split"></span>
             <a href="navigation.html">行业导航</a>
         </div>
-        <div class="footer-navs2">
+        <!-- <div class="footer-navs2">
             <a target="_blank" href="index.html">免责声明</a>
             <a target="_blank" href="index.html">更新日志</a>
             <a target="_blank" href="index.html">技术支持</a>
-        </div>
+        </div> -->
         <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
     </div>
 </div>
