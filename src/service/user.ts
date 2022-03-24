@@ -43,6 +43,11 @@ export const newsPublish =(data):Promise<API.IResult>=>{
     return  post('news/writing/publish',data)
 }
 
+//保存文章
+export const newsSave =(data):Promise<API.IResult>=>{
+    return  post('news/writing/save',data)
+}
+
 //获取企业认证的状态和相关信息 
 export const getAuditRecord =():Promise<API.IResult>=>{
     return  get('company/get-company-info-audit')

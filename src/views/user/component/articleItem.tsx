@@ -4,6 +4,7 @@ import './articleItem.scss'
 import {withRouter} from 'react-router-dom'
 import { Modal} from 'antd'
 import {deleteNews} from 'service/news'
+import {newsPublish} from 'service/user'
 import { util } from 'utils/news'
 import $message from 'views/component/message'
 
@@ -30,12 +31,14 @@ interface ArticleItemState{
   edit:(val:boolean)=>void;
   dataAnalysis:(val:boolean)=>void;
   articleDetail:(val:boolean)=>void;
-  delete:(val:boolean)=>void;
+  delete:()=>void;
+  publish:()=>void;
 }
 
 class ArticleItem extends Component<ArticleItemState> {
     state={
-      modalVisible:false
+      modalVisible:false,
+      modalType:null,//1删除2原因3提交
     }
     toEdit=(id)=>{
       let event = window.event || arguments.callee.caller.arguments[0]
@@ -48,8 +51,36 @@ class ArticleItem extends Component<ArticleItemState> {
     }
     //删除按钮
     deleteNews=(id)=>{
+      this.setState({modalType:1})
       this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&deleteId='+id)
       this.toggleVisible(true)
+    }
+    //原因按钮
+    failReason=()=>{
+      this.setState({modalType:2})
+      this.toggleVisible(true)
+    }
+    //提交按钮
+    publishNews=()=>{
+      this.setState({modalType:3})
+      this.toggleVisible(true)
+    }
+
+    //对话框确认按钮
+    modalSure=(modalType)=>{
+      switch(modalType){
+        case 1:this.deleteOk();break;
+        case 2:this.toggleVisible(false);break;
+        case 3:this.publish()
+      }
+    }
+    publish=async()=>{
+      const res = await newsPublish(this.props.item)
+      this.toggleVisible(false)
+      if(res.status){
+        $message.info('提交成功')
+          this.props.publish(true);
+      }
     }
     //删除确认按钮
     deleteOk=()=>{
@@ -69,7 +100,7 @@ class ArticleItem extends Component<ArticleItemState> {
     }
     render(){
         let {item} =this.props
-        let {modalVisible} =this.state
+        let {modalVisible,modalType} =this.state
         return <div className='flexb article-item' onClick={()=>{this.toNewsDetail(item.id)}}>
           <div className='coverimg fleximg'><img src={item.thumb_url} alt="cover" onError={(e) => { e.target.src = falseimg }}/></div>
           <div className='flexcbl article-right'>
@@ -89,7 +120,7 @@ class ArticleItem extends Component<ArticleItemState> {
               </div>
               <div className='flexr'>
                 {item.state === 4 && 
-                  <div className='fleximg article-item-button' onClick={(e)=>{this.deleteNews(item.id);e.stopPropagation()}}>
+                  <div className='fleximg article-item-button' onClick={(e)=>{this.failReason();e.stopPropagation()}}>
                     <div className='editimg fleximg'><img src={resonimg} alt="deleteButton" /></div>
                     <div>原因</div>
                   </div>
@@ -105,7 +136,7 @@ class ArticleItem extends Component<ArticleItemState> {
                   </div>
                 }
                 {(item.state === 1) &&
-                  <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
+                  <div className='fleximg article-item-button' onClick={(e)=>{this.publishNews();e.stopPropagation();}}>
                     <div className='editimg fleximg'><img src={submitimg} alt="editButton" /></div>
                     <div>提交</div>
                   </div>
@@ -120,17 +151,18 @@ class ArticleItem extends Component<ArticleItemState> {
             </div>
           </div>
           <Modal
-            title="操作提示"
+            title={modalType === 2?'驳回原因':'操作提示'}
             visible={modalVisible}
             onCancel={(e,)=>{this.toggleVisible(false);e.stopPropagation()}}
-            onOk={(e,)=>{this.deleteOk();e.stopPropagation()}}
+            onOk={(e,)=>{this.modalSure(modalType);e.stopPropagation()}}
             wrapClassName='article-modal'
             maskStyle={{background: 'rgba(0, 0, 0,0.5)'}}
             cancelText='取消'
             okText='确认'
           >   
-            <div className='delete-text'>是否确认删除？</div>
+            <div className='delete-text'>{modalType === 1?'是否确认删除？':modalType === 2?item.fail_reason:modalType === 3?'是否确认提交？':''}</div>
           </Modal>
+         
         </div>
     }
     

@@ -228,9 +228,16 @@ div,span{
     width: 350px !important;
     top: 35%;
   }
+  .ant-btn:hover, .ant-btn:focus{
+    color: #304F97;
+    border-color: #304F97;
+  }
   .ant-btn-primary{
+    background: #304F97;
+    border-color: #304F97;
     span{
       color: #FFFFFF;
+      // background: #304F97;
     }
   }
 }

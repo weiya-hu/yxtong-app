@@ -4,7 +4,7 @@ import './writing.scss'
 import { Editor } from '@tinymce/tinymce-react'
 import AliyunOSSUpload from './component/ossImg'
 import message from 'views/component/message/index';
-import {newsPublish} from 'service/user'
+import {newsPublish,newsSave} from 'service/user'
 import {getEditNews} from 'service/news'
 import OSSUpload from './component/ossTest'
 import {withRouter} from 'react-router-dom'
@@ -71,8 +71,8 @@ class Writing extends Component{
             this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&readNewsId=preview')
         }        
    }
-   //发布文章
-   publishNews=async()=>{
+   //发布文章和保存文章
+   publishNews=async(isPublish)=>{
         const {title,edit,sendCoverImgurl,coverImgurl} = this.state
         if(!title){
             message.info('请输入标题')
@@ -89,9 +89,9 @@ class Writing extends Component{
                 title:title,
                 id:id?id:null
             }
-            const res = await newsPublish(item)
+            const res = isPublish?await newsPublish(item):await newsSave(item)
             if(res.status){
-                message.info('发布成功')
+                message.info(isPublish?'发布成功':'保存成功')
                 this.setState({
                     coverImgurl:'',
                     title:'',
@@ -102,9 +102,11 @@ class Writing extends Component{
                     sendCoverImgurl:''
                 })
                 this.props.history.push('/app/user?navActiveIndex=2&asideActive=1')
+                
             }
         }
-   }
+    }
+   
     componentDidMount=async()=>{
         //如果路径中带有editNewsId表示是编辑功能，不是从0创作功能，要获取编辑的文章内容再赋值
         let newsId=util.getUrlParam('editNewsId')
@@ -157,8 +159,9 @@ class Writing extends Component{
                         {/* <span  className='font12 color3'>草稿自动保存</span> */}
                     </div>
                     <div className='flexr'>
-                        <div className='writing-buttton fleximg pointer' onClick={this.publishNews}>发布文章</div>
-                        <div className='preview-button fleximg pointer' onClick={this.preView}>预览文章</div>
+                        <div className='writing-buttton fleximg pointer' onClick={()=>this.publishNews(1)}>发布文章</div>
+                        <div className='preview-button fleximg pointer' onClick={()=>this.publishNews(0)}>保存</div>
+                        <div className='preview-button fleximg pointer' onClick={this.preView}>预览</div>
                     </div>
                 </div>
                 <div className='cover'>
@@ -189,7 +192,7 @@ class Writing extends Component{
                     </div>
                     <div className='flexl'>
                         <div className='title-item flexl'>
-                            <input type="text" placeholder='请输入文章标题（5~50个字' defaultValue={title} onChange={this.titleChange} maxLength={50} minLength={5} />
+                            <input type="text" placeholder='请输入文章标题（5~50个字）' defaultValue={title} onChange={this.titleChange} maxLength={50} minLength={5} />
                             
                         </div>
                         {titleMessage && 
