@@ -4,7 +4,7 @@ import './myTask.scss'
 import MyScore from './component/myScore'
 import CommonButton from './component/commonButton'
 import Task from './component/task'
-import { signIn,userTasks,isSignIns,userMycenterInfo } from "service/user";
+import { signIn,userTasks,isSignIns,userMycenterInfo,integralToday } from "service/user";
 import {imgs} from 'utils/taskImg'
 import { withRouter } from 'react-router-dom';
 
@@ -71,21 +71,27 @@ class MyTask extends Component{
          if(status){
             const result = await userTasks()
             const res = await isSignIns()
-            const rest = await userMycenterInfo()
+            const rest = await integralToday()
             this.setState({
                isSignIn:res.body,
                contDay:result.body.signin[0].completed,
                signinSuccess:body,  //签到获得的分数看接口是哪个参数再改一下
-               todayScore:rest.body,//给积分组件传值，签到后积分有改变
+               todayScore:rest.body.today_integral,//给积分组件传值，签到后积分有改变
             })
             console.log(this.state)
          }
          // res && $message.info(res.message)
        }
     }
+    //获取今日积分
+    getTntegralToday=async()=>{
+       const {status,body}=await integralToday()
+       status && this.setState({todayScore:body.today_integral})//给积分组件传值
+    }
     componentDidMount=async()=>{
         const result = await userTasks()
         const res = await isSignIns()
+        this.getTntegralToday()
         if(result.status){
             const tasks=result.body.tasks
             let arr=[],ary=[],limitType=tasks[0].limit_type

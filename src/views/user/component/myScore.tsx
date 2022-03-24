@@ -27,16 +27,16 @@ class MyScore extends Component<any> {
         }
     }
     render(){
-        let userinfo = this.state.userInfo
+        let userInfo = this.state.userInfo
         const {size,todayScore} = this.props
-        const userInfo= todayScore?todayScore:userinfo
+        console.log(todayScore)
         return <div>
             {size === 'big'?(
                 <div className='myscore flexb padding'>
                     <div className='flexl'>
                         <div className='todayscorepre'>
                             <span className='bold'>今日积分：</span>
-                            <span className='todayscore bold'>{userInfo.today_integral}</span>
+                            <span className='todayscore bold'>{todayScore || userInfo.today_integral}</span>
                         </div>
                         <div className='todayscorepre fleximg'>
                             <span className='bold'>我的积分：</span>
@@ -54,7 +54,7 @@ class MyScore extends Component<any> {
                         <div className='flexl todayscorepre-up'>
                             <div className='todayscorepre'>
                                 <span className='bold'>今日积分：</span>
-                                <span className='todayscore bold'>{userInfo.today_integral}</span>
+                                <span className='todayscore bold'>{todayScore || userInfo.today_integral}</span>
                             </div>
                             <div className='todayscorepre '>
                                 <span className='bold'>赠送代币券：</span>
