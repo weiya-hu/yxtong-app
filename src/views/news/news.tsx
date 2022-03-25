@@ -294,7 +294,7 @@ export default class News extends Component{
                 </div>
               </div>
             }
-            {(newsTypeActive === 0 && favorList.length) &&
+            {(newsTypeActive === 0 && favorList.length >0) &&
               <div className='may-interest flexb'>
                 <div className='interest-arrow fleximg'  onClick={()=>{left && this.getInterestList(0,0)}}>
                   <div className='fleximg arrowimg-left'>

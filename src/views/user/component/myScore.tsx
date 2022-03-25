@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component } from 'react'
 import CommonButton from './commonButton'
-import { userMycenterInfo } from 'service/user'
+import { userMycenterInfo,integralToday } from 'service/user'
 import './myScore.scss'
 import {withRouter} from "react-router-dom";
 
@@ -9,6 +9,7 @@ import {withRouter} from "react-router-dom";
 class MyScore extends Component<any> {
     state={
         userInfo:{},
+        todaySc:null
     }
     exchangeScore=()=>{
         window.location.href='/developmenting.html'
@@ -16,27 +17,27 @@ class MyScore extends Component<any> {
     getScore=async()=>{
         //接口，获取积分
         const {status,body} = await userMycenterInfo()
-        status && this.setState({userInfo:body})
+        const rest = await integralToday()
+        status && this.setState({userInfo:body,todaySc:rest.body.today_integral})
     }
     componentDidMount(){
         this.getScore()
     }
-    componentWillUnmount = () => {
-        this.setState = (state,callback)=>{
-          return
-        }
-    }
+    // componentWillUnmount = () => {
+    //     this.setState = (state,callback)=>{
+    //       return
+    //     }
+    // }
     render(){
-        let userInfo = this.state.userInfo
+        let {userInfo,todaySc} = this.state
         const {size,todayScore} = this.props
-        console.log(todayScore)
         return <div>
             {size === 'big'?(
                 <div className='myscore flexb padding'>
                     <div className='flexl'>
                         <div className='todayscorepre'>
                             <span className='bold'>今日积分：</span>
-                            <span className='todayscore bold'>{todayScore || userInfo.today_integral}</span>
+                            <span className='todayscore bold'>{todayScore>=0?todayScore:todaySc}</span>
                         </div>
                         <div className='todayscorepre fleximg'>
                             <span className='bold'>我的积分：</span>
@@ -54,7 +55,7 @@ class MyScore extends Component<any> {
                         <div className='flexl todayscorepre-up'>
                             <div className='todayscorepre'>
                                 <span className='bold'>今日积分：</span>
-                                <span className='todayscore bold'>{todayScore || userInfo.today_integral}</span>
+                                <span className='todayscore bold'>{todayScore>=0?todayScore:todaySc}</span>
                             </div>
                             <div className='todayscorepre '>
                                 <span className='bold'>赠送代币券：</span>

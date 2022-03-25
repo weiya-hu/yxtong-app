@@ -120,7 +120,6 @@ export default class Certificate extends Component{
     getRecord=async()=>{
         const {status, body} = await getAuditRecord()
         let imgs=[]
-        console.log(body)
         if(status){
             let list = body.license?body.license.split(','):[]
             list.forEach(element => {

@@ -262,11 +262,14 @@ div,span{
     transform: translateY(-50%);
   }
 }
-
-.ant-spin-nested-loading{
-  position: absolute;
-  z-index: 9;
+#certificate{
+  .ant-spin-nested-loading{
+    position: absolute;
+    z-index: 9;
+  }
 }
+
+
 //企业认证上传图片组件的样式
 .upload{
   width: 100px;
