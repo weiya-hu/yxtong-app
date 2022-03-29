@@ -1163,7 +1163,10 @@
     var licontent = "<b>重庆市南岸区</b><br>";
     licontent += "<span><strong>公司名称：</strong>康洲数智科技(重庆)有限公司</span><br>";
 
-    licontent += "<span><strong>网站地址：</strong><a target='_blank' href='www.yxtong.com'>www.yxtong.com</a></span><br>";
+    let origin_url = window.location.origin
+
+    licontent += `<span><strong>网站地址：</strong><a id='map_url' target='_blank' href='/'>${origin_url}</a></span><br>`;
+
     licontent += "<div style='padding:10px 0px'></div><br>";
     licontent += "<span><strong>地址：</strong>重庆市南岸区茶园新区玉马路8号科创园2F（药智网）</span><br>";
     licontent += "<span><strong>电话：</strong>400-678-0778</span><br>";
@@ -1173,6 +1176,7 @@
     var opts1 = {
         width: 300
     };
+
 
     var infoWindow = new BMap.InfoWindow(content1, opts1);
     marker.openInfoWindow(infoWindow);

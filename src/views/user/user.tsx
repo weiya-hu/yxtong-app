@@ -10,8 +10,9 @@ import ArticleDetail from './articleDetail'
 import Certificate from './certificate'
 import {loginOut } from 'service/login'
 import { getUser } from 'service/login'
-import { Redirect ,withRouter} from 'react-router-dom';
+import { Redirect ,withRouter,Route} from 'react-router-dom';
 import { util } from 'utils/news'
+import {routerMap} from "routerMap";
 
 import store from "store/index";
 import { removeUserInfo} from "store/actionCreators.js";
@@ -25,12 +26,13 @@ import realnamedimg from 'public/images/user/realnamed.png'
 import phoneimg from 'public/images/user/phone.png'
 
 let UNLISTEN;
+
 class User extends Component {
     state={
-        nav:['我的任务','我的收益','创作中心','设置','企业管理'],
+        nav:['我的任务','我的收益','创作中心','设置','企业管理'],  
+        aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['基本信息','账户安全','实名认证'],['企业认证'],['我的消息']],//侧边栏的导航文字
         // nav:['个人中心','我的任务','我的团队','我的推广'],
         // aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
-        aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['基本信息','账户安全','实名认证'],['企业认证'],['我的消息']],//侧边栏的导航文字
         navActiveIndex:0,//导航active的下标
         asideActive:0,//侧边栏active的下标
         isArticleDetail:0,//是否是详情页
@@ -97,6 +99,7 @@ class User extends Component {
         (navActiveIndex == 4 )&&<Certificate></Certificate>
     }
     componentDidMount=()=>{
+      // console.log(routerMap)
       document.title = '康州数智-个人中心'
       //根据页面路径显示相应的组件
       this.setState({
@@ -194,6 +197,12 @@ class User extends Component {
                   ))}
                 </div>
               </div>
+              {/* <Route
+                    exact
+                    key={index}
+                    path={router.path}
+                    component = { router.component }
+                /> */}
               
               <div className='usermain'>
                 {this.getComponent(navActiveIndex,asideActive,isArticleDetail)}
