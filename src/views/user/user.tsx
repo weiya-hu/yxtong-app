@@ -84,7 +84,7 @@ class User extends Component {
       window.scrollTo (0,0);
     }
     asideNavChange=(index)=>{
-      this.props.history.push('/app/user?navActiveIndex='+util.getUrlParam('navActiveIndex')+'&asideActive='+index)
+      this.props.history.push('/app/user?navActiveIndex='+(util.getUrlParam('navActiveIndex') || 0)+'&asideActive='+index)
       window.scrollTo (0,0);
     }
     //根据URL传的值切换组件
@@ -99,7 +99,7 @@ class User extends Component {
         (navActiveIndex == 4 )&&<Certificate></Certificate>
     }
     componentDidMount=()=>{
-      // console.log(routerMap)
+      console.log(routerMap)
       document.title = '康州数智-个人中心'
       //根据页面路径显示相应的组件
       this.setState({
@@ -124,7 +124,7 @@ class User extends Component {
     componentWillUnmount(){
       UNLISTEN && UNLISTEN(); // 监听路由变化执行解绑
     }
-    render(){
+    render(props){
         let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag,asideActive} = this.state
         if(loginFlag){
           return <Redirect to='/app/login?url=/app/user' />;
@@ -197,13 +197,28 @@ class User extends Component {
                   ))}
                 </div>
               </div>
-              {/* <Route
+              {/* <Route.component { ...props }>
+              {
+                routerMap.children?.map((item,itemIndex)=>{
+                  return (
+                    <Route
+                      exact
+                      key={itemIndex}
+                      path={item.path}
+                      component = { item.component }
+                    />
+                  )
+                })
+              }
+              </Route.component> */}
+              {/* {routerMap.map((router,index)=>{
+                return <Route
                     exact
                     key={index}
                     path={router.path}
                     component = { router.component }
-                /> */}
-              
+                />
+              })} */}
               <div className='usermain'>
                 {this.getComponent(navActiveIndex,asideActive,isArticleDetail)}
               </div>

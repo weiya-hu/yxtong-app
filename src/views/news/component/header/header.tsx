@@ -125,7 +125,7 @@ class Header extends Component<any,HeaderState>{
             </div>
           )}  
         </div>
-        <div className='invite '>你好，欢迎登录康州数智官网！</div>
+        <div className='invite '>你好，欢迎登录康洲数智官网！</div>
       </div>
     )
   }

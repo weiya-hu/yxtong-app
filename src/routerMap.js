@@ -39,10 +39,28 @@ const phoneBindLogin = loadable(()=> import('views/login/component/othorLogin/ph
 const userAgreement = loadable(()=> import('views/login/userAgreement'), {
     LoadingComponent: Loading,
 })
+//用户须知页面
+const userMytask= loadable(()=> import('views/user/myTask'), {
+    LoadingComponent: Loading,
+})
+
+
 
 
 export const routerMap = [
-    {path: "/app/user", name: "User", component: User, auth: true},
+    {
+        path: "/app/user", 
+        name: "User", 
+        component: User, 
+        auth: true,
+        children:[
+            {
+                path:"/app/user/mytask", 
+                name:"mytask",
+                component:userMytask,
+            }
+        ]
+    },
     {path: "/app/login", name: "Login", component: Login},
     {path: "/app/register/register", name: "Register", component: Register},
     {path: "/app/register/forget", name: "Register", component: Register},

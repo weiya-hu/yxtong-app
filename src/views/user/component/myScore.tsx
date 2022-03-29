@@ -45,9 +45,9 @@ class MyScore extends Component<any> {
                             {/* <span className='scoremoney'>约{userInfo.balance}元</span> */}
                         </div>
                     </div>
-                    <div>
+                    {/* <div>
                         <CommonButton onclicked={this.exchangeScore} isBefore={true} wordBefore='立即兑换' wordAfter='已兑换'/>
-                    </div>
+                    </div> */}
                 </div>
             ):(
                 <div className='myscore flexb'>
@@ -59,7 +59,7 @@ class MyScore extends Component<any> {
                             </div>
                             <div className='todayscorepre '>
                                 <span className='bold'>赠送代币券：</span>
-                                <span className='todayscore bold'>56000</span>
+                                <span className='todayscore bold'>0</span>
                             </div>
                         </div>
                         
@@ -70,9 +70,9 @@ class MyScore extends Component<any> {
                         </div>
                         
                     </div>
-                    <div>
+                    {/* <div>
                         <CommonButton onclicked={this.exchangeScore} isBefore={true} wordBefore='立即兑换' wordAfter='已兑换'/>
-                    </div>
+                    </div> */}
                 </div>
             )}
             
