@@ -69,7 +69,7 @@ export default class phoneBindLogin extends Component {
     }
     componentDidMount(){
         document.title = '康州数智-绑定手机号码'
-        document.body.style.overflow='hidden'
+        // document.body.style.overflow='hidden'
         this.setState({
             header:this.getUrlParam('headimgurl'),//用户微信头像
             name:this.getUrlParam('nickname'),//用户微信名

@@ -136,9 +136,8 @@
                             <ul>
                                 <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li>
                                 <li><a href="/benefits.html">VIP权益</a><span>|</span></li>
-
-                                <li><a href="/material.html">我要推广</a><span>|</span></li>
-                                <li><a href="/member.html#feedback">客户反馈</a></li>
+                                <li><a href="/developmenting.html">我要推广</a><span>|</span></li>
+                                <li class="user_feedback"><a href="/member.html#feedback">客户反馈</a></li>
                             </ul>
                         </div>
                     </li>
@@ -170,6 +169,22 @@
                 $('.bar-tip').slideUp(200)
 
             })
+
+
+        $('.navchild1 ul li a').on(
+            'mouseover',
+            function() {
+                if ($(this).attr('href') == 'javascript:void(0);') {
+                    // console.log($(this).attr('href'))
+                    $(this).css('cursor', 'default')
+                }
+
+            }
+        )
+
+        $('.user_feedback').on('click', function() {
+            $('#navbar>ul').children('li').eq(6).find('li').eq(3).addClass('active').siblings().removeClass();
+        })
     </script>
     <script>
         // loaded page
@@ -1142,7 +1157,7 @@
         <dl>
             <dt>会员中心</dt>
             <dd><a target="_self" href="/benefits.html">VIP权益</a></dd>
-            <dd><a target="_self" href="/material.html">我要推广</a></dd>
+            <dd><a target="_self" href="/developmenting.html">我要推广</a></dd>
 
             <dd><a target="_self" href="member.html#feedback">客户反馈</a></dd>
         </dl>

@@ -64,7 +64,6 @@ class Profit extends Component{
         }
     }
     componentDidMount=async()=>{
-        // this.props.history.push('/app/user?navActiveIndex=1&asideActive=0');
         let {current,pageSize}=this.state
         this.getList(current,pageSize)
         

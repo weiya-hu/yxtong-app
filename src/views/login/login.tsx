@@ -10,7 +10,7 @@ import LoginComponent from './component/loginComponent'
 export default class Login extends Component {
     componentDidMount(){
         document.title = '康州数智-登录'
-        document.body.style.overflow='hidden'
+        // document.body.style.overflow='hidden'
     }
     toIndex=()=>{
         window.location.href='/'

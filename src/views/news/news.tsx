@@ -136,9 +136,7 @@ export default class News extends Component{
   }
   //跳转新闻详情页
   toNewsDetail=(item)=>{
-    // this.props.history.push( { pathname : '/app/newsdetail/?newsId='+item.id})
     window.open(window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+item.id, "_blank"); 
-    // window.scrollTo (0,0);
   }
   //获取可能感兴趣列表
   getFavorlist=async()=>{
@@ -205,6 +203,15 @@ export default class News extends Component{
     }
     
   }
+  toUserWrite=()=>{
+    let userInfo = store.getState().userInfo
+    if(userInfo){
+      this.props.history.push({pathname:'/app/user?navActiveIndex=2&asideActive=0'})
+    }else{
+      store.dispatch(loginShow())
+    }
+    
+  }
   followChange=(val)=>{
     let list =JSON.parse(JSON.stringify(this.state.newsList))
     let alist = JSON.parse(JSON.stringify(this.state.mayInterestList))
@@ -230,7 +237,6 @@ export default class News extends Component{
   }
   render(){
     const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate,loginShow,left,right,favorList}=this.state
-    console.log(newsList)
     return (
       <div id='news' className='back-color'>
         <div className='news-header'>
@@ -244,8 +250,9 @@ export default class News extends Component{
             </div>
             <div className='userinfo'>  
               <div className='bold'>创作中心</div>
-              <div className='writeimg fleximg'><img src={writeimg} alt="write" /></div>
-              <div className='font12'>写文章</div>
+              <div className='writeimg fleximg cursor' onClick={this.toUserWrite}><img src={writeimg} alt="write" /></div>
+              <div className='font12 cursor' onClick={this.toUserWrite}>写文章</div>
+
               <div className='hr'></div>
               <div className='flexa'>
                 <div className='fleximgc'>

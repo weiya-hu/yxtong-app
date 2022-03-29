@@ -27,7 +27,6 @@ class ArticleDetail extends Component<ArticleDetailProps>{
         isPreview:false
     }
     backReview=()=>{
-        // this.props.backReview(true)
         this.props.history.push('/app/user?navActiveIndex=2&asideActive=0&editNewsId=previewBack');
     }
     getNewsDeatail=async()=>{
@@ -62,7 +61,6 @@ class ArticleDetail extends Component<ArticleDetailProps>{
     }
 
     componentDidMount(): void {
-        // this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&isArticleDetail=1');
         this.getNewsDeatail()
     }
     render(): ReactNode {

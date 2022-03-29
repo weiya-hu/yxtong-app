@@ -136,9 +136,8 @@
                             <ul>
                                 <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li>
                                 <li><a href="/benefits.html">VIP权益</a><span>|</span></li>
-
-                                <li><a href="/material.html">我要推广</a><span>|</span></li>
-                                <li><a href="/member.html#feedback">客户反馈</a></li>
+                                <li><a href="/developmenting.html">我要推广</a><span>|</span></li>
+                                <li class="user_feedback"><a href="/member.html#feedback">客户反馈</a></li>
                             </ul>
                         </div>
                     </li>
@@ -170,6 +169,22 @@
                 $('.bar-tip').slideUp(200)
 
             })
+
+
+        $('.navchild1 ul li a').on(
+            'mouseover',
+            function() {
+                if ($(this).attr('href') == 'javascript:void(0);') {
+                    // console.log($(this).attr('href'))
+                    $(this).css('cursor', 'default')
+                }
+
+            }
+        )
+
+        $('.user_feedback').on('click', function() {
+            $('#navbar>ul').children('li').eq(6).find('li').eq(3).addClass('active').siblings().removeClass();
+        })
     </script>
     <script>
         // loaded page
@@ -473,6 +488,10 @@
                     </div>
                 </div>
                 <div class="swiper-slide" style="background-image: url(static/images/attract-banner2.png);">
+                    <div class="wrapper">
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url(static/images/attract-banner3.png);">
                     <div class="wrapper">
                     </div>
                 </div>
@@ -1358,7 +1377,6 @@
     </div>
 
     <div class="attract-yxt">
-
         <div class="wrapper">
             <div class="attract-c-tit black">
                 <h3>药智营销通</h3>
@@ -1571,7 +1589,7 @@
         </div>
     </div>
 
-
+    <a href="" name="join"></a>
     <div class="attract-join">
         <div class="wrapper">
             <div class="attract-c-tit">
@@ -1582,15 +1600,24 @@
             <div class="l">
                 <p class="highlight">你还在守着一亩三分地苦苦耕耘？互联网的时代来临，你还在等什么？</p>
                 <p>营销自动化在中国的应用仍处在刚起步和试错的过程中，随着技术、数据端口平台的开发与透明、企业人员架构的优化升级，营销自动化将在未来1-3年迎来新的转机。行业逐步走进数据驱动时代，离不开高效的数据整合应用与营销全触点的数字化体验升级。营销数字能力的优劣势将直接拉开企业与企业之间的差距，同时可以预见到行业壁垒将被逐步打破，进入到以用户为中心的用户型企业新形态。</p>
-                <p>据SharpSpring的报告显示，未来几年营销自动化的年增长率有望达到20%以上；2021年的预测市场规模将达到8650亿美元，2022年将超过10000亿美元。</p>
-                <p>药智营销通，通过大数据+AI技术赋能企业营销自动化，为企业降本增效，实现互联网新时代的弯道超车，不要观望了，赶快加入我们吧！</p>
+                <div class="l-bottom">
+                    <div class="qc">
+                        <img src="static/images/join.png" alt="">
+                        <span>微信扫一扫，立即咨询</span>
+                    </div>
+                    <div class="txt">
+                        <p>据SharpSpring的报告显示，未来几年营销自动化的年增长率有望达到20%以上；2021年的预测市场规模将达到8650亿美元，2022年将超过10000亿美元。</p>
+                        <p>药智营销通，通过大数据+AI技术赋能企业营销自动化，为企业降本增效，实现互联网新时代的弯道超车，不要观望了，赶快加入我们吧！</p>
+
+                    </div>
+                </div>
             </div>
             <div class="r">
                 <div class="img"></div>
             </div>
         </div>
     </div>
-
+    <a href="" name="coop"></a>
     <div class="attract-coop">
         <div class="wrapper">
             <div class="attract-c-tit right black">
@@ -1609,7 +1636,7 @@
             </div>
         </div>
     </div>
-
+    <a href="" name="puton"></a>
     <div class="attract-puton">
         <div class="wrapper">
             <div class="attract-c-tit">
@@ -1620,8 +1647,17 @@
             <div class="l">
                 <p>产业互联网时代，已经不是简单的广而告之的时代了！</p>
                 <p>伴随着各大流量主的疯狂圈地，如今的广告投放，需要综合考虑投放策略、触发效果、转化效果等内容的同时，更需要通过广告来形成自己的私域流量池，将客户资源牢牢掌握在自己手中，实现精准的客户服务。</p>
-                <p>药智营销通，为您提供全渠道的广告投放管理，其中更包含自主研发的全网APP机器人推广系统；同时，结合了SCRM系统为您提供全方位的私域流量管理。</p>
-                <p class="highlight">赶快联系我们获取更多信息吧！</p>
+                <div class="l-bottom">
+                    <div class="qc">
+                        <img src="static/images/puton.png" alt="">
+                        <span>微信扫一扫，立即咨询</span>
+                    </div>
+                    <div class="txt">
+                        <p>药智营销通，为您提供全渠道的广告投放管理，其中更包含自主研发的全网APP机器人推广系统；同时，结合了SCRM系统为您提供全方位的私域流量管理。</p>
+                        <p class="highlight">赶快联系我们获取更多信息吧！</p>
+                    </div>
+                </div>
+
             </div>
             <div class="r">
                 <div class="img"></div>
@@ -1649,7 +1685,7 @@
         <dl>
             <dt>会员中心</dt>
             <dd><a target="_self" href="/benefits.html">VIP权益</a></dd>
-            <dd><a target="_self" href="/material.html">我要推广</a></dd>
+            <dd><a target="_self" href="/developmenting.html">我要推广</a></dd>
 
             <dd><a target="_self" href="member.html#feedback">客户反馈</a></dd>
         </dl>

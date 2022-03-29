@@ -47,11 +47,7 @@ class ArticleList extends Component<ArticleListState>{
       })
     }
   }
-  toNewsDetail=(id)=>{
-    this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&readNewsId='+id);
-  }
   componentDidMount(){
-    // this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&isArticleDetail=0');
     const {current,size} =this.state
     this.contentList(current,size)
   }

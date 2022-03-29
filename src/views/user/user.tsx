@@ -28,7 +28,7 @@ let UNLISTEN;
 class User extends Component {
     state={
         nav:['我的任务','我的收益','创作中心','设置','企业管理'],
-        // nav:['我的任务','我的收益','创作中心'],
+        // nav:['个人中心','我的任务','我的团队','我的推广'],
         // aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
         aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['基本信息','账户安全','实名认证'],['企业认证'],['我的消息']],//侧边栏的导航文字
         navActiveIndex:0,//导航active的下标
@@ -184,6 +184,7 @@ class User extends Component {
                   </div>
                 </div>
                 <div className='aside'>
+                 
                   {aside[navActiveIndex].map((item,index)=>(
                     <div 
                       key={index}

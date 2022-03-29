@@ -136,9 +136,8 @@
                             <ul>
                                 <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li>
                                 <li><a href="/benefits.html">VIP权益</a><span>|</span></li>
-
-                                <li><a href="/material.html">我要推广</a><span>|</span></li>
-                                <li><a href="/member.html#feedback">客户反馈</a></li>
+                                <li><a href="/developmenting.html">我要推广</a><span>|</span></li>
+                                <li class="user_feedback"><a href="/member.html#feedback">客户反馈</a></li>
                             </ul>
                         </div>
                     </li>
@@ -170,6 +169,22 @@
                 $('.bar-tip').slideUp(200)
 
             })
+
+
+        $('.navchild1 ul li a').on(
+            'mouseover',
+            function() {
+                if ($(this).attr('href') == 'javascript:void(0);') {
+                    // console.log($(this).attr('href'))
+                    $(this).css('cursor', 'default')
+                }
+
+            }
+        )
+
+        $('.user_feedback').on('click', function() {
+            $('#navbar>ul').children('li').eq(6).find('li').eq(3).addClass('active').siblings().removeClass();
+        })
     </script>
     <script>
         // loaded page
@@ -243,226 +258,226 @@
 <link rel="stylesheet" type="text/css" href="static/css/member.css" />
 
 <div class="container">
-	<div class="material-swiper">
-		<div class="swiper-wrapper" id="material-top-swiper">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide" style="background-image: url(uploads/material-swiper-1.png);">
-					<div class="wrapper">   
-					</div>
-				</div>
-				<div class="swiper-slide" style="background-image: url(uploads/material-swiper-1.png);">
-					<div class="wrapper">
-					</div>
-				</div>
-			</div>
-			<div class="swiper-pagination material-top-swiper-pagination"></div>
-			<div class="swiper-button-next swiper-button-white material-top-swiper-button-next"></div>
-			<div class="swiper-button-prev swiper-button-white material-top-swiper-button-prev"></div>
-		</div>
-	</div>
-	<div class="material-container wrapper clearfix">
-		<div class="material-subleft-warp">
-			<div class="material-subleft">
-				<a data-hash="p0" class="active">招商模板</a>
-				<a data-hash="p1">海报模板</a>
-				<a data-hash="p2">新媒体工具</a>
-			</div>
-		</div>
-		<div class="material-main">
-			<div class="hd" id="p0">招商模板</div>
-			<div class="bd">
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-			</div>
+    <div class="material-swiper">
+        <div class="swiper-wrapper" id="material-top-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url(uploads/material-swiper-1.png);">
+                    <div class="wrapper">
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url(uploads/material-swiper-1.png);">
+                    <div class="wrapper">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination material-top-swiper-pagination"></div>
+            <div class="swiper-button-next swiper-button-white material-top-swiper-button-next"></div>
+            <div class="swiper-button-prev swiper-button-white material-top-swiper-button-prev"></div>
+        </div>
+    </div>
+    <div class="material-container wrapper clearfix">
+        <div class="material-subleft-warp">
+            <div class="material-subleft">
+                <a data-hash="p0" class="active">招商模板</a>
+                <a data-hash="p1">海报模板</a>
+                <a data-hash="p2">新媒体工具</a>
+            </div>
+        </div>
+        <div class="material-main">
+            <div class="hd" id="p0">招商模板</div>
+            <div class="bd">
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+            </div>
 
-			<div id="p1" class="hd" id="p1">海报模板</div>
-			<div class="bd">
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-			</div>
+            <div id="p1" class="hd" id="p1">海报模板</div>
+            <div class="bd">
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+            </div>
 
-			<div id="p2" class="hd" id="p2">新媒体工具</div>
-			<div class="bd">
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-				<div class="item">
-					<div class="img">
-						<img src="uploads/material-mat-img-1.png" alt="" width="100%">
-						<div class="mask">
-							<a><em class="icon-use"></em>使用</a>
-							<a><em class="icon-favo"></em>收藏</a>
-						</div>
-					</div>
-					<h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
-				</div>
-			</div>
+            <div id="p2" class="hd" id="p2">新媒体工具</div>
+            <div class="bd">
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+                <div class="item">
+                    <div class="img">
+                        <img src="uploads/material-mat-img-1.png" alt="" width="100%">
+                        <div class="mask">
+                            <a><em class="icon-use"></em>使用</a>
+                            <a><em class="icon-favo"></em>收藏</a>
+                        </div>
+                    </div>
+                    <h4>这是一行标题这是一行标题这是一行标题这是一行标题</h4>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 
@@ -485,7 +500,7 @@
         <dl>
             <dt>会员中心</dt>
             <dd><a target="_self" href="/benefits.html">VIP权益</a></dd>
-            <dd><a target="_self" href="/material.html">我要推广</a></dd>
+            <dd><a target="_self" href="/developmenting.html">我要推广</a></dd>
 
             <dd><a target="_self" href="member.html#feedback">客户反馈</a></dd>
         </dl>
@@ -551,63 +566,67 @@
 <script src="static/lib/swiper/4.4.6/swiper.min.js"></script>
 
 <script>
+    //首页顶部轮播
+    var materialTopSwiper = new Swiper('#material-top-swiper', {
+        //effect : 'fade',
+        loop: true,
+        autoplay: {
+            delay: 8000,
+        },
+        pagination: {
+            el: '.material-top-swiper-pagination',
+            clickable: true
+        },
+        navigation: {
+            nextEl: '.material-top-swiper-button-next',
+            prevEl: '.material-top-swiper-button-prev'
+        }
+    });
+    //左侧导航定位
+    $(".material-subleft").sticky({
+        topSpacing: 110,
+        zIndex: 50
+    });
+    var arr_left_position = [],
+        $left_btns = $(".material-subleft").children();
 
-
-//首页顶部轮播
-var materialTopSwiper = new Swiper('#material-top-swiper', {
-    //effect : 'fade',
-    loop: true,
-    autoplay: {
-        delay: 8000,
-    },
-    pagination: {
-        el: '.material-top-swiper-pagination',
-        clickable: true
-    },
-    navigation: {
-        nextEl: '.material-top-swiper-button-next',
-        prevEl: '.material-top-swiper-button-prev'
-    }
-});
-//左侧导航定位
-$(".material-subleft").sticky({topSpacing:110,zIndex:50});
-var arr_left_position = [],
-	$left_btns = $(".material-subleft").children();
-
-$.each($('.material-main > .hd'), function() {
-	arr_left_position.push($(this).offset().top)
-})
-console.log(arr_left_position)
-$(window).on('scroll', function() {
-	var scrollTop = $(document).scrollTop();
-	var index;
-	for(var i = 0; i < arr_left_position.length; i++) {
-		console.log(scrollTop+','+arr_left_position[i])
-		if (scrollTop > arr_left_position[i]-100) {
-			index = i;
-		}
-	}
-	$left_btns.eq(index).addClass('active').siblings().removeClass('active');
-});
-$('.material-subleft > a').on('click', function() {
-	var id = $(this).attr('data-hash');
-	var offsetTop = $("#"+id).offset().top - 100;
-	$("html,body").animate({scrollTop:offsetTop}, 0);
-	setTimeout(()=> {
-		$(this).addClass('active').siblings().removeClass('active');
-	}, 5)
-})
+    $.each($('.material-main > .hd'), function() {
+        arr_left_position.push($(this).offset().top)
+    })
+    console.log(arr_left_position)
+    $(window).on('scroll', function() {
+        var scrollTop = $(document).scrollTop();
+        var index;
+        for (var i = 0; i < arr_left_position.length; i++) {
+            console.log(scrollTop + ',' + arr_left_position[i])
+            if (scrollTop > arr_left_position[i] - 100) {
+                index = i;
+            }
+        }
+        $left_btns.eq(index).addClass('active').siblings().removeClass('active');
+    });
+    $('.material-subleft > a').on('click', function() {
+        var id = $(this).attr('data-hash');
+        var offsetTop = $("#" + id).offset().top - 100;
+        $("html,body").animate({
+            scrollTop: offsetTop
+        }, 0);
+        setTimeout(() => {
+            $(this).addClass('active').siblings().removeClass('active');
+        }, 5)
+    })
 </script>
 
 
 <script>
-//静态演示用，绑程序时删除 star
-document.title = '药智营销通';
-$('#navbar>ul').children('li').eq(6).addClass('active').siblings().removeClass();
-$('#navbar>ul').children('li').eq(6).find('li').eq(3).addClass('active').siblings().removeClass();
+    //静态演示用，绑程序时删除 star
+    document.title = '药智营销通';
+    $('#navbar>ul').children('li').eq(6).addClass('active').siblings().removeClass();
+    $('#navbar>ul').children('li').eq(6).find('li').eq(2).addClass('active').siblings().removeClass();
 
-//静态演示用，绑程序时删除 end
+    //静态演示用，绑程序时删除 end
 </script>
 
 </body>
+
 </html>

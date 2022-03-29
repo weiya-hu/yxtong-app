@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数智器械 - 行业导航</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="static/css/common.css" />
+    <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+</head>
+
+
+
+<body>
+
+
+
+    <div class="topbar">
+        <div class="tips">你好，欢迎登陆康洲数智官网！</div>
+        <div class="links">
+            <div class="content">
+                <a target="_blank" href="https://qx.yaozh.com/home">药智器械</a>
+                <a target="_blank" href="https://job.yaozh.com/">数智人才</a>
+                <a target="_blank" href="https://patent.yaozh.com/">专利通</a>
+                <a target="_blank" href="https://report.yaozh.com/">数智咨询</a>
+                <a target="_blank" href="https://www.yaozh.com/zhihui/?yaozh">数智汇</a>
+                <a target="_blank" href="https://s.yaozh.com">数智通</a>
+                <a target="_blank" href="https://edu.yaozh.com/">数智大讲堂</a>
+                <a target="_blank" href="https://aiyun.yaozh.com/">产业大脑</a>
+                <a target="_blank" href="https://bbs.yaozh.com">论坛交流</a>
+                <a target="_blank" href="https://club.yaozh.com/">俱乐部</a>
+                <a target="_blank" href="https://www.yaohaiwai.com/">海外智通</a>
+                <a target="_blank" href="https://gu.yaozh.com/ ">数智谷</a>
+            </div>
+            <div class="login" id="login">
+                <div class="default-show">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50" xml:space="preserve">
+                            <rect x="0" y="9.22656" width="4" height="12.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="10" y="5.22656" width="4" height="20.5469" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="20" y="8.77344" width="4" height="13.4531" fill="#FF6700">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                        </svg>
+                    <sprn style="margin-left:15px;">加载中...</sprn>
+                </div>
+                <div class="nologin">
+                    <a target="_blank" href="/app/login">登录</a>
+                    <span class="split">|</span>
+                    <a target="_blank" href="/app/register/register">注册</a>
+                </div>
+                <div class="logined">
+                    <!-- <div class="info-messages">消息</div>
+                    <div class="info-numbers"><span>0</span></div> -->
+                    <img id="header" src="static/images/icon-avatar.png" alt="">
+                    <div id="uname"></div>
+                    <div class="info-quit">退出</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="zw"></div>
+
+
+    </div>
+
+    <div class="navs">
+        <div class="wrapper">
+            <a class="logo" href="/">
+                <img src="static/images/logo.png" title="数智器械">
+            </a>
+            <div class="navbar" id="navbar">
+                <ul>
+                    <li class="active"><a href="/index.html">首页</a></li>
+                    <li class="" id="li-propuct"><a href="/product.html">产品与服务</a>
+                        <div class="navchild1">
+                            <ul>
+                                <li class="marketing">
+                                    <a href="/sales.html">
+                                        <span>数智营销通</span>
+                                        <span id="txt">中小企业专享</span>
+                                    </a>
+                                    <div class="barchild">
+                                        <div class="bar-tip"></div>
+                                        <ul>
+                                            <li><a href="javascript:void(0);">CMS 内容管理</a></li>
+                                            <li><a href="/dmp_intro.html">DMP 精准数据</a></li>
+                                            <li><a href="javascript:void(0);">DSP 广告投放</a></li>
+                                            <li><a href="javascript:void(0);">DSP 数据服务</a></li>
+                                            <li><a href="javascript:void(0);">CDP 数据分析</a></li>
+                                            <li><a href="javascript:void(0);">SCRM 私域流量</a></li>
+                                            <li><a href="/app/news">信息资讯中心</a></li>
+                                            <li><a href="/marketing.html">APP机器人矩阵</a></li>
+                                            <li><a href="javascript:void(0);">SMS 5G短信</a></li>
+                                            <li><a href="javascript:void(0);">EDM 电子邮件</a></li>
+                                            <li><a href="javascript:void(0);">会员裂变管理</a></li>
+                                            <li><a href="javascript:void(0);">线上直播</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);"><span>数智赢效通</span>
+                                        <span id="txt">全套解决方案</span></a></li>
+                                <li><a href="javascript:void(0);"><span>数智优销通</span>
+                                            <span>微B/C端客户专享</span></a></li>
+                                <li><a href="javascript:void(0);"><span>数智医销通</span>
+                                    <span>医 药 行 业 专 属                  </span></a></li>
+
+                                <div class="line"></div>
+
+                                <li><a href="/vipdata.html"><span>药 智 器 械</span>
+                                    <span>医疗器械数据服务</span></a></li>
+                                <li><a href="javascript:void(0);"><span>数智医械通</span>
+                                        <span>医疗器械数据服务</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/sales.html">数智营销通</a></li>
+                    <li><a href="/vipdata.html">药智器械</a></li>
+                    <li><a href="/attract.html">商务合作</a></li>
+                    <li><a href="/app/news">资讯中心</a></li>
+                    <li>
+                        <a href="/member.html">会员中心</a>
+                        <div class="navchild2">
+                            <ul>
+                                <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li>
+                                <li><a href="/benefits.html">VIP权益</a><span>|</span></li>
+                                <li><a href="/developmenting.html">我要推广</a><span>|</span></li>
+                                <li class="user_feedback"><a href="/member.html#feedback">客户反馈</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/help.html">帮助中心</a></li>
+                    <li><a href="/navigation.html">行业导航</a></li>
+
+                </ul>
+
+            </div>
+            <div class="header-phone">
+                <img src="static/images/header-phone.png" alt="">
+                <span>咨询电话：</span>
+                <span>400-805-6906</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        $('.marketing').hover(
+            function() {
+                $('.navchild1').css('overflow', 'revert')
+                $('.barchild').css('height', '86px')
+                $('.bar-tip').slideDown(200)
+            },
+            function() {
+                $('.navchild1').css('overflow', 'hidden')
+                $('.bar-tip').slideUp(200)
+
+            })
+
+
+        $('.navchild1 ul li a').on(
+            'mouseover',
+            function() {
+                if ($(this).attr('href') == 'javascript:void(0);') {
+                    // console.log($(this).attr('href'))
+                    $(this).css('cursor', 'default')
+                }
+
+            }
+        )
+
+        $('.user_feedback').on('click', function() {
+            $('#navbar>ul').children('li').eq(6).find('li').eq(3).addClass('active').siblings().removeClass();
+        })
+    </script>
+    <script>
+        // loaded page
+        $(document).ready(function() {
+
+            $.ajax({
+                method: 'get',
+                url: "/api/user/public/uinfo.get",
+                dataType: "json",
+                success: function(res) {
+                    res.status ? isUser(res.body) : isUser()
+                },
+            })
+            $('#header').click(function() {
+                location.href = '/app/user'
+            })
+            $('#uname').click(function() {
+                location.href = '/app/user'
+            })
+
+        })
+
+        // 点击退出
+        $('.info-quit').on('click', function() {
+            $.ajax({
+                method: 'get',
+                url: "/api/login/out.do",
+                dataType: "json",
+                success: function(res) {
+                    isUser()
+                },
+            })
+        })
+
+
+
+        function isUser(userInfo) {
+            $('.default-show').hide()
+            if (!userInfo) {
+                $('.nologin').css('display', 'flex')
+                $('.logined').css('display', 'none')
+                $('.content-login').css('display', 'block')
+
+            } else {
+                $('.nologin').css('display', 'none')
+                $('.logined').css('display', 'flex')
+                $('#header').attr('src', userInfo.head ? userInfo.head : './static/images/icon-avatar.png')
+                $('#uname').text(userInfo.name)
+                    // 立即登录按钮
+                $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
+                $('.content-login').css('display', 'none')
+                    // 登录药智器械页面
+                var text1 = 'vipdata'
+                var url1 = window.location.href
+                if (url1.indexOf(text1) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+                // 进入APP机器人页面
+                var text2 = 'marketing'
+                var url2 = window.location.href
+                if (url2.indexOf(text2) >= 0) {
+                    // console.log('我进入药智器械了')
+                    $('.content-login').css('display', 'block')
+                    $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
+                }
+            }
+        }
+    </script>
+<link rel="stylesheet" type="text/css" href="static/css/index.css" />
+
+<div class="container bygray">
+    <div class="header-img">
+        <img src="static/images/dydetail.png" alt="">
+    </div>
+
+
+    <div class="wrapper">
+        <div class="crumbs">
+            您当前位置：
+            <span id="nav1"><a href="member.html">首页</a></span> >
+            <span id="nav2">相关动态</span>
+        </div>
+        <div class="index-content">
+            <div class="lst">
+                <div class="item" data-did="did1">
+                    <div class="item-left">
+                        <div class="left-tips"><span>2022-03</span><span>08</span></div>
+
+                    </div>
+                    <div class="item-right">
+                        <div class="news-title">2022年，数智化的市场变革来临</div>
+                        <div class="news-txt">2011年，英国《经济学人》杂志曾经在经济学家中间征询过一个话题：什么是衡量中国经济发展的标准。后来，集合几名顶尖经济学家意见，《经济学人》推出一篇报道，创造性使用工业用电量为主的一套指标来评估中国的GDP水平。</div>
+                        <div class="bar">
+                            <span>行业新闻</span>
+                            <div class="bar-icon">
+                                <em class="icon-view"></em> 341
+                                <em class="icon-zan"></em> 75
+                                <em class="icon-wx"></em> 2596
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did2">
+                    <div class="item-left">
+                        <div class="left-tips"><span>2022-02</span><span>25</span></div>
+                    </div>
+                    <div class="item-right">
+                        <div class="news-title">企业数字化转型的的几个关键点</div>
+                        <div class="news-txt"> 数字化转型是用信息技术全面重塑企业管理模式，是企业发展模式的改革创新，是企业从工业经济时代向数字经济时代迈进的必然选择。加快企业数字化转型，创建数字化时代的企业经营模式，构建企业数字化竞争力是促进产业转型升级和高质量发展的必由之路。</div>
+                        <div class="bar">
+                            <span>行业新闻</span>
+                            <div class="bar-icon">
+                                <em class="icon-view"></em> 306
+                                <em class="icon-zan"></em> 41
+                                <em class="icon-wx"></em> 3651
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did3">
+                    <div class="item-left">
+                        <div class="left-tips"><span>2022-02</span><span>17</span></div>
+
+                    </div>
+                    <div class="item-right">
+                        <div class="news-title">京东商智3.0上线背后：数智化营销时代来了</div>
+                        <div class="news-txt">随着数据实时性、准确性与全面性的提升，数据的应用正在实现从营销工具到决策的角色转变。3月31日商智上线四周年之际，“万物生 致增长”京东商智3.0全面升级上线发布会在北京举办，“万物生”项目二期正式启动，标志着京东商智从数据工具，升级为数据决策中心，让数据应用开放创新，启发更多商家的营销想象力。</div>
+                        <div class="bar">
+                            <span>行业新闻</span>
+                            <div class="bar-icon">
+                                <em class="icon-view"></em> 346
+                                <em class="icon-zan"></em> 36
+                                <em class="icon-wx"></em> 2759
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did4">
+                    <div class="item-left">
+                        <div class="left-tips"><span>2022-02</span><span>03</span></div>
+
+                    </div>
+                    <div class="item-right">
+                        <div class="news-title">数字经济时代，商业的底层逻辑变了 </div>
+                        <div class="news-txt">经过战略分析之后，马士基从原来的运输公司变成了物流综合服务供应商：就他的角色不单单是运输，还帮客户把建构、提单、报关、转运等都做好体系化，全程追踪，提供各种各样的全自动服务。</div>
+                        <div class="bar">
+                            <span>行业新闻</span>
+                            <div class="bar-icon">
+                                <em class="icon-view"></em> 216
+                                <em class="icon-zan"></em> 44
+                                <em class="icon-wx"></em> 1753
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did5">
+                    <div class="item-left">
+                        <div class="left-tips"><span>2022-03</span><span>23</span></div>
+
+                    </div>
+                    <div class="item-right">
+                        <div class="news-title">《2021年中国医药健康行业投融资分析报告》 </div>
+                        <div class="news-txt">中国医疗健康行业，在深化医改，产业升级，创新加速的大背景下，越来越显示出从未有过的活力。传统药企积极创新转型，新兴biotech企业不断涌现。而作为“长青”行业，投资者也始终在寻找机会。当前无疑是国内医药企业快速发展，融资需求旺盛，投资机会遍地的黄金时代。</div>
+                        <div class="bar">
+                            <span>行业新闻</span>
+                            <div class="bar-icon">
+                                <em class="icon-view"></em> 357
+                                <em class="icon-zan"></em> 75
+                                <em class="icon-wx"></em> 2555
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did6">
+                    <div class="item-left">
+                        <div class="left-tips"><span>2021-01</span><span>11</span></div>
+
+                    </div>
+                    <div class="item-right">
+                        <div class="news-title">2021年数字营销趋势和预测 </div>
+                        <div class="news-txt">数字营销是营销的一个子领域。因此，它汇集了旨在通过一个或多个数字渠道影响客户行为的所有措施。在其主要分支机构中，我们常见的有例如社群管理、在线广告、电子邮件等营销方式。</div>
+                        <div class="bar">
+                            <span>行业新闻</span>
+                            <div class="bar-icon">
+                                <em class="icon-view"></em> 653
+                                <em class="icon-zan"></em> 61
+                                <em class="icon-wx"></em> 2788
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page member-news-page">
+                <span>首页</span>
+                <a class="pre disabled">&lt;</a>
+                <span class="active">1</span>
+
+                <a href="">2</a>
+                <a href="">3</a>
+                <a href="">4</a>
+                <a href="">...</a>
+                <a href="">80</a>
+                <a href="">81</a>
+                <a class="next" href="">&gt;</a>
+                <span>末页</span>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="bottom-navs">
+    <div class="wrapper clearfix">
+        <div class="item-contact">
+            <img class="logo" src="static/images/logo-bottom.png" alt="药智器械">
+            <div class="phone">400-805-6906</div>
+            <div class="qq">2081288520</div>
+            <div class="email">szyxtong@qq.com</div>
+        </div>
+        <dl>
+            <dt>商务合作</dt>
+            <dd><a target="_self" href="attract.html#price">产品及服务价格</a></dd>
+            <dd><a target="_self" href="attract.html#join">招商加盟</a></dd>
+            <dd><a target="_self" href="attract.html#coop">项目合作</a></dd>
+            <dd><a target="_self" href="attract.html#puton">广告投放</a></dd>
+        </dl>
+
+        <dl>
+            <dt>会员中心</dt>
+            <dd><a target="_self" href="/benefits.html">VIP权益</a></dd>
+            <dd><a target="_self" href="/developmenting.html">我要推广</a></dd>
+
+            <dd><a target="_self" href="member.html#feedback">客户反馈</a></dd>
+        </dl>
+
+        <dl>
+            <dt>帮助中心</dt>
+
+            <dd><a target="_self" href="help.html#problem">常见问题</a></dd>
+            <dd><a target="_self" href="help.html#xt">营销学堂</a></dd>
+            <dd><a target="_self" href="help.html#down">下载中心</a></dd>
+        </dl>
+        <div class="item-qrcode">
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr2.jpg" alt="">
+                <div>扫一扫关注药智器械</div>
+            </div>
+            <div class="qrcode-1">
+                <img width="110" height="105" src="static/images/qr2.png" alt="">
+                <div>扫一扫加入客服群</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper clearfix">
+        <div class="footer-navs">
+            <a href="###">首页</a>
+            <span class="split"></span>
+            <a href="product.html">产品与服务</a>
+            <a href="sales.html">药智营销通</a>
+            <a href="vipdata.html">药智医械通</a>
+            <!-- <a href="vipdata.html">医械数据通</a> -->
+            <span class="split"></span>
+            <!-- <a target="_blank" href="developmenting.html">器械商城</a>
+			<a target="_blank" href="https://job.yaozh.com/">求职招聘</a>
+			<span class="split"></span> -->
+            <a href="attract.html">商务合作</a>
+            <a href="/app/news">资讯中心</a>
+            <span class="split"></span>
+            <a href="member.html">会员中心</a>
+            <a href="help.html">帮助中心</a>
+            <span class="split"></span>
+            <a href="navigation.html">行业导航</a>
+        </div>
+        <!-- <div class="footer-navs2">
+            <a target="_blank" href="index.html">免责声明</a>
+            <a target="_blank" href="index.html">更新日志</a>
+            <a target="_blank" href="index.html">技术支持</a>
+        </div> -->
+        <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
+    </div>
+</div>
+<!-- 
+<div class="right-sidebar">
+    <a class="right-sidebar-qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1261826768&site=qq&menu=yes">
+        <span>在线咨询</span>
+    </a>
+    <a href="" class="right-sidebar-top"><span>返回顶部</span></a>
+</div> -->
+<script src="static/lib/vendor.js"></script>
+<script src="static/js/common.js"></script>
+<script>
+    $('.lst>.item').click(function(e) {
+        if ($(this).attr('data-did')) {
+            let did = $(this).attr('data-did').substring(3)
+            window.location.href = 'index_newsdetail.html?did=' + did
+        }
+    })
+</script>

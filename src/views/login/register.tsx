@@ -74,7 +74,7 @@ export default class Register extends Component {
         this.setState({isForget:pathname[3]})
         document.title = pathname[3] === 'forget' ? '康州数智-找回密码':pathname[3] === 'register'?'康州数智-注册':'康州数智-找回密码'
         console.log(pathname[3])
-        document.body.style.overflow='hidden'
+        // document.body.style.overflow='hidden'
     }
     render(){
         let {isForget,warnMessage,registermessage,mobileValue,acode} = this.state
