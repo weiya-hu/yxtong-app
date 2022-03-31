@@ -47,14 +47,13 @@ class Header extends Component<any,HeaderState>{
     e.stopPropagation()
     let res = await loginOut()
     if(res.status){
-      // this.props.history.push('/app/login?url=/app/news')
+
       store.dispatch(removeUserInfo())
       this.setState({userInfo:null})
     }
   }
   //去登录页面
   tologin=()=>{
-    // this.props.history.push('/app/login?url=/app/news')
     store.dispatch(loginShow())
     this.forceUpdate()
   }

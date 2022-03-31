@@ -33,16 +33,6 @@ import { AxisPointerComponent } from "echarts/components";
  axios.interceptors.response.use(
    (response) => {
     errnoMsg(response)
-    //  if (response.data.errno === 10620) {
-    //    console.log("登录状态过期");
-    //    let url = window.location.pathname==='/app/login'?'/app/login':'/app/login?url='+window.location.pathname
-    //    window.location.href=url
-    //    message.info('登录状态过期，请再次登录')
-    //  }
-    //  if(response.data.errno === 10403){
-    //     message.info('非法token')
-        
-    //  }
      return response;
    },
    (error) => {
@@ -177,7 +167,7 @@ import { AxisPointerComponent } from "echarts/components";
        case 10611: message.info('参数转换失败');break;
        case 10620: 
          message.info('身份认证失败');
-          window.location.pathname==='/app/user' && (window.location.href='/app/login?url='+ encodeURIComponent(window.location.pathname))
+          window.location.pathname==='/app/user' && (window.location.href='/app/login?url='+ encodeURIComponent(window.location.pathname + window.location.search))
         break;
        case 10621: message.info('未授权');break;
        case 10622: message.info('用户未找到');break;

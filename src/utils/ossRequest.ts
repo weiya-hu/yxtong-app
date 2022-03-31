@@ -40,7 +40,7 @@
    (response) => {
      if (response.data.errno === 10620) {
        console.log("登录状态过期");
-       window.location.href='/app/login?url='+window.location.pathname
+       window.location.href='/app/login?url='+encodeURIComponent(window.location.pathname + window.location.search) 
        message.info('登录状态过期，请再次登录')
      }
      if(response.data.errno === 10403){

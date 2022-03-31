@@ -161,7 +161,7 @@ class User extends Component {
     render(){
         let {navActiveIndex,exitActive,isArticleDetail,userInfo,loginFlag,asideActive,asideSonActive,authorNewsInfo,opens} = this.state
         if(loginFlag){
-          return <Redirect to={'/app/login?url='+encodeURIComponent('/app/user')}/>;
+          return <Redirect to={'/app/login?url='+encodeURIComponent(window.location.pathname + window.location.search)}/>;
         }
         return <div id='user' onClick={()=>{this.setState({exitNone:true})}}>
           <div className='flextop'>

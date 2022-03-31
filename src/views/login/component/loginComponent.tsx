@@ -82,7 +82,7 @@ export default class LoginComponent extends Component {
                 let userInfoRes= await getUser()
                 store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
                 if(url){
-                    window.location.href=decodeURIComponent(url) 
+                    window.location.href=decodeURIComponent(url).replace(/\'/g, "")
                 }else{
                     window.location.href='/'
                 }
