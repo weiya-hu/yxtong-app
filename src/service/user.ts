@@ -83,3 +83,8 @@ export const integralToday =(data):Promise<API.IResult>=>{
     return  get('user/center/integral/today.get',data)
 }
 
+//获取用户粉丝数
+export const userFans =(data):Promise<API.IResult>=>{
+    return  get('user/team/fans.list',data)
+}
+

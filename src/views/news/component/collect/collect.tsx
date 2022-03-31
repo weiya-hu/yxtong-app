@@ -12,15 +12,18 @@ import collectimg from 'public/images/user/collectBlack.png'
 import starActive20img from 'public/images/user/starActive20.png'
 import starimg from 'public/images/user/star.png'
 import starActiveimg from 'public/images/user/starActive.png'
+import { withSuccess } from 'antd/lib/modal/confirm';
 
 interface CollectPropsItem{
     is_collection:string | null
     creator_id?:number
+    
 }
 
 interface CollectProps{
     item :CollectPropsItem //是否收藏
     css:string //是横还是竖的样式align,justify
+    success?:()=>void
 }
 
 export default class Collect extends Component<CollectProps> {
@@ -46,6 +49,7 @@ export default class Collect extends Component<CollectProps> {
                     item:item
                 })
                 $message.info(data.types?'收藏成功':'取消收藏')
+                this.props.success(data.types)
             }
         }else{
             store.dispatch(loginShow())
@@ -54,6 +58,7 @@ export default class Collect extends Component<CollectProps> {
     
     render(){
         let prop =this.props,{item}=this.state
+        console.log(prop)
         return <div onClick={this.collectChange}>
             {prop.css === 'align' ?(<div className='collect-item fleximgc pointer'>
                 <div className='fleximg collectimg'><img src={item.is_collection?starActive20img:collectimg} alt="collect" /></div>
