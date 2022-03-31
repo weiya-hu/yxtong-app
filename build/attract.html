@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>数智器械 - 行业导航</title>
+    <title>康洲数智科技-数智化解决方案供应商</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -11,8 +11,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="static/css/common.css" />
     <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
+    <meta name="keywords" content="数智,营销,自动化,获客,私域,流量,运营,广告,CRM,SCRM,DSP,DMP,CDP,品牌宣传,大数据,AI,人工智能,5G短信,大健康,医疗,器械,数据,品效合一" />
+    <meta name="description" content="康洲数智致力于通过大数据、人工智能、云计算、5G等数字技术赋能产业发展，帮助中小企业实现数字化转型，助力企业实现营销自动化！" />
 </head>
 
 
@@ -22,7 +22,7 @@
 
 
     <div class="topbar">
-        <div class="tips">你好，欢迎登陆康洲数智官网！</div>
+        <div class="tips">你好，欢迎登录康洲数智官网！</div>
         <div class="links">
             <div class="content">
                 <a target="_blank" href="https://qx.yaozh.com/home">药智器械</a>
@@ -228,6 +228,7 @@
                 $('.logined').css('display', 'none')
                 $('.content-login').css('display', 'block')
 
+
             } else {
                 $('.nologin').css('display', 'none')
                 $('.logined').css('display', 'flex')
@@ -412,6 +413,8 @@
     var text2 = 'marketing'
     var url2 = window.location.href
 
+    var text3 = 'dmp_intro'
+    var url3 = window.location.href
 
 
     // 弹框消失
@@ -427,9 +430,12 @@
             } else if (url2.indexOf(text2) >= 0) {
                 window.open("https://robot.yxtong.com/user/qq/devicesRun.html", "_blank")
                 console.log(111);
+            } else if (url3.indexOf(text3) >= 0) {
+                console.log('我进入DMP了')
+                window.open("/app/login", "_blank")
             } else {
                 window.open("/app/login", "_self")
-                console.log(222);
+                    // console.log(222);
             }
 
 
@@ -1379,7 +1385,7 @@
     <div class="attract-yxt">
         <div class="wrapper">
             <div class="attract-c-tit black">
-                <h3>药智营销通</h3>
+                <h3>数智营销通</h3>
                 <em class="split">/</em>
                 <span>大数据+AI 技术加持的智能市场营销服务</span>
             </div>
@@ -1607,7 +1613,7 @@
                     </div>
                     <div class="txt">
                         <p>据SharpSpring的报告显示，未来几年营销自动化的年增长率有望达到20%以上；2021年的预测市场规模将达到8650亿美元，2022年将超过10000亿美元。</p>
-                        <p>药智营销通，通过大数据+AI技术赋能企业营销自动化，为企业降本增效，实现互联网新时代的弯道超车，不要观望了，赶快加入我们吧！</p>
+                        <p>数智营销通，通过大数据+AI技术赋能企业营销自动化，为企业降本增效，实现互联网新时代的弯道超车，不要观望了，赶快加入我们吧！</p>
 
                     </div>
                 </div>
@@ -1629,10 +1635,20 @@
                 <div class="img"></div>
             </div>
             <div class="r">
-                <p class="highlight">药智营销通是国内首创全渠道聚合推广与大数据赋能行业自动化营销相结合的SaaS平台。</p>
+                <p class="highlight">数智营销通是国内首创全渠道聚合推广与大数据赋能行业自动化营销相结合的SaaS平台。</p>
                 <p>我们提供丰富的接口能力和第三方业务支撑能力，无论你是从事传统销售行业，亦或者互联网软件服务行业等各行各业，我们都可以在营销与市场方向，探寻到互惠互利，双方共赢的契机。</p>
-                <p>如果你苦于打不开市场，品牌与产品没有足够的曝光；如果你在寻找一款优秀的智能营销管理平台，却发现没有一个集万千宠爱于一身的产品；如果你想人在家中坐，客从四方来，而你只需要通过一个平台操控和管理一切……</p>
-                <p>联系我们，这一切都能轻松实现！</p>
+                <div class="l-bottom">
+
+                    <div class="txt">
+                        <p>如果你苦于打不开市场，品牌与产品没有足够的曝光；如果你在寻找一款优秀的智能营销管理平台，却发现没有一个集万千宠爱于一身的产品；如果你想人在家中坐，客从四方来，而你只需要通过一个平台操控和管理一切……</p>
+                        <p>联系我们，这一切都能轻松实现！</p>
+                    </div>
+                    <div class="qc">
+                        <img src="static/images/coop.png" alt="">
+                        <span>微信扫一扫，立即咨询</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -1736,7 +1752,7 @@
             <a target="_blank" href="index.html">更新日志</a>
             <a target="_blank" href="index.html">技术支持</a>
         </div> -->
-        <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
+        <div class="copyright">Copyright 2021-2023 KZSZH.COM All Rights Reserved. 备案信息：渝ICP2021012132号-2</div>
     </div>
 </div>
 <!-- 

@@ -44,15 +44,15 @@ class ArticleItem extends Component<ArticleItemState> {
       let event = window.event || arguments.callee.caller.arguments[0]
       console.log(event)
       event.stopPropagation();
-      this.props.history.push('/app/user?navActiveIndex=2&asideActive=0&editNewsId='+id)
+      this.props.history.push('/app/user?componentId=71&editNewsId='+id)
     }
     toNewsDetail=(id)=>{
-      this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&readNewsId='+id);
+      this.props.history.push('/app/user?componentId=73&readNewsId='+id);
     }
     //删除按钮
     deleteNews=(id)=>{
       this.setState({modalType:1})
-      this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&deleteId='+id)
+      this.props.history.push('/app/user?componentId=72&deleteId='+id)
       this.toggleVisible(true)
     }
     //原因按钮

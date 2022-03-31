@@ -100,95 +100,152 @@
         }
 
     }
+    .left-nav-pre{
+      width: 100%;
+      height: 10px;
+      position: fixed;
+      top: 110px;
+      left: 0;
+      .left-nav{
+        margin: 0 auto;
+        height: 100%;
+        position: relative;
+        .left-nav-son{
+          position: absolute;
+          top: 10px;
+          left: 0;
+          .userinfo{
+            background: #FFFFFF;
+            padding: 40px 0 25px;
+            width: 260px;
+            .headerimgpre{
+              width: 80px;
+              margin: 0 auto;
+             
+              .headerimg{
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                overflow: hidden;
+                
+                img{
+                  width:100%;
+                  height:100%;
+                  // max-width:100%;
+                  // max-height:100%;
+                  object-fit:cover;
+                }
+              }
+              .userlevel{
+                width: 24px;
+                height: 12px;
+                background: #FFA500;
+                border: 1px solid #FFFFFF;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                span{
+                  display: inline-block;
+                  font-size: 16px;
+                  color: #FFFFFF;
+                  transform: scale(0.5);
+                  position: relative;
+                  top: 1px;
+                  left: 1px;
+                }
+              }
+            }
+            .userphone{
+              font-size: 16px;
+              text-align: center;
+              margin: 20px auto 0;
+            }
+            .realnamedimg{
+              width: 16px;
+              margin-right: 8px;
+            }
+            .phoneimg{width: 8px;}
+            .user-news-info-item{
+              width: 72px;
+              height: 32px;
+              margin-top: 28px;
+            }
+            .user-news-info-item>div:first-child{
+              font-weight: bold;
+            }
+            .user-news-info-item>div:last-child{
+              font-size: 12px;
+            }
+            .user-news-info-item-border{
+              border-left: 1px solid #F4F4F4;
+              border-right: 1px solid #F4F4F4;
+            }
+          }
+          .aside{
+            margin-top: 10px;
+            .left-nav-height-no>div:not(:first-child){
+              height: 0;
+              overflow: hidden;
+            }
+            .left-nav-item{
+              width: 260px;
+              height: 52px;
+              background: #FFFFFF;
+              padding: 0 8px;
+              line-height: 52px;
+              box-sizing: border-box;
+              cursor: pointer;
+              position: relative;
+              .aside-active{
+                font-weight: 600;
+                color: #304F97;
+              }
+              .iconimg{
+                width: 24px;
+                margin-right: 4px;
+              }
+              .downMoreimg{
+                width: 14px;
+                position: absolute;
+                top: 50%;
+                right: 16px;
+                transform: rotate(-90deg) translateX(50%);
+                transition: all 0.3s;
+              }
+              .downMoreimg-close{
+                transform: rotate(90deg) translateX(-50%);
+              }
+            }
+            .left-nav-item-son{
+              width: 260px;
+              height: 42px;
+              background: #FFFFFF;
+              padding-left: 36px;
+              line-height: 42px;
+              cursor: pointer;
+              transition: all 0.3s;
+            }
+            .left-nav-item-son-a{
+              background: #304F97;
+              color: #FFFFFF;
+            }
+            .left-nav-item-son:hover{
+              color: #304F97;
+            }
+            .left-nav-item-son-a:hover{
+              color: #FFFFFF;
+            }
+            
+          }
+        }
+      }
+    }
     .content{
       padding: 120px 0 20px;
       // margin-top: 10px;
-      .userinfo{
-        background: #FFFFFF;
-        padding: 40px 0;
-        height:216px;
-        width: 260px;
-        .headerimgpre{
-          width: 80px;
-          margin: 0 auto;
-         
-          .headerimg{
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            
-            img{
-              width:100%;
-              height:100%;
-              // max-width:100%;
-              // max-height:100%;
-              object-fit:cover;
-            }
-          }
-          .userlevel{
-            width: 24px;
-            height: 12px;
-            background: #FFA500;
-            border: 1px solid #FFFFFF;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            span{
-              display: inline-block;
-              font-size: 16px;
-              color: #FFFFFF;
-              transform: scale(0.5);
-              position: relative;
-              top: 1px;
-              left: 1px;
-            }
-          }
-        }
-        .userphone{
-          font-size: 16px;
-          text-align: center;
-          margin: 20px auto 8px;
-        }
-        .realnamedimg{
-          width: 16px;
-          margin-right: 8px;
-        }
-        .phoneimg{width: 8px;}
-      }
-      .aside{
-        margin-top: 10px;
-        >div{
-          width: 260px;
-          height: 52px;
-          background: #FFFFFF;
-          padding: 0 30px;
-          line-height: 52px;
-          box-sizing: border-box;
-        }
-        .aside-active{
-          font-weight: 600;
-          position: relative;
-        }
-        .aside-active::before{
-          content: '';
-          display: inline-block;
-          width: 3px;
-          height: 20px;
-          background: #304F97;
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%);
-        }
-      }
       .usermain{
         width: 930px;
-        .usermain-ArticleDetail{
-          width: 100%;
-          padding: 30px;
-          background: #FFFFFF;
-        }
+        
       }
       
       

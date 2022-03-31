@@ -95,3 +95,8 @@ export const deleteNews =(data):Promise<API.IResult>=>{
 export const newsFavorList= (data): Promise<API.IResult> => {
     return get('news/public/attention.page',data)
 }
+
+//获取用户获取文章、关注、粉丝数量
+export const newsCreationAuthor =():Promise<API.IResult>=>{
+    return  get('news/creation/author.agg')
+}

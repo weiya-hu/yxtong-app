@@ -21,7 +21,7 @@ export default class OSSUpload extends React.Component{
                         <div>上传</div>
                         
                 </Upload>
-                <div onClick={this.uploadFile}>确定</div>
+                {/* <div onClick={this.uploadFile}>确定</div> */}
             </div>
             
         )        

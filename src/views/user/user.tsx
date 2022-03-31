@@ -1,29 +1,23 @@
 //@ts-nocheck
 import { Component } from 'react'
 import './user.scss'
-import MyTask from './myTask'
-import Profit from './profit'
-import Writing from './writing'
-import ArticleList from './articleList'
-import DataAnalysis from './dataAnalysis'
-import ArticleDetail from './articleDetail'
-import Certificate from './certificate'
-import {loginOut } from 'service/login'
-import { getUser } from 'service/login'
-import { Redirect ,withRouter,Route} from 'react-router-dom';
+import {loginOut,getUser } from 'service/login'
+import {newsCreationAuthor } from 'service/news'
+import { Redirect ,withRouter} from 'react-router-dom';
 import { util } from 'utils/news'
-import {routerMap} from "routerMap";
-
+import { userComponent } from 'utils/userComponent'
 import store from "store/index";
 import { removeUserInfo} from "store/actionCreators.js";
+import { Base64 } from 'js-base64';
+
 
 import logoimg from 'public/images/logo.png'
 import homeimg from 'public/images/user/home.png'
 import exitimg from 'public/images/user/exit.png'
 import exitactiveimg from 'public/images/user/exitactive.png'
 import headerimg from 'public/images/user/header.png'
-import realnamedimg from 'public/images/user/realnamed.png'
-import phoneimg from 'public/images/user/phone.png'
+import downMoreimg from 'public/images/user/downMore.png'
+import { Divider } from 'antd';
 
 let UNLISTEN;
 
@@ -33,13 +27,16 @@ class User extends Component {
         aside:[['我的任务'],['积分明细'],['发布文章','内容管理'],['基本信息','账户安全','实名认证'],['企业认证'],['我的消息']],//侧边栏的导航文字
         // nav:['个人中心','我的任务','我的团队','我的推广'],
         // aside:[['我的任务'],['积分明细'],['发布文章','内容管理','数据分析'],['我的消息'],['设置']],
-        navActiveIndex:0,//导航active的下标
-        asideActive:0,//侧边栏active的下标
+        navActiveIndex:1,//导航active的id
+        asideActive:1,//侧边栏active的id
+        asideSonActive:1,//侧边栏二级菜单active的id
         isArticleDetail:0,//是否是详情页
         exitActive:false,//退出按钮是否hover
         exitNone:true,//退出登录是否显示
         userInfo:{},
         loginFlag:false,
+        authorNewsInfo:{},//用户新闻信息
+        opens:[],//当前左导航是否打开的数组
     }
     exitloginpre=(e)=>{
       e.stopPropagation()
@@ -79,44 +76,81 @@ class User extends Component {
         asideActive:val,
       })
     }
-    navChange=(index)=>{
-      this.props.history.push('/app/user?navActiveIndex='+index+'&asideActive=0')
+    navChange=(id)=>{
+      this.props.history.push('/app/user?componentId='+id+'11')
       window.scrollTo (0,0);
     }
-    asideNavChange=(index)=>{
-      this.props.history.push('/app/user?navActiveIndex='+(util.getUrlParam('navActiveIndex') || 0)+'&asideActive='+index)
+    asideNavChange=(item,index)=>{
+      if(item.children){
+        let {opens}=this.state
+        opens[index]=!opens[index]
+        this.setState({opens:opens})
+      }else{
+        this.props.history.push('/app/user?componentId='+this.state.navActiveIndex+item.id)
+        window.scrollTo (0,0);
+      }
+      
+    }
+    asideSonChange=(navActiveIndex,asideActive,id)=>{
+      this.props.history.push('/app/user?componentId='+navActiveIndex+asideActive+id)
       window.scrollTo (0,0);
+    }
+    //获取渲染的组件
+    findComponent=(arr,id,componentId)=>{
+      let component = arr.find(m=>m.id == id)
+      return component.children ? this.findComponent(component.children,componentId[component.lv],componentId) : component.component
     }
     //根据URL传的值切换组件
-    getComponent=(navActiveIndex,asideActive,isArticleDetail)=>{
-      return navActiveIndex == 0 ? <MyTask /> :
-        navActiveIndex ==1 ? <Profit /> :
-        (navActiveIndex == 2 && asideActive == 0)? <Writing />:
-        (navActiveIndex == 2 && asideActive == 2) ? <DataAnalysis />:
-        (navActiveIndex == 2 && asideActive == 1 && !isArticleDetail) ? <ArticleList />:
-        (navActiveIndex == 2 && asideActive == 1 && isArticleDetail) ? 
-        <div className='usermain-ArticleDetail'><ArticleDetail /></div>:
-        (navActiveIndex == 4 )&&<Certificate></Certificate>
+    getComponent=(navActiveIndex,asideActive,asideSonActive,isArticleDetail)=>{
+      let Component = this.findComponent(userComponent,navActiveIndex,[navActiveIndex,asideActive,asideSonActive])
+      return <Component />
+    }
+    //检查路径中的componentId是否合法
+    checkComponentId=(arr,id,componentId)=>{
+      let component=arr.find(m=>m.id == id)
+      (!component) && this.props.history.push('/app/user?componentId=111')
+      component.children && this.checkComponentId(component.children,componentId[component.lv],componentId)
+    }
+    //获取用户关注粉丝信息
+    getNewsCreationAuthor=async()=>{
+      const {status,body}= await newsCreationAuthor()
+
+      status && this.setState({authorNewsInfo:body})
+    }
+    //获取当前id所在item
+    getItem=(arr,id)=>{
+      return arr.find(m=>m.id == id)
     }
     componentDidMount=()=>{
-      console.log(routerMap)
       document.title = '康州数智-个人中心'
+      this.getNewsCreationAuthor()
+      let components=util.getUrlParam('componentId'),componentId=[]
+      components && (componentId=components.split(''))
+      // componentId[0] && this.checkComponentId(userComponent,componentId[0],componentId)
       //根据页面路径显示相应的组件
+      let item=this.getItem(userComponent,componentId[0] || 1),opens=[]
+      item.children.map((item)=>{opens.push(true)})
       this.setState({
-        navActiveIndex:util.getUrlParam('navActiveIndex') || 0,//路径里面没有值就默认0
-        asideActive:util.getUrlParam('asideActive') || 0,//路径里面没有值就默认0
-        isArticleDetail:util.getUrlParam('readNewsId')
+        navActiveIndex:componentId[0] || 1,//路径里面没有值就默认1
+        asideActive:componentId[1] || 1,//路径里面没有值就默认1
+        asideSonActive:componentId[2] || 1,
+        isArticleDetail:util.getUrlParam('readNewsId'),
+        opens:opens
       })
       this.getUserInfo()
       //监听路由变化切换组件显示
       UNLISTEN = this.props.history.listen(route => { 
-        let navIndex = util.getUrlParam('navActiveIndex')
-        let asideIndex = util.getUrlParam('asideActive')
-        let isArticleDetail=util.getUrlParam('readNewsId')
+        let components=util.getUrlParam('componentId'),componentId=[]
+        components && (componentId=components.split(''))
+        // componentId[0] && this.checkComponentId(userComponent,componentId[0],componentId)
+        let item=this.getItem(userComponent,componentId[0] || 1),opens=[]
+        item.children.map((item)=>{opens.push(true)})
         this.setState({
-          navActiveIndex:navIndex,
-          asideActive:asideIndex,
-          isArticleDetail:isArticleDetail
+          navActiveIndex:componentId[0] || 1,//路径里面没有值就默认1
+          asideActive:componentId[1] || 1,//路径里面没有值就默认1
+          asideSonActive:componentId[2] || 1,
+          isArticleDetail:util.getUrlParam('readNewsId'),
+          opens:opens
         })
       });
     }
@@ -124,10 +158,10 @@ class User extends Component {
     componentWillUnmount(){
       UNLISTEN && UNLISTEN(); // 监听路由变化执行解绑
     }
-    render(props){
-        let {nav,navActiveIndex,exitActive,aside,isArticleDetail,userInfo,loginFlag,asideActive} = this.state
+    render(){
+        let {navActiveIndex,exitActive,isArticleDetail,userInfo,loginFlag,asideActive,asideSonActive,authorNewsInfo,opens} = this.state
         if(loginFlag){
-          return <Redirect to='/app/login?url=/app/user' />;
+          return <Redirect to={'/app/login?url='+Base64.encode('/app/user')}/>;
         }
         return <div id='user' onClick={()=>{this.setState({exitNone:true})}}>
           <div className='flextop'>
@@ -160,21 +194,20 @@ class User extends Component {
                     </div>
                     <div className='line'></div>
                     <div className='flexl navitems'>
-                        {nav.map((item,index)=>(
-                            <div 
-                              key={index}
-                              className={navActiveIndex == index?'fleximg navactive pointer':'fleximg pointer'}
-                              onClick={()=>this.navChange(index)}
-                            >{item}</div>                            
+                        {userComponent.map((item)=>(
+                            item.show && <div 
+                              key={item.id}
+                              className={navActiveIndex == item.id?'fleximg navactive pointer':'fleximg pointer'}
+                              onClick={()=>this.navChange(item.id)}
+                            >{item.name}</div>                            
                         ))}
                     </div>                    
                 </div>
             </div>
           </div>
-          <div></div>
-          <div className='content'>
-            <div className='flexbl width'>
-              <div>
+          <div className='left-nav-pre'>
+            <div className='left-nav flexbl width'>
+              <div className='left-nav-son'>
                 <div className='userinfo'>
                   <div className='headerimgpre fleximg position'>
                     <div className='headerimg  fleximg'><img src={userInfo.head || headerimg} alt="header" /></div>
@@ -182,50 +215,55 @@ class User extends Component {
                   </div>
                   <div className='userphone'>{userInfo.mobile}</div>
                   <div className='fleximg'>
-                    <div className='fleximg realnamedimg'><img src={realnamedimg} alt="realnamed" /></div>
-                    <div className='fleximg phoneimg'><img src={phoneimg} alt="realnamed" /></div>
+                    <div className='user-news-info-item fleximgc'>
+                      <div>{authorNewsInfo.news_count}</div>
+                      <div>文章</div>
+                    </div>
+                    <div className='user-news-info-item fleximgc user-news-info-item-border'>
+                      <div>{authorNewsInfo.attention_count}</div>
+                      <div>关注</div>
+                    </div>
+                    <div className='user-news-info-item fleximgc'>
+                      <div>{authorNewsInfo.fans_count}</div>
+                      <div>粉丝</div>
+                    </div>
                   </div>
                 </div>
                 <div className='aside'>
-                 
-                  {aside[navActiveIndex].map((item,index)=>(
-                    <div 
-                      key={index}
-                      className={asideActive == index?'aside-active pointer':'pointer' }
-                      onClick={()=>this.asideNavChange(index)}
-                      >{item}</div>
+                  {this.getItem(userComponent,navActiveIndex).children.map((item,index)=>(
+                    item.show && <div 
+                      key={item.id}
+                      className={opens[index]?'':'left-nav-height-no'}
+                    >
+                      <div 
+                        className='flexl left-nav-item'
+                        onClick={()=>this.asideNavChange(item,index)}
+                      >
+                        <div className='iconimg'> <img src={asideActive == item.id?item.icon_a:item.icon} alt="icon" /> </div>
+                        <div className={asideActive == item.id?'aside-active':'bold' }>{item.name}</div>
+                        {item.children && <div className={opens[index]?'fleximg downMoreimg':'fleximg downMoreimg downMoreimg-close'}><img src={downMoreimg} alt="downMore" /></div>}
+                      </div>
+                      {item.children && item.children.map((itm)=>(
+                        item.show &&<div 
+                          key={itm.id}
+                          onClick={()=>this.asideSonChange(navActiveIndex,asideActive,itm.id)}
+                          className={(asideActive == item.id && asideSonActive == itm.id)?'left-nav-item-son-a left-nav-item-son':'left-nav-item-son'}
+                        >{itm.name}</div> 
+                      ))}
+                    </div>
                   ))}
                 </div>
               </div>
-              {/* <Route.component { ...props }>
-              {
-                routerMap.children?.map((item,itemIndex)=>{
-                  return (
-                    <Route
-                      exact
-                      key={itemIndex}
-                      path={item.path}
-                      component = { item.component }
-                    />
-                  )
-                })
-              }
-              </Route.component> */}
-              {/* {routerMap.map((router,index)=>{
-                return <Route
-                    exact
-                    key={index}
-                    path={router.path}
-                    component = { router.component }
-                />
-              })} */}
+            </div>
+          </div>
+          <div className='content'>
+            <div className='flexr width'>
               <div className='usermain'>
-                {this.getComponent(navActiveIndex,asideActive,isArticleDetail)}
+                {this.getComponent(navActiveIndex,asideActive,asideSonActive,isArticleDetail)}
               </div>
             </div> 
           </div>
         </div>
     }
-    
 }
 export default withRouter(User);

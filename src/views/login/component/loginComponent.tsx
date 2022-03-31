@@ -31,13 +31,20 @@ export default class LoginComponent extends Component {
         appid:'',//微信企业appid
     }
     componentDidMount(){
-        wechatLink({url:Base64.encode('/')}).then(res=>{
+        let url=this.getUrlParam('url')
+        wechatLink({url:Base64.encode(url || '/')}).then(res=>{
             this.setState({
                 wxUrl:res.body.callback_url,
                 wxState:res.body.state,
                 appid:res.body.app_id
             })
         }) 
+        console.log(Base64.encode('/app/user'))
+    }
+    getUrlParam=(name)=>{
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substring(1).match(reg);
+        if(r!=null)return  decodeURI(r[2]); return null;
     }
     submit=async(value)=>{
         console.log(value)
@@ -71,12 +78,12 @@ export default class LoginComponent extends Component {
                 ...value,
             }
             const res = await dologin(data)
-            let url =window.location.search
+            let url =this.getUrlParam('url')
             if(res.status){
                 let userInfoRes= await getUser()
                 store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
                 if(url){
-                    window.location.href=url.split('=')[1]
+                    window.location.href=Base64.decode(url) 
                 }else{
                     window.location.href='/'
                 }

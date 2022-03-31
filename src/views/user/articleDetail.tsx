@@ -24,10 +24,11 @@ interface ArticleDetailProps{
 class ArticleDetail extends Component<ArticleDetailProps>{
     state={
         newsDetail:{},
-        isPreview:false
+        isPreview:false,
+        newsId:''
     }
     backReview=()=>{
-        this.props.history.push('/app/user?navActiveIndex=2&asideActive=0&editNewsId=previewBack');
+        this.props.history.push('/app/user?componentId=71&editNewsId=previewBack');
     }
     getNewsDeatail=async()=>{
         let id=util.getUrlParam('readNewsId')
@@ -55,7 +56,8 @@ class ArticleDetail extends Component<ArticleDetailProps>{
             let res =await newsDetail({newsId:newsId})
             res.status && this.setState({
                 newsDetail:res.body,
-                isPreview:false
+                isPreview:false,
+                newsId:newsId
             })
         }
     }
@@ -65,8 +67,8 @@ class ArticleDetail extends Component<ArticleDetailProps>{
     }
     render(): ReactNode {
         // let {isPreview}= this.props
-        let {newsDetail,isPreview}=this.state
-        return (newsDetail && <div className='articleDetail position'>
+        let {newsDetail,isPreview,newsId}=this.state
+        return (newsDetail && <div className={newsId?'articleDetail position':'articleDetail usermain-ArticleDetail position'}>
                     {isPreview && <div className='back-button' onClick={this.backReview}>
                         <Button type='ghost' size='small'>退出预览</Button>
                     </div> }

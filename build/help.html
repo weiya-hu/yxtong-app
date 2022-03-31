@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>数智器械 - 行业导航</title>
+    <title>康洲数智科技-数智化解决方案供应商</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -11,8 +11,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="static/css/common.css" />
     <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
+    <meta name="keywords" content="数智,营销,自动化,获客,私域,流量,运营,广告,CRM,SCRM,DSP,DMP,CDP,品牌宣传,大数据,AI,人工智能,5G短信,大健康,医疗,器械,数据,品效合一" />
+    <meta name="description" content="康洲数智致力于通过大数据、人工智能、云计算、5G等数字技术赋能产业发展，帮助中小企业实现数字化转型，助力企业实现营销自动化！" />
 </head>
 
 
@@ -22,7 +22,7 @@
 
 
     <div class="topbar">
-        <div class="tips">你好，欢迎登陆康洲数智官网！</div>
+        <div class="tips">你好，欢迎登录康洲数智官网！</div>
         <div class="links">
             <div class="content">
                 <a target="_blank" href="https://qx.yaozh.com/home">药智器械</a>
@@ -228,6 +228,7 @@
                 $('.logined').css('display', 'none')
                 $('.content-login').css('display', 'block')
 
+
             } else {
                 $('.nologin').css('display', 'none')
                 $('.logined').css('display', 'flex')
@@ -412,6 +413,8 @@
     var text2 = 'marketing'
     var url2 = window.location.href
 
+    var text3 = 'dmp_intro'
+    var url3 = window.location.href
 
 
     // 弹框消失
@@ -427,9 +430,12 @@
             } else if (url2.indexOf(text2) >= 0) {
                 window.open("https://robot.yxtong.com/user/qq/devicesRun.html", "_blank")
                 console.log(111);
+            } else if (url3.indexOf(text3) >= 0) {
+                console.log('我进入DMP了')
+                window.open("/app/login", "_blank")
             } else {
                 window.open("/app/login", "_self")
-                console.log(222);
+                    // console.log(222);
             }
 
 
@@ -644,28 +650,105 @@
         <div class="wrapper">
             <div class="left tab" data-tab="tab-qa">
                 <a class="active">药智器械相关问题</a>
-                <!-- <a>问题类型二</a>
-                <a>问题类型三</a> -->
+                <a>数智营销通相关问题</a>
+                <!-- <a>问题类型三</a> -->
             </div>
             <div class="right">
                 <div class="tab-content" tab-content="tab-qa">
                     <div class="tab-content-item" style="display: block;">
                         <dl id="dl">
                             <dt>药智器械相关问题</dt>
-                            <!-- <dd class="active">
+                            <dd class="active">
                                 <div class="toggle"></div>
-                                <div class="tit"><span class="num">01</span>如何注册药智器械的会员？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
-                            </dd> -->
+                                <div class="tit"><span class="num">01</span>药智器械企业版账号是否和药智数据，药智网是同一个账号？</div>
+                                <p>药智数据企业版无需单独注册账号，可以使用药智网的账号。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">02</span>药智器械企业版和药智数据是否一致？</div>
+                                <p>药智器械着重于以医疗器械为主的大健康产业数据库，药智数据和药智器械共有的数据库数据基本保持一致。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">03</span>目前药智器械企业版数据库和药智数据企业版数据差异在哪里？</div>
+                                <p>药智器械主要针对医疗器械客户，同等级的药智器械VIP相较于药智数据VIP会享有更多的医疗器械数据库使用权。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">04</span>如何开通药智器械企业版VIP</div>
+                                <p>联系客服023-62797926咨询或点击免费试用、填写试用申请资料，我们的数据库顾问会在1个工作日联系您。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">05</span>药智器械企业版VIP权限试用时间？</div>
+                                <p>VIP权限试用时间一般为两天。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">06</span>VIP会员收费的情况？</div>
+                                <p>VIP会员权限按等级分为免费/初级/中级/高级/特级，收取年费，每个等级数据库权限不同，价格在4800-49800不等，可以根据具体需要匹配合适的会员等级。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">07</span>药智器械中数据库的更新频率？</div>
+                                <p>目前药智器械中数据库数量已达70+,更新频率分为周期更新和不定时更新，为客户提供最新最全的数据。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">08</span>数据库VIP会员享受哪些增值服务？</div>
+                                <p>定制调研：提供全方位调研分析报告；</p>
+                                <p>定制数据：特殊医疗器械数据定制服务；</p>
+                                <p>定制宣传：配合特定工具都企业产品进行全面推广。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">09</span>药智器械数据库的优势在哪？</div>
+                                <p>药智器械作为中国顶尖的医疗器械数据库，有着70多个医疗器械相关数据库，汇聚全球多个领域，数据总量超4000万条，且数据库仍在不断更新和优化中，是中国品种最全和数据量最多的医疗器械数据供应商，已实现四个第一： 1、数据库数量第一； 2、会员数第一； 3、服务质量第一（五心服务）； 4、第一家国家级示范平台（工信部授予）
+                                </p>
+                                <p>1、数据库数量第一；</p>
+                                <p>2、会员数第一；</p>
+                                <p>3、服务质量第一（五心服务）；</p>
+                                <p>4、第一家国家级示范平台（工信部授予）</p>
+                            </dd>
+
                         </dl>
                     </div>
                     <div class="tab-content-item">
                         <dl>
-                            <dt>问题类型二</dt>
+                            <dt>数智营销通相关问题</dt>
+                            <dd class="active">
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">01</span>数智营销通的广告系统的优势？</div>
+                                <p>营销通广告平台，除了提供常规的广告策划、广告内容制作、广告信息触达等服务外，最重要的是通过合作的方式将不同的广告平台进行整合，企业主只需在营销通的广告系统，即可同时面向不同的广告平台进行广告投放与管理，同时，各个平台产生的数据也能在营销通统一处理和分析，真正打通数据壁垒，降低广告成本，提升投放效率和广告效果！</p>
+                            </dd>
                             <dd>
                                 <div class="toggle"></div>
-                                <div class="tit"><span class="num">03</span>这是一行问题，点击展开回答，再次点击收起回答？</div>
-                                <p>一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。一个邮箱只能注册一个药智网账户，如果您的邮箱已经在药智网进行过注册，建议您更换新的邮箱进行注册。</p>
+                                <div class="tit"><span class="num">02</span>数智营销通与传统营销的区别？</div>
+                                <p>传统的营销业务，需要员工精心策划营销方案，准备营销素材，需要用大量的成本去各个渠道和媒体进行宣传推广，而不同渠道的效果和数据都难以把控，营销效果大打折扣。</p>
+                                <p>数智营销通紧紧围绕“流量与数据”，通过整合广告投放平台、整合信息推送渠道、打通营销各个环节的数据通道、构建支撑营销业务链上的各个数字化系统，帮助企业一站式解决数字营销的痛点和难题，打造一名“全能型营销数智化员工”。通过一个平台，解决所有营销需求，极大提高企业的营销效率，为企业节省大量营销成本。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">03</span>数智营销通是如何进行精准营销的？</div>
+                                <p>数智营销通是一款专为解决企业销售难题而开发的全能型智能营销工具，致力于产业数智化转型，为中小企业打造营销业务新型基建设施，通过大数据、人工智能、云计算、5G等技术赋能行业实现数智化全链营销。</p>
+                                <p>数智营销通前期进行数据+内容标准，在两个系统：CMS、DMP系统进行营销前期的内容方案策划的准备，精准采集目标客户信息。在营销中，通过DMP管理系统进行各个平台的投放与广告推送，最后放大效果到裂变系统，进行曝光和提升流量。再将数据反馈CDP系统进行分析。最后在营销后，在SCRM系统进行客户的销售前中后全流程服务与后续管理。</p>
+                                <p>帮助客户实现从流量到数据资产的沉淀，从数据资产到私域流量的转化，进而实现业绩增长与销售提升。可以帮助中小企业解决营销团队建设困难，营销效果低下等问题，赋能营销成为新时代的最佳解决方案。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">04</span>数智营销通里的APP营销机器人怎么避免封号？</div>
+                                <p>首先，养号是基础。新注册、新购买的微信号都不能直接拿来做营销。那么怎么养号？发朋友圈、互动、转账、语音或者其他细节方式都很重要。一个号的权重高，比如我们经常用的生活微信，添加起来更加得心应手，效果更好。</p>
+                                <p>其次，控制微信添加的频率是有效手段。APP营销机器人可通过软件间隔时间的设置来控制添加频率，避免频繁操作被检测。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">05</span>私域流量管理软件scrm系统为什么也叫营销自动化软件？</div>
+                                <p>SCRM能够整合多接触点客户数据，积累用户画像，SCRM体系基于大数据技术的深入运用，将不同接触点的客户数据源之间，根据某种特定的算法而关联成数据组，从而进行更多的客户数据挖掘分析。通过数据整合，企业可以实现对不同渠道的同一客户身份的识别，从而积累用户画像。SCRM通过为客户打标签、画像并细分客户组之后，可以进一步实现对高价值客户深挖的效果，比如可以针对“兴趣”进行挖掘其社交网络的圈子成员，从而根据其圈子特点进行更准确的客户个性化建模，实现个性化服务甚至一对一沟通。SCRM通过对客户公开的内容和互动记录，对客户进行多维度画像，智能划分出客户所处的忠诚度阶段。当企业掌握了客户的忠诚度分级情况后，便可以针对不同阶层的客户，策划相关的内容、活动以及分享奖励机制等，实现精准筛选高价值客户并逐步引导潜在客户向会员客户转化。</p>
+                            </dd>
+                            <dd>
+                                <div class="toggle"></div>
+                                <div class="tit"><span class="num">06</span>数智营销通客户管理系统软件，能适配哪些行业？</div>
+                                <p>数智营销通目前覆盖30+行业，30万+企业客户，包括外贸行业、快消行业、建筑行业、医药行业、金融行业、服务业、制造业、零售行业、教育行业等，因其标准化及免开发定制化特性，适配度高，开发周期短。</p>
                             </dd>
                         </dl>
                     </div>
@@ -1052,7 +1135,7 @@
             <a target="_blank" href="index.html">更新日志</a>
             <a target="_blank" href="index.html">技术支持</a>
         </div> -->
-        <div class="copyright">Copyright © 2015-2022 YXTONG.COM All Rights Reserved. 备案信息：渝ICP2021012132号-1</div>
+        <div class="copyright">Copyright 2021-2023 KZSZH.COM All Rights Reserved. 备案信息：渝ICP2021012132号-2</div>
     </div>
 </div>
 <!-- 
@@ -1134,23 +1217,23 @@
 
     // 加载json数据
     // 常见问题
-    $(document).ready(function() {
-        $.getJSON("./static/json/yz_zsk.json", function(data) {
-            $.each(data, function(i, info) {
-                var tit = info['wt']
-                var answer = info['da']
-                var index = i + 1 < 9 ? "0" + (i + 1) : i + 1
-                    // console.log(index);
-                    // console.log(data, info, tit, index)
-                $('#dl').append(`<dd class = "${index=='01'?'active':''}">
-                                    <div class="toggle"></div>
-                                    <div class="tit"><span class="num">` + index + `</span>` + tit + `</div>
-                                    <p>` + answer + `</p>
-                                </dd>`)
-            })
-        })
+    // $(document).ready(function() {
+    //     $.getJSON("./static/json/yz_zsk.json", function(data) {
+    //         $.each(data, function(i, info) {
+    //             var tit = info['wt']
+    //             var answer = info['da']
+    //             var index = i + 1 < 9 ? "0" + (i + 1) : i + 1
+    //                 // console.log(index);
+    //                 // console.log(data, info, tit, index)
+    //             $('#dl').append(`<dd class = "${index=='01'?'active':''}">
+    //                                 <div class="toggle"></div>
+    //                                 <div class="tit"><span class="num">` + index + `</span>` + tit + `</div>
+    //                                 <p>` + answer + `</p>
+    //                             </dd>`)
+    //         })
+    //     })
 
-    })
+    // })
 </script>
 
 <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=SMqxB0XgnM0cxSddr8KDjZYRLjrU8GZN"></script>

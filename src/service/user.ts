@@ -82,3 +82,4 @@ export const checkCreditCode =(data):Promise<API.IResult>=>{
 export const integralToday =(data):Promise<API.IResult>=>{
     return  get('user/center/integral/today.get',data)
 }
+

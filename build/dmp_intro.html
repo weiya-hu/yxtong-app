@@ -2,19 +2,18 @@
 <html lang="en">
 
 
-<head>
 
-    <title>DMP宣传页</title>
+<head>
+    <meta charset="UTF-8">
+    <title>康洲数智科技-数智化解决方案供应商</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="static/css/common.css" />
     <script src="static/lib/jquery/3.3.1/jquery.min.js"></script>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-
-
+    <meta name="keywords" content="数智,营销,自动化,获客,私域,流量,运营,广告,CRM,SCRM,DSP,DMP,CDP,品牌宣传,大数据,AI,人工智能,5G短信,大健康,医疗,器械,数据,品效合一" />
+    <meta name="description" content="康洲数智致力于通过大数据、人工智能、云计算、5G等数字技术赋能产业发展，帮助中小企业实现数字化转型，助力企业实现营销自动化！" />
     <link rel="stylesheet" type="text/css" href="static/css/dmp_intro.css" />
 </head>
 
@@ -85,7 +84,7 @@
                 <div class="nav-title">康州数智DMP</div>
                 <div class="nav-content">全国中小企业数据+三大运营商数据+第三方平台数据</div>
                 <!-- <div class="nav-btn" onclick="location='dmp.yxtong.com/index'"><span>立即体验</span></div> -->
-                <a href="https://dmp.yxtong.com/index">
+                <a href="https://dmp.kzszh.com" target="_blank">
                     <div class="nav-btn"><span>立即体验</span></div>
                 </a>
             </div>
@@ -179,7 +178,7 @@
                 </div>
 
             </div>
-            <a href="https://dmp.yxtong.com/index">
+            <a href="https://dmp.kzszh.com" target="_blank">
                 <div class="abi-btn"><span>立即体验</span></div>
             </a>
 
@@ -396,6 +395,8 @@
     var text2 = 'marketing'
     var url2 = window.location.href
 
+    var text3 = 'dmp_intro'
+    var url3 = window.location.href
 
 
     // 弹框消失
@@ -411,9 +412,12 @@
             } else if (url2.indexOf(text2) >= 0) {
                 window.open("https://robot.yxtong.com/user/qq/devicesRun.html", "_blank")
                 console.log(111);
+            } else if (url3.indexOf(text3) >= 0) {
+                console.log('我进入DMP了')
+                window.open("/app/login", "_blank")
             } else {
                 window.open("/app/login", "_self")
-                console.log(222);
+                    // console.log(222);
             }
 
 

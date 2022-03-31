@@ -6,7 +6,7 @@ import AliyunOSSUpload from './component/ossImg'
 import message from 'views/component/message/index';
 import {newsPublish,newsSave} from 'service/user'
 import {getEditNews} from 'service/news'
-import OSSUpload from './component/ossTest'
+import OSSUpload from './component/ossImgPerf'
 import {withRouter} from 'react-router-dom'
 import store from 'store';
 import {util} from 'utils/news'
@@ -68,7 +68,7 @@ class Writing extends Component{
                 creator_name:store.getState().userInfo.name
             }
             localStorage.setItem('previewNews',JSON.stringify(item) )
-            this.props.history.push('/app/user?navActiveIndex=2&asideActive=1&readNewsId=preview')
+            this.props.history.push('/app/user?componentId=73&readNewsId=preview')
         }        
    }
    //发布文章和保存文章
@@ -101,7 +101,7 @@ class Writing extends Component{
                     edit:'',
                     sendCoverImgurl:''
                 })
-                this.props.history.push('/app/user?navActiveIndex=2&asideActive=1')
+                this.props.history.push('/app/user?componentId=72')
                 
             }
         }
@@ -172,6 +172,7 @@ class Writing extends Component{
                             <div>添加封面</div>
                             <div>
                                 <AliyunOSSUpload change={((val,sendval)=>{this.coverIMgChange(val,sendval)  })} />
+                                {/* <OSSUpload /> */}
                             </div>
                             
                         </div>

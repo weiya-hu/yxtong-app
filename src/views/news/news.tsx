@@ -197,7 +197,7 @@ export default class News extends Component{
   toUser=()=>{
     let userInfo = store.getState().userInfo
     if(userInfo){
-      this.props.history.push({pathname:'/app/user?navActiveIndex=2&asideActive=1'})
+      this.props.history.push({pathname:'/app/user?componentId=72'})
     }else{
       store.dispatch(loginShow())
     }
@@ -206,7 +206,7 @@ export default class News extends Component{
   toUserWrite=()=>{
     let userInfo = store.getState().userInfo
     if(userInfo){
-      this.props.history.push({pathname:'/app/user?navActiveIndex=2&asideActive=0'})
+      this.props.history.push({pathname:'/app/user?componentId=71'})
     }else{
       store.dispatch(loginShow())
     }
