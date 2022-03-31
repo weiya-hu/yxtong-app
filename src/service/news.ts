@@ -100,3 +100,8 @@ export const newsFavorList= (data): Promise<API.IResult> => {
 export const newsCreationAuthor =():Promise<API.IResult>=>{
     return  get('news/creation/author.agg')
 }
+
+//我的收藏
+export const newsCreationcollection =(data):Promise<API.IResult>=>{
+    return  get('news/creation/collection.page',data)
+}

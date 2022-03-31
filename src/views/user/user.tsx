@@ -131,7 +131,7 @@ class User extends Component {
       let item=this.getItem(userComponent,componentId[0] || 1),opens=[]
       item.children.map((item)=>{opens.push(true)})
       this.setState({
-        navActiveIndex:componentId[0] || 1,//路径里面没有值就默认1
+        navActiveIndex:componentId[0] || 2,//路径里面没有值就默认1
         asideActive:componentId[1] || 1,//路径里面没有值就默认1
         asideSonActive:componentId[2] || 1,
         isArticleDetail:util.getUrlParam('readNewsId'),
@@ -146,7 +146,7 @@ class User extends Component {
         let item=this.getItem(userComponent,componentId[0] || 1),opens=[]
         item.children.map((item)=>{opens.push(true)})
         this.setState({
-          navActiveIndex:componentId[0] || 1,//路径里面没有值就默认1
+          navActiveIndex:componentId[0] || 2,//路径里面没有值就默认1
           asideActive:componentId[1] || 1,//路径里面没有值就默认1
           asideSonActive:componentId[2] || 1,
           isArticleDetail:util.getUrlParam('readNewsId'),

@@ -1,7 +1,7 @@
 export const util ={
     validate_mobile:(mobile)=>{
         if(mobile){
-            let pattern={mobile: /^(((13[0-9])|(14[5-7])|(15[0-9])|(17[0-9])|(18[0-9]))+\d{8})$/ };
+            let pattern={mobile: /^(((13[0-9])|(14[5-7])|(15[0-9])|(17[0-9])|(18[0-9])|(19[0-9]))+\d{8})$/ };
             if(!pattern.mobile.test(mobile)){
                 return '电话号码输入不正确';
             }
