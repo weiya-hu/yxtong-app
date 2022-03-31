@@ -4,7 +4,6 @@
  import axios from "axios";
  import message from '../views/component/message/index'
 import { AxisPointerComponent } from "echarts/components";
-import { Base64 } from 'js-base64';
 
  axios.defaults.timeout = 10000;
  axios.defaults.baseURL = "/api";
@@ -178,7 +177,7 @@ import { Base64 } from 'js-base64';
        case 10611: message.info('参数转换失败');break;
        case 10620: 
          message.info('身份认证失败');
-          window.location.pathname==='/app/user' && (window.location.href='/app/login?url='+ Base64.encode(window.location.pathname))
+          window.location.pathname==='/app/user' && (window.location.href='/app/login?url='+ encodeURIComponent(window.location.pathname))
         break;
        case 10621: message.info('未授权');break;
        case 10622: message.info('用户未找到');break;

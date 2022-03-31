@@ -30,6 +30,9 @@ export default class MyCollect extends Component {
                     onClick={()=>{this.setState({topTitleActive:index})}}
                 >{item}</div> ))}
             </div>
+            <div>
+                
+            </div>
         </div>
     }
     

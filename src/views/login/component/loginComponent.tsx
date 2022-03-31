@@ -39,7 +39,6 @@ export default class LoginComponent extends Component {
                 appid:res.body.app_id
             })
         }) 
-        console.log(Base64.encode('/app/user'))
     }
     getUrlParam=(name)=>{
         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -83,7 +82,7 @@ export default class LoginComponent extends Component {
                 let userInfoRes= await getUser()
                 store.dispatch(setUserInfo(JSON.stringify(userInfoRes.body)))
                 if(url){
-                    window.location.href=Base64.decode(url) 
+                    window.location.href=decodeURIComponent(url) 
                 }else{
                     window.location.href='/'
                 }
