@@ -178,7 +178,9 @@ export default class NewsDetail extends Component {
                 <div className='newsDetail-author'>
                     <div className='newsDetail-author-info'>
                         <div className='newsDetail-author-info-top fleximgc'>
-                            <div className='authorimg fleximg'><img src={newsDetail.head_url || headerimg} alt="author" onError={(e) => { e.target.src = headerimg }}/></div>
+                            <div className='authorimg fleximg' onClick={()=>this.props.history.push('/app/newsauthormore?creatorId='+newsDetail.creator_id)}>
+                                <img src={newsDetail.head_url || headerimg} alt="author" onError={(e) => { e.target.src = headerimg }}/>
+                            </div>
                             <div className=''>{hotArticleList.creator_name}</div>
                             <div><FollowButton item={newsDetail} key={newsDetail.creator_id}/></div>
                         </div>

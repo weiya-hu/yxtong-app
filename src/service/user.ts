@@ -88,3 +88,27 @@ export const userFans =(data):Promise<API.IResult>=>{
     return  get('user/team/fans.list',data)
 }
 
+//获取会员全类信息
+export const memberList =():Promise<API.IResult>=>{
+    return  get('user/public/member.list')
+}
+
+//获取团队(人数)
+export const teamCount =():Promise<API.IResult>=>{
+    return  get('user/team/count.get')
+}
+
+//获取直推（人数）
+export const teamDirect =():Promise<API.IResult>=>{
+    return  get('user/team/direct/recommend/count.get')
+}
+
+//获取间推（人数）
+export const teamIndirect =():Promise<API.IResult>=>{
+    return  get('user/team/indirect/recommend/count.get')
+}
+
+//获取直推或间推用户列表
+export const teamList =(data):Promise<API.IResult>=>{
+    return  get('user/team/recommend.list',data)
+}

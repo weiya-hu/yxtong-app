@@ -74,6 +74,10 @@
                             object-fit: cover;
                         }
                     }
+                    .article-name{
+                        width: 70px;
+                        text-align: center;
+                    }
                     
                 }
             }
@@ -96,7 +100,10 @@
                             object-fit: cover;
                         }
                     }
-                    
+                    .name{
+                        width: 56px;
+                        text-align: center;
+                    }
                 }
             }
         }

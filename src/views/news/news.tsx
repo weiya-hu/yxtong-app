@@ -290,9 +290,9 @@ export default class News extends Component{
                 </div>
                 <div className='may-interest-list flexl'>
                   {mayInterestList.map((item,index)=>(
-                    <div className='may-interest-item fleximgc' key={index}>
-                      <div className='fleximg writeimg'><img src={item.head_url?item.head_url:headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
-                      <div >{item.name}</div>
+                    <div className='may-interest-item fleximgc' key={index} onClick={()=>this.props.history.push('/app/newsauthormore?creatorId='+item.creator_id)}>
+                      <div className='fleximg writeimg head'><img src={item.head_url?item.head_url:headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
+                      <div className='onemore article-name'>{item.name || '用户'}</div>
                       <div>
                         <FollowButton item={item} key={item.is_attention} change={this.followChange}/>
                       </div>
@@ -311,9 +311,9 @@ export default class News extends Component{
                 
                 <div className='may-interest-list-ed flexl'>
                   {favorList.map((item,index)=>(
-                    <div className='may-interest-item fleximgc' key={index}>
-                      <div className='fleximg writeimg'><img src={item.head_url || headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
-                      <div >{item.name}</div>
+                    <div className='may-interest-item fleximgc' key={index} onClick={()=>this.props.history.push('/app/newsauthormore?creatorId='+item.creator_id)}>
+                      <div className='fleximg writeimg head'><img src={item.head_url || headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
+                      <div className='onemore name'>{item.name || '用户'}</div>
                     </div>
                   ))}
                 </div>

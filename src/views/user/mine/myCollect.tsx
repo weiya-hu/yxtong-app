@@ -8,12 +8,13 @@ import moment from 'moment'
 import Collect from 'views/news/component/collect/collect';
 import MoreTxt from 'views/news/component/moreTxt/moreTxt';
 import {util} from 'utils/news'
+import { withRouter } from "react-router-dom";
 
 import nodataBigimg from 'public/images/user/nodataBig.png'
 import falseimg from 'public/images/user/false.png'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-export default class MyCollect extends Component {
+class MyCollect extends Component {
     state={
         topTitle:['收藏的文章','收藏的视频'],
         topTitleActive:0,
@@ -116,8 +117,9 @@ export default class MyCollect extends Component {
                     {collectList.length>0 && <div>
                         {collectList.map((item,index)=>(
                         <div 
-                            key={item.news_id}
+                            key={item.id}
                             className='myCollect-news flexb'
+                            onClick={()=>window.open('/app/newsdetail?newsId='+item.id,"_blank")}
                         >   
                             <div className='thumbimg fleximg'><img src={item.thumb_url || falseimg} alt="thumb_url" onError={(e) => { e.target.src = falseimg }}/></div>
                             <div className='myCollect-news-content flexcbl'>
@@ -127,7 +129,7 @@ export default class MyCollect extends Component {
                                 </div>
                                 <div className='flexb myCollect-news-content-foot'>
                                     <div>收藏成功：{moment(item.collection_time).format('YYYY年MM月DD日')}</div>
-                                    <div className='flexl star'><Collect css='justify' success={(val)=>{this.setState({total:val?total+1:total-1});console.log(val)}} item={{is_collection:'1',...item}}/></div>
+                                    <div className='flexl star'><Collect css='justify' success={(val)=>{this.setState({total:val?total+1:total-1})}} item={{is_collection:'1',...item}}/></div>
                                 </div>
                             </div>
                         </div>))}
@@ -135,7 +137,7 @@ export default class MyCollect extends Component {
                     {collectList.length === 0 && <div className='myCollect-nodata fleximg'>
                         <div className='nodataBigimg fleximg'>
                             <img src={nodataBigimg} alt="nodata" />
-                            <div className='myCollect-nodata-txt'>暂无更多数据，请耐心等待</div>
+                            <div className='myCollect-nodata-txt'>暂无更多数据</div>
                         </div>
                         
                     </div>}
@@ -146,3 +148,4 @@ export default class MyCollect extends Component {
     }
     
 }
+export default withRouter(MyCollect)

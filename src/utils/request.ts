@@ -162,9 +162,9 @@ import { AxisPointerComponent } from "echarts/components";
        case 10500: message.info('服务器未知错误');break;
        case 10400: message.info('错误的请求');break;
        case 10403: message.info('非法token');break;
-       case 10600: message.info('业务异常');break;
+       case 10600: message.info(res.data.message);break;
       //  case 10610: message.info('参数校验失败');break;
-       case 10611: message.info('参数转换失败');break;
+       case 10611: message.info(res.data.message);break;
        case 10620: 
          message.info('身份认证失败');
           window.location.pathname==='/app/user' && (window.location.href='/app/login?url='+ encodeURIComponent(window.location.pathname + window.location.search))

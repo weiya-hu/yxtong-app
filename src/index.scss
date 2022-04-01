@@ -118,6 +118,20 @@ div,span{
   background: rgba($color: #000000, $alpha: 0.3);
   // height: 100vh;
 }
+.head{
+  border-radius: 50%;
+  overflow: hidden;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.onemore{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
 .back-color{
   background: #F4F4F4;
 }

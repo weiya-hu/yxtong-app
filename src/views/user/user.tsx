@@ -17,10 +17,8 @@ import exitimg from 'public/images/user/exit.png'
 import exitactiveimg from 'public/images/user/exitactive.png'
 import headerimg from 'public/images/user/header.png'
 import downMoreimg from 'public/images/user/downMore.png'
-import { Divider } from 'antd';
 
 let UNLISTEN;
-
 class User extends Component {
     state={
         nav:['我的任务','我的收益','创作中心','设置','企业管理'],  
@@ -50,7 +48,6 @@ class User extends Component {
         window.location.href='/'
         store.dispatch(removeUserInfo())
       }
-      
     }
     //跳到首页
     toIndex=()=>{
@@ -101,7 +98,7 @@ class User extends Component {
       return component.children ? this.findComponent(component.children,componentId[component.lv],componentId) : component.component
     }
     //根据URL传的值切换组件
-    getComponent=(navActiveIndex,asideActive,asideSonActive,isArticleDetail)=>{
+    getComponent=(navActiveIndex,asideActive,asideSonActive)=>{
       let Component = this.findComponent(userComponent,navActiveIndex,[navActiveIndex,asideActive,asideSonActive])
       return <Component />
     }
@@ -114,7 +111,6 @@ class User extends Component {
     //获取用户关注粉丝信息
     getNewsCreationAuthor=async()=>{
       const {status,body}= await newsCreationAuthor()
-
       status && this.setState({authorNewsInfo:body})
     }
     //获取当前id所在item
@@ -152,6 +148,10 @@ class User extends Component {
           isArticleDetail:util.getUrlParam('readNewsId'),
           opens:opens
         })
+
+        //关注页面关注按钮触发用户信息的关注数改变
+        let follow = util.getUrlParam('follow')
+        follow && this.getNewsCreationAuthor()
       });
     }
 
@@ -215,15 +215,24 @@ class User extends Component {
                   </div>
                   <div className='userphone'>{userInfo.mobile}</div>
                   <div className='fleximg'>
-                    <div className='user-news-info-item fleximgc'>
+                    <div 
+                      className='user-news-info-item fleximgc' 
+                      onClick={()=>this.props.history.push('/app/user?componentId=72')}
+                    >
                       <div>{authorNewsInfo.news_count}</div>
                       <div>文章</div>
                     </div>
-                    <div className='user-news-info-item fleximgc user-news-info-item-border'>
+                    <div 
+                      className='user-news-info-item fleximgc user-news-info-item-border'
+                      onClick={()=>this.props.history.push('/app/user?componentId=112&contentIndex=0')}
+                    >
                       <div>{authorNewsInfo.attention_count}</div>
                       <div>关注</div>
                     </div>
-                    <div className='user-news-info-item fleximgc'>
+                    <div 
+                      className='user-news-info-item fleximgc'
+                      onClick={()=>this.props.history.push('/app/user?componentId=112&contentIndex=1')}
+                    >
                       <div>{authorNewsInfo.fans_count}</div>
                       <div>粉丝</div>
                     </div>

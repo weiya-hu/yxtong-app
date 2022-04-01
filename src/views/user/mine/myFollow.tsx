@@ -3,30 +3,31 @@ import { Component } from 'react'
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import './mine.scss'
-import {newsCreationcollection,newsFavorList} from 'service/news'
+import { withRouter } from "react-router-dom";
+import {newsFavorList} from 'service/news'
 import {userFans} from 'service/user'
-import moment from 'moment'
-import Collect from 'views/news/component/collect/collect';
 import MoreTxt from 'views/news/component/moreTxt/moreTxt';
 import {util} from 'utils/news'
+import FollowButton from 'views/news/component/followButton/followButton';
 
 import nodataBigimg from 'public/images/user/nodataBig.png'
 import falseimg from 'public/images/user/false.png'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-export default class MyCollect extends Component {
+class MyFollow extends Component {
     state={
         topTitle:['我的关注','我的粉丝'],
         topTitleActive:0,
         page:1,
-        size:4,
+        fansPage:1,
+        size:12,
         collectList:[],
-        total:null,
+        total:0,
         loading:false,
         hasMore: true,// 判断接口是否还有数据，通过接口设置
     }
     loadMoreData=()=>{
-        this.getCollection()
+        this.getCollection(this.state.topTitleActive)
     }
     // 页面滚动
     handleScroll = () => {
@@ -45,51 +46,63 @@ export default class MyCollect extends Component {
         
     }
     getCollection=async(index)=>{
-        const {page,size,topTitleActive,collectList} =this.state
-        const {status,body}= await newsCreationcollection({current:page,size:size})
+        const {page,fansPage,size,collectList} =this.state
+        const {status,body}= (index == 1) ? await userFans({current:fansPage,size:size}) : await newsFavorList({current:page,size:size})
         status && this.setState({
             collectList:collectList.concat(body.records),
-            topTitleActive:(index || index ==0)?index:topTitleActive,
-            hasMore:body.total>page*size,
-            page:page+1,
+            // topTitleActive:index,
+            hasMore:body.total>(index?fansPage:page)*size,
+            page:index?page:page+1,
+            fansPage:index?fansPage+1:fansPage,
             total:body.total
         })
     }
     getCollectionFirst=async(index)=>{
-        const {page,size,topTitleActive} =this.state
+        const {page,fansPage,size} =this.state
         this.setState({loading:true})
-        const {status,body}= await newsCreationcollection({current:1,size:size})
+        const {status,body}= (index == 1) ? await userFans({current:1,size:size}) : await newsFavorList({current:1,size:size})
         this.setState({loading:false})
         status && this.setState({
             collectList:body.records,
-            topTitleActive:(index || index ==0)?index:topTitleActive,
             hasMore:body.total>size,
-            page:2,
+            page:index?page:2,
+            fansPage:index?2:fansPage,
             total:body.total
         })
     }
     topTitleChange=(index)=>{
-        const {topTitleActive} =this.state;
-        if(index){
-            this.setState({
-                topTitleActive:index,
-                collectList:[],
-                total:0
-            })
-        }else{
-            this.getCollectionFirst(index)
-        }
-        
+        this.props.history.push('/app/user?componentId=112&contentIndex='+index)
+    }
+    followChange=(val)=>{
+        console.log(val)
+        this.props.history.push('/app/user?componentId=112&contentIndex=0&follow=true')
     }
     componentDidMount(){
-        this.getCollection()
+        let contenId= Number(util.getUrlParam('contentIndex'))
+        this.getCollectionFirst((contenId || contenId ==0)?contenId:0)
+        this.setState({topTitleActive:(contenId || contenId ==0)?contenId:0})
         window.addEventListener('scroll', this.handleScroll, false)
+        //监听路由变化
+        UNLISTEN = this.props.history.listen(route => { 
+            let contenid=Number(util.getUrlParam('contentIndex'))
+            let follow = util.getUrlParam('follow')
+            //避免点关注的时候刷新页面，导致页面滚动到最上方
+            if(!follow){
+                this.setState({
+                    topTitleActive:(contenid || contenid ==0)?contenid:0,
+                })
+                this.getCollectionFirst((contenid || contenid ==0)?contenid:0)
+                window.scrollTo (0,0);
+            } 
+            
+        });
     }
     componentWillUnmount(): void {
         window.removeEventListener('scroll', this.handleScroll)
         this.setState = (state,callback)=>{
           return;
         }
+        UNLISTEN && UNLISTEN(); // 监听路由变化执行解绑
     }
     render(){
         const {topTitle,topTitleActive,total,loading,collectList,hasMore} = this.state
@@ -109,30 +122,35 @@ export default class MyCollect extends Component {
             </div>
             <div className='myCollect-content'>
                 <Spin indicator={antIcon} spinning={loading}>
-                    <div className='content-num'>关注用户数：{total}</div>
-                    {collectList.length>0 && <div>
+                    <div className='content-num'>{topTitleActive?'我的粉丝':'我的关注'}：{total}</div>
+                    {(collectList.length>0 && topTitleActive == 0) && <div className='myCollect-star'>
                         {collectList.map((item,index)=>(
                         <div 
-                            key={item.news_id}
-                            className='myCollect-news flexb'
+                            key={index}
+                            className='myCollect-item flexcc'
+                            onClick={()=>{this.props.history.push('/app/newsauthormore?creatorId='+item.creator_id)}}
                         >   
-                            <div className='thumbimg fleximg'><img src={item.thumb_url || falseimg} alt="thumb_url" onError={(e) => { e.target.src = falseimg }}/></div>
-                            <div className='myCollect-news-content flexcbl'>
-                                <div>
-                                    <div className='myCollect-news-content-title'>{item.title}</div>
-                                    <div className='myCollect-news-content-text'>{item.content}</div>
-                                </div>
-                                <div className='flexb myCollect-news-content-foot'>
-                                    <div>收藏成功：{moment(item.collection_time).format('YYYY年MM月DD日')}</div>
-                                    <div className='flexl star'><Collect css='justify' item={{is_collection:'1',...item}}/></div>
-                                </div>
+                           <div className='fleximg head myCollect-headimg'><img src={item.head_url || falseimg} alt="head" onError={(e) => { e.target.src = falseimg }}/></div>
+                           <div className='myCollect-name onemore'>{item.name || '用户'}</div>
+                           <div>
+                                <FollowButton item={item} key={item.is_attention} change={(val)=>{this.setState({total:val.types?total+1:total-1});this.followChange(val)}}/>
                             </div>
+                        </div>))}
+                    </div>}
+                    {(collectList.length>0 && topTitleActive == 1) && <div className='myCollect-star'>
+                        {collectList.map((item,index)=>(
+                        <div 
+                            key={index}
+                            className='myCollect-item flexcc'
+                        >   
+                           <div className='fleximg head myCollect-headimg'><img src={item.head || falseimg} alt="head" onError={(e) => { e.target.src = falseimg }}/></div>
+                           <div className='myCollect-name onemore'>{item.name || '用户'}</div>
                         </div>))}
                     </div>}
                     {collectList.length === 0 && <div className='myCollect-nodata fleximg'>
                         <div className='nodataBigimg fleximg'>
                             <img src={nodataBigimg} alt="nodata" />
-                            <div className='myCollect-nodata-txt'>暂无更多数据，请耐心等待</div>
+                            <div className='myCollect-nodata-txt'>暂无更多数据</div>
                         </div>
                         
                     </div>}
@@ -143,3 +161,6 @@ export default class MyCollect extends Component {
     }
     
 }
+
+let UNLISTEN;
+export default withRouter(MyFollow)
