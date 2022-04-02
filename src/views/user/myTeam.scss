@@ -50,6 +50,7 @@
           padding: 8px 0;
           border-top: 2px solid rgba(0,0,0,0);
           border-bottom: 2px solid rgba(0,0,0,0);
+          cursor: pointer;
         }
         .my-team-title-item-a{
           color: #304F97;
@@ -62,5 +63,45 @@
   .my-team-content{
     padding: 0 30px;
     background: #FFFFFF;
+    .my-teamer-item{
+      background: #FFFFFF;
+      padding: 24px 0;
+      border-bottom: 1px solid #F4F4F4;
+      .headimg{
+        width: 48px;
+        height: 48px;
+        margin-right: 16px;
+      }
+      .my-teamer-name{
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        .memberimg{
+          width: 28px;
+          height: 16px;
+          margin-left: 8px;
+        }
+      }
+      .my-teamer-time{
+        font-size: 12px;
+        color: #999999;
+        line-height: 12px;
+      }
+
+    }
+    .myCollect-nodata{            
+      .nodataBigimg{
+          width: 370px;
+          margin-top: 88px;
+          position: relative;
+          .myCollect-nodata-txt{
+              position: absolute;
+              top: 242px;
+              left:50%;
+              transform: translateX(-50%);
+          }
+      }
+    }
   }
 }

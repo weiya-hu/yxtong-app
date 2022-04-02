@@ -5,6 +5,7 @@ import moment from 'moment'
 import { Button } from 'antd';
 import {withRouter} from 'react-router-dom'
 import {writingDetail,newsDetail} from 'service/news'
+import {promoteArticle} from 'service/user'
 import {util} from 'utils/news'
 
 interface ArticleDetailProps{
@@ -33,6 +34,7 @@ class ArticleDetail extends Component<ArticleDetailProps>{
     getNewsDeatail=async()=>{
         let id=util.getUrlParam('readNewsId')
         let newsId=util.getUrlParam('newsId')
+        let articleId = util.getUrlParam('articleId')
         //如果是个人中心里面查看文章就是readNewsId，获取的接口不一样
         if(id){
             //preview是预览，自己预设的值，其他新闻id是后端传过来的值
@@ -58,6 +60,12 @@ class ArticleDetail extends Component<ArticleDetailProps>{
                 newsDetail:res.body,
                 isPreview:false,
                 newsId:newsId
+            })
+        }else if(articleId){
+            let res =await promoteArticle({id:articleId})
+            res.status && this.setState({
+                newsDetail:res.body,
+                isPreview:false
             })
         }
     }

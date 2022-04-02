@@ -109,6 +109,36 @@ export const teamIndirect =():Promise<API.IResult>=>{
 }
 
 //获取直推或间推用户列表
-export const teamList =(data):Promise<API.IResult>=>{
+export const teamLists =(data):Promise<API.IResult>=>{
     return  get('user/team/recommend.list',data)
+}
+
+//获取软文详情
+export const promoteArticle =(data):Promise<API.IResult>=>{
+    return  get('user/promote/article.get',data)
+}
+
+//获取推广行业分类
+export const promoteIndustry =():Promise<API.IResult>=>{
+    return  get('dim/promote/industry.list')
+}
+
+//获取软文分页列表
+export const promoteArticlePage =(data):Promise<API.IResult>=>{
+    return  get('user/promote/article.page',data)
+}
+
+//获取用户积分记录分页列表
+export const promoteIntegral =(data):Promise<API.IResult>=>{
+    return  get('user/promote/integral/record.page',data)
+}
+
+//获取海报分页列表
+export const promotePosterPage =(data):Promise<API.IResult>=>{
+    return  get('user/promote/poster.page',data)
+}
+
+//下载海报
+export const promotePosterDownload =(data):Promise<API.IResult>=>{
+    return  post('user/promote/poster/download.do',data)
 }

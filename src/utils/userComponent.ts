@@ -9,7 +9,10 @@ import Certificate from 'views/user/certificate'
 import Writing from 'views/user/writing'
 import articleList from 'views/user/articleList'
 import articleDetail from 'views/user/articleDetail'
+import Article from 'views/user/article'
 
+import articleimg from 'public/images/userLeftNav/article.png'
+import articleaimg from 'public/images/userLeftNav/article_a.png'
 import certifateimg from 'public/images/userLeftNav/certifate.png'
 import certifateaimg from 'public/images/userLeftNav/certifate_a.png'
 import contentimg from 'public/images/userLeftNav/content.png'
@@ -46,8 +49,9 @@ export const userComponent=[
         {name:'我的团队',id:1,lv:2,show:true,icon:myteamimg,icon_a:myteamaimg,component:MyTeam}
     ]},
     {name:'我的推广',id:4,lv:1,show:true,children:[
-        {name:'海报',id:1,lv:2,show:true,icon:posterimg,icon_a:posteraimg,component:Poster},
-        {name:'视频',id:2,lv:2,show:true,icon:videoimg,icon_a:videoaimg,component:Video}
+        {name:'图文',id:1,lv:2,show:true,icon:articleimg,icon_a:articleaimg,component:Article},
+        {name:'海报',id:2,lv:2,show:true,icon:posterimg,icon_a:posteraimg,component:Poster},
+        // {name:'视频',id:3,lv:2,show:true,icon:videoimg,icon_a:videoaimg,component:Video}
     ]},
     {name:'我的收益',id:5,lv:1,show:true,children:[
         {name:'积分明细',id:1,lv:2,show:true,icon:scoreimg,icon_a:scoreaimg,component:profit}
