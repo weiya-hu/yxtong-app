@@ -58,7 +58,6 @@ export default class Collect extends Component<CollectProps> {
     
     render(){
         let prop =this.props,{item}=this.state
-        console.log(prop)
         return <div onClick={this.collectChange}>
             {prop.css === 'align' ?(<div className='collect-item fleximgc pointer'>
                 <div className='fleximg collectimg'><img src={item.is_collection?starActive20img:collectimg} alt="collect" /></div>

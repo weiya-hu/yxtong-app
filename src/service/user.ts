@@ -89,7 +89,7 @@ export const userFans =(data):Promise<API.IResult>=>{
 }
 
 //获取会员全类信息
-export const memberList =():Promise<API.IResult>=>{
+export const memberLists =():Promise<API.IResult>=>{
     return  get('user/public/member.list')
 }
 

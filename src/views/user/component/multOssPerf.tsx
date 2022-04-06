@@ -4,6 +4,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import  React  from 'react';
 import {uploadPolicy} from 'service/user'
 import axios from "axios";
+import $message from 'views/component/message';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 function getBase64(file) {
@@ -19,6 +20,7 @@ export default class OSSUpload extends React.Component{
         fileList:[],
         disabled:false,
         imageLoading:false,
+        
     }
     render(){
         let header={"Content-Type": "multipart/form-data"},{disabled,imageLoading}=this.state
@@ -66,22 +68,36 @@ export default class OSSUpload extends React.Component{
     }
     //采用手动上传的方式,不立即上传
     beforeUpload = (file,fileList) => {
-        this.setState({imageLoading:true})
-        let flist=this.state.fileList,base64list=[]
-        fileList.length === 1 && flist.push(file)
-        if(fileList.length > 1) {for(let i=0,l=2-flist.length;i<l;i++){flist.push(fileList[i])}}  
-        console.log(flist)
-        flist.forEach(async(item)=>{
-            const res= await getBase64(item)
-            base64list.push({url:res,uid:item.uid})
-            this.props.change(base64list)
-            this.setState({imageLoading:false})
-        })
-        this.setState({
-            fileList: flist,
-            disabled:flist.length>=2?true:false
-        })      
-        return false;
+        let flag 
+        fileList.forEach(element => {
+            if((element.size/ 1024 / 1024) >=2 ){
+                console.log('dale')
+                flag =false
+                $message.info('上传图片大小不能大于'+this.props.maxSize+'M')
+                return false;
+            }else{
+                flag =true
+            }
+        });
+        if(flag){
+            this.setState({imageLoading:true})
+            let flist=this.state.fileList,base64list=[]
+            fileList.length === 1 && flist.push(file)
+            if(fileList.length > 1) {for(let i=0,l=2-flist.length;i<l;i++){flist.push(fileList[i])}}  
+            console.log(flist)
+            flist.forEach(async(item)=>{
+                const res= await getBase64(item)
+                base64list.push({url:res,uid:item.uid})
+                this.props.change(base64list)
+                this.setState({imageLoading:false})
+            })
+            this.setState({
+                fileList: flist,
+                disabled:flist.length>=2?true:false
+            })      
+            return false;
+        }
+        
     }
     //上传图片
     uploadFile = () => {    
@@ -117,9 +133,9 @@ export default class OSSUpload extends React.Component{
                     if(res.status == 200){
                         imgurl.push(body.host+'/'+ param.key)
                         imgurl.length === fileList.length && this.props.success(imgurl)
-                    }else{
-                        this.props.error(true)
                     }
+                }).catch(res=>{
+                    this.props.error(true)
                 })
             });
         })

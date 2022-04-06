@@ -39,6 +39,9 @@ export default class LoginComponent extends Component {
                 appid:res.body.app_id
             })
         }) 
+        //检查页面地址中是否有邀请码，有的话之后如果有点到注册页，注册页的邀请码默认值
+        let inviteCode = util.getUrlParam('invite_code')
+        inviteCode && sessionStorage.setItem('inviteCode',inviteCode)
     }
     getUrlParam=(name)=>{
         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");

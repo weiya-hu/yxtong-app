@@ -61,5 +61,10 @@ export const util ={
         }
         
     },
+    getUrlParam:(name)=>{
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substring(1).match(reg);
+        if(r!=null)return  decodeURI(r[2]); return null;
+    },
 
 }

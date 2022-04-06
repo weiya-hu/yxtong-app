@@ -1,0 +1,82 @@
+
+.top-blue{
+    width: 930px;
+    height: 240px;
+    padding: 20px 30px 0;
+    background: url(../../../../public/images/user/articleBack.png) no-repeat;
+    background-size: cover;
+    .user-score{
+        width: 870px;
+        height: 32px;
+        opacity: 0.2;
+        background: #00184D;
+        border-radius: 4px;
+        padding: 0 16px;
+        >div{
+            font-size: 12px;
+            color: #A2BAF2;
+            line-height: 32px;
+        }
+    }
+    .top-share-title{
+        font-size: 24px;
+        color: #FFFFFF;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 28px 0 20px;
+        text-align: left;
+    }
+    .top-share-txt{
+        font-size: 12px;
+        color: #E0E9FF;
+        line-height: 12px;
+        margin-bottom: 32px;
+    }
+    .wechat-ma-pre{
+        position: relative;
+    }
+    .wechat-ma-pre:hover .wechat-ma{
+        display: block;
+    }
+    .copyLinkimg-pre{
+        width: 120px;
+        height: 34px;
+        background-image: linear-gradient(180deg, #FFFFFF 0%, #C9D4ED 100%);
+        border-radius: 2px;
+        margin-right: 20px;
+        cursor: pointer;
+        .copyLinkimg{
+            width: 14px;
+            margin-right: 8px;
+        }
+        .wechat-ma{
+            padding: 15px;
+            width: 132px;
+            height: 150px !important;
+            background: #ffffff;
+            border: 1px solid #F4F4F4;
+            // box-shadow: 0px 2px 10px 0px rgba(221,221,221,0.5);
+            position: absolute;
+            left: 133px;
+            top: -59px;
+            z-index: 5;
+            display: none;
+            .wechat-ma-txt{
+                text-align: center;
+                margin-top: 5px;
+            }
+            .wechat-ma-blank{
+                width: 20px;
+                height: 20px;
+                background: #ffffff;
+                
+                position: absolute;
+                top: 50%;
+                left: -13px;
+                transform: rotate(45deg) translateY(-50%);
+            }
+        }
+        
+    }
+}
+    

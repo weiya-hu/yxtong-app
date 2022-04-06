@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component } from 'react'
 import './myTeam.scss'
-import {memberList,teamCount,teamDirect,teamIndirect,teamLists} from 'service/user'
+import {memberLists,teamCount,teamDirect,teamIndirect,teamLists} from 'service/user'
 import { Select,Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import MoreTxt from 'views/news/component/moreTxt/moreTxt';
@@ -52,10 +52,10 @@ export default class MyTeam extends Component {
     }
   }
   star=async()=>{
-    const teamCountRes=await teamCount()
-    const teamDirectRes=await teamDirect()
-    const teamIndirectRes=await teamIndirect()
-    const memberListRes=await memberList()
+    const teamCountRes=await teamCount();
+    const teamDirectRes=await teamDirect();
+    const teamIndirectRes=await teamIndirect();
+    const memberListRes=await memberLists();
     (teamCountRes.status && teamDirectRes.status && teamIndirectRes.status && memberListRes.status) && this.setState({
       teamNum:teamCountRes.body,
       teamDirectNum:teamDirectRes.body,

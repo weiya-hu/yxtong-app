@@ -2,7 +2,6 @@
 import { Component } from 'react'
 import './share.scss'
 import QRCode  from 'qrcode.react'
-import message from 'views/component/message/index'
 import {util} from 'utils/news'
 import store from 'store'
 
@@ -34,32 +33,6 @@ export default class Share extends Component<ShareState> {
         shareActive:false,
         copyUrl:""
     } 
-    copy = (e) => {
-        let copyDom = document.createElement("input");
-        
-        // 获得需要复制的内容
-        copyDom.setAttribute("value",e);
-        
-        //不要让他displaynone,否则复制不出来
-        // copyDom.style.display = "none";
-        
-        // 添加到 DOM 元素中
-        document.body.appendChild(copyDom);
-        
-        // 执行选中
-        // 注意: 只有 input 和 textarea 可以执行 select() 方法.
-        copyDom.select();
-        
-        // 获得选中的内容
-        let content = window.getSelection().toString();
-        
-        // 执行复制命令
-        document.execCommand("copy");
-        
-        // 将 input 元素移除
-        document.body.removeChild(copyDom);
-        message.info('复制成功');
-        }
     copyLink=()=>{
         let newsId = util.getUrlParam('newsId')
         let id =this.props.item.id?this.props.item.id:newsId
@@ -134,7 +107,7 @@ export default class Share extends Component<ShareState> {
                     <div className='wechartimg fleximg'><img src={toutgray} alt="wechart" /></div>
                     <div>今日头条</div>
                 </div>
-                <div className='flexl' onClick={()=>this.copy(copyUrl)}>
+                <div className='flexl' onClick={()=>util.copy(copyUrl)}>
                     <div className='wechartimg fleximg'><img src={linkimg} alt="wechart" /></div>
                     <div>复制链接</div>
                 </div>

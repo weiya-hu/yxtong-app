@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component} from 'react'
 import './certificate.scss'
-import { Form,Button,Modal,Spin  } from 'antd'
+import { Form,Button,Modal,Spin,message  } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import $message from 'views/component/message/index'
@@ -108,7 +108,7 @@ export default class Certificate extends Component{
     }
     submitError=()=>{
         this.setState({isupload:false,loading:false})
-        $message.info('上传图片出错，请稍后再试')
+        message.error('上传图片出错，请稍后再试');
     }
     //上传或者保存表单验证出错
     falseFinish = ({ values, errorFields, outOfDate }) => {
@@ -303,7 +303,7 @@ export default class Certificate extends Component{
                                                 </div>
                                                 
                                                 {/* <AliyunOSSUpload imgLength={images.length} change={((val,sendval)=>{this.licenseIMgChange(val,sendval)})}/> */}
-                                                <AliyunOSSUpload change={this.licenseIMgChange} delete={imgDeleteUid} isupload={isupload} success={this.submitSure} error={this.submitError}/>
+                                                <AliyunOSSUpload change={this.licenseIMgChange} delete={imgDeleteUid} isupload={isupload} success={this.submitSure} error={this.submitError} maxSize={2}/>
 
                                             </div>
                                       )

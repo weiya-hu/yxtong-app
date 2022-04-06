@@ -7,7 +7,6 @@ import {util} from 'utils/news'
 
 util.firstTokenUserinfo().then(()=>{
   ReactDOM.render(
-
       <Router />,
     document.getElementById('root')
   );
