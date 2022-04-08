@@ -95,7 +95,7 @@
                                     <div class="barchild">
                                         <div class="bar-tip"></div>
                                         <ul>
-                                            <li><a href="javascript:void(0);">CMS 内容管理</a></li>
+                                            <li><a href="/cms_intro.html">CMS 内容管理</a></li>
                                             <li><a href="/dmp_intro.html">DMP 精准数据</a></li>
                                             <li><a href="javascript:void(0);">DSP 广告投放</a></li>
                                             <li><a href="javascript:void(0);">DSP 数据服务</a></li>
@@ -160,15 +160,16 @@
     <script>
         $('.marketing').hover(
             function() {
-                $('.navchild1').css('overflow', 'revert')
-                $('.barchild').css('height', '86px')
+                $('.navchild1').css('overflow', 'visible')
+                $('.barchild').css('overflow', 'visible')
                 $('.bar-tip').slideDown(200)
             },
             function() {
                 $('.navchild1').css('overflow', 'hidden')
+                $('.barchild').css('overflow', 'hidden')
                 $('.bar-tip').slideUp(200)
-
-            })
+            }
+        )
 
 
         $('.navchild1 ul li a').on(
@@ -504,19 +505,19 @@
         </div>
     </div>
 
-    <div class="navi-search">
+    <!-- <div class="navi-search">
         <h2 class="wow fadeInUp">数百个行业网站，你想要的都在这里</h2>
         <div class="wrapper">
             <div class="search">
                 <form action="">
                     <input type="text" id="searchipt" placeholder="搜索网站" autocomplete="off">
-                    <!-- <button>搜索</button> -->
+               
                 </form>
                 <div class="searchlist">
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="navi-top">
         <div class="navi-tit white">

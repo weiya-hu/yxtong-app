@@ -4,6 +4,7 @@ import 'index.scss';
 import Router from 'router/index'
 import reportWebVitals from 'reportWebVitals';
 import {util} from 'utils/news'
+import 'lib-flexible'
 
 util.firstTokenUserinfo().then(()=>{
   ReactDOM.render(

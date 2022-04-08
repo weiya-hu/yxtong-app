@@ -53,24 +53,20 @@ export default class LoginComponent extends Component {
         let {loginSwitch,captchaShow} = this.state,message
         if(loginSwitch){    
             let username = util.validate_mobile(value.mobile)
-           
             if(captchaShow){
                 let captcha =  util.validate_captcha(value.captcha)
                 message = username?username:captcha?captcha:util.validate_password(value.pass) 
             }else{
                  message = username?username:util.validate_password(value.pass) 
             }
-            
         }else{
             let mobile = util.validate_mobile(value.mobile)  
-            
             if(captchaShow){
                 let captcha =  util.validate_captcha(value.captcha)
                 message = mobile?mobile:captcha?captcha:util.validate_yzm(value.sms)   
             }else{
                 message = mobile?mobile:util.validate_yzm(value.sms)
             }
-                
         }
         this.setState({warnMessage:message})
         value.acode && (value.acode='+'+value.acode)

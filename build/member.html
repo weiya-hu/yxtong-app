@@ -95,7 +95,7 @@
                                     <div class="barchild">
                                         <div class="bar-tip"></div>
                                         <ul>
-                                            <li><a href="javascript:void(0);">CMS 内容管理</a></li>
+                                            <li><a href="/cms_intro.html">CMS 内容管理</a></li>
                                             <li><a href="/dmp_intro.html">DMP 精准数据</a></li>
                                             <li><a href="javascript:void(0);">DSP 广告投放</a></li>
                                             <li><a href="javascript:void(0);">DSP 数据服务</a></li>
@@ -160,15 +160,16 @@
     <script>
         $('.marketing').hover(
             function() {
-                $('.navchild1').css('overflow', 'revert')
-                $('.barchild').css('height', '86px')
+                $('.navchild1').css('overflow', 'visible')
+                $('.barchild').css('overflow', 'visible')
                 $('.bar-tip').slideDown(200)
             },
             function() {
                 $('.navchild1').css('overflow', 'hidden')
+                $('.barchild').css('overflow', 'hidden')
                 $('.bar-tip').slideUp(200)
-
-            })
+            }
+        )
 
 
         $('.navchild1 ul li a').on(
@@ -906,27 +907,6 @@
         <div class="wrapper clearfix">
             <div class="l">
                 <img src="static/images/feedback.png" alt="">
-                <!-- <div class="lst">
-                    <div class="item">
-                        <div class="hd">
-                            <a href="JavaScript:void(0)" class="userback">1、数智营销通与传统营销的区别？</a>
-                        </div>
-                        <div class="bd">A:传统的营销业务，需要员工精心策划营销方案，准备营销素材，需要用大量的成本去各个渠道和媒体进行宣传推广，而不同渠道的效果和数据都难以把控，营销效果大打折扣。 数智营销通紧紧围绕“流量与数据”，通过整合广告投放平台、整合信息推送渠道、打通营销各个环节的数据通道、构建支撑营销业务链上的各个数字化系统，帮助企业一站式解决数字营销的痛点和难题，打造一名“全能型营销数智化员工”。通过一个平台，解决所有营销需求，极大提高企业的营销效率，为企业节省大量营销成本。
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="hd">
-                            <a href="JavaScript:void(0)" class="userback">2、数智营销通的广告系统的优势？</a>
-                        </div>
-                        <div class="bd">A：营销通广告平台，除了提供常规的广告策划、广告内容制作、广告信息触达等服务外，最重要的是通过合作的方式将不同的广告平台进行整合，企业主只需在营销通的广告系统，即可同时面向不同的广告平台进行广告投放与管理，同时，各个平台产生的数据也能在营销通统一处理和分析，真正打通数据壁垒，降低广告成本，提升投放效率和广告效果！</div>
-                    </div>
-                    <div class="item">
-                        <div class="hd">
-                            <a href="JavaScript:void(0)" class="userback">3、数智营销通客户管理系统软件，能适配哪些行业？</a>
-                        </div>
-                        <div class="bd">A：数智营销通目前覆盖30+行业，30万+企业客户，包括外贸行业、快消行业、建筑行业、医药行业、金融行业、服务业、制造业、零售行业、教育行业等，因其标准化及免开发定制化特性，适配度高，开发周期短。</div>
-                    </div>
-                </div> -->
                 <div>
                     <!-- <a class="more" href="developmenting.html">查看全部 ></a> -->
                 </div>
@@ -934,17 +914,17 @@
             <div class="form">
                 <div class="hd">我要反馈</div>
                 <form action="">
-                    <select name="" id="">
+                    <select name="" id="select">
                         <option value="0">选择反馈类型</option>
                         <option value="1">产品咨询</option>
                         <option value="2">使用反馈</option>
-                        <option value="0">缺陷提交</option>
-                        <option value="0">服务投诉</option>
-                        <option value="0">其他</option>
+                        <option value="3">缺陷提交</option>
+                        <option value="4">服务投诉</option>
+                        <option value="5">其他</option>
 					</select>
-                    <textarea placeholder="输入反馈内容"></textarea>
-                    <input type="text" placeholder="您的联系电话是？">
-                    <button type="submit">提交</button>
+                    <textarea placeholder="输入反馈内容" id="feed_txt"></textarea>
+                    <input type="text" class="feed_tel" placeholder="您的联系电话是？">
+                    <button type="submit" onclick="feedSub()">提交</button>
                 </form>
             </div>
         </div>
@@ -1038,9 +1018,24 @@
 <script>
     //新闻切换
     $('.tab-content .item').on('click', function() {
+            $(this).addClass('active').siblings().removeClass('active');
+        })
+        // 客户反馈提交
+    function feedSub() {
+        var val_type = $('#select option:selected').val();
+        var val_txt = $('#feed_txt').val()
+        var val_tel = $("input[type='text']").val()
 
-        $(this).addClass('active').siblings().removeClass('active');
-    })
+        if (val_tel == '' || val_type == '0' || val_txt == '') {
+            alert('请填写完整！')
+        } else {
+            alert('提交成功！')
+        }
+
+    }
+
+
+
 
     // 立即体验在跳转链接前，校验是否登录
     // $('.isLogin').click(function() {

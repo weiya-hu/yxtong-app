@@ -330,3 +330,49 @@ div,span{
   }
 }
 
+//个人中心-我的推广h5页面
+#article-detail-h5{
+  padding: 0.5333rem 0.4267rem 0;
+  background: #FFFFFF;
+  overflow: hidden;
+  .title{
+    font-size: 0.5867rem;
+    color: #363636;
+    text-align: justify;
+    line-height: 0.8533rem;
+    font-weight: 600;
+  }
+  .article-detail-info{
+    padding: 0.64rem 0 0.5333rem;
+    border-bottom: 1px solid #F4F4F4;
+    .from{
+      font-size: 0.32rem;
+      color: #999999;
+    }
+  }
+  .news-content{
+    width: 100%;
+    margin-top: 0.64rem;
+    overflow: hidden;
+    img{
+      width: 100%;
+    }
+  }
+}
+.foot-more{
+  height: 1.8133rem;
+  width: 100%;
+  background: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  >div{
+    width: 2.56rem;
+    height: 0.7467rem;
+    background: #304F97;
+    border-radius: 2px;
+    font-size: 0.32rem;
+    color: #FFFFFF;
+  }
+}
+

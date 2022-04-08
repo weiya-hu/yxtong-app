@@ -125,12 +125,12 @@ class MyFollow extends Component {
                     <div className='content-num'>{topTitleActive?'我的粉丝':'我的关注'}：{total}</div>
                     {(collectList.length>0 && topTitleActive == 0) && <div className='myCollect-star'>
                         {collectList.map((item,index)=>(
-                        <div 
+                        item && <div 
                             key={index}
                             className='myCollect-item flexcc'
                             onClick={()=>{this.props.history.push('/app/newsauthormore?creatorId='+item.creator_id)}}
                         >   
-                           <div className='fleximg head myCollect-headimg'><img src={item.head_url || falseimg} alt="head" onError={(e) => { e.target.src = falseimg }}/></div>
+                           <div className='fleximg head myCollect-headimg'><img src={item.head_url } alt="head" onError={(e) => { e.target.src = falseimg }}/></div>
                            <div className='myCollect-name onemore'>{item.name || '用户'}</div>
                            <div>
                                 <FollowButton item={item} key={item.is_attention} change={(val)=>{this.setState({total:val.types?total+1:total-1});this.followChange(val)}}/>

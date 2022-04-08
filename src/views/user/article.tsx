@@ -7,9 +7,12 @@ import {promoteIndustry,promoteArticlePage} from 'service/user'
 import Extend from 'views/user/component/extend/extend'
 import MoreTxt from 'views/news/component/moreTxt/moreTxt';
 import moment from 'moment'
+import Share from 'views/news/component/share/share'
 
 import nodataBigimg from 'public/images/user/nodataBig.png'
 import falseimg from 'public/images/user/false.png'
+import shareNumimg from 'public/images/user/shareNum.png'
+import readimg from 'public/images/user/read.png'
 
 export default class Article extends Component {
   state={
@@ -60,12 +63,19 @@ export default class Article extends Component {
   getArticleList=async()=>{
     const {size,current,IndustryActive,IndustryList,articleList} = this.state
     const {status,body} = await promoteArticlePage({current,size,promoteIndustryId:IndustryList[IndustryActive].id});
-    status&& this.setState({
+    status && this.setState({
       articleList:articleList.concat(body.records) ,
       hasMore:body.total>current*size,
       current:current+1,
       total:body.total
     })
+  }
+  articleTypeChange=(item,index)=>{
+    this.firstArticleList(item.id)
+    this.setState({
+      IndustryActive:index
+    })
+    
   }
   componentDidMount(){
     let articleId= Number(util.getUrlParam('articleId'))
@@ -95,6 +105,7 @@ export default class Article extends Component {
                 <div className='flexl'>
                   {IndustryList.map((item,index)=><div 
                     key={item.id}
+                    onClick={()=>this.articleTypeChange(item,index)}
                     className={IndustryActive == index ?'article-industry-type-item article-industry-type-item-a fleximg':'article-industry-type-item fleximg'}
                   >{item.name}</div> )}
                 </div>
@@ -105,7 +116,7 @@ export default class Article extends Component {
         <div>
           {articleList.length>0 && <div>
             {articleList.map((item,index)=>(
-            <div 
+            <div            
               key={item.id}
               className='myCollect-news flexb'
               onClick={()=>window.open('/app/user?componentId=41&articleId='+item.id,"_blank")}
@@ -117,7 +128,17 @@ export default class Article extends Component {
                   <div className='myCollect-news-content-text'>{item.content}</div>
                 </div>
                 <div className='flexb myCollect-news-content-foot'>
-                  <div>收藏成功：{moment(item.collection_time).format('YYYY年MM月DD日')}</div>
+                  <div className='color3'>{item.creator_name}</div>
+                  <div className='flexr news-foot-right'>
+                    <div className='color3'>{moment(item.update_time).format('YYYY年MM月DD日')}</div>
+                    <Share css='justify' item={item}/>
+                    <div className='color3 flexr'>
+                      <div className='shareNumimg fleximg'><img src={shareNumimg} alt="share" /></div>{item.shared}
+                    </div>
+                    <div className='color3 flexr'>
+                      <div className='shareNumimg fleximg'><img src={readimg} alt="share" /></div>{item.readed}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>))}

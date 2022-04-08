@@ -22,6 +22,7 @@ export default class Extend extends Component {
     status && this.setState({
       integralList:body.records,
       shareUrl:window.location.protocol+'//'+window.location.host+'/app/login?invite_code='+userInfo.invite_code
+      // shareUrl:'https://p26.toutiaoimg.com/large/pgc-image/1d3029159cb94c79bb678fa3d5e7c8c9'
     })
   }
   componentDidMount(){
