@@ -31,7 +31,8 @@ interface ShareState{
 export default class Share extends Component<ShareState> {  
     state={
         shareActive:false,
-        copyUrl:""
+        copyUrl:"",
+        shareUrl:''
     } 
     copyLink=()=>{
         let newsId = util.getUrlParam('newsId')
@@ -41,20 +42,29 @@ export default class Share extends Component<ShareState> {
     }
     componentDidMount(){
         let newsId = util.getUrlParam('newsId')
+        let componentId = util.getUrlParam('componentId')
         let id =this.props.item.id?this.props.item.id:newsId
         let userInfo=store.getState().userInfo
-        if(userInfo){
-            let urls =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id+'&invite_code='+userInfo.invite_code
-             this.setState({copyUrl:urls})
-        }else{
-            let urls =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id
-            this.setState({copyUrl:urls})
+       
+         //判断如果是在个人中心我要推广页面的分享
+        if(componentId){
+            let urls =window.location.protocol+'//'+window.location.host+'/app/user?componentId=41&articleId='+id+'&invite_code='+userInfo.invite_code
+            let shareUrl = window.location.protocol+'//'+window.location.host+'/app/user/articledetail?articleId='+id+'&invite_code='+userInfo.invite_code
+            this.setState({copyUrl:urls,shareUrl:shareUrl})
+        }else {//其他情况分享的链接暂时都是新闻详情
+            if(userInfo){
+                let urls =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id+'&invite_code='+userInfo.invite_code
+                 this.setState({copyUrl:urls,shareUrl:urls})
+            }else{
+                let urls =window.location.protocol+'//'+window.location.host+'/app/newsdetail?newsId='+id
+                this.setState({copyUrl:urls,shareUrl:urls})
+            }
         }
         
     }
     render(){
         let prop = this.props
-        let {shareActive,copyUrl}=this.state
+        let {shareActive,copyUrl,shareUrl}=this.state
         return <div 
                     onMouseEnter ={()=>{this.setState({shareActive:true})}} 
                     onMouseLeave ={()=>{this.setState({shareActive:false})}}
@@ -78,7 +88,7 @@ export default class Share extends Component<ShareState> {
                     {/* <div>{window.location.protocol+'//'+window.location.host+'/app/newsdetail/?newsId='+this.props.item.id}</div> */}
                     <div className='wechat-ma'>
                         <QRCode
-                            value={copyUrl}  //value参数为生成二维码的链接
+                            value={shareUrl}  //value参数为生成二维码的链接
                             size={100} //二维码的宽高尺寸
                             fgColor="#000000"  //二维码的颜色
                         />

@@ -6,10 +6,12 @@ import 'views/user/poster.scss'
 import {promoteIndustry,promotePosterPage} from 'service/user'
 import Extend from 'views/user/component/extend/extend'
 import MoreTxt from 'views/news/component/moreTxt/moreTxt';
+import QRCode  from 'qrcode.react'
+import axios from 'axios'
+import $message from 'views/component/message'
 
 import nodataBigimg from 'public/images/user/nodataBig.png'
 import falseimg from 'public/images/user/false.png'
-import shareNumimg from 'public/images/user/shareNum.png'
 import downloadimg from 'public/images/user/download.png'
 import posterShareimg from 'public/images/user/posterShare.png'
 
@@ -76,6 +78,28 @@ export default class Article extends Component {
     })
     
   }
+  posterDownload=(id)=>{
+    axios({
+      url:'/user/promote/poster/download.do',
+      method:'post',
+      data:{id:id},
+      responseType: 'blob'
+    }).then((res)=>{
+      // let downloadUrl=URL.createObjectURL(res.data);
+      let result=res.data;
+      let url =  window.URL.createObjectURL(new Blob([result]));//处理文档流
+      // let url = URL.createObjectURL(result);
+      console.log(url)
+      // let link = document.createElement('a');
+      // link.style.display = 'none';
+      // link.href = url;
+      // // link.download = fileType;
+      // document.body.appendChild(link);
+      // link.click();
+    }).catch(error=>{
+      $message.info(error);
+  });
+  }
   componentDidMount(){
     let articleId= Number(util.getUrlParam('articleId'))
     articleId && this.setState({articleId:articleId})
@@ -117,14 +141,25 @@ export default class Article extends Component {
             {articleList.map((item,index)=>(
             <div            
               key={item.id}
-              className='poster-img fleximg'
+              className='poster-img-pre fleximg'
             >   
-              <img src={item.url} alt="poster" onError={(e) => { e.target.src = falseimg }}/>
+              <div className='poster-img fleximg'><img src={item.url} alt="poster" onError={(e) => { e.target.src = falseimg }}/></div>
               <div className='poster-img-cover'>
                 <div className='download-txt fleximg'>{item.download}人使用</div>
                 <div className='flexcc share-download'>
-                    <div className='shareimg fleximg'><img src={posterShareimg} alt="share" /></div>
-                    <div className='shareimg fleximg'><img src={downloadimg} alt="download" /></div>
+                    <div className='shareimg fleximg'><img src={posterShareimg} alt="share" />
+                      <div className='wechat-ma'>
+                        <QRCode
+                          value={window.location.protocol+'//'+window.location.host+'/app/user/posterdetail?posterId='+item.id}  //value参数为生成二维码的链接
+                          size={100} //二维码的宽高尺寸
+                          fgColor="#000000"  //二维码的颜色
+                        />
+                        <div className='wechat-ma-txt'>微信扫码分享</div>
+                        <div className='wechat-ma-blank'></div>
+                      </div>
+                    </div>
+                    <div className='downloadimg fleximg' onClick={()=>this.posterDownload(item.id)}><img src={downloadimg} alt="download" /></div>
+                    <a href={'/user/public/promote/poster/share.do?id=1'}>下载</a>
                 </div>
                 <div className='poster-title'><div>{item.title}</div> </div>
               </div>

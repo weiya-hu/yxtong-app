@@ -1,0 +1,24 @@
+.posterShareh5{
+  padding: 0.2667rem 0.4267rem 0.32rem;
+  height: 101vh;
+  overflow: scroll;
+  background: #ffffff;
+  .posterimg{
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .operate-title{
+    font-size: 0.4267rem;
+    color: #363636;
+    line-height: 0.4267rem;
+    font-weight: 600;
+    margin: 0.5333rem 0 0.32rem;
+  }
+  .operate-text{
+    font-size: 0.32rem;
+    color: #666666;
+    text-align: justify;
+    line-height: 0.5333rem;
+  }
+}

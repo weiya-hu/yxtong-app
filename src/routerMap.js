@@ -39,8 +39,12 @@ const phoneBindLogin = loadable(()=> import('views/login/component/othorLogin/ph
 const userAgreement = loadable(()=> import('views/login/userAgreement'), {
     LoadingComponent: Loading,
 })
-//个人中心-我的推广h5页面
+//个人中心-我的推广文章详情h5页面
 const ArticleDetailh5= loadable(()=> import('views/user/articleDetailh5'), {
+    LoadingComponent: Loading,
+})
+//个人中心-我的推广海报详情h5页面
+const PosterShareh5= loadable(()=> import('views/user/posterShareh5'), {
     LoadingComponent: Loading,
 })
 
@@ -60,4 +64,5 @@ export const routerMap = [
     {path: "/app/bindphone", name: "phoneBindLogin", component: phoneBindLogin},
     {path: "/app/useragreement", name: "userAgreement", component: userAgreement},
     {path: "/app/user/articledetail", name: "ArticleDetailh5", component: ArticleDetailh5},
+    {path: "/app/user/posterdetail", name: "PosterShareh5", component: PosterShareh5},
 ];

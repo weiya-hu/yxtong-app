@@ -1,106 +1,110 @@
 .share-item-pre:hover .share-item-module{display: block;}
-.share-item{
-    height: 36px;
-}
-.shareimg{
-    width: 20px;
-}
-.active-color{
-    color: #304F97;
-}
-.share-justify{
+
+.share-item-pre{
+    .share-item{
+        height: 36px;
+    }
     .shareimg{
-        width: 14px;
-        margin-right: 4px;
+        width: 20px;
     }
-}
-.wechat-ma{
-    padding: 15px;
-    width: 132px;
-    height: 150px !important;
-    background: #ffffff;
-    border: 1px solid #F4F4F4;
-    box-shadow: 0px 2px 10px 0px rgba(221,221,221,0.5);
-    position: absolute;
-    left:103px ;
-    top: -20px;
-    z-index: 5;
-    display: none;
-    .wechat-ma-txt{
-        text-align: center;
-        margin-top: 5px;
+    .active-color{
+        color: #304F97;
     }
-    .wechat-ma-blank{
-        width: 150px;
-        height: 40px;
-        position: absolute;
-        top: 0;
-        left: -78px;
-    }
-}
-.share-wechat:hover .wechat-ma{
-    display: block;
-}
-.share-item-module{
-    padding: 19px 19px 3px;
-    background: #ffffff;
-    border: 1px solid #F4F4F4;
-    box-shadow: 0px 2px 10px 0px rgba(221,221,221,0.5);
-    position: absolute;
-    left: 56px;
-    top: 0;
-    white-space: nowrap;
-    display: none;
-    z-index: 2;
-    >div{
-        margin-bottom: 16px;
-        >div{
-            height: 16px;
-            line-height: 16px;
+    .share-justify{
+        .shareimg{
+            width: 14px;
+            margin-right: 4px;
         }
     }
-    .wechartimg{
-        width: 16px;
-        margin-right: 8px;
-        
-    }
-    .angle{
-        width: 10px;
-        height: 10px;
+    .wechat-ma{
+        padding: 15px;
+        width: 132px;
+        height: 150px !important;
         background: #ffffff;
-        transform: rotate(45deg);
-        border-left: 1px solid #F4F4F4;
-        border-bottom: 1px solid #F4F4F4;
+        border: 1px solid #F4F4F4;
+        box-shadow: 0px 2px 10px 0px rgba(221,221,221,0.5);
         position: absolute;
-        left: -5px;
-        top: 20px;
+        left:103px ;
+        top: -20px;
+        z-index: 5;
+        display: none;
+        .wechat-ma-txt{
+            text-align: center;
+            margin-top: 5px;
+        }
+        .wechat-ma-blank{
+            width: 150px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            left: -78px;
+        }
     }
-    .share-item-module-opacity{
-        width: 25px;
-        height:80px;
+    .share-wechat:hover .wechat-ma{
+        display: block;
+    }
+    .share-item-module{
+        padding: 19px 19px 3px;
+        background: #ffffff;
+        border: 1px solid #F4F4F4;
+        box-shadow: 0px 2px 10px 0px rgba(221,221,221,0.5);
         position: absolute;
+        left: 56px;
         top: 0;
-        left: -22px;
-        box-shadow: none;
+        white-space: nowrap;
+        display: none;
+        z-index: 2;
+        >div{
+            margin-bottom: 16px;
+            >div{
+                height: 16px;
+                line-height: 16px;
+            }
+        }
+        .wechartimg{
+            width: 16px;
+            margin-right: 8px;
+            
+        }
+        .angle{
+            width: 10px;
+            height: 10px;
+            background: #ffffff;
+            transform: rotate(45deg);
+            border-left: 1px solid #F4F4F4;
+            border-bottom: 1px solid #F4F4F4;
+            position: absolute;
+            left: -5px;
+            top: 20px;
+        }
+        .share-item-module-opacity{
+            width: 25px;
+            height:80px;
+            position: absolute;
+            top: 0;
+            left: -22px;
+            box-shadow: none;
+        }
+    }
+    .share-item-module-justify{
+        top: 34px;
+        left: -32px;
+        .angle{
+            border-left: 1px solid #F4F4F4;
+            border-top: 1px solid #F4F4F4;
+            border-bottom: none;
+            left: 50%;
+            top: -5px;
+            transform: translateX(-50%) rotate(45deg);
+        }
+        .share-item-module-opacity{
+            width: 75px;
+            height:20px;
+            position: absolute;
+            top: -17px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     }
 }
-.share-item-module-justify{
-    top: 34px;
-    left: -32px;
-    .angle{
-        border-left: 1px solid #F4F4F4;
-        border-top: 1px solid #F4F4F4;
-        border-bottom: none;
-        left: 50%;
-        top: -5px;
-        transform: translateX(-50%) rotate(45deg);
-    }
-    .share-item-module-opacity{
-        width: 75px;
-        height:20px;
-        position: absolute;
-        top: -17px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
+
