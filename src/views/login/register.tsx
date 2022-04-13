@@ -54,7 +54,7 @@ export default class Register extends Component {
         this.setState({warnMessage:message})
         if(!message){
             if(!this.state.agree){
-                this.setState({warnMessage:'请阅读并同意《药智网用户须知》'})
+                this.setState({warnMessage:'请阅读并同意《康洲数智用户须知》'})
             }else{
                 value.acode='+'+value.acode
                 const res =await doreg({...value})
@@ -164,7 +164,7 @@ export default class Register extends Component {
                                         (<div><img src={unselectimg} alt="unchecked" /></div> )
                                     }
                                     <span>我已阅读并同意</span>
-                                    <span className='Link' onClick={()=>{window.open(window.location.protocol+'//'+window.location.host+'/app/useragreement', "_blank");}}>《药智网用户须知》</span>
+                                    <span className='Link' onClick={()=>{window.open(window.location.protocol+'//'+window.location.host+'/app/useragreement', "_blank");}}>《康洲数智用户须知》</span>
                                 </div>
                             </Form>
                         </div>

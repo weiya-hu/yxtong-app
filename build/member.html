@@ -90,7 +90,7 @@
                                 <li class="marketing">
                                     <a href="/sales.html">
                                         <span>数智营销通</span>
-                                        <span id="txt">中小企业专享</span>
+                                        <span class="txt">中小企业专享</span>
                                     </a>
                                     <div class="barchild">
                                         <div class="bar-tip"></div>
@@ -111,18 +111,16 @@
                                     </div>
                                 </li>
                                 <li><a href="javascript:void(0);"><span>数智赢效通</span>
-                                        <span id="txt">全套解决方案</span></a></li>
+                                        <span class="txt">全套解决方案</span></a></li>
                                 <li><a href="javascript:void(0);"><span>数智优销通</span>
-                                            <span>微B/C端客户专享</span></a></li>
+                                        <span class="txt">微B/C端客户专享</span></a></li>
                                 <li><a href="javascript:void(0);"><span>数智医销通</span>
-                                    <span>医 药 行 业 专 属                  </span></a></li>
-
+                                        <span class="txt">医药行业专属 </span></a></li>
                                 <div class="line"></div>
-
                                 <li><a href="/vipdata.html"><span>药 智 器 械</span>
-                                    <span>医疗器械数据服务</span></a></li>
+                                        <span class="txt">医疗器械数据服务</span></a></li>
                                 <li><a href="javascript:void(0);"><span>数智医械通</span>
-                                        <span>医疗器械数据服务</span></a></li>
+                                        <span class="txt">医疗器械数据服务</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -134,7 +132,7 @@
                         <a href="/member.html">会员中心</a>
                         <div class="navchild2">
                             <ul>
-                                <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li>
+                                <!-- <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li> -->
                                 <li><a href="/benefits.html">VIP权益</a><span>|</span></li>
                                 <li><a href="/developmenting.html">我要推广</a><span>|</span></li>
                                 <li class="user_feedback"><a href="/member.html#feedback">客户反馈</a></li>
@@ -913,7 +911,8 @@
             </div>
             <div class="form">
                 <div class="hd">我要反馈</div>
-                <form action="">
+                <form action="" target="rfFrame">
+                    <iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe>
                     <select name="" id="select">
                         <option value="0">选择反馈类型</option>
                         <option value="1">产品咨询</option>
@@ -1002,7 +1001,14 @@
             <a target="_blank" href="index.html">更新日志</a>
             <a target="_blank" href="index.html">技术支持</a>
         </div> -->
-        <div class="copyright">Copyright 2021-2023 KZSZH.COM All Rights Reserved. 备案信息：渝ICP2021012132号-2</div>
+        <div class="copyright">
+            <p>
+                Copyright 2022-2023 康洲数智(科技)科技有限公司 | 渝ICP2021012132号-2 |
+            </p>
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010802004553">
+                <p>渝公网安备 50010802004553号</p>
+            </a>
+        </div>
     </div>
 </div>
 <!-- 
@@ -1026,12 +1032,14 @@
         var val_txt = $('#feed_txt').val()
         var val_tel = $("input[type='text']").val()
 
-        if (val_tel == '' || val_type == '0' || val_txt == '') {
-            alert('请填写完整！')
+        if (val_type == '0') {
+            alert('请选择反馈类型！')
+        } else if (val_txt == '') {
+            alert('请填写反馈内容！')
         } else {
             alert('提交成功！')
-        }
 
+        }
     }
 
 

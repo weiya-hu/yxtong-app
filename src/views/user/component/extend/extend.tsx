@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Component } from 'react'
 import './extend.scss'
 import {promoteIntegral} from 'service/user'
@@ -8,12 +9,14 @@ import QRCode  from 'qrcode.react'
 import copyLinkimg from 'public/images/user/copyLink.png'
 import shareNumimg from 'public/images/user/scan.png'
 
+// const timer =null
 export default class Extend extends Component {
   state={
     current:1,
     size:5,
     integralList:[],
-    shareUrl:''
+    shareUrl:'',
+    timer:null
   }
   star=async()=>{
     const {current,size} = this.state
@@ -25,8 +28,23 @@ export default class Extend extends Component {
       // shareUrl:'https://p26.toutiaoimg.com/large/pgc-image/1d3029159cb94c79bb678fa3d5e7c8c9'
     })
   }
+  userInteg=()=>{
+    this.state.timer=setInterval(()=>{
+      const {current,size} = this.state
+      promoteIntegral({current,size}).then(({body})=>{
+        this.setState({
+          integralList:body.records,
+          current:current < body.pages ? current+1 : 1
+        })
+      })
+    },5000)
+  }
   componentDidMount(){
     this.star()
+    this.userInteg()
+  }
+  componentWillUnmount(){
+    clearInterval(this.state.timer)
   }
   render(){
     const {integralList,shareUrl} =this.state
@@ -53,7 +71,8 @@ export default class Extend extends Component {
             </div>
           </div>
         </div>
-        </div>
+        <div className='right_gray'></div>
+      </div>
       
   }
 }

@@ -281,11 +281,11 @@ export default class News extends Component{
               <div className='may-interest'>
                 <div className='may-interest-title flexb'>
                   <div className='may-interest-title-txt'>您可能感兴趣</div>
-                  <div className='flexr' onClick={this.getFavorlist}>
+                  <div className='flexr cursor' onClick={this.getFavorlist}>
                     <div className={exchangeRotate?'exchangeimg fleximg exchange-rotate':'exchangeimg fleximg'}>
                       <img src={exchangeimg} alt="exchangeimg" />
                     </div>
-                    <div className='color3'>换一换</div>
+                    <div className='color3 '>换一换</div>
                   </div>
                 </div>
                 <div className='may-interest-list flexl'>
@@ -311,7 +311,7 @@ export default class News extends Component{
                 
                 <div className='may-interest-list-ed flexl'>
                   {favorList.map((item,index)=>(
-                    <div className='may-interest-item fleximgc' key={index} onClick={()=>this.props.history.push('/app/newsauthormore?creatorId='+item.creator_id)}>
+                    item && <div className='may-interest-item fleximgc' key={index} onClick={()=>this.props.history.push('/app/newsauthormore?creatorId='+item.creator_id)}>
                       <div className='fleximg writeimg head'><img src={item.head_url || headerimg} alt="header" onError={(e) => { e.target.src = headerimg }}/></div>
                       <div className='onemore name'>{item.name || '用户'}</div>
                     </div>

@@ -79,6 +79,8 @@ export default class Article extends Component {
     
   }
   posterDownload=(id)=>{
+    let formData = new FormData();
+    formData.append('id',id);
     axios({
       url:'/user/promote/poster/download.do',
       method:'post',
@@ -90,12 +92,13 @@ export default class Article extends Component {
       let url =  window.URL.createObjectURL(new Blob([result]));//处理文档流
       // let url = URL.createObjectURL(result);
       console.log(url)
-      // let link = document.createElement('a');
-      // link.style.display = 'none';
-      // link.href = url;
-      // // link.download = fileType;
-      // document.body.appendChild(link);
-      // link.click();
+      let link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = 'https://p26.toutiaoimg.com/large/pgc-image/1d3029159cb94c79bb678fa3d5e7c8c9';
+      // link.download = fileType;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link)
     }).catch(error=>{
       $message.info(error);
   });

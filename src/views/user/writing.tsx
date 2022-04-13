@@ -39,6 +39,10 @@ class Writing extends Component{
             titleMessage:e.target.value?'':'必填项'
         })
     }
+    titleBlur=(e)=>{
+        let length = e.target.value.length
+        length<5 && message.info('标题最少5个字')
+    }
     imageEditor= (blobInfo, success, failure)=>{
         // console.log(blobInfo.base64(),blobInfo.uri())
         // console.log(blobInfo.blobUri())
@@ -52,6 +56,8 @@ class Writing extends Component{
         if(!title){
             message.info('请输入标题')
             this.setState({titleMessage:'必填项'})
+        }else if(title.length<5){
+            message.info('标题最少5个字')
         }else if(!edit){
             message.info('请编辑文章')
             this.setState({textMessage:'必填项'})
@@ -77,6 +83,8 @@ class Writing extends Component{
         if(!title){
             message.info('请输入标题')
             this.setState({titleMessage:'必填项'})
+        }else if(title.length<5){
+            message.info('标题最少5个字')
         }else if(!edit ){
             message.info('请编辑文章')
             this.setState({textMessage:'必填项'})
@@ -193,7 +201,7 @@ class Writing extends Component{
                     </div>
                     <div className='flexl'>
                         <div className='title-item flexl'>
-                            <input type="text" placeholder='请输入文章标题（5~50个字）' defaultValue={title} onChange={this.titleChange} maxLength={50} minLength={5} />
+                            <input type="text" placeholder='请输入文章标题（5~50个字）' defaultValue={title} onBlur={this.titleBlur} onChange={this.titleChange} maxLength={50} minLength={5} />
                             
                         </div>
                         {titleMessage && 
