@@ -4,12 +4,13 @@ import './writing.scss'
 import { Editor } from '@tinymce/tinymce-react'
 import AliyunOSSUpload from './component/ossImg'
 import message from 'views/component/message/index';
-import { newsPublish, newsSave } from 'service/user'
+import { newsPublish, newsSave ,uploadPolicy} from 'service/user'
 import { getEditNews } from 'service/news'
 import OSSUpload from './component/ossImgPerf'
 import { withRouter } from 'react-router-dom'
 import store from 'store';
 import { util } from 'utils/news'
+import axios from "axios";
 
 import addimg from 'public/images/user/add.png'
 import warnimg from 'public/images/warn.png'
@@ -48,32 +49,29 @@ class Writing extends Component {
 		length < 5 && message.info('标题最少5个字')
 	}
 	imageEditor = (blobInfo, success, failure) => {
-		// console.log(blobInfo.base64(),blobInfo.uri())
-		// console.log(blobInfo.blobUri())
 		const imgBlob = blobInfo.blob()
 		if (imgBlob){
 			if((imgBlob.size / 1024 / 1024) > 2){
 				failure(`图片最大不能超过2M`)
 			}else{
-				success('data:image/jpeg;base64,' + blobInfo.base64())
-				// const imgBlobUrl = URL.createObjectURL(imgBlob) // 创建URL对象，会在浏览器关闭当前页面时销毁，也可以调用URL.revokeObjectURL()销毁
-				// let {contentImgs} = this.state
-				// contentImgs.push({ // 先添加进一个数组，上传时findIndex寻找是否在数组中，这里tinymce有个机制是，只要添加了图片没有点保存也会触发upload函数，会导致contentImgs数组长度和真实内容图片数量不一致，会有一些多余的图片
-				// 	blobUrl:imgBlobUrl,
-				// 	fileObj:imgBlob,
-				// 	fileName:blobInfo.filename()
-				// })
-				// success(imgBlobUrl) // 先用本地图片当做内容图片，用户提交时再调用upImages上传并替换img标签的src为线上地址
+				const imgBlobUrl = URL.createObjectURL(imgBlob) // 创建URL对象，会在浏览器关闭当前页面时销毁，也可以调用URL.revokeObjectURL()销毁
+				let {contentImgs} = this.state
+				contentImgs.push({ // 先添加进一个数组，上传时findIndex寻找是否在数组中，这里tinymce有个机制是，只要添加了图片没有点保存也会触发upload函数，会导致contentImgs数组长度和真实内容图片数量不一致，会有一些多余的图片
+					blobUrl:imgBlobUrl,
+					fileObj:imgBlob,
+					fileName:blobInfo.filename()
+				})
+				this.setState({contentImgs:contentImgs})
+				success(imgBlobUrl) // 先用本地图片当做内容图片，用户提交时再调用upImages上传并替换img标签的src为线上地址
 			}
 		}
-		// if (blobInfo.blob()) {
-		// 	success('data:image/jpeg;base64,' + blobInfo.base64())
-		// }
 	}
 	//预览文章
 	preView = () => {
 		const { title, edit, coverImgurl, sendCoverImgurl } = this.state
-		if (!title) {
+		if(!coverImgurl){
+			message.info('请添加封面')
+		}else if (!title) {
 			message.info('请输入标题')
 			this.setState({ titleMessage: '必填项' })
 		} else if (title.length < 5) {
@@ -81,8 +79,7 @@ class Writing extends Component {
 		} else if (!edit) {
 			message.info('请编辑文章')
 			this.setState({ textMessage: '必填项' })
-		}
-		else {
+		}else {
 			let item = {
 				commented: 0,
 				content: edit,
@@ -100,7 +97,9 @@ class Writing extends Component {
 	//发布文章和保存文章
 	publishNews = async (isPublish) => {
 		const { title, edit, sendCoverImgurl, coverImgurl } = this.state
-		if (!title) {
+		if(!coverImgurl){
+			message.info('请添加封面')
+		}else if (!title) {
 			message.info('请输入标题')
 			this.setState({ titleMessage: '必填项' })
 		} else if (title.length < 5) {
@@ -113,13 +112,13 @@ class Writing extends Component {
 		}
 	}
 	publishNewsSure = async(url,isup) => {
-		console.log(url)
-		this.setState({sendCoverImgurl:url,isupload:isup})
+		this.setState({isupload:isup})
+		const editRes = await this.upImages()
 		let id = util.getUrlParam('editNewsId')
-		const { title, edit,isPublish} = this.state
+		const { title,isPublish,sendCoverImgurl} = this.state
 		let item = {
-			content: edit,
-			thumb_url: url,
+			content: editRes,
+			thumb_url: url || sendCoverImgurl,
 			title: title,
 			id: id ? id : null
 		}
@@ -136,8 +135,90 @@ class Writing extends Component {
 				sendCoverImgurl: ''
 			})
 			this.props.history.push('/app/user?componentId=72')
-
 		}
+	}
+	upImages = async ()=>{
+		// const content = props.modelValue
+		const content = this.state.edit
+		const {contentImgs} =this.state
+		const imgReg = /<img [^>]*src=['"]blob:([^'"]+)[^>]*>/gi;
+		const srcReg = /src=[\'\"]?(blob:[^\'\"]*)[\'\"]?/gi
+		const imgArr = content.match(imgReg)
+		let t = content
+		if(imgArr){
+			let i = 0
+			const upFn = async (imgItem:string)=>{
+				let url = ''
+				let oneImgBlobUrl = ''
+				imgItem.replace(srcReg,function(match: string, capture: any){
+					//match匹配的子串 capture 代表第n个括号匹配的字符串 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+					oneImgBlobUrl = capture
+					return match
+				})
+				const j = contentImgs.findIndex(v=>v.blobUrl == oneImgBlobUrl)
+				if(j > -1){
+					const res = await uploadPolicy({site:'news'})
+					if(res.status == 1){
+						const fileObj = contentImgs[j]
+						const exname = fileObj.fileName.substring(fileObj.fileName.lastIndexOf("."))
+						const fd = new FormData();
+						const upData = {
+							key: res.body.dir + '/' + res.body.uuid + exname,
+							OSSAccessKeyId: res.body.accessid,
+							success_action_status: 200,
+							policy: res.body.policy,
+							signature: res.body.signature,
+						};
+						for (const [key, value] of Object.entries(upData)) {
+							fd.append(key, value as string);
+						}
+						fd.append("file", fileObj.fileObj);
+						const response = await axios({
+							url: res.body.host,
+							method: 'post',
+							headers: {
+								"Content-Type": "multipart/form-data;",
+							},
+							data: fd,
+						})
+						if(response.status == 200){
+							url = 'src="' + res.body.host + '/' + res.body.dir + '/' + res.body.uuid + exname + '"'
+						}else{
+							url = 'scr=""'
+						}
+					}else{
+						url = 'scr=""'
+					}
+				}else{
+					url = 'scr=""'
+				}
+				const newImg = imgItem.replace(srcReg,url) // 替换当前blob地址为上传后地址
+				t = t.replace(imgItem,newImg) // 整个内容中替换当前这张图片
+				
+				if(i < (imgArr.length - 1)){
+					i++
+					if(imgArr[i]){
+						await upFn(imgArr[i])
+					}
+				}
+			}
+			if(imgArr[i]){
+				await upFn(imgArr[i])
+			}
+			// console.log(t,123);
+			return t
+			// emit('update:modelValue',t)
+
+			// editvalue.value = t
+		}else {
+			return t
+		}
+	}
+	clearImgs = ()=>{
+		const {contentImgs} = this.state
+		contentImgs.forEach(v=>{
+			URL.revokeObjectURL(v.blobUrl)
+		})
 	}
 	componentDidMount = async () => {
 		//如果路径中带有editNewsId表示是编辑功能，不是从0创作功能，要获取编辑的文章内容再赋值
@@ -163,6 +244,9 @@ class Writing extends Component {
 		}
 
 
+	}
+	componentWillUnmount(){
+		this.clearImgs()
 	}
 	getObjectURL = (file) => {
 		var url = null;

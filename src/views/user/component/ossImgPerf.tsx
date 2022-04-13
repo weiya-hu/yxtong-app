@@ -34,6 +34,7 @@ export default class OSSUpload extends React.Component {
 		if(props.isupload){
 			let flist =this.state.fileList
 			flist.length && this.uploadFile() 
+			!flist.length && this.props.success(null,null)
 		}
 	}
 	//采用手动上传的方式,不立即上传
@@ -54,6 +55,7 @@ export default class OSSUpload extends React.Component {
 	//上传图片
 	uploadFile = () => {
 		let fileList = this.state.fileList
+		
 		uploadPolicy({site:'news'}).then(({ body }) => {
 			const photo = fileList[0];  // 获取图片对象
 			const suffix = photo.name.slice(photo.name.lastIndexOf('.'));
