@@ -94,7 +94,6 @@ class MyFollow extends Component {
                 this.getCollectionFirst((contenid || contenid ==0)?contenid:0)
                 window.scrollTo (0,0);
             } 
-            
         });
     }
     componentWillUnmount(): void {
@@ -139,7 +138,7 @@ class MyFollow extends Component {
                     </div>}
                     {(collectList.length>0 && topTitleActive == 1) && <div className='myCollect-star'>
                         {collectList.map((item,index)=>(
-                        <div 
+                        item && <div 
                             key={index}
                             className='myCollect-item flexcc'
                         >   

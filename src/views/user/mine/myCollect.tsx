@@ -86,7 +86,7 @@ class MyCollect extends Component {
         
     }
     componentDidMount(){
-        this.getCollection()
+        this.getCollectionFirst()
         window.addEventListener('scroll', this.handleScroll, false)
     }
     componentWillUnmount(): void {

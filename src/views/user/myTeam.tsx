@@ -72,7 +72,9 @@ export default class MyTeam extends Component {
       type: id+1 ||contentIndex+1,
       memberId: member ||memberId
     }
+    this.setState({loading:true})
     const {status,body} = await teamLists(data)
+    this.setState({loading:false})
     status && this.setState({
       teamList:body.records,
       hasMore:body.total>size,
@@ -211,7 +213,7 @@ export default class MyTeam extends Component {
               </div>  
           </div>}
           {teamList.length > 0 &&<MoreTxt hasMore={hasMore}/>}
-      </Spin>
+        </Spin>
       </div>
     </div>
   }

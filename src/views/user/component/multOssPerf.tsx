@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { Upload,Spin} from 'antd';
+import { Upload,Spin,message} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import  React  from 'react';
 import {uploadPolicy} from 'service/user'
@@ -68,12 +68,13 @@ export default class OSSUpload extends React.Component{
     }
     //采用手动上传的方式,不立即上传
     beforeUpload = (file,fileList) => {
-        let flag 
+        let flag ,maxSize = this.props.maxSize
         fileList.forEach(element => {
-            if((element.size/ 1024 / 1024) >=2 ){
+            if((element.size/ 1024 / 1024) >maxSize ){
                 console.log('dale')
                 flag =false
-                $message.info('上传图片大小不能大于'+this.props.maxSize+'M')
+                // message.warning('上传图片大小不能大于'+this.props.maxSize+'M')
+                $message.info('上传图片大小不能大于'+maxSize+'M')
                 return false;
             }else{
                 flag =true
