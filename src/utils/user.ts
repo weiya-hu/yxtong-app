@@ -51,7 +51,7 @@ export const util ={
     },
     validate_passwordRegister:(val)=>{
         if(val){
-            let pattern={vali: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/ }
+            let pattern={vali: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z,.!@#$%^&*()~/?|\\]{6,18}$/ }
             if(!pattern.vali.test(val)){
                 return '密码长度在6~18之间,不能只是数字或字母'
             }

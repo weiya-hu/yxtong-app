@@ -50,7 +50,7 @@ export const userComponent=[
     ]},
     {name:'我的推广',id:4,lv:1,show:true,children:[
         {name:'图文',id:1,lv:2,show:true,icon:articleimg,icon_a:articleaimg,component:Article},
-        // {name:'海报',id:2,lv:2,show:true,icon:posterimg,icon_a:posteraimg,component:Poster},
+        {name:'海报',id:2,lv:2,show:true,icon:posterimg,icon_a:posteraimg,component:Poster},
         // {name:'视频',id:3,lv:2,show:true,icon:videoimg,icon_a:videoaimg,component:Video}
     ]},
     {name:'我的收益',id:5,lv:1,show:true,children:[
@@ -62,6 +62,6 @@ export const userComponent=[
     {name:'创作中心',id:7,lv:1,show:true,children:[
         {name:'发布文章',id:1,lv:2,show:true,icon:publishimg,icon_a:publishaimg,component:Writing},
         {name:'内容管理',id:2,lv:2,show:true,icon:contentimg,icon_a:contentaimg,component:articleList},
-        {name:'内容管理',id:3,lv:2,show:false,component:articleDetail}//内容详情
+        // {name:'内容管理',id:3,lv:2,show:false,component:articleDetail}//内容详情
     ]},
 ]

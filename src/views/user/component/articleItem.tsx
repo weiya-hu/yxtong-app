@@ -47,7 +47,8 @@ class ArticleItem extends Component<ArticleItemState> {
       this.props.history.push('/app/user?componentId=71&editNewsId='+id)
     }
     toNewsDetail=(id)=>{
-      this.props.history.push('/app/user?componentId=73&readNewsId='+id);
+      // this.props.history.push('/app/user?componentId=72&readNewsId='+id);
+      window.open('/app/user?componentId=72&readNewsId='+id,"_blank")
     }
     //删除按钮
     deleteNews=(id)=>{
@@ -110,16 +111,16 @@ class ArticleItem extends Component<ArticleItemState> {
             </div>
             <div className='flexb article-bottom'>
               <div className='article-bottom-detail flexl'>
-                {item.state === 1 && <div className='draft fleximg'>草稿</div>}
-                {item.state === 2 && <div className='review fleximg'>审核中</div>}
-                {item.state === 3 && <div className='over fleximg'>已通过</div>}
-                {item.state === 4 && <div className='refuse fleximg'>已驳回</div>}
+                {item.state === 0 && <div className='draft fleximg'>草稿</div>}
+                {item.state === 1 && <div className='review fleximg'>审核中</div>}
+                {(item.state === 3 || item.state === 4) && <div className='over fleximg'>已通过</div>}
+                {item.state === 2 && <div className='refuse fleximg'>已驳回</div>}
                 <span>{item.time}</span>
                 <span className='article-bottom-read'>阅读 {item.readed}</span>
                 <span>评论 {item.commented}</span>
               </div>
               <div className='flexr'>
-                {item.state === 4 && 
+                {item.state === 2 && 
                   <div className='fleximg article-item-button' onClick={(e)=>{this.failReason();e.stopPropagation()}}>
                     <div className='editimg fleximg'><img src={resonimg} alt="deleteButton" /></div>
                     <div>原因</div>
@@ -129,24 +130,24 @@ class ArticleItem extends Component<ArticleItemState> {
                   <div className='editimg fleximg'><img src={deleteimg} alt="deleteButton" /></div>
                   <div>删除</div>
                 </div>
-                {(item.state === 4 || item.state === 1) &&
+                {(item.state === 2 || item.state === 0) &&
                   <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
                     <div className='editimg fleximg'><img src={editimg} alt="editButton" /></div>
                     <div>编辑</div>
                   </div>
                 }
-                {(item.state === 1) &&
+                {(item.state === 0) &&
                   <div className='fleximg article-item-button' onClick={(e)=>{this.publishNews();e.stopPropagation();}}>
                     <div className='editimg fleximg'><img src={submitimg} alt="editButton" /></div>
                     <div>提交</div>
                   </div>
                 }
-                {(item.state === 3) &&
+               ` {/* {(item.state === 3 || item.state === 4) &&
                   <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
                     <div className='editimg fleximg'><img src={dataimg} alt="editButton" /></div>
                     <div>数据</div>
                   </div>
-                }
+                }` */}
               </div>
             </div>
           </div>

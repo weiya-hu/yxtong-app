@@ -6,7 +6,7 @@ import downselectimg from 'public/images/downselect.png'
 import openimg from 'public/images/open.png'
 import closeimg from 'public/images/close.png'
 import { util } from 'utils/user'
-import {sendSms,sendSmsreg,captcha} from 'service/login'
+import {sendSms,sendSmsreg,captcha,sendResetsms} from 'service/login'
 
 import message from 'views/component/message/index'
 
@@ -69,7 +69,7 @@ export default class InputComponent extends Component<any> {
                     mobile:mobileValue
                 }
 
-                const res =  type==='register'?await sendSmsreg(data): await sendSms(data)
+                const res =  type==='register'?await sendSmsreg(data):type==='reset'?await sendResetsms(data) : await sendSms(data)
                 if(res.status){
                     message.info(res.message)
                 }

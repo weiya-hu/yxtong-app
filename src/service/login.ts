@@ -44,3 +44,17 @@ export const wechatLink =(data):Promise<API.IResult>=>{
     return  get('login/wechat/qrinfo.get',data)
 }
 
+//重置密码发送短信
+export const sendResetsms =(data):Promise<API.IResult>=>{
+    return  post('login/resetsms/send.do',data)
+}
+
+//重置密码短信验证
+export const checkResetsms =(data):Promise<API.IResult>=>{
+    return  post('login/resetsms/check.do',data)
+}
+
+//重置密码
+export const resetpass =(data):Promise<API.IResult>=>{
+    return  post('login/resetpass/modify.do',data)
+}

@@ -1,12 +1,12 @@
 //@ts-nocheck
 import { Component } from 'react'
-import {util} from 'utils/news'
+import { util } from 'utils/news'
 import ArticleDetail from './articleDetail'
 import 'views/user/poster.scss'
-import {promoteIndustry,promotePosterPage} from 'service/user'
+import { promoteIndustry, promotePosterPage } from 'service/user'
 import Extend from 'views/user/component/extend/extend'
 import MoreTxt from 'views/news/component/moreTxt/moreTxt';
-import QRCode  from 'qrcode.react'
+import QRCode from 'qrcode.react'
 import axios from 'axios'
 import $message from 'views/component/message'
 
@@ -16,107 +16,103 @@ import downloadimg from 'public/images/user/download.png'
 import posterShareimg from 'public/images/user/posterShare.png'
 
 export default class Article extends Component {
-  state={
-    articleId:null,//文章详情页面的id
-    IndustryList:[],
-    IndustryActive:0,
-    current:1,
-    size:10,
-    articleList:[],
-    hasMore:true
+  state = {
+    articleId: null,//文章详情页面的id
+    IndustryList: [],
+    IndustryActive: 0,
+    current: 1,
+    size: 10,
+    articleList: [],
+    hasMore: true
   }
-  star=async()=>{
+  star = async () => {
     const promoteIndustryRes = await promoteIndustry();
-    let list=[{name: "全部", id: null}]
-    promoteIndustryRes.status&& this.setState({
-      IndustryList:list.concat(promoteIndustryRes.body),
+    let list = [{ name: "全部", id: null }]
+    promoteIndustryRes.status && this.setState({
+      IndustryList: list.concat(promoteIndustryRes.body),
     })
     this.firstArticleList()
   }
-  loadMoreData=()=>{
+  loadMoreData = () => {
     this.getArticleList()
   }
   // 页面滚动
   handleScroll = () => {
-    const {hasMore} = this.state;
-    if(!hasMore){
+    const { hasMore } = this.state;
+    if (!hasMore) {
       return;
     }
-    if(util.getIsTOBottom() < 10){
-    // 解除绑定
-    window.removeEventListener('scroll', this.handleScroll ,false);
-    // 在这里发送请求
-    this.loadMoreData()
-    // 并在请求到数据后重新开启监听
-    setTimeout(()=>window.addEventListener('scroll', this.handleScroll, false), 300)
+    if (util.getIsTOBottom() < 10) {
+      // 解除绑定
+      window.removeEventListener('scroll', this.handleScroll, false);
+      // 在这里发送请求
+      this.loadMoreData()
+      // 并在请求到数据后重新开启监听
+      setTimeout(() => window.addEventListener('scroll', this.handleScroll, false), 300)
     }
   }
-  firstArticleList=async(id ?:string)=>{
-    const {size} = this.state
-    const {status,body} = await promotePosterPage({current:1,size,promoteIndustryId:id || null});
-    status&& this.setState({
-      articleList:body.records,
-      hasMore:body.total>size,
-      current:2,
-      total:body.total
+  firstArticleList = async (id?: string) => {
+    const { size } = this.state
+    const { status, body } = await promotePosterPage({ current: 1, size, promoteIndustryId: id || null });
+    status && this.setState({
+      articleList: body.records,
+      hasMore: body.total > size,
+      current: 2,
+      total: body.total
     })
   }
-  getArticleList=async()=>{
-    const {size,current,IndustryActive,IndustryList,articleList} = this.state
-    const {status,body} = await promotePosterPage({current,size,promoteIndustryId:IndustryList[IndustryActive].id});
-    status&& this.setState({
-      articleList:articleList.concat(body.records) ,
-      hasMore:body.total>current*size,
-      current:current+1,
-      total:body.total
+  getArticleList = async () => {
+    const { size, current, IndustryActive, IndustryList, articleList } = this.state
+    const { status, body } = await promotePosterPage({ current, size, promoteIndustryId: IndustryList[IndustryActive].id });
+    status && this.setState({
+      articleList: articleList.concat(body.records),
+      hasMore: body.total > current * size,
+      current: current + 1,
+      total: body.total
     })
   }
-  articleTypeChange=(item,index)=>{
+  articleTypeChange = (item, index) => {
     this.firstArticleList(item.id)
     this.setState({
-      IndustryActive:index
+      IndustryActive: index
     })
-    
+
   }
-  posterDownload=(id)=>{
+  posterDownload = (item) => {
     let formData = new FormData();
-    formData.append('id',id);
+    formData.append('id', item.id);
     axios({
-      url:'/user/promote/poster/download.do',
-      method:'post',
-      data:{id:id},
+      url: '/user/promote/poster/download.do',
+      method: 'post',
+      data: { id: item.id },
       responseType: 'blob'
-    }).then((res)=>{
-      // let downloadUrl=URL.createObjectURL(res.data);
-      let result=res.data;
-      let url =  window.URL.createObjectURL(new Blob([result]));//处理文档流
-      // let url = URL.createObjectURL(result);
-      console.log(url)
+    }).then((res) => {
+      let blob = new Blob([res.data]);
+      let url = URL.createObjectURL(blob);//处理文档流
       let link = document.createElement('a');
       link.style.display = 'none';
-      link.href = 'https://p26.toutiaoimg.com/large/pgc-image/1d3029159cb94c79bb678fa3d5e7c8c9';
-      // link.download = fileType;
-      document.body.appendChild(link);
+      link.href = url
+      link.download = item.title + '.png';
       link.click();
-      document.body.removeChild(link)
-    }).catch(error=>{
+      URL.revokeObjectURL(url);
+    }).catch(error => {
       $message.info(error);
-  });
+    });
   }
-  componentDidMount(){
-    let articleId= Number(util.getUrlParam('articleId'))
-    articleId && this.setState({articleId:articleId})
+  componentDidMount() {
+    let articleId = Number(util.getUrlParam('articleId'))
+    articleId && this.setState({ articleId: articleId })
     this.star()
     window.addEventListener('scroll', this.handleScroll, false)
   }
   componentWillUnmount(): void {
     window.removeEventListener('scroll', this.handleScroll)
-    this.setState = (state,callback)=>{
+    this.setState = (state, callback) => {
       return;
     }
   }
-  render(){
-    const {articleId,IndustryList,IndustryActive,hasMore,articleList} =this.state
+  render() {
+    const { articleId, IndustryList, IndustryActive, hasMore, articleList } = this.state
     return <div id='article'>
       {articleId && <div>
         <ArticleDetail />
@@ -129,31 +125,31 @@ export default class Article extends Component {
               <div className='article-industry-type'>
                 <div className='article-industry-type-txt'>行业分类</div>
                 <div className='flexl'>
-                  {IndustryList.map((item,index)=><div 
+                  {IndustryList.map((item, index) => <div
                     key={item.id}
-                    onClick={()=>this.articleTypeChange(item,index)}
-                    className={IndustryActive == index ?'article-industry-type-item article-industry-type-item-a fleximg':'article-industry-type-item fleximg'}
-                  >{item.name}</div> )}
+                    onClick={() => this.articleTypeChange(item, index)}
+                    className={IndustryActive == index ? 'article-industry-type-item article-industry-type-item-a fleximg' : 'article-industry-type-item fleximg'}
+                  >{item.name}</div>)}
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div>
-          {articleList.length>0 && <div className='poster-pre'>
-            {articleList.map((item,index)=>(
-            <div            
-              key={item.id}
-              className='poster-img-pre fleximg'
-            >   
-              <div className='poster-img fleximg'><img src={item.url} alt="poster" onError={(e) => { e.target.src = falseimg }}/></div>
-              <div className='poster-img-cover'>
-                <div className='download-txt fleximg'>{item.download}人使用</div>
-                <div className='flexcc share-download'>
+          {articleList.length > 0 && <div className='poster-pre'>
+            {articleList.map((item, index) => (
+              <div
+                key={item.id}
+                className='poster-img-pre fleximg'
+              >
+                <div className='poster-img fleximg'><img src={item.url} alt="poster" onError={(e) => { e.target.src = falseimg }} /></div>
+                <div className='poster-img-cover'>
+                  <div className='download-txt fleximg'>{item.download}人使用</div>
+                  <div className='flexcc share-download'>
                     <div className='shareimg fleximg'><img src={posterShareimg} alt="share" />
                       <div className='wechat-ma'>
                         <QRCode
-                          value={window.location.protocol+'//'+window.location.host+'/app/user/posterdetail?posterId='+item.id}  //value参数为生成二维码的链接
+                          value={window.location.protocol + '//' + window.location.host + '/app/user/posterdetail?posterId=' + item.id}  //value参数为生成二维码的链接
                           size={100} //二维码的宽高尺寸
                           fgColor="#000000"  //二维码的颜色
                         />
@@ -161,12 +157,11 @@ export default class Article extends Component {
                         <div className='wechat-ma-blank'></div>
                       </div>
                     </div>
-                    <div className='downloadimg fleximg' onClick={()=>this.posterDownload(item.id)}><img src={downloadimg} alt="download" /></div>
-                    <a href={'/user/public/promote/poster/share.do?id=1'}>下载</a>
+                    <div className='downloadimg fleximg' onClick={() => this.posterDownload(item)}><img src={downloadimg} alt="download" /></div>
+                  </div>
+                  <div className='poster-title'><div>{item.title}</div> </div>
                 </div>
-                <div className='poster-title'><div>{item.title}</div> </div>
-              </div>
-            </div>))}
+              </div>))}
           </div>}
           {articleList.length === 0 && <div className='myCollect-nodata fleximg'>
             <div className='nodataBigimg fleximg'>
@@ -174,11 +169,11 @@ export default class Article extends Component {
               <div className='myCollect-nodata-txt'>暂无更多数据</div>
             </div>
           </div>}
-          {articleList.length > 0 && <MoreTxt hasMore={hasMore}/>}
+          {articleList.length > 0 && <MoreTxt hasMore={hasMore} />}
         </div>
       </div>
       }
     </div>
   }
-    
+
 }

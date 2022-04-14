@@ -152,6 +152,10 @@ class User extends Component {
         //关注页面关注按钮触发用户信息的关注数改变
         let follow = util.getUrlParam('follow')
         follow && this.getNewsCreationAuthor()
+        
+        // let id = util.getUrlParam('componentId');
+        // (id == 41 || id == 72) && location.reload();
+        // (id == 41 || id == 72) && this.forceUpdate();
       });
     }
 

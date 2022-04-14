@@ -5,6 +5,7 @@ import {promoteIntegral} from 'service/user'
 import {util} from 'utils/news'
 import store from 'store'
 import QRCode  from 'qrcode.react'
+import { Carousel} from 'antd';
 
 import copyLinkimg from 'public/images/user/copyLink.png'
 import shareNumimg from 'public/images/user/scan.png'
@@ -13,7 +14,7 @@ import shareNumimg from 'public/images/user/scan.png'
 export default class Extend extends Component {
   state={
     current:1,
-    size:5,
+    size:12,
     integralList:[],
     shareUrl:'',
     timer:null
@@ -25,7 +26,6 @@ export default class Extend extends Component {
     status && this.setState({
       integralList:body.records,
       shareUrl:window.location.protocol+'//'+window.location.host+'/app/login?invite_code='+userInfo.invite_code
-      // shareUrl:'https://p26.toutiaoimg.com/large/pgc-image/1d3029159cb94c79bb678fa3d5e7c8c9'
     })
   }
   userInteg=()=>{
@@ -34,10 +34,10 @@ export default class Extend extends Component {
       promoteIntegral({current,size}).then(({body})=>{
         this.setState({
           integralList:body.records,
-          current:current < body.pages ? current+1 : 1
+          current:current < body.pages-1 ? current+1 : 1
         })
       })
-    },5000)
+    },12000)
   }
   componentDidMount(){
     this.star()
@@ -49,8 +49,18 @@ export default class Extend extends Component {
   render(){
     const {integralList,shareUrl} =this.state
     return  <div className='top-blue'>
-        <div className='user-score flexb'>
-          {integralList.map((item,index)=><div key={index}>用户{item.name},获得{item.value}积分</div> )}
+        <div>
+          <Carousel dotPosition='left' autoplay={true} dots={false}>
+            <div className='user-score flexb'>
+              {integralList.slice(0,4).map((item,index)=><div key={index}>用户{item.name},获得{item.value}积分</div> )}
+            </div>
+            <div className='user-score flexb'>
+              {integralList.slice(4,8).map((item,index)=><div key={index}>用户{item.name},获得{item.value}积分</div> )}
+            </div>
+            <div className='user-score flexb'>
+              {integralList.slice(8).map((item,index)=><div key={index}>用户{item.name},获得{item.value}积分</div> )}
+            </div>
+          </Carousel>
         </div>
         <div className='top-share-title'>分享好友得奖励</div>
         <div className='top-share-txt'>点击复制链接/扫码分享 --- 发送微信好友或朋友圈 --- 用户通过链接完成会员注册 --- 推广成功，获得积分奖励</div>
