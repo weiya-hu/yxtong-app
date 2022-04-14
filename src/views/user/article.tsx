@@ -1,7 +1,6 @@
 //@ts-nocheck
 import { Component } from 'react'
 import {util} from 'utils/news'
-import ArticleDetail from './articleDetail'
 import 'views/user/article.scss'
 import {promoteIndustry,promoteArticlePage} from 'service/user'
 import Extend from 'views/user/component/extend/extend'
@@ -16,7 +15,6 @@ import readimg from 'public/images/user/read.png'
 
 export default class Article extends Component {
   state={
-    articleId:null,//文章详情页面的id
     IndustryList:[],
     IndustryActive:0,
     current:1,
@@ -78,8 +76,6 @@ export default class Article extends Component {
     
   }
   componentDidMount(){
-    let articleId= Number(util.getUrlParam('articleId'))
-    articleId && this.setState({articleId:articleId})
     this.star()
     window.addEventListener('scroll', this.handleScroll, false)
   }
@@ -90,12 +86,9 @@ export default class Article extends Component {
     }
   }
   render(){
-    const {articleId,IndustryList,IndustryActive,hasMore,articleList} =this.state
+    const {IndustryList,IndustryActive,hasMore,articleList} =this.state
     return <div id='article'>
-      {articleId && <div>
-        <ArticleDetail />
-      </div>}
-      {!articleId && <div className='article-content'>
+      <div className='article-content'>
         <div className='extend-top-item'>
           <div className='width position'>
             <div className='article-top'>
@@ -119,7 +112,7 @@ export default class Article extends Component {
             <div            
               key={item.id}
               className='myCollect-news flexb'
-              onClick={()=>window.open('/app/user?componentId=41&articleId='+item.id,"_blank")}
+              onClick={()=>window.open('/app/user?componentId=44&articleId='+item.id,"_blank")}
             >   
               <div className='thumbimg fleximg'><img src={item.thumb_url || falseimg} alt="thumb_url" onError={(e) => { e.target.src = falseimg }}/></div>
               <div className='myCollect-news-content flexcbl'>
@@ -152,7 +145,6 @@ export default class Article extends Component {
           {articleList.length > 0 && <MoreTxt hasMore={hasMore}/>}
         </div>
       </div>
-      }
     </div>
   }
     

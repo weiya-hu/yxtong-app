@@ -65,7 +65,7 @@ class MyScore extends Component<any> {
                         
                         <div className='todayscorepre fleximg'>
                             <span className='bold'>我的积分：</span>
-                            <span className='todayscore bold'>{userInfo.accumulat}</span>
+                            <span className='todayscore bold'>{todayScore>=0?userInfo.accumulat+todayScore:userInfo.accumulat}</span>
                             {/* <span className='scoremoney'>约{userInfo.balance}元</span> */}
                         </div>
                         

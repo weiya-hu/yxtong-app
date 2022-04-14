@@ -35,6 +35,7 @@ class User extends Component {
         loginFlag:false,
         authorNewsInfo:{},//用户新闻信息
         opens:[],//当前左导航是否打开的数组
+        asideActivefather:0,//侧边栏active的id,如果是隐藏的路由，侧边栏高亮的是与当前异常的father属性值相同的id，比如图文详情则图文高亮
     }
     exitloginpre=(e)=>{
       e.stopPropagation()
@@ -94,8 +95,14 @@ class User extends Component {
     }
     //获取渲染的组件
     findComponent=(arr,id,componentId)=>{
-      let component = arr.find(m=>m.id == id)
+      let component = arr.find(m=>m.id == id);
       return component.children ? this.findComponent(component.children,componentId[component.lv],componentId) : component.component
+    }
+    //获取左侧高亮的id
+    findComponentid=(arr,id,componentId)=>{
+      console.log(arr,id,componentId)
+      let component = arr.find(m=>m.id == id);
+      component.children ? this.findComponentid(component.children,componentId[component.lv],componentId) :this.setState({asideActivefather:component.father || 0});
     }
     //根据URL传的值切换组件
     getComponent=(navActiveIndex,asideActive,asideSonActive)=>{
@@ -104,9 +111,8 @@ class User extends Component {
     }
     //检查路径中的componentId是否合法
     checkComponentId=(arr,id,componentId)=>{
-      let component=arr.find(m=>m.id == id)
-      (!component) && this.props.history.push('/app/user?componentId=111')
-      component.children && this.checkComponentId(component.children,componentId[component.lv],componentId)
+      let component=arr.find(m=>m.id == id);
+      return component ? (component.children && this.checkComponentId(component.children,componentId[component.lv],componentId)) :'false'
     }
     //获取用户关注粉丝信息
     getNewsCreationAuthor=async()=>{
@@ -120,25 +126,14 @@ class User extends Component {
     componentDidMount=()=>{
       document.title = '康州数智-个人中心'
       this.getNewsCreationAuthor()
-      let components=util.getUrlParam('componentId'),componentId=[]
-      components && (componentId=components.split(''))
-      // componentId[0] && this.checkComponentId(userComponent,componentId[0],componentId)
+      let components=util.getUrlParam('componentId'),componentId=[],iscontinue
+      components && (componentId=components.split(''));
+      componentId[0] && (iscontinue=this.checkComponentId(userComponent,componentId[0],componentId));
+      console.log(iscontinue)
       //根据页面路径显示相应的组件
-      let item=this.getItem(userComponent,componentId[0] || 1),opens=[]
-      item.children.map((item)=>{opens.push(true)})
-      this.setState({
-        navActiveIndex:componentId[0] || 1,//路径里面没有值就默认1
-        asideActive:componentId[1] || 1,//路径里面没有值就默认1
-        asideSonActive:componentId[2] || 1,
-        isArticleDetail:util.getUrlParam('readNewsId'),
-        opens:opens
-      })
-      this.getUserInfo()
-      //监听路由变化切换组件显示
-      UNLISTEN = this.props.history.listen(route => { 
-        let components=util.getUrlParam('componentId'),componentId=[]
-        components && (componentId=components.split(''))
-        // componentId[0] && this.checkComponentId(userComponent,componentId[0],componentId)
+      if(iscontinue === 'false'){
+        this.props.history.push('/app/user?componentId=111')
+      }else{
         let item=this.getItem(userComponent,componentId[0] || 1),opens=[]
         item.children.map((item)=>{opens.push(true)})
         this.setState({
@@ -148,14 +143,27 @@ class User extends Component {
           isArticleDetail:util.getUrlParam('readNewsId'),
           opens:opens
         })
-
+        this.getUserInfo()
+        this.findComponentid(userComponent,componentId[0] || 1,[componentId[0] || 1,componentId[1] || 1,componentId[2] || 1])
+      }
+      
+      //监听路由变化切换组件显示
+      UNLISTEN = this.props.history.listen(route => { 
+        let components=util.getUrlParam('componentId'),componentId=[]
+        components && (componentId=components.split(''))
+        let item=this.getItem(userComponent,componentId[0] || 1),opens=[]
+        item.children.map((item)=>{opens.push(true)})
+        this.setState({
+          navActiveIndex:componentId[0] || 1,//路径里面没有值就默认1
+          asideActive:componentId[1] || 1,//路径里面没有值就默认1
+          asideSonActive:componentId[2] || 1,
+          isArticleDetail:util.getUrlParam('readNewsId'),
+          opens:opens
+        })
+        this.findComponentid(userComponent,componentId[0] || 1,[componentId[0] || 1,componentId[1] || 1,componentId[2] || 1])
         //关注页面关注按钮触发用户信息的关注数改变
         let follow = util.getUrlParam('follow')
         follow && this.getNewsCreationAuthor()
-        
-        // let id = util.getUrlParam('componentId');
-        // (id == 41 || id == 72) && location.reload();
-        // (id == 41 || id == 72) && this.forceUpdate();
       });
     }
 
@@ -163,7 +171,7 @@ class User extends Component {
       UNLISTEN && UNLISTEN(); // 监听路由变化执行解绑
     }
     render(){
-        let {navActiveIndex,exitActive,isArticleDetail,userInfo,loginFlag,asideActive,asideSonActive,authorNewsInfo,opens} = this.state
+        let {navActiveIndex,exitActive,isArticleDetail,userInfo,loginFlag,asideActive,asideSonActive,authorNewsInfo,opens,asideActivefather} = this.state
         if(loginFlag){
           return <Redirect to={'/app/login?url='+encodeURIComponent(window.location.pathname + window.location.search)}/>;
         }
@@ -252,8 +260,8 @@ class User extends Component {
                         className='flexl left-nav-item'
                         onClick={()=>this.asideNavChange(item,index)}
                       >
-                        <div className='iconimg'> <img src={asideActive == item.id?item.icon_a:item.icon} alt="icon" /> </div>
-                        <div className={asideActive == item.id?'aside-active':'bold' }>{item.name}</div>
+                        <div className='iconimg'> <img src={(asideActive == item.id || asideActivefather == item.id)?item.icon_a:item.icon} alt="icon" /> </div>
+                        <div className={(asideActive == item.id || asideActivefather == item.id)?'aside-active':'bold' }>{item.name}</div>
                         {item.children && <div className={opens[index]?'fleximg downMoreimg':'fleximg downMoreimg downMoreimg-close'}><img src={downMoreimg} alt="downMore" /></div>}
                       </div>
                       {item.children && item.children.map((itm)=>(

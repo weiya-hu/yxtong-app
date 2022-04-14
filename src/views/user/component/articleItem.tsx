@@ -48,7 +48,7 @@ class ArticleItem extends Component<ArticleItemState> {
     }
     toNewsDetail=(id)=>{
       // this.props.history.push('/app/user?componentId=72&readNewsId='+id);
-      window.open('/app/user?componentId=72&readNewsId='+id,"_blank")
+      window.open('/app/user?componentId=73&readNewsId='+id,"_blank")
     }
     //删除按钮
     deleteNews=(id)=>{

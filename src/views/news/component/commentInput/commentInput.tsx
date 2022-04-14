@@ -32,19 +32,24 @@ export default class CommentInput extends Component<CommentInputState> {
         if(userInfo){
             // let url = window.location.href
             // let id=url.substring(url.indexOf('=')+1,url.length)
-            let id = util.getUrlParam('newsId')
-            let data={
-                "content": this.state.comment,
-                "news_id": id
-            }
-            const res =await subComment(data)
-            if(res.status){
-                this.props.comment(res.body)
-                this.setState({comment:''})
-                
-            }else if(res.errno === 10620){
-                $message.info('身份认证过期，请先登录后再试')
-                store.dispatch(loginShow())
+            let {comment} =this.state
+            if(comment){
+                let id = util.getUrlParam('newsId')
+                let data={
+                    "content": this.state.comment,
+                    "news_id": id
+                }
+                const res =await subComment(data)
+                if(res.status){
+                    this.props.comment(res.body)
+                    this.setState({comment:''})
+                    
+                }else if(res.errno === 10620){
+                    $message.info('身份认证过期，请先登录后再试')
+                    store.dispatch(loginShow())
+                }
+            }else{
+                $message.info('请输入评论')
             }
         }else{
             store.dispatch(loginShow())
