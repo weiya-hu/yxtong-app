@@ -133,7 +133,7 @@ class CertificateInput extends Component<CertificateInputProps,any>{
                         rules={[{validator:this.requirValidate}]}
                     >
                         <DatePicker  
-
+                            showToday={false}
                             locale={locale}
                             placeholder={placeholder}
                             // onChange={(val)=>{console.log(moment(val.releasedTimestamp).unix())}}

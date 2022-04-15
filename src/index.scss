@@ -214,9 +214,17 @@ div,span{
     }
   }
 }
-.ant-picker-footer{
-  display: none
+// .ant-picker-footer{
+//   display: none
+// }
+
+//企业认证日期永久的样式
+.dateForever{
+  text-align: center;
+  cursor: pointer;
+  color: #1890ff;
 }
+
 .wxlogin-modal{
   .ant-modal{
     width: 400px;

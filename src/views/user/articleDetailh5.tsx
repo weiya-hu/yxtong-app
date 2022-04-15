@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { Component } from 'react'
-import {promoteArticle} from 'service/user'
+import {promoteArticleh5} from 'service/user'
 import {util} from 'utils/news'
 import moment from 'moment'
 export default class ArticleDetailh5 extends Component {
@@ -9,7 +9,7 @@ export default class ArticleDetailh5 extends Component {
 	}
 	getContent=async()=>{
 		let articleId = util.getUrlParam('articleId')
-		let res =await promoteArticle({id:articleId})
+		let res =await promoteArticleh5({id:articleId})
 		res.status && this.setState({
 				newsDetail:res.body
 		})

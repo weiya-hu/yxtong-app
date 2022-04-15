@@ -118,6 +118,11 @@ export const promoteArticle =(data):Promise<API.IResult>=>{
     return  get('user/promote/article.get',data)
 }
 
+//分享获取软文详情
+export const promoteArticleh5 =(data):Promise<API.IResult>=>{
+    return  get('user/public/promote/article.get',data)
+}
+
 //获取推广行业分类
 export const promoteIndustry =():Promise<API.IResult>=>{
     return  get('dim/promote/industry.list')

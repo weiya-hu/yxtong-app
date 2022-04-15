@@ -21,7 +21,8 @@ export default class PosterShareh5 extends Component {
   }
   star=async()=>{
     let posterId = util.getUrlParam('posterId')
-    axios({url:'/user/promote/poster/download.do', method:'post',data:{id:posterId},responseType:"arraybuffer"}).then(res=>{
+    let uid = util.getUrlParam('uid')
+    axios({url:'/user/public/promote/poster/share.do', method:'post',data:{id:posterId,uid:uid},responseType:"arraybuffer"}).then(res=>{
       this.setState({
         imgUrl:this.getBase64(res.data)
       })

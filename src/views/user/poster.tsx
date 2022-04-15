@@ -149,7 +149,7 @@ export default class Article extends Component {
                     <div className='shareimg fleximg'><img src={posterShareimg} alt="share" />
                       <div className='wechat-ma'>
                         <QRCode
-                          value={window.location.protocol + '//' + window.location.host + '/app/user/posterdetail?posterId=' + item.id}  //value参数为生成二维码的链接
+                          value={window.location.protocol + '//' + window.location.host + '/app/user/posterdetail?posterId=' + item.id+'&uid='+item.uid}  //value参数为生成二维码的链接
                           size={100} //二维码的宽高尺寸
                           fgColor="#000000"  //二维码的颜色
                         />
