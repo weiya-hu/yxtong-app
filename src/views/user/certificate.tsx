@@ -77,7 +77,7 @@ export default class Certificate extends Component {
             images.forEach((item) => { imgs.push(item.sendUrl); })
             let data = {
                 ...values,
-                left_time: moment(values.left_time).unix(),
+                left_time: (values.left_time_front && values.left_time_front[0])? values.left_time_front[0]: moment(values.left_time).unix(),
                 license: imgs.join(','),
                 industry_id: values.industry_id.join(','),
                 province: values.city[0],
@@ -86,6 +86,8 @@ export default class Certificate extends Component {
             }
             localStorage.setItem('data', JSON.stringify(data))
             this.setState({ isupload: true })
+
+
             // let submitFlag = JSON.parse(localStorage.getItem('submit')) 
             // const res = submitFlag ? await submitCompany(data): await saveCompany(data)
             // if(res.status===1 && submitFlag){this.getRecord()}
@@ -330,6 +332,7 @@ export default class Certificate extends Component {
                                 name='date'
                                 disabled={disabled}
                                 initialValue={AuditRecord.left_time*1000}
+                                ForeverTime = {4102415999000}
                                 dateValue={(val)=>{
                                     console.log(val)
                                 }}

@@ -1,15 +1,13 @@
 //@ts-nocheck
-import { Component } from 'react'
+import React,{ Component } from 'react'
 import 'views/user/component/certificateInput/certificateInput.scss'
-import { withRouter } from 'react-router-dom'
-import { Form, Cascader, Input, DatePicker } from 'antd'
+import { Form, DatePicker,Checkbox  } from 'antd'
 import { util } from 'utils/user'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 
 import warnimg from 'public/images/warn.png'
-import { connected } from 'process'
 
 interface CertificateInputProps {
   label: string
@@ -24,10 +22,10 @@ interface CertificateInputProps {
 }
 
 export default class DateInput extends Component<CertificateInputProps, any>{
-  dateRef = null
+  dateRef = React.createRef();
   state = {
     message: '',
-    dateForever: 4102415999000
+    checkValue:this.props.initialValue == this.props.ForeverTime ?this.props.ForeverTime:null
   }
   inputBlur = (e, name) => {
     let message, value = e.target.value
@@ -46,66 +44,53 @@ export default class DateInput extends Component<CertificateInputProps, any>{
       return Promise.resolve();
     }
   };
-  forEverClick = () => {
-    this.setState({
-      dateForever: 4102415999000
-    })
-    this.dateRef.blur()
-    this.props.dateValue(4102415999000)
-    // this.setForever()
+  onChange=(val)=>{
+    console.log(val)
+    this.setState({checkValue:val[0] || null})
   }
-  setForever = () => {
-    setTimeout(() => {
-      let dom = document.getElementById('left_time')
-      dom.value = '永久'
-    }, 0);
-  }
-  dateExtraFoot = () => {
-    return <div onClick={this.forEverClick} className='dateForever'>永久</div>
-  }
-  dateFormat = (value) => {
-    console.log(moment(moment(value.releasedTimestamp).unix() * 1000), 5568)
-    const { dateForever } = this.state
-    console.log(dateForever, 123)
-    return dateForever ? '永久' : moment(value)
+  componentDidMount(): void {
+    this.setState({})
   }
   getInput = () => {
-    const { formName, name, placeholder, require, disabled, initialValue, afterValue } = this.props
-    const { dateForever } = this.state
-    // console.log(initialValue)
+    const { formName, placeholder, disabled, initialValue,ForeverTime } = this.props;
+    const {checkValue} = this.state;
+        // console.log(initialValue)
     // console.log(moment(initialValue))
     let component = (
       <Form.Item name={formName}
-        initialValue={initialValue ? moment(initialValue) : null}
+        initialValue={(initialValue == ForeverTime || checkValue )? null : moment(initialValue)}
         rules={[{ validator: this.requirValidate }]}
       >
         <DatePicker
-          // renderExtraFooter={this.dateExtraFoot}
           locale={locale}
           placeholder={placeholder}
           onChange={(val)=>{console.log(moment(val.releasedTimestamp).unix(),val,1111111,moment(val).unix())}}
-          disabled={disabled}
+          disabled={disabled }
           ref={el => this.dateRef = el}
           showToday={false}
-        // value={moment(afterValue)}
-        // format={this.dateFormat}
         />
       </Form.Item>)
     return component
   }
-  componentDidMount(): void {
-    // this.dateRef.value = moment(4102415999000)
-  }
+ 
   render() {
-    const { label, require } = this.props
-    const { message } = this.state
-    return <div id='CertificateInput' className=' flexl'>
+    const { label, require ,initialValue,ForeverTime,disabled} = this.props
+    const { message,checkValue } = this.state
+    console.log()
+    return <div id='CertificateInput' className=' dataInput flexl'>
       <div className='certinput-left flexl'>
         <div className='certinput-star'>{require ? '*' : ''}</div>
         <div className='certinput-label'>{label}：</div>
       </div>
       <div className='certinput-right flexl'>
-        {this.getInput()}
+        <Form.Item name='left_time_front'
+          initialValue={initialValue === ForeverTime ? [ForeverTime/1000] : null}
+        >
+          <Checkbox.Group onChange={this.onChange}  disabled={disabled }>
+            <Checkbox value={ForeverTime / 1000}>永久</Checkbox>
+          </Checkbox.Group>
+        </Form.Item>
+        { !checkValue && this.getInput()}
       </div>
       {(message && require) && <div className='flexl certinput-message'>
         <div className='fleximg warnimg'><img src={warnimg} alt="警告" /></div>
@@ -115,5 +100,3 @@ export default class DateInput extends Component<CertificateInputProps, any>{
     </div>
   }
 }
-
-// export default withRouter(DateInput)

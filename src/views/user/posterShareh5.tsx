@@ -36,7 +36,7 @@ export default class PosterShareh5 extends Component {
 		return <div className='posterShareh5'>
       <div className='fleximg posterimg'><img src={imgUrl} alt="poster" onError={(e) => { e.target.src = falseimg }}/></div>
       <div className='operate-title'>操作指引</div>
-      <div className='operate-text'>1、长按图片3S，出现“转发给朋友”字样</div>
+      <div className='operate-text'>1、长按图片3s，出现“转发给朋友”字样</div>
       <div className='operate-text'>2、点击该字样，转发给你的好友或群</div>
       <div className='operate-text'>3、当好友看到你分享的图片素材时，长按识别二维码，即可完成注册/登录</div>
       <div className='operate-text'>4、好友成功注册完成后，获得奖励</div>
