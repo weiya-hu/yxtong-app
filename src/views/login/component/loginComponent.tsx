@@ -32,9 +32,9 @@ export default class LoginComponent extends Component {
     }
     componentDidMount(){
         let urls = this.getUrlParam('url')
-        let url=urls? decodeURIComponent(urls).replace(/\'/g, "") :null
-        console.log(url)
-        wechatLink({url:Base64.encode(url || '/')}).then(res=>{
+        let url=urls? decodeURIComponent(urls).replace(/\'/g, "") :'/'
+        url = encodeURIComponent(url)
+        wechatLink({url}).then(res=>{
             this.setState({
                 wxUrl:res.body.callback_url,
                 wxState:res.body.state,
