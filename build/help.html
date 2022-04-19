@@ -1056,7 +1056,8 @@
 
     <div class="bigvideobox">
         <div class="centervideo">
-            <video poster="static/images/help-video-bg.jpg" preload="auto" controls="controls" loop="loop" class="showvideo">
+            <!-- preload="auto" loop="loop" -->
+            <video poster="static/images/help-video-bg.jpg" controls="controls" class="showvideo">
 				<source class="showvideos" src="" type="video/mp4">您的浏览器不支持 video 标签。
 			</video>
             <img class="closevideo" src="static/images/closevideo.png" alt="">
@@ -1321,7 +1322,7 @@
     $('.itemvidoe').on('click', function() {
         document.querySelector('.showvideo').src = $(this).attr('data-url')
             // $('.showvideo').attr('src',$(this).attr('data'))
-        $('.bigvideobox').show()
+        $('.bigvideobox').css('display', 'flex')
         console.log($(this).attr('data-url'));
     })
 </script>

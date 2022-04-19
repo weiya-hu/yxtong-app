@@ -31,7 +31,9 @@ export default class LoginComponent extends Component {
         appid:'',//微信企业appid
     }
     componentDidMount(){
-        let url=decodeURIComponent(this.getUrlParam('url')).replace(/\'/g, "") 
+        let urls = this.getUrlParam('url')
+        let url=urls? decodeURIComponent(urls).replace(/\'/g, "") :null
+        console.log(url)
         wechatLink({url:Base64.encode(url || '/')}).then(res=>{
             this.setState({
                 wxUrl:res.body.callback_url,

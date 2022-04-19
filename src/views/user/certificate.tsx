@@ -331,11 +331,11 @@ export default class Certificate extends Component {
                                 formName='left_time'
                                 name='date'
                                 disabled={disabled}
-                                initialValue={AuditRecord.left_time*1000}
+                                initialValue={AuditRecord.left_time?AuditRecord.left_time*1000:null}
                                 ForeverTime = {4102415999000}
-                                dateValue={(val)=>{
-                                    console.log(val)
-                                }}
+                                // dateValue={(val)=>{
+                                //     console.log(val)
+                                // }}
                             ></DateInput>
                         </div>
                         <div className='cert-input-item'>

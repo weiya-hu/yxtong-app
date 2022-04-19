@@ -54,11 +54,11 @@ export default class DateInput extends Component<CertificateInputProps, any>{
   getInput = () => {
     const { formName, placeholder, disabled, initialValue,ForeverTime } = this.props;
     const {checkValue} = this.state;
-        // console.log(initialValue)
+        console.log(initialValue)
     // console.log(moment(initialValue))
     let component = (
       <Form.Item name={formName}
-        initialValue={(initialValue == ForeverTime || checkValue )? null : moment(initialValue)}
+        initialValue={(initialValue == ForeverTime || checkValue || !initialValue )? null : moment(initialValue)}
         rules={[{ validator: this.requirValidate }]}
       >
         <DatePicker
@@ -76,7 +76,7 @@ export default class DateInput extends Component<CertificateInputProps, any>{
   render() {
     const { label, require ,initialValue,ForeverTime,disabled} = this.props
     const { message,checkValue } = this.state
-    console.log()
+    console.log(initialValue)
     return <div id='CertificateInput' className=' dataInput flexl'>
       <div className='certinput-left flexl'>
         <div className='certinput-star'>{require ? '*' : ''}</div>

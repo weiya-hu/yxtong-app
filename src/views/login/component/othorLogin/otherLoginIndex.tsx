@@ -10,7 +10,8 @@ export default class OtherLoginIndex extends Component {
         let code = util.getUrlParam('code'),state= util.getUrlParam('state')
         doWechat({code,state}).then(res=>{
             if(res.status){
-                window.location.href=Base64.decode(util.getUrlParam('url'))
+                console.log(Base64.decode(util.getUrlParam('url')))
+                // window.location.href=Base64.decode(util.getUrlParam('url'))
             }else{
                 if(res.errno === 10200 ){
                     let url = '/app/bindphone?nickname='+res.body.nickname+'&headimgurl='+res.body.headimgurl
