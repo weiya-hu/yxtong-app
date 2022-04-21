@@ -90,7 +90,8 @@ export default class PopupLogin extends Component<PopupLoginState> {
     }
     componentDidMount(){
         let url = window.location.pathname+window.location.search+window.location.hash
-        let data={url:Base64.encode(url)}
+        // let data={url:Base64.encode(url)}
+        let data={url:encodeURIComponent(url)}
         wechatLink(data).then(res=>{
             this.setState({
                 wxUrl:res.body.callback_url,
