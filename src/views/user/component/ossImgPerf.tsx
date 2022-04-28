@@ -1,10 +1,11 @@
-//@ts-nocheck
+
 import { Upload } from 'antd';
 import React from 'react';
 import { uploadPolicy } from 'service/user'
 import axios from "axios";
 import $message from 'views/component/message';
-
+import store from 'store/index'
+import { setFileList } from 'store/actionCreators'
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -13,15 +14,23 @@ function getBase64(file) {
     reader.onerror = error => reject(error);
   });
 }
-export default class OSSUpload extends React.Component {
+
+interface IProps {
+	change: (val:any)=>void
+	maxSize: number
+	isupload: boolean
+	success: (val1:any,val2:any)=>void
+	error: ()=>void
+}
+
+export default class OSSUpload extends React.Component<IProps,any> {
 	state = {
-		fileList: []
+		// fileList: []
 	}
 	render() {
 		let header = { "Content-Type": "multipart/form-data" }
 		return <Upload
 			name="file"
-			// onChange={this.uploadFile}
 			showUploadList={false}
 			headers={header}
 			beforeUpload={this.beforeUpload}
@@ -32,7 +41,9 @@ export default class OSSUpload extends React.Component {
 	}
 	componentWillReceiveProps(props) {
 		if(props.isupload){
-			let flist =this.state.fileList
+			console.log(props.isupload)
+			// let flist =this.state.fileList
+			let flist = store.getState().fileList
 			flist.length && this.uploadFile() 
 			!flist.length && this.props.success(null,null)
 		}
@@ -43,9 +54,10 @@ export default class OSSUpload extends React.Component {
 		if((fileList[0].size/ 1024 / 1024) >maxSize ){
 			$message.info('上传图片大小不能大于'+maxSize+'M')
 		}else{
-			this.setState({
-				fileList: fileList
-			})
+			// this.setState({
+			// 	fileList: fileList
+			// })
+			store.dispatch(setFileList(fileList))
 			let imgurl = await getBase64(fileList[0]);
 			this.props.change(imgurl)
 		}
@@ -54,31 +66,38 @@ export default class OSSUpload extends React.Component {
 
 	//上传图片
 	uploadFile = () => {
-		let fileList = this.state.fileList
-		
-		uploadPolicy({site:'news'}).then(({ body }) => {
-			const photo = fileList[0];  // 获取图片对象
-			const suffix = photo.name.slice(photo.name.lastIndexOf('.'));
-			let param = {
-				key: body.dir +'/'+ body.uuid + suffix,
-				OSSAccessKeyId: body.accessid,
-				success_action_status: '200',
-				policy: body.policy,
-				signature: body.signature,
-				'Content-Disposition': 'attachment; filename=' + encodeURIComponent(photo.name), //改变下载文件名
-				file: photo   //一定在最后面
-			};
-			let formData = new FormData();  //以表单的形式传递给oss
-			Object.keys(param).forEach((key) => {
-				formData.append(key, param[key]);
-			});
-			axios({
-				url: body.host,
-				method: 'post',
-				data: formData
-			}).then((res) => {
-				res.status == 200 && this.props.success(body.host+'/'+ param.key,null)
-			})
+		// let fileList = this.state.fileList
+		let fileList = store.getState().fileList
+		uploadPolicy({site:'news'}).then(async({status, body }) => {
+			if( !status){
+				this.props.error()
+			}else{
+				const photo = fileList[0];  // 获取图片对象
+				const suffix = photo.name.slice(photo.name.lastIndexOf('.'));
+				let param = {
+					key: body.dir +'/'+ body.uuid + suffix,
+					OSSAccessKeyId: body.accessid,
+					success_action_status: '200',
+					policy: body.policy,
+					signature: body.signature,
+					'Content-Disposition': 'attachment; filename=' + encodeURIComponent(photo.name), //改变下载文件名
+					file: photo   //一定在最后面
+				};
+				let formData = new FormData();  //以表单的形式传递给oss
+				Object.keys(param).forEach((key) => {
+					formData.append(key, param[key]);
+				});
+				const res = await axios({
+					url: body.host,
+					method: 'post',
+					data: formData
+				})
+				if(res.status !== 200){
+					this.props.error()
+				}else{
+					this.props.success(body.host+'/'+ param.key,null)
+				}
+			}
 		});
 	}
 }

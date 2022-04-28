@@ -125,7 +125,7 @@ export const promoteArticleh5 =(data):Promise<API.IResult>=>{
 
 //获取推广行业分类
 export const promoteIndustry =():Promise<API.IResult>=>{
-    return  get('dim/promote/industry.list','user')
+    return  get('user/promote/industry.list','user')
 }
 
 //获取软文分页列表

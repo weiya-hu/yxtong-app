@@ -4,7 +4,10 @@ import './articleList.scss'
 import ArticleItem from './component/articleItem'
 import { Pagination } from 'antd';
 import {contentList} from 'service/user'
+import {newsCreationTypeList} from 'service/news'
 import {withRouter} from 'react-router-dom'
+import store from 'store';
+import {setUserNewsType} from 'store/actionCreators'
 
 interface ArticleItemState{
   imgurl:string;
@@ -46,9 +49,15 @@ class ArticleList extends Component<ArticleListState>{
       })
     }
   }
+
+  getNewsType=async()=>{
+		const {status,body} = await newsCreationTypeList()
+		status && store.dispatch(setUserNewsType(body))
+	}
   componentDidMount(){
     const {current,size} =this.state
     this.contentList(current,size)
+    this.getNewsType()
   }
   render(){
     let {list,current,size,total} = this.state

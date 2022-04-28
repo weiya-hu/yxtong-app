@@ -2,17 +2,17 @@ import {get, post} from '../utils/request'
 
 //新闻类别
 export const  newsTypeList= (): Promise<API.IResult> => {
-    return get('news/public/type.list','news')
+    return get('public/type.list','news')
 }
 
 //新闻列表
 export const  newsNewsList= (data): Promise<API.IResult> => {
-    return get('news/public/info.page','news',data)
+    return get('public/info.page','news',data)
 }
 
 //感兴趣列表
 export const  newsAList= (data): Promise<API.IResult> => {
-    return get('news/public/interest.page','news',data)
+    return get('public/interest.page','news',data)
 }
 
 export const integralRecord =(data):Promise<API.IResult>=>{
@@ -21,24 +21,24 @@ export const integralRecord =(data):Promise<API.IResult>=>{
 
 //新闻资讯新闻详情
 export const newsDetail =(data):Promise<API.IResult>=>{
-    return  get('news/public/detail.page','news',data)
+    return  get('public/detail.page','news',data)
 }
 
 //获取评论列表
 export const commentList =(data):Promise<API.IResult>=>{
-    return  get('news/public/comment.page','news',data)
+    return  get('public/comment.page','news',data)
 }
 
 //获取每日阅读榜
 
 export const newsReadList =(data):Promise<API.IResult>=>{
-    return  get('news/public/read.page','news',data)
+    return  get('public/read.page','news',data)
 }
 
 //新闻作者信息和作品列表
 
 export const newsWorksList =(data):Promise<API.IResult>=>{
-    return  get('news/public/works.page','news',data)
+    return  get('public/works.page','news',data)
 }
 
 //评论
@@ -68,7 +68,7 @@ export const newsAddPrais =(data):Promise<API.IResult>=>{
 
 //用户数据统计
 export const newsCreatorDate =():Promise<API.IResult>=>{
-    return  get('news/public/author.agg','news')
+    return  get('public/author.agg','news')
 }
 
 //添加阅读记录
@@ -93,7 +93,7 @@ export const deleteNews =(data):Promise<API.IResult>=>{
 
 //获取关注列表
 export const newsFavorList= (data): Promise<API.IResult> => {
-    return get('news/public/attention.page','news',data)
+    return get('public/attention.page','news',data)
 }
 
 //获取用户获取文章、关注、粉丝数量
@@ -104,4 +104,9 @@ export const newsCreationAuthor =():Promise<API.IResult>=>{
 //我的收藏
 export const newsCreationcollection =(data):Promise<API.IResult>=>{
     return  get('news/creation/collection.page','news',data)
+}
+
+//获取文章栏目分类
+export const newsCreationTypeList =():Promise<API.IResult>=>{
+    return  get('news/creation/type.list','news')
 }

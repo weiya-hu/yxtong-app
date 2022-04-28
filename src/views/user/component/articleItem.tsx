@@ -3,10 +3,12 @@ import { Component } from 'react'
 import './articleItem.scss'
 import {withRouter} from 'react-router-dom'
 import { Modal} from 'antd'
-import {deleteNews} from 'service/news'
+import {deleteNews,newsCreationTypeList} from 'service/news'
 import {newsPublish} from 'service/user'
 import { util } from 'utils/news'
 import $message from 'views/component/message'
+import store from 'store/index'
+import {setUserNewsType} from 'store/actionCreators'
 
 import editimg from 'public/images/user/edit.png'
 import falseimg from 'public/images/user/false.png'
@@ -39,6 +41,7 @@ class ArticleItem extends Component<ArticleItemState> {
     state={
       modalVisible:false,
       modalType:null,//1删除2原因3提交
+      newsType:[]
     }
     toEdit=(id)=>{
       let event = window.event || arguments.callee.caller.arguments[0]
@@ -99,11 +102,39 @@ class ArticleItem extends Component<ArticleItemState> {
     toggleVisible=(val)=>{
       this.setState({modalVisible:val})
     }
+    //获取新闻类型
+    getNewsType=async()=>{
+      const {status,body} = await newsCreationTypeList()
+      if(status){
+        this.setState({ newsType : body })
+        store.dispatch(setUserNewsType(body))
+      }
+    }
+    //根据新闻id找到新闻类型名
+    getNewsTypeName=(id)=>{
+      if(id){
+        const { newsType } = this.state
+        let name
+        newsType.map(item=>{item.id == id && (name = item.name)})
+        return name
+      }
+    }
+    componentDidMount=()=>{
+      let userNewsType = store.getState().userNewsType
+      userNewsType.length && this.setState({newsType:userNewsType})
+      !userNewsType.length && this.getNewsType()
+    }
     render(){
         let {item} =this.props
         let {modalVisible,modalType} =this.state
         return <div className='flexb article-item' onClick={()=>{this.toNewsDetail(item.id)}}>
-          <div className='coverimg fleximg'><img src={item.thumb_url} alt="cover" onError={(e) => { e.target.src = falseimg }}/></div>
+          <div className='coverimg fleximg position'>
+            <img src={item.thumb_url} alt="cover" onError={(e) => { e.target.src = falseimg }}/>
+            {
+              item.type_id &&  <div className='news-types fleximg'>{this.getNewsTypeName(item.type_id)}</div>
+            }
+            
+          </div>
           <div className='flexcbl article-right'>
             <div>
               <div className='title'>{item.title}</div>
@@ -142,7 +173,7 @@ class ArticleItem extends Component<ArticleItemState> {
                     <div>提交</div>
                   </div>
                 }
-               ` {/* {(item.state === 3 || item.state === 4) &&
+                {/* {(item.state === 3 || item.state === 4) &&
                   <div className='fleximg article-item-button' onClick={(e)=>{this.toEdit(item.id);e.stopPropagation();}}>
                     <div className='editimg fleximg'><img src={dataimg} alt="editButton" /></div>
                     <div>数据</div>

@@ -1,5 +1,5 @@
 // 引入需要使用的 常量
-import { SetUserInfo, RemoveUserInfo,LoginShow,LoginRemove } from "./constants.js";
+import { SetUserInfo, RemoveUserInfo,LoginShow,LoginRemove,SetUserNewsType, SetFileList } from "./constants.js";
 // 存储用户信息
 export const setUserInfo = (userInfo) => {
   return {
@@ -21,3 +21,19 @@ export const loginShow = () => ({
 export const loginRemove = () => ({
   type: LoginRemove
 })
+
+//存储个人中心新闻类型
+export const setUserNewsType = (newsType) => {
+  return {
+    type: SetUserNewsType,
+    newsType,
+  };
+};
+
+//存储个人中心新闻类型
+export const setFileList = (fileList) => {
+  return {
+    type: SetFileList,
+    fileList,
+  };
+};

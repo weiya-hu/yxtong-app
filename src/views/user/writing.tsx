@@ -2,10 +2,9 @@
 import { Component } from 'react'
 import './writing.scss'
 import { Editor } from '@tinymce/tinymce-react'
-import AliyunOSSUpload from './component/ossImg'
 import message from 'views/component/message/index';
-import { newsPublish, newsSave ,uploadPolicy} from 'service/user'
-import { getEditNews } from 'service/news'
+import { newsPublish, newsSave, uploadPolicy } from 'service/user'
+import { getEditNews, newsCreationTypeList } from 'service/news'
 import OSSUpload from './component/ossImgPerf'
 import { withRouter } from 'react-router-dom'
 import store from 'store';
@@ -15,7 +14,6 @@ import axios from "axios";
 import addimg from 'public/images/user/add.png'
 import warnimg from 'public/images/warn.png'
 import falseimg from 'public/images/user/false.png'
-import { copyFileSync } from 'fs';
 
 class Writing extends Component {
 	state = {
@@ -26,9 +24,12 @@ class Writing extends Component {
 		title: '',//文章标题
 		content: '',//富文本的值
 		edit: '',//富文本的值，实时值，编辑器有改变时实时保存的值
-		isupload:null,//确认上传封面
-		contentImgs:[],
-		isPublish:null,
+		isupload: null,//确认上传封面
+		contentImgs: [],
+		isPublish: null,
+		newsType: [],//新闻类型list
+		newsTypeId: -1,//新闻类型默认id，默认不选中
+		show: false,
 	}
 	//富文本编辑器文本有改变
 	EditorChange = (val) => {
@@ -50,36 +51,44 @@ class Writing extends Component {
 	}
 	imageEditor = (blobInfo, success, failure) => {
 		const imgBlob = blobInfo.blob()
-		if (imgBlob){
-			if((imgBlob.size / 1024 / 1024) > 2){
+		if (imgBlob) {
+			if ((imgBlob.size / 1024 / 1024) > 2) {
 				failure(`图片最大不能超过2M`)
-			}else{
-				const imgBlobUrl = URL.createObjectURL(imgBlob) // 创建URL对象，会在浏览器关闭当前页面时销毁，也可以调用URL.revokeObjectURL()销毁
-				let {contentImgs} = this.state
+			} else {
+				// const imgBlobUrl = URL.createObjectURL(imgBlob) // 创建URL对象，会在浏览器关闭当前页面时销毁，也可以调用URL.revokeObjectURL()销毁
+				const imgBlobUrl= 'data:image/png;base64,' + blobInfo.base64()
+				let { contentImgs } = this.state
 				contentImgs.push({ // 先添加进一个数组，上传时findIndex寻找是否在数组中，这里tinymce有个机制是，只要添加了图片没有点保存也会触发upload函数，会导致contentImgs数组长度和真实内容图片数量不一致，会有一些多余的图片
-					blobUrl:imgBlobUrl,
-					fileObj:imgBlob,
-					fileName:blobInfo.filename()
+					blobUrl: imgBlobUrl,
+					fileObj: imgBlob,
+					fileName: blobInfo.filename()
 				})
-				this.setState({contentImgs:contentImgs})
+				this.setState({ contentImgs: contentImgs })
 				success(imgBlobUrl) // 先用本地图片当做内容图片，用户提交时再调用upImages上传并替换img标签的src为线上地址
 			}
 		}
 	}
 	//预览文章
 	preView = () => {
-		const { title, edit, coverImgurl, sendCoverImgurl } = this.state
-		if(!coverImgurl){
+		const { title, edit, coverImgurl, sendCoverImgurl, newsTypeId } = this.state
+		if (newsTypeId === -1) {
+			message.info('请选择栏目')
+			return
+		} else if (!coverImgurl) {
 			message.info('请添加封面')
-		}else if (!title) {
+			return
+		} else if (!title) {
 			message.info('请输入标题')
 			this.setState({ titleMessage: '必填项' })
+			return
 		} else if (title.length < 5) {
 			message.info('标题最少5个字')
+			return
 		} else if (!edit) {
 			message.info('请编辑文章')
 			this.setState({ textMessage: '必填项' })
-		}else {
+			return
+		} else {
 			let item = {
 				commented: 0,
 				content: edit,
@@ -88,7 +97,8 @@ class Writing extends Component {
 				title: title,
 				update_time: new Date(),
 				sendCoverImgurl: sendCoverImgurl,
-				creator_name: store.getState().userInfo.name
+				creator_name: store.getState().userInfo.name,
+				type_id: newsTypeId,
 			}
 			localStorage.setItem('previewNews', JSON.stringify(item))
 			this.props.history.push('/app/user?componentId=73&readNewsId=preview')
@@ -96,31 +106,47 @@ class Writing extends Component {
 	}
 	//发布文章和保存文章
 	publishNews = async (isPublish) => {
-		const { title, edit, sendCoverImgurl, coverImgurl } = this.state
-		if(!coverImgurl){
+		const { title, edit, sendCoverImgurl, coverImgurl, newsTypeId } = this.state
+		if (newsTypeId === -1) {
+			message.info('请选择栏目')
+			return
+		} else if (!coverImgurl) {
 			message.info('请添加封面')
-		}else if (!title) {
+			return
+		} else if (!title) {
 			message.info('请输入标题')
 			this.setState({ titleMessage: '必填项' })
+			return
 		} else if (title.length < 5) {
 			message.info('标题最少5个字')
+			return
 		} else if (!edit) {
 			message.info('请编辑文章')
 			this.setState({ textMessage: '必填项' })
+			return
 		} else {
-			this.setState({isupload:true,isPublish:isPublish})
+			const urlReg = /data:image\/.*;base64,/gi
+			const imgArr = coverImgurl.match(urlReg)
+			console.log(imgArr)
+			imgArr && this.setState({ isupload: true, isPublish: isPublish })
+			!imgArr && this.publishNewsSure( null, null )
+			
 		}
 	}
-	publishNewsSure = async(url,isup) => {
-		this.setState({isupload:isup})
+	coverUpError=()=>{
+		message.info('封面图片上传失败，请稍后再试')
+	}
+	publishNewsSure = async (url, isup) => {
+		this.setState({ isupload: isup })
 		const editRes = await this.upImages()
 		let id = util.getUrlParam('editNewsId')
-		const { title,isPublish,sendCoverImgurl} = this.state
+		const { title, isPublish, sendCoverImgurl, newsTypeId } = this.state
 		let item = {
 			content: editRes,
 			thumb_url: url || sendCoverImgurl,
 			title: title,
-			id: id ? id : null
+			id: id ? id : null,
+			type_id: newsTypeId
 		}
 		const res = isPublish ? await newsPublish(item) : await newsSave(item)
 		if (res.status) {
@@ -132,33 +158,44 @@ class Writing extends Component {
 				titleMessage: '',
 				textMessage: '',
 				edit: '',
-				sendCoverImgurl: ''
+				sendCoverImgurl: '',
+				newsTypeId: -1,
+				show: true
 			})
 			this.props.history.push('/app/user?componentId=72')
+		}else{
+			message.info(isPublish ? '发布失败，请稍后再试' : '保存失败，请稍后再试')
 		}
 	}
-	upImages = async ()=>{
+
+	upImages = async () => {
 		// const content = props.modelValue
 		const content = this.state.edit
-		const {contentImgs} =this.state
-		const imgReg = /<img [^>]*src=['"]blob:([^'"]+)[^>]*>/gi;
-		const srcReg = /src=[\'\"]?(blob:[^\'\"]*)[\'\"]?/gi
+		const { contentImgs } = this.state
+		// const imgReg = /<img [^>]*src=['"]blob:([^'"]+)[^>]*>/gi;
+		// const srcReg = /src=[\'\"]?(blob:[^\'\"]*)[\'\"]?/gi
+		// const imgReg = /<img [^>]*src=['"]blob:([^'"]+)[^>]*>/gi
+		const imgReg = /<img [^>]*src=['"]data:image\/png;base64,([^'"]+)[^>]*>/gi
+		const srcReg = /src=[\'\"]?(data:image\/png;base64,[^\'\"]*)[\'\"]?/gi
 		const imgArr = content.match(imgReg)
+		console.log(imgArr)
 		let t = content
-		if(imgArr){
+		if (imgArr) {
 			let i = 0
-			const upFn = async (imgItem:string)=>{
+			const upFn = async (imgItem: string) => {
 				let url = ''
 				let oneImgBlobUrl = ''
-				imgItem.replace(srcReg,function(match: string, capture: any){
+				imgItem.replace(srcReg, function (match: string, capture: any) {
 					//match匹配的子串 capture 代表第n个括号匹配的字符串 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 					oneImgBlobUrl = capture
+					console.log(oneImgBlobUrl)
+					console.log(match)
 					return match
 				})
-				const j = contentImgs.findIndex(v=>v.blobUrl == oneImgBlobUrl)
-				if(j > -1){
-					const res = await uploadPolicy({site:'news'})
-					if(res.status == 1){
+				const j = contentImgs.findIndex(v => v.blobUrl == oneImgBlobUrl)
+				if (j > -1) {
+					const res = await uploadPolicy({ site: 'news' })
+					if (res.status == 1) {
 						const fileObj = contentImgs[j]
 						const exname = fileObj.fileName.substring(fileObj.fileName.lastIndexOf("."))
 						const fd = new FormData();
@@ -181,28 +218,28 @@ class Writing extends Component {
 							},
 							data: fd,
 						})
-						if(response.status == 200){
+						if (response.status == 200) {
 							url = 'src="' + res.body.host + '/' + res.body.dir + '/' + res.body.uuid + exname + '"'
-						}else{
+						} else {
 							url = 'scr=""'
 						}
-					}else{
+					} else {
 						url = 'scr=""'
 					}
-				}else{
+				} else {
 					url = 'scr=""'
 				}
-				const newImg = imgItem.replace(srcReg,url) // 替换当前blob地址为上传后地址
-				t = t.replace(imgItem,newImg) // 整个内容中替换当前这张图片
-				
-				if(i < (imgArr.length - 1)){
+				const newImg = imgItem.replace(srcReg, url) // 替换当前blob地址为上传后地址
+				t = t.replace(imgItem, newImg) // 整个内容中替换当前这张图片
+
+				if (i < (imgArr.length - 1)) {
 					i++
-					if(imgArr[i]){
+					if (imgArr[i]) {
 						await upFn(imgArr[i])
 					}
 				}
 			}
-			if(imgArr[i]){
+			if (imgArr[i]) {
 				await upFn(imgArr[i])
 			}
 			// console.log(t,123);
@@ -210,18 +247,19 @@ class Writing extends Component {
 			// emit('update:modelValue',t)
 
 			// editvalue.value = t
-		}else {
+		} else {
 			return t
 		}
 	}
-	clearImgs = ()=>{
-		const {contentImgs} = this.state
-		contentImgs.forEach(v=>{
+	clearImgs = () => {
+		const { contentImgs } = this.state
+		contentImgs.forEach(v => {
 			URL.revokeObjectURL(v.blobUrl)
 		})
 	}
 	componentDidMount = async () => {
 		//如果路径中带有editNewsId表示是编辑功能，不是从0创作功能，要获取编辑的文章内容再赋值
+		this.getNewsType()
 		let newsId = util.getUrlParam('editNewsId')
 		if (newsId === 'previewBack') {
 			let previewNews = JSON.parse(localStorage.getItem('previewNews'))
@@ -230,7 +268,8 @@ class Writing extends Component {
 				sendCoverImgurl: previewNews.thumb_url,
 				title: previewNews.title,
 				content: previewNews.content,
-				edit: previewNews.content
+				edit: previewNews.content,
+				newsTypeId: previewNews.type_id,
 			})
 		} else if (newsId) {
 			const { body, status } = await getEditNews({ newsId: newsId })
@@ -239,13 +278,20 @@ class Writing extends Component {
 				sendCoverImgurl: body.thumb_url,
 				title: body.title,
 				content: body.content,
-				edit: body.content
+				edit: body.content,
+				newsTypeId: body.type_id,
 			})
 		}
 
-
+		// let m='<p>法第三方士大夫</p><p><img src="blob:http://lc.kzszh.com:3000/eba22dc0-0873-4c06-b449-de530df50602" alt="" width="32" height="32" /></p>'
+		// let n='<p>法第三方士大夫</p><p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACEklEQVRYCcVXWYrCQBCtuC+IGlFcRgUv4BU8lYeYi3gND+CPf36IX4OKuCCouJLplzGaBJOuHtA8aNKdqlf1qptOujUSGA6HX5fL5Vt0O6JVRHsnZiJ4PxqNdtvt9o92Tz4UL/V3Zn0Rey1EtEP3yj+dHHp05A6JTgejgNCBgHevuV9tFQgIFIELiPyn/FQqRaVSidLptEnf7/e0WCzocDgoh1MWUC6XqVqtkqZpj2SJRIJ0XafpdErz+fzxntNRWoJcLke1Ws2R3EoCQbDBRwVKAlC5DBwfewy2AExzMpm0c1/24QNfLpQEcIO+RQCnekugii97BrDtuFDxZQkIh8MUifB3LHzB4YAlIJPJcGI5fLgcqQBU0mw2HcE5A3A4syAVUCwWlabfEodlAFcGqYB8Pi+L4WnncKUCsKVut5tnEi8DOJztKBVwOp1oPB4TnlyocLTBYGD4BcZPxjAMwnS2Wi0/14dtMpnQZrMxf1rg+kE6A1YAcYL1i+OwWd8Mi+swugZSAfCPx+NUr9ddVO9ho9EwOd4eTwtLgLUMT9pfb7VaEZobqNx+YHHb7WPW9/V4PNJoNKJCoWB+E87nM223W9rtdmas5XJJ2WyWYrEYXa9XUxQ4HLAEIBDOe15nPgixxHCS2n2wBLirBYUZBPSDyo7cIdxSRWcdgAhcTrshXJFxSxUCeqJ9YjmQo4ecyP0LngCZIcX1i+EAAAAASUVORK5CYII=" alt="" width="32" height="32" /></p>'
+		// let n='<p>法第三方士大夫</p><p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACEklEQVRYCcVXWYrCQBCtuC+IGlFcRgUv4BU8lYeYi3gND+CPf36IX4OKuCCouJLplzGaBJOuHtA8aNKdqlf1qptOujUSGA6HX5fL5Vt0O6JVRHsnZiJ4PxqNdtvt9o92Tz4UL/V3Zn0Rey1EtEP3yj+dHHp05A6JTgejgNCBgHevuV9tFQgIFIELiPyn/FQqRaVSidLptEnf7/e0WCzocDgoh1MWUC6XqVqtkqZpj2SJRIJ0XafpdErz+fzxntNRWoJcLke1Ws2R3EoCQbDBRwVKAlC5DBwfewy2AExzMpm0c1/24QNfLpQEcIO+RQCnekugii97BrDtuFDxZQkIh8MUifB3LHzB4YAlIJPJcGI5fLgcqQBU0mw2HcE5A3A4syAVUCwWlabfEodlAFcGqYB8Pi+L4WnncKUCsKVut5tnEi8DOJztKBVwOp1oPB4TnlyocLTBYGD4BcZPxjAMwnS2Wi0/14dtMpnQZrMxf1rg+kE6A1YAcYL1i+OwWd8Mi+swugZSAfCPx+NUr9ddVO9ho9EwOd4eTwtLgLUMT9pfb7VaEZobqNx+YHHb7WPW9/V4PNJoNKJCoWB+E87nM223W9rtdmas5XJJ2WyWYrEYXa9XUxQ4HLAEIBDOe15nPgixxHCS2n2wBLirBYUZBPSDyo7cIdxSRWcdgAhcTrshXJFxSxUCeqJ9YjmQo4ecyP0LngCZIcX1i+EAAAAASUVORK5CYII=" alt="" width="32" height="32" /></p>'
 	}
-	componentWillUnmount(){
+	getNewsType = async () => {
+		const { status, body } = await newsCreationTypeList()
+		status && this.setState({ newsType: body })
+	}
+	componentWillUnmount() {
 		this.clearImgs()
 	}
 	getObjectURL = (file) => {
@@ -265,7 +311,7 @@ class Writing extends Component {
 		})
 	}
 	render() {
-		let { titleMessage, coverImgurl, textMessage, title, content,isupload } = this.state
+		let { titleMessage, coverImgurl, textMessage, title, content, edit, isupload, newsType, newsTypeId, show } = this.state
 		return (
 			<div className='writing' id='writing'>
 				<div className='top flexb'>
@@ -279,6 +325,16 @@ class Writing extends Component {
 						<div className='preview-button fleximg pointer' onClick={this.preView}>预览</div>
 					</div>
 				</div>
+				<div className='news-type flexl'>
+					<span>栏目分类</span>
+					{newsType.map((item) => (
+						<div
+							className={newsTypeId === item.id ? 'fleximg news-type-active' : 'fleximg'}
+							key={item.id}
+							onClick={() => this.setState({ newsTypeId: item.id })}
+						>{item.name}</div>
+					))}
+				</div>
 				<div className='cover'>
 					<div className='cover-txt'>上传封面</div>
 					<div className='flexl cover-img'>
@@ -286,7 +342,7 @@ class Writing extends Component {
 							<div className='addimg'><img src={addimg} alt="add" /></div>
 							<div>添加封面</div>
 							<div>
-								<OSSUpload change={(val => { this.coverIMgChange(val) })} isupload={isupload} success={this.publishNewsSure} maxSize={2}/>
+								<OSSUpload change={(val => { this.coverIMgChange(val) })} isupload={isupload} success={this.publishNewsSure} maxSize={2} error={this.coverUpError}/>
 							</div>
 						</div>
 						{coverImgurl &&
@@ -337,7 +393,7 @@ class Writing extends Component {
 								convert_urls: false,//去除URL转换
 								plugin_preview_width: "930", // 预览宽度
 								// images_upload_handler: (blobInfo, success, failure) => { this.imageEditor(blobInfo, success, failure) }
-								images_upload_handler:this.imageEditor
+								images_upload_handler: this.imageEditor
 							}}
 							onEditorChange={this.EditorChange}
 						/>
