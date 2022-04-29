@@ -107,7 +107,8 @@ export default class NewsDetail extends Component {
     }
     //点击nav跳转新闻列表
     navChange=(val,item,flag)=>{
-        flag && this.props.history.push({ pathname : '/app/news' , query : {index : val,item:item}})
+        // flag && this.props.history.push({ pathname : '/app/news' , query : {index : val,item:item}})
+        this.props.history.push('/app/news?newsTypeId='+util.getUrlParam('newsTypeId') )
     }
     //详情页文章切换
     articleChange=(id)=>{

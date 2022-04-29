@@ -52,6 +52,8 @@ export default class News extends Component{
     UserAnalysis:{},
     left:false,//关注中左箭头active状态
     right:false,//关注中右箭头active状态
+    newsMayLikeId: store.getState().newsMayLikeId,//推荐栏目id
+    newsFollowId: store.getState().newsFollowId,//关注栏目id
   }
   loadMoreData=()=>{
     this.getNewslist(this.state.newsTypeId)
@@ -72,39 +74,22 @@ export default class News extends Component{
     }
   }
   //根据新闻类型获取新闻列表
-  newsIndexChange=(val,item,flag)=>{
-    if(flag){
-      this.setState({
-        newsTypeActive:val,
-        newsPage:1,
-        newsTypeId:item.id,
-        newsList:[]
-      },()=>{this.getNewslist(item.id);})
-      
-    }else{
-      let param = this.props.location.query
-      this.setState({
-        newsTypeId:item.id
-      })
-      if(param){
-        this.getNewslist(param.item.id)
-        this.setState({newsTypeActive:param.index})
-        if(param.index === 1){
-          this.getFavorlist()
-        }
-        if(param.index === 0){
-          this.getInterestList(1)
-        }
-      }else{
-        this.getNewslist(item.id)
-      }
-    }
+  newsIndexChange=()=>{
+    let id = util.getUrlParam('newsTypeId')
+    const { newsMayLikeId, newsFollowId }=this.state
+    this.setState({
+      newsTypeId: id,
+      newsPage: 1,
+      newsList: [],
+    },()=>{this.getNewslist(id)})
     
-    if(val === 1){
+    if(id == newsMayLikeId){
       this.getFavorlist()
+      return
     }
-    if(val === 0){
+    if(id == newsFollowId){
       this.getInterestList(1)
+      return
     }
 
   }
@@ -228,6 +213,7 @@ export default class News extends Component{
     window.addEventListener('scroll', this.handleScroll, false)
     document.title = '康州数智-新闻资讯'
     window.scrollTo (0,0);
+    this.newsIndexChange()
   }
   componentWillUnmount(): void {
     window.removeEventListener('scroll', this.handleScroll)
@@ -236,7 +222,7 @@ export default class News extends Component{
     }
   }
   render(){
-    const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate,loginShow,left,right,favorList}=this.state
+    const {UserAnalysis,newsTypeActive,mayInterestList,newsList,hasMore,exchangeRotate,loginShow,left,right,favorList,newsTypeId,newsMayLikeId, newsFollowId}=this.state
     return (
       <div id='news' className='back-color'>
         <div className='news-header'>
@@ -277,7 +263,7 @@ export default class News extends Component{
         </div>
         <div className='width flexbl ' >
           <div className='news-main news-position-left'>
-            {newsTypeActive === 1 &&
+            {newsTypeId == newsMayLikeId &&
               <div className='may-interest'>
                 <div className='may-interest-title flexb'>
                   <div className='may-interest-title-txt'>您可能感兴趣</div>
@@ -301,7 +287,7 @@ export default class News extends Component{
                 </div>
               </div>
             }
-            {(newsTypeActive === 0 && favorList.length >0) &&
+            {(newsTypeId == newsFollowId && favorList.length >0) &&
               <div className='may-interest flexb'>
                 <div className='interest-arrow fleximg'  onClick={()=>{left && this.getInterestList(0,0)}}>
                   <div className='fleximg arrowimg-left'>
