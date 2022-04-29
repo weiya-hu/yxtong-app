@@ -127,7 +127,6 @@ class Writing extends Component {
 		} else {
 			const urlReg = /data:image\/.*;base64,/gi
 			const imgArr = coverImgurl.match(urlReg)
-			console.log(imgArr)
 			imgArr && this.setState({ isupload: true, isPublish: isPublish })
 			!imgArr && this.publishNewsSure( null, null )
 			
@@ -178,7 +177,6 @@ class Writing extends Component {
 		const imgReg = /<img [^>]*src=['"]data:image\/png;base64,([^'"]+)[^>]*>/gi
 		const srcReg = /src=[\'\"]?(data:image\/png;base64,[^\'\"]*)[\'\"]?/gi
 		const imgArr = content.match(imgReg)
-		console.log(imgArr)
 		let t = content
 		if (imgArr) {
 			let i = 0
@@ -188,8 +186,6 @@ class Writing extends Component {
 				imgItem.replace(srcReg, function (match: string, capture: any) {
 					//match匹配的子串 capture 代表第n个括号匹配的字符串 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 					oneImgBlobUrl = capture
-					console.log(oneImgBlobUrl)
-					console.log(match)
 					return match
 				})
 				const j = contentImgs.findIndex(v => v.blobUrl == oneImgBlobUrl)
@@ -242,7 +238,6 @@ class Writing extends Component {
 			if (imgArr[i]) {
 				await upFn(imgArr[i])
 			}
-			// console.log(t,123);
 			return t
 			// emit('update:modelValue',t)
 

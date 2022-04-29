@@ -70,7 +70,6 @@ export default class AliyunOSSUpload extends React.Component {
     }
   };
   uploadFile=(a,b,s)=>{
-    console.log(a,b,s)
   }
   getExtraData = file => {
     const { OSSData } = this.state;
@@ -85,7 +84,6 @@ export default class AliyunOSSUpload extends React.Component {
 
 
   beforeUpload = async (file,fileList) => {
-    console.log(fileList)
    const { OSSData,uuid } = this.state;
    const {imgLength} = this.props
    let uuuid
@@ -111,7 +109,6 @@ export default class AliyunOSSUpload extends React.Component {
     
   };
   upload=()=>{
-    console.log(55666)
   }
   render() {
     const { value } = this.props;

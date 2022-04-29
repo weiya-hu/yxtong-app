@@ -41,7 +41,6 @@ export default class OSSUpload extends React.Component<IProps,any> {
 	}
 	componentWillReceiveProps(props) {
 		if(props.isupload){
-			console.log(props.isupload)
 			// let flist =this.state.fileList
 			let flist = store.getState().fileList
 			flist.length && this.uploadFile() 

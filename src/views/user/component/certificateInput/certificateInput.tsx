@@ -41,7 +41,6 @@ class CertificateInput extends Component<CertificateInputProps,any>{
         this.setState({message:message})
     }
     CascaderChange(value) {
-        console.log(value)
       }
     phoneValidate = (rule, value, callback) => {
 
@@ -136,7 +135,6 @@ class CertificateInput extends Component<CertificateInputProps,any>{
                             showToday={false}
                             locale={locale}
                             placeholder={placeholder}
-                            // onChange={(val)=>{console.log(moment(val.releasedTimestamp).unix())}}
                             disabled={disabled}
                         />
                     </Form.Item>)

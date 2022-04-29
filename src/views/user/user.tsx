@@ -100,7 +100,6 @@ class User extends Component {
     }
     //获取左侧高亮的id
     findComponentid=(arr,id,componentId)=>{
-      console.log(arr,id,componentId)
       let component = arr.find(m=>m.id == id);
       component.children ? this.findComponentid(component.children,componentId[component.lv],componentId) :this.setState({asideActivefather:component.father || 0});
     }
@@ -129,7 +128,6 @@ class User extends Component {
       let components=util.getUrlParam('componentId'),componentId=[],iscontinue
       components && (componentId=components.split(''));
       componentId[0] && (iscontinue=this.checkComponentId(userComponent,componentId[0],componentId));
-      console.log(iscontinue)
       //根据页面路径显示相应的组件
       if(iscontinue === 'false'){
         this.props.history.push('/app/user?componentId=111')

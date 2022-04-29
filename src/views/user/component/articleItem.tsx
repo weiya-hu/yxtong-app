@@ -45,7 +45,6 @@ class ArticleItem extends Component<ArticleItemState> {
     }
     toEdit=(id)=>{
       let event = window.event || arguments.callee.caller.arguments[0]
-      console.log(event)
       event.stopPropagation();
       this.props.history.push('/app/user?componentId=71&editNewsId='+id)
     }
@@ -88,7 +87,6 @@ class ArticleItem extends Component<ArticleItemState> {
     }
     //删除确认按钮
     deleteOk=()=>{
-      console.log(util.getUrlParam('deleteId'))
       deleteNews({news_id:util.getUrlParam('deleteId')}).then(res=>{
         if(res.status){
           $message.info(res.message);

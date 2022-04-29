@@ -38,7 +38,6 @@ class MyTask extends Component{
          todayScore:null
     }
     doperfect=(val,task)=>{
-      console.log(val,task)
       if(task === 'browse_news' || task === 'share_article'){
          this.props.history.push('/app/news');
       }else{
@@ -78,7 +77,6 @@ class MyTask extends Component{
                signinSuccess:body,  //签到获得的分数看接口是哪个参数再改一下
                todayScore:rest.body.today_integral,//给积分组件传值，签到后积分有改变
             })
-            console.log(this.state)
          }
          // res && $message.info(res.message)
        }

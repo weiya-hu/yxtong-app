@@ -104,7 +104,6 @@ export default class MyTeam extends Component {
     this.getTeamListFirst(index)
   }
   memberChange=(val)=>{
-    console.log(val)
     this.getTeamListFirst(this.state.contentIndex,val)
   }
   componentDidMount(){

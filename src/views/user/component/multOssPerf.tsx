@@ -47,7 +47,6 @@ export default class OSSUpload extends React.Component{
     componentWillReceiveProps(props) {
         let flist =this.state.fileList,base64list=[]
         if(props.delete){
-            console.log(props.delete)
             let item = flist.map(m=>m.uid === props.delete)
             item && flist.splice(flist.indexOf(item),1)
             flist.forEach(async(item)=>{
@@ -71,7 +70,6 @@ export default class OSSUpload extends React.Component{
         let flag ,maxSize = this.props.maxSize
         fileList.forEach(element => {
             if((element.size/ 1024 / 1024) >maxSize ){
-                console.log('dale')
                 flag =false
                 // message.warning('上传图片大小不能大于'+this.props.maxSize+'M')
                 $message.info('上传图片大小不能大于'+maxSize+'M')
@@ -85,7 +83,6 @@ export default class OSSUpload extends React.Component{
             let flist=this.state.fileList,base64list=[]
             fileList.length === 1 && flist.push(file)
             if(fileList.length > 1) {for(let i=0,l=2-flist.length;i<l;i++){flist.push(fileList[i])}}  
-            console.log(flist)
             flist.forEach(async(item)=>{
                 const res= await getBase64(item)
                 base64list.push({url:res,uid:item.uid})
@@ -103,7 +100,6 @@ export default class OSSUpload extends React.Component{
     //上传图片
     uploadFile = () => {    
         let fileList =this.state.fileList,imgurl=[]
-        console.log(fileList)
         fileList.forEach((item)=>{
             uploadPolicy({site:'user_company'}).then(({body}) => {
                 // const photo =fileList[0];  // 获取图片对象
@@ -130,7 +126,6 @@ export default class OSSUpload extends React.Component{
                     method: 'post',
                     data: formData
                   }).then((res) => {
-                    console.log(res)
                     if(res.status == 200){
                         imgurl.push(body.host+'/'+ param.key)
                         imgurl.length === fileList.length && this.props.success(imgurl)

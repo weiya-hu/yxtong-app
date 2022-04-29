@@ -99,7 +99,6 @@ export default class DataAnalysis extends Component{
         data={newsId:analysisId}
       }
       const res = await dataScreening(data)
-      console.log(res)
     }
     componentDidMount(){
       let arr=[]
@@ -107,7 +106,6 @@ export default class DataAnalysis extends Component{
         let item = [''+i+i*i+3,i+i*i+3]
         arr.push(item)
       }
-      console.log(arr)
       this.setState({chartData:arr})
       this.getDataScreening()
     }

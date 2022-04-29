@@ -77,7 +77,7 @@ export default class Certificate extends Component {
             images.forEach((item) => { imgs.push(item.sendUrl); })
             let data = {
                 ...values,
-                left_time: (values.left_time_front && values.left_time_front[0])? values.left_time_front[0]: moment(values.left_time).unix(),
+                left_time: (values.left_time_front && values.left_time_front[0])? values.left_time_front[0]: moment(values.left_time).unix()*1000,
                 license: imgs.join(','),
                 industry_id: values.industry_id.join(','),
                 province: values.city[0],
@@ -134,8 +134,6 @@ export default class Certificate extends Component {
                     AuditRecord: body,
                     status: body.status,
                     disabled: body.status === 1 ? false : true,
-                    // status:1,
-                    // disabled:false,
                     images: imgs
                 })
             } else {
@@ -304,8 +302,6 @@ export default class Certificate extends Component {
                                                 </div>
                                                 <div className='cert-image-add-txt'>上传图片</div>
                                             </div>
-
-                                            {/* <AliyunOSSUpload imgLength={images.length} change={((val,sendval)=>{this.licenseIMgChange(val,sendval)})}/> */}
                                             <AliyunOSSUpload change={this.licenseIMgChange} delete={imgDeleteUid} isupload={isupload} success={this.submitSure} error={this.submitError} maxSize={2} />
                                         </div>
                                     )
@@ -331,11 +327,9 @@ export default class Certificate extends Component {
                                 formName='left_time'
                                 name='date'
                                 disabled={disabled}
-                                initialValue={AuditRecord.left_time?AuditRecord.left_time*1000:null}
+                                status={status}
+                                initialValue={AuditRecord.left_time?AuditRecord.left_time:null}
                                 ForeverTime = {4102415999000}
-                                // dateValue={(val)=>{
-                                //     console.log(val)
-                                // }}
                             ></DateInput>
                         </div>
                         <div className='cert-input-item'>

@@ -19,6 +19,7 @@ interface CertificateInputProps {
   initialValue: null | string | string[] | number
   extraData?: any
   dateValue?: (val: number) => void
+  status?:number
 }
 
 export default class DateInput extends Component<CertificateInputProps, any>{
@@ -45,17 +46,24 @@ export default class DateInput extends Component<CertificateInputProps, any>{
     }
   };
   onChange=(val)=>{
-    console.log(val)
     this.setState({checkValue:val[0] || null})
   }
   componentDidMount(): void {
     this.setState({})
   }
+  foreverShow=( status, initialValue, ForeverTime )=>{
+    let flag
+    if(status == 2 || status == 3 || status == 4){
+      (initialValue == ForeverTime) && (flag = true);
+      (initialValue != ForeverTime) && (flag = false);
+    }else{
+      flag = true
+    }
+    return flag
+  }
   getInput = () => {
     const { formName, placeholder, disabled, initialValue,ForeverTime } = this.props;
     const {checkValue} = this.state;
-        console.log(initialValue)
-    // console.log(moment(initialValue))
     let component = (
       <Form.Item name={formName}
         initialValue={(initialValue == ForeverTime || checkValue || !initialValue )? null : moment(initialValue)}
@@ -64,7 +72,6 @@ export default class DateInput extends Component<CertificateInputProps, any>{
         <DatePicker
           locale={locale}
           placeholder={placeholder}
-          onChange={(val)=>{console.log(moment(val.releasedTimestamp).unix(),val,1111111,moment(val).unix())}}
           disabled={disabled }
           ref={el => this.dateRef = el}
           showToday={false}
@@ -74,22 +81,23 @@ export default class DateInput extends Component<CertificateInputProps, any>{
   }
  
   render() {
-    const { label, require ,initialValue,ForeverTime,disabled} = this.props
+    const { label, require ,initialValue,ForeverTime,disabled, status} = this.props
     const { message,checkValue } = this.state
-    console.log(initialValue)
     return <div id='CertificateInput' className=' dataInput flexl'>
       <div className='certinput-left flexl'>
         <div className='certinput-star'>{require ? '*' : ''}</div>
         <div className='certinput-label'>{label}：</div>
       </div>
       <div className='certinput-right flexl'>
-        <Form.Item name='left_time_front'
-          initialValue={initialValue === ForeverTime ? [ForeverTime/1000] : null}
-        >
-          <Checkbox.Group onChange={this.onChange}  disabled={disabled }>
-            <Checkbox value={ForeverTime / 1000}>永久</Checkbox>
-          </Checkbox.Group>
-        </Form.Item>
+        {this.foreverShow(status, initialValue, ForeverTime) && 
+          <Form.Item name='left_time_front'
+          initialValue={initialValue === ForeverTime ? [ForeverTime] : null}
+          >
+            <Checkbox.Group onChange={this.onChange}  disabled={disabled }>
+              <Checkbox value={ForeverTime}>永久</Checkbox>
+            </Checkbox.Group>
+          </Form.Item>
+        }
         { !checkValue && this.getInput()}
       </div>
       {(message && require) && <div className='flexl certinput-message'>

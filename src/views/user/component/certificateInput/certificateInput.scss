@@ -145,4 +145,7 @@
         height: 42px;
         margin-right: 10px;
     }
+    .ant-checkbox-disabled + span{
+        color: #363636;
+    }
 }
