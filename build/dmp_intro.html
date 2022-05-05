@@ -334,6 +334,9 @@
         $('.info-quit').on('click', function() {
             $.ajax({
                 method: 'get',
+                headers: {
+                    MODULE: 'user'
+                },
                 url: "/api/login/out.do",
                 dataType: "json",
                 success: function(res) {
