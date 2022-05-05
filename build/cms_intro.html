@@ -253,7 +253,10 @@
 
             $.ajax({
                 method: 'get',
-                url: "/api/user/public/uinfo.get",
+                headers: {
+                    MODULE: 'user'
+                },
+                url: "/api/public/uinfo.get",
                 dataType: "json",
                 success: function(res) {
                     res.status ? isUser(res.body) : isUser()
