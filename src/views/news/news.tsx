@@ -211,7 +211,7 @@ export default class News extends Component{
   componentDidMount(){
     this.getUserAnalysis()
     window.addEventListener('scroll', this.handleScroll, false)
-    document.title = '康州数智-新闻资讯'
+    document.title = '康州数智科技-资讯中心'
     window.scrollTo (0,0);
     this.newsIndexChange()
   }
