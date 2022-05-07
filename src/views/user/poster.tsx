@@ -85,7 +85,8 @@ export default class Article extends Component {
       url: '/user/promote/poster/download.do',
       method: 'post',
       data: { id: item.id },
-      responseType: 'blob'
+      responseType: 'blob',
+      headers: { MODULE: 'user' }
     }).then((res) => {
       let blob = new Blob([res.data]);
       let url = URL.createObjectURL(blob);//处理文档流

@@ -25,7 +25,7 @@ export default class Extend extends Component {
     const {status,body} = await promoteIntegral({current,size});
     status && this.setState({
       integralList:body.records,
-      shareUrl:window.location.protocol+'//'+window.location.host+'/app/login?invite_code='+userInfo.invite_code
+      shareUrl:window.location.protocol+'//m.kzszh.com'+'/app/login?invite_code='+userInfo.invite_code
     })
   }
   userInteg=()=>{

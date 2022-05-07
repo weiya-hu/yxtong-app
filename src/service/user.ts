@@ -25,12 +25,12 @@ export const userTasks =():Promise<API.IResult>=>{
 
 //数据分析数据总览
 export const dataScreening =(data):Promise<API.IResult>=>{
-    return  get('news/writing/dataScreening','news',data)
+    return  get('news/writing/dataScreening','official',data)
 }
 
 //用户管理
 export const contentList =(data):Promise<API.IResult>=>{
-    return  get('news/creation/article.page','news',data)
+    return  get('news/creation/article.page','official',data)
 }
 
 //oss上传图片
@@ -40,12 +40,12 @@ export const uploadPolicy =(data):Promise<API.IResult>=>{
 
 //发布文章
 export const newsPublish =(data):Promise<API.IResult>=>{
-    return  post('news/creation/article/publish.do','news',data)
+    return  post('news/creation/article/publish.do','official',data)
 }
 
 //保存文章
 export const newsSave =(data):Promise<API.IResult>=>{
-    return  post('news/creation/article.in','news',data)
+    return  post('news/creation/article.in','official',data)
 }
 
 //获取企业认证的状态和相关信息 
