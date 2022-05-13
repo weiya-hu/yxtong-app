@@ -34,7 +34,8 @@ class CertificateInput extends Component<CertificateInputProps,any>{
             case 'textCode':
                 message = (value==='')?'必填项':''
                 checkCreditCode({code:value}).then(({status,message})=>{
-                    !status && (this.setState({message:message}))
+                    let messages=message.split(':')
+                    !status && (this.setState({message:messages.length>1?messages[1]:message}))
                     
                 })
         }

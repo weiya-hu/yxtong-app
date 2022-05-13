@@ -59,7 +59,6 @@ export default class Register extends Component {
 		}
 	}
 	registerSubmit = async (value) => {
-		console.log(value)
 		let mobile = util.validate_mobile(value.mobile), message
 		let mobileYZM = util.validate_yzm(value.sms)
 		message = mobile ? mobile : (mobileYZM ? mobileYZM : util.validate_passwordRegister(value.pass))
@@ -137,6 +136,7 @@ export default class Register extends Component {
 							<Form
 								onFinish={this.registerSubmit}
 								onFinishFailed={this.registerSubmit}
+								autoComplete='off'
 							>
 								<div className='marg'>
 									<InputComponent

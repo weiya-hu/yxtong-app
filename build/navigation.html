@@ -171,7 +171,6 @@
             'mouseover',
             function() {
                 if ($(this).attr('href') == 'javascript:void(0);') {
-                    // console.log($(this).attr('href'))
                     $(this).css('cursor', 'default')
                 }
 
@@ -243,7 +242,6 @@
                 var text1 = 'vipdata'
                 var url1 = window.location.href
                 if (url1.indexOf(text1) >= 0) {
-                    // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
                 }
@@ -251,7 +249,6 @@
                 var text2 = 'marketing'
                 var url2 = window.location.href
                 if (url2.indexOf(text2) >= 0) {
-                    // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
                 }
@@ -315,13 +312,13 @@
         vertical: true,
         top: 110,
         animationCallback: function(x, y) {
-            console.log('animationCallback');
+            // console.log('animationCallback');
             $('.udesk-client-btn').css('z-index', '-1')
             $('#content').css('cursor', 's-resize')
             isDrag = true;
         },
         dragStopCallback: function(x, y) {
-            console.log('dragStop');
+            // console.log('dragStop');
             $('.udesk-client-btn').css('z-index', '999')
             $('#content').css('cursor', 'pointer')
             isDrag = false;
@@ -428,16 +425,12 @@
         if (!isDrag) {
             if (url1.indexOf(text1) >= 0) {
                 window.open("https://qx.yaozh.com", "_blank")
-                console.log(11)
             } else if (url2.indexOf(text2) >= 0) {
                 window.open("https://robot.kzszh.com/user/qq/devicesRun.html", "_blank")
-                console.log(111);
             } else if (url3.indexOf(text3) >= 0) {
-                console.log('我进入DMP了')
                 window.open("/app/login", "_blank")
             } else {
                 window.open("/app/login", "_self")
-                    // console.log(222);
             }
 
 
@@ -1228,7 +1221,7 @@
     </div>
 </div>
 <div class="footer">
-    <div class="wrapper clearfix">
+    <div class="wrapper">
         <div class="footer-navs">
             <a href="###">首页</a>
             <span class="split"></span>
@@ -1263,13 +1256,7 @@
         </div>
     </div>
 </div>
-<!-- 
-<div class="right-sidebar">
-    <a class="right-sidebar-qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1261826768&site=qq&menu=yes">
-        <span>在线咨询</span>
-    </a>
-    <a href="" class="right-sidebar-top"><span>返回顶部</span></a>
-</div> -->
+
 <script src="static/lib/vendor.js"></script>
 <script src="static/js/common.js"></script>
 <script src="static/lib/swiper/4.4.6/swiper.min.js"></script>
@@ -1294,7 +1281,6 @@
     $('.navi-rcon').on('scroll', function() {
         var t = $(this).scrollTop();
         //console.log(t)
-        //console.log(t);
     })
 
 
@@ -1338,12 +1324,12 @@
     }
 
     $('#searchipt').on('input', debounce(() => {
-        console.log($('#searchipt').val())
+        // console.log($('#searchipt').val())
         getSearchList()
     }, 500))
 
     $('.searchlist').on('click', '.searchitem', function() {
-        console.log($(this).attr('data-url'));
+        // console.log($(this).attr('data-url'));
     })
 
     $('#searchipt').on('blur', function() {
@@ -1353,7 +1339,7 @@
     })
 
     $('#searchipt').on('focus', function() {
-        console.log($(this).val())
+        // console.log($(this).val())
         getSearchList()
     })
 </script>

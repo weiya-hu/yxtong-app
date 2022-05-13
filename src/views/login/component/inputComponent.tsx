@@ -136,7 +136,7 @@ export default class InputComponent extends Component<any> {
                                 name={formName}
                             >
                                 <input 
-                                    autoComplete='off'  
+                                    autoComplete='new-password'  
                                     // value = { this.state.mobileInput} 
                                     onChange={(e)=>{this.setState({mobileInput :e.target.value });this.props.MobileValue(e.target.value)}} 
                                     type="tel" 
@@ -159,7 +159,7 @@ export default class InputComponent extends Component<any> {
                             <div className='yzmTXT'>{title?title:'验证码'}</div>
                             <Form.Item name={formName}>
                                 <input 
-                                    autoComplete='off' 
+                                    autoComplete='new-password' 
                                     // value = { this.state.YZMinput } 
                                     // onChange={(e)=>{this.setState({YZMinput :e.target.value })}} 
                                     type="text" 
@@ -181,7 +181,7 @@ export default class InputComponent extends Component<any> {
                         <div  className='capture phone flexb'>
                             <Form.Item name={formName}>
                                 <input 
-                                    autoComplete='off' 
+                                    autoComplete='new-password' 
                                     // value = { this.state.YZMinput } 
                                     // onChange={(e)=>{this.setState({YZMinput :e.target.value })}} 
                                     type="text" 
@@ -201,7 +201,7 @@ export default class InputComponent extends Component<any> {
                             <div className='yzmTXT'>{title?title:'账户'}</div>
                             <Form.Item name={formName}>
                                 <input 
-                                    autoComplete='off' 
+                                    autoComplete='new-password' 
                                     type="tel" 
                                     placeholder='请输入手机号' 
                                     onBlur={(e)=>{this.inputBlur(e,'mobile')}}
@@ -220,14 +220,14 @@ export default class InputComponent extends Component<any> {
                                 <Form.Item name={formName}>
                                     {ispassword?
                                         <input 
-                                            autoComplete='off' 
+                                            autoComplete='new-password' 
                                             type="password" 
                                             onBlur={(e)=>{this.inputBlur(e,name)}}
                                             value={this.state.password} onChange={this.passwordChange} 
                                             placeholder='请输入密码' 
                                         />:
                                         <input 
-                                            autoComplete='off' 
+                                            autoComplete='new-password' 
                                             type="text" 
                                             value={this.state.password} 
                                             onBlur={(e)=>{this.inputBlur(e,name)}}
@@ -254,14 +254,14 @@ export default class InputComponent extends Component<any> {
                             <Form.Item name={formName}>
                                 {ispassword?
                                     <input 
-                                        autoComplete='off' 
+                                        autoComplete='new-password' 
                                         type="password" 
                                         onBlur={(e)=>{this.inputBlur(e,name)}}
                                         value={this.state.password} onChange={this.passwordChange} 
                                         placeholder='请输入密码' 
                                     />:
                                     <input 
-                                        autoComplete='off' 
+                                        autoComplete='new-password' 
                                         type="text" 
                                         value={this.state.password} 
                                         onBlur={(e)=>{this.inputBlur(e,name)}}
@@ -288,14 +288,14 @@ export default class InputComponent extends Component<any> {
                             <Form.Item name={formName}>
                                 {ispassword?
                                     <input 
-                                        autoComplete='off' 
+                                        autoComplete='new-password' 
                                         type="password" 
                                         onBlur={(e)=>{this.inputBlur(e,name)}}
                                         value={this.state.password} onChange={this.passwordChange} 
                                         placeholder='请输入密码' 
                                     />:
                                     <input 
-                                        autoComplete='off' 
+                                        autoComplete='new-password' 
                                         type="text" 
                                         value={this.state.password} 
                                         onBlur={(e)=>{this.inputBlur(e,name)}}
@@ -321,7 +321,7 @@ export default class InputComponent extends Component<any> {
                                 <div className='yzmTXT'>{title?title:'邀请码'}</div>
                                 <Form.Item name={formName} >
                                     <input 
-                                        autoComplete='off' 
+                                        autoComplete='new-password' 
                                         type="text" 
                                         defaultValue={defaultValue} 
                                         // disabled={defaultValue?true:false}

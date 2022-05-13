@@ -171,7 +171,6 @@
             'mouseover',
             function() {
                 if ($(this).attr('href') == 'javascript:void(0);') {
-                    // console.log($(this).attr('href'))
                     $(this).css('cursor', 'default')
                 }
 
@@ -243,7 +242,6 @@
                 var text1 = 'vipdata'
                 var url1 = window.location.href
                 if (url1.indexOf(text1) >= 0) {
-                    // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
                 }
@@ -251,7 +249,6 @@
                 var text2 = 'marketing'
                 var url2 = window.location.href
                 if (url2.indexOf(text2) >= 0) {
-                    // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
                 }
@@ -315,13 +312,13 @@
         vertical: true,
         top: 110,
         animationCallback: function(x, y) {
-            console.log('animationCallback');
+            // console.log('animationCallback');
             $('.udesk-client-btn').css('z-index', '-1')
             $('#content').css('cursor', 's-resize')
             isDrag = true;
         },
         dragStopCallback: function(x, y) {
-            console.log('dragStop');
+            // console.log('dragStop');
             $('.udesk-client-btn').css('z-index', '999')
             $('#content').css('cursor', 'pointer')
             isDrag = false;
@@ -428,16 +425,12 @@
         if (!isDrag) {
             if (url1.indexOf(text1) >= 0) {
                 window.open("https://qx.yaozh.com", "_blank")
-                console.log(11)
             } else if (url2.indexOf(text2) >= 0) {
                 window.open("https://robot.kzszh.com/user/qq/devicesRun.html", "_blank")
-                console.log(111);
             } else if (url3.indexOf(text3) >= 0) {
-                console.log('我进入DMP了')
                 window.open("/app/login", "_blank")
             } else {
                 window.open("/app/login", "_self")
-                    // console.log(222);
             }
 
 
@@ -722,6 +715,34 @@
 
         <div class="wrapper">
             <div class="lst clearfix wow fadeInUp" id="dynamic">
+                <div class="item" data-did="did9">
+                    <div class="img">
+                        <a target="_blank" href="###"><img src="uploads/index-news-3.png" width="100%" alt=""></a>
+                    </div>
+                    <div class="con">
+                        <h3><a target="_blank" href="###">后疫情时代实体经济数字化转型：疫情下实体经济营销模式的变迁｜报告研读</a></h3>
+                        <div class="bar">
+                            <span class="items">05.12</span> 行业新闻
+                            <em class="icon-view"></em> 425
+                            <em class="icon-zan"></em> 75
+                            <em class="icon-wx"></em> 3559
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did10">
+                    <div class="img">
+                        <a target="_blank" href="###"><img src="uploads/index-news-4.png" width="100%" alt=""></a>
+                    </div>
+                    <div class="con">
+                        <h3><a target="_blank" href="###">中国电信加速布局智慧医疗，助医药行业数字化转型</a></h3>
+                        <div class="bar">
+                            <span class="items">05.12</span> 行业新闻
+                            <em class="icon-view"></em> 421
+                            <em class="icon-zan"></em> 47
+                            <em class="icon-wx"></em> 5341
+                        </div>
+                    </div>
+                </div>
                 <div class="item" data-did="did1">
                     <div class="img">
                         <a target="_blank" href="###"><img src="uploads/index-news-7.jpg" width="100%" alt=""></a>
@@ -750,34 +771,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="item" data-did="did3">
-                    <div class="img">
-                        <a target="_blank" href="###"><img src="uploads/index-news-3.png" width="100%" alt=""></a>
-                    </div>
-                    <div class="con">
-                        <h3><a target="_blank" href="###">京东商智3.0上线背后：数智化营销时代来了</a></h3>
-                        <div class="bar">
-                            <span class="items">02.17</span> 行业新闻
-                            <em class="icon-view"></em> 346
-                            <em class="icon-zan"></em> 36
-                            <em class="icon-wx"></em> 2759
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-did="did4">
-                    <div class="img">
-                        <a target="_blank" href="###"><img src="uploads/index-news-4.png" width="100%" alt=""></a>
-                    </div>
-                    <div class="con">
-                        <h3><a target="_blank" href="###">数字经济时代，商业的底层逻辑变了</a></h3>
-                        <div class="bar">
-                            <span class="items">02.03</span> 行业新闻
-                            <em class="icon-view"></em> 216
-                            <em class="icon-zan"></em> 44
-                            <em class="icon-wx"></em> 1753
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="item" data-did="did7">
                     <div class="img">
                         <a target="_blank" href="###"><img src="uploads/index-news-5.png" width="100%" alt=""></a>
@@ -812,8 +806,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
 <div class="bottom-navs">
@@ -861,7 +853,7 @@
     </div>
 </div>
 <div class="footer">
-    <div class="wrapper clearfix">
+    <div class="wrapper">
         <div class="footer-navs">
             <a href="###">首页</a>
             <span class="split"></span>
@@ -896,13 +888,7 @@
         </div>
     </div>
 </div>
-<!-- 
-<div class="right-sidebar">
-    <a class="right-sidebar-qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1261826768&site=qq&menu=yes">
-        <span>在线咨询</span>
-    </a>
-    <a href="" class="right-sidebar-top"><span>返回顶部</span></a>
-</div> -->
+
 <script src="static/lib/vendor.js"></script>
 <script src="static/js/common.js"></script>
 <script src="static/lib/swiper/4.4.6/swiper.min.js"></script>

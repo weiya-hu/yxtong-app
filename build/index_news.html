@@ -171,7 +171,6 @@
             'mouseover',
             function() {
                 if ($(this).attr('href') == 'javascript:void(0);') {
-                    // console.log($(this).attr('href'))
                     $(this).css('cursor', 'default')
                 }
 
@@ -243,7 +242,6 @@
                 var text1 = 'vipdata'
                 var url1 = window.location.href
                 if (url1.indexOf(text1) >= 0) {
-                    // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
                 }
@@ -251,7 +249,6 @@
                 var text2 = 'marketing'
                 var url2 = window.location.href
                 if (url2.indexOf(text2) >= 0) {
-                    // console.log('我进入药智器械了')
                     $('.content-login').css('display', 'block')
                     $('.content-weixin').css('border-radius', '0px 0px 0px 0px')
                 }
@@ -274,6 +271,42 @@
         </div>
         <div class="index-content">
             <div class="lst">
+                <div class="item" data-did="did9">
+                    <div class="item-left">
+                        <div class="left-tips"><span>2022-05</span><span>12</span></div>
+                    </div>
+                    <div class="item-right">
+                        <div class="news-title">后疫情时代实体经济数字化转型：疫情下实体经济营销模式的变迁｜报告研读</div>
+                        <div class="news-txt"> 针对互联网快速迭代发展的背景，实体经济的营销模式可以划分为全渠道营销、融屏联动营销以及泛视频化营销。</div>
+                        <div class="bar">
+                            <span>行业新闻</span>
+                            <div class="bar-icon">
+                                <em class="icon-view"></em> 425
+                                <em class="icon-zan"></em> 75
+                                <em class="icon-wx"></em> 3559
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-did="did10">
+                    <div class="item-left">
+                        <div class="left-tips"><span>2022-05</span><span>12</span></div>
+
+                    </div>
+                    <div class="item-right">
+                        <div class="news-title">中国电信加速布局智慧医疗，助医药行业数字化转型</div>
+                        <div class="news-txt">随着国内对科技创新日益重视，配套医改政策不断推进，加上疫情等突发公共卫生事件，医药行业迎来格局重塑，医疗机构信息化应用步伐明显加快。</div>
+                        <div class="bar">
+                            <span>行业新闻</span>
+                            <div class="bar-icon">
+                                <em class="icon-view"></em> 421
+                            <em class="icon-zan"></em> 47
+                            <em class="icon-wx"></em> 5341
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="item" data-did="did1">
                     <div class="item-left">
                         <div class="left-tips"><span>2022-05</span><span>05</span></div>
@@ -483,7 +516,7 @@
     </div>
 </div>
 <div class="footer">
-    <div class="wrapper clearfix">
+    <div class="wrapper">
         <div class="footer-navs">
             <a href="###">首页</a>
             <span class="split"></span>
@@ -518,13 +551,7 @@
         </div>
     </div>
 </div>
-<!-- 
-<div class="right-sidebar">
-    <a class="right-sidebar-qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1261826768&site=qq&menu=yes">
-        <span>在线咨询</span>
-    </a>
-    <a href="" class="right-sidebar-top"><span>返回顶部</span></a>
-</div> -->
+
 <script src="static/lib/vendor.js"></script>
 <script src="static/js/common.js"></script>
 <script>
@@ -534,4 +561,6 @@
             window.location.href = 'index_newsdetail.html?did=' + did
         }
     })
+    let didCount= $('.lst>.item').length
+    
 </script>
