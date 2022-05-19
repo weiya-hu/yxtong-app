@@ -83,9 +83,7 @@ class Header extends Component<any,HeaderState>{
                   <a target="_blank" href={item.link} className='link-item' >{item.name}</a> 
                   {index===0 && <span className='hot-txt'>【热】</span> }
                 </div> 
-                
               )}
-              
             </div>
           </div>
           {userInfo?(

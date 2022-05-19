@@ -2,7 +2,8 @@
     height: 54px;
     width: 100%;
     border-bottom: 1px solid #F4F4F4;
-    
+    flex-wrap: wrap;
+    overflow: hidden;
     .news-type-item{
         font-size: 16px;
         margin-right: 40px;
