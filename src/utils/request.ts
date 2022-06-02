@@ -3,7 +3,7 @@
  */
 import axios from "axios";
 import message from '../views/component/message/index'
-import { AxisPointerComponent } from "echarts/components";
+import { util } from './news'
 
 axios.defaults.timeout = 10000;
 axios.defaults.baseURL = "/api";
@@ -164,7 +164,10 @@ function errnoMsg(res) {
       case 10500: message.info('服务器未知错误'); break;
       case 10400: message.info('错误的请求'); break;
       case 10403: message.info('非法token'); break;
-      case 10600: message.info(res.data.message); break;
+      case 10600: 
+        message.info(res.data.message);
+        window.location.pathname === '/app/user' && (window.location.href = '/app/login?url=' + encodeURIComponent(window.location.pathname + window.location.search))
+         break;
       //  case 10610: message.info('参数校验失败');break;
       case 10611: message.info(res.data.message); break;
       case 10620:
@@ -175,7 +178,13 @@ function errnoMsg(res) {
       case 10622: message.info('用户未找到'); break;
       case 10623: message.info('用户已禁用'); break;
       case 10624: message.info('密码错误'); break;
-      case 10625: message.info('用户绑定失败');
+      case 10625: message.info('用户绑定失败');break
+      case 10200: 
+        post('/login/login/force.do','user',{}).then(res=>{
+          let url =util.getUrlParam('url')
+          res.status && (window.location.href = url ? decodeURIComponent(url).replace(/\'/g, "") : '/')
+        })
+        
     }
   }
 }
