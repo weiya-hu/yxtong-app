@@ -165,7 +165,8 @@ export default class NewsDetail extends Component {
                     <div className='newsDetail-article-detail'>
                         <ArticleDetail />
                     </div>
-                    <div className='Report-div' id='comment'>
+                    <div className='Report-div flexb' id='comment'>
+                        <div className='Report-div-tip'>如有侵权，请联系我们删除</div>
                         <Report />
                     </div>
                     <div style={{height:"0px",width:'100px'}}>

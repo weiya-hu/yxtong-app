@@ -9,6 +9,7 @@ import MoreTxt from 'views/news/component/moreTxt/moreTxt';
 import QRCode from 'qrcode.react'
 import axios from 'axios'
 import $message from 'views/component/message'
+import store from 'store';
 
 import nodataBigimg from 'public/images/user/nodataBig.png'
 import falseimg from 'public/images/user/false.png'
@@ -23,7 +24,8 @@ export default class Article extends Component {
     current: 1,
     size: 10,
     articleList: [],
-    hasMore: true
+    hasMore: true,
+    userInfo:null
   }
   star = async () => {
     const promoteIndustryRes = await promoteIndustry();
@@ -32,6 +34,7 @@ export default class Article extends Component {
       IndustryList: list.concat(promoteIndustryRes.body),
     })
     this.firstArticleList()
+
   }
   loadMoreData = () => {
     this.getArticleList()
@@ -105,6 +108,7 @@ export default class Article extends Component {
     articleId && this.setState({ articleId: articleId })
     this.star()
     window.addEventListener('scroll', this.handleScroll, false)
+    this.setState({userInfo:store.getState().userInfo})
   }
   componentWillUnmount(): void {
     window.removeEventListener('scroll', this.handleScroll)
@@ -113,7 +117,7 @@ export default class Article extends Component {
     }
   }
   render() {
-    const { articleId, IndustryList, IndustryActive, hasMore, articleList } = this.state
+    const { articleId, IndustryList, IndustryActive, hasMore, articleList, userInfo } = this.state
     return <div id='article'>
       {articleId && <div>
         <ArticleDetail />
@@ -150,7 +154,7 @@ export default class Article extends Component {
                     <div className='shareimg fleximg'><img src={posterShareimg} alt="share" />
                       <div className='wechat-ma'>
                         <QRCode
-                          value={window.location.protocol + '//' + window.location.host + '/app/user/posterdetail?posterId=' + item.id+'&uid='+item.uid}  //value参数为生成二维码的链接
+                          value={window.location.protocol + '//' + window.location.host + '/app/user/posterdetail?posterId=' + item.id+'&uid='+userInfo.id}  //value参数为生成二维码的链接
                           size={100} //二维码的宽高尺寸
                           fgColor="#000000"  //二维码的颜色
                         />
