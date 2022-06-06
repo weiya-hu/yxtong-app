@@ -131,7 +131,7 @@
                             <ul>
                                 <!-- <li><a href="/member_news.html?id=1">通知公告</a><span>|</span></li> -->
                                 <li><a href="/benefits.html">VIP权益</a><span>|</span></li>
-                                <li><a href="" id="exten">我要推广</a><span>|</span></li>
+                                <li><a href="/developmenting.html">我要推广</a><span>|</span></li>
                                 <li class="user_feedback"><a href="/member.html#feedback">客户反馈</a></li>
                             </ul>
                         </div>
@@ -228,14 +228,13 @@
                 $('.nologin').css('display', 'flex')
                 $('.logined').css('display', 'none')
                 $('.content-login').css('display', 'block')
-                $('#exten').attr('href','/app/login')
+
 
             } else {
                 $('.nologin').css('display', 'none')
                 $('.logined').css('display', 'flex')
                 $('#header').attr('src', userInfo.head ? userInfo.head : './static/images/icon-avatar.png')
                 $('#uname').text(userInfo.name)
-                $('#exten').attr('href','/app/user?componentId=41')
                     // 立即登录按钮
                 $('.content-weixin').css('border-radius', '10px 0px 0px 0px')
                 $('.content-login').css('display', 'none')
@@ -255,7 +254,6 @@
                 }
             }
         }
-        
     </script>
 <script src="static/lib/dragdealer/dragdealer.js"></script>
 
