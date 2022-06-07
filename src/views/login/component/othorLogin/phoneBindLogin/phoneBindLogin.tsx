@@ -48,6 +48,15 @@ export default class phoneBindLogin extends Component {
                 if(res.status){
                     window.location.href='/'
                 }else{
+                    if (res.errno === 10200){
+                        const forceRes = await loginForceDo_api()
+                        forceRes.status &&
+                            (() => {
+                                let url =util.getUrlParam('url')
+                                window.location.href = url ? decodeURIComponent(url).replace(/\'/g, "") : '/'
+                            })()
+                        return 
+                    }
                     if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
                         this.setState({captchaShow:true})
                     }else{

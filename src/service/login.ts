@@ -58,3 +58,8 @@ export const checkResetsms =(data):Promise<API.IResult>=>{
 export const resetpass =(data):Promise<API.IResult>=>{
     return  post('login/resetpass/modify.do','user',data)
 }
+
+//强制登录
+export const loginForceDo_api = (): Promise<any> => {
+    return post('login/login/force.do' , 'user',{})
+  }

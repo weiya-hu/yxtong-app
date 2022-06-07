@@ -5,7 +5,7 @@ import { Form , Button,Modal} from 'antd';
 import InputComponent from './component/inputComponent';
 import { util } from 'utils/user'
 import {BrowserRouter as Router, Link } from 'react-router-dom';
-import {dologin,getUser,wechatLink} from 'service/login'
+import {dologin,getUser,wechatLink, loginForceDo_api} from 'service/login'
 import $message from 'views/component/message';
 import WxLogin from 'views/login/component/othorLogin/wxLogin'
 import { Base64 } from 'js-base64';
@@ -73,12 +73,26 @@ export default class PopupLogin extends Component<PopupLoginState> {
                } 
                 this.close()
                 location.reload();
+                $message.info(res.message)
             }else{
                 if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
                     this.setState({captchaShow:true})
+                    $message.info(res.message)
+                }else if(res.errno === 10200){
+                    loginForceDo_api().then(result=>{
+                        result.status && (async() => {
+                            let resultu = await getUser()
+                            if(resultu.status){
+                                store.dispatch(setUserInfo(JSON.stringify(resultu.body)))
+                            } 
+                            store.dispatch(loginRemove())
+                            location.reload();  
+                            $message.info(result.message)
+                        })()
+                    })
                 }
             }
-             $message.info(res.message)
+             
         }
     }
     close=()=>{

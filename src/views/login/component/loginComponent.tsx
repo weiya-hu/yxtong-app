@@ -6,7 +6,7 @@ import InputComponent from './inputComponent';
 import WxLogin from 'views/login/component/othorLogin/wxLogin'
 import { util } from 'utils/user'
 import { Link } from 'react-router-dom';
-import {dologin,getUser,wechatLink} from 'service/login'
+import {dologin,getUser,wechatLink, loginForceDo_api} from 'service/login'
 import $message from 'views/component/message';
 import { Base64 } from 'js-base64';
 
@@ -89,6 +89,15 @@ export default class LoginComponent extends Component {
                 }
                 $message.info(res.message)
             }else{
+                if (res.errno === 10200){
+                    const forceRes = await loginForceDo_api()
+                    forceRes.status &&
+                        (() => {
+                            let url =util.getUrlParam('url')
+                            window.location.href = url ? decodeURIComponent(url).replace(/\'/g, "") : '/'
+                        })()
+                    return
+                }
                 if(res.errno && res.body>=3 || res.message==='captcha: 不能为空'){
                     this.setState({captchaShow:true})
                 }else{

@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component } from 'react'
 import {util} from 'utils/news'
-import {doWechat} from 'service/login'
+import {doWechat, loginForceDo_api} from 'service/login'
 import { Base64 } from 'js-base64';
 
 export default class OtherLoginIndex extends Component {
@@ -12,9 +12,17 @@ export default class OtherLoginIndex extends Component {
             if(res.status){
                 window.location.href=decodeURIComponent(util.getUrlParam('url'))
             }else{
-                if(res.errno === 10200 ){
+                if(res.errno === 10201 ){
                     let url = '/app/bindphone?nickname='+res.body.nickname+'&headimgurl='+res.body.headimgurl
                     this.props.history.push(url);
+                }else if (res.errno === 10200) {
+                    loginForceDo_api().then(result=>{
+                        result.status && (() => {
+                            let url =util.getUrlParam('url')
+                            window.location.href = url ? decodeURIComponent(url).replace(/\'/g, "") : '/'
+                        })()
+                    })
+                    
                 }
             }
         })

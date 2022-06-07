@@ -4,7 +4,7 @@ import './register.scss'
 import { Form, Button,message } from 'antd';
 import InputComponent from './component/inputComponent';
 import { util } from 'utils/user'
-import { doreg,checkResetsms,resetpass } from 'service/login'
+import { doreg,checkResetsms,resetpass, loginForceDo_api } from 'service/login'
 import $message from 'views/component/message';
 
 
@@ -71,6 +71,15 @@ export default class Register extends Component {
 				const res = await doreg({ ...value })
 				if (res.status) {
 					window.location.href = '/'
+				}else{
+					if (errno === 10200){
+						const forceRes = await loginForceDo_api()
+						forceRes.status &&
+							(() => {
+								let url =util.getUrlParam('url')
+								window.location.href = url ? decodeURIComponent(url).replace(/\'/g, "") : '/'
+							})()
+					}
 				}
 				$message.info(res.message)
 			}

@@ -178,12 +178,12 @@ function errnoMsg(res) {
       case 10622: message.info('用户未找到'); break;
       case 10623: message.info('用户已禁用'); break;
       case 10624: message.info('密码错误'); break;
-      case 10625: message.info('用户绑定失败');break
-      case 10200: 
-        post('/login/login/force.do','user',{}).then(res=>{
-          let url =util.getUrlParam('url')
-          res.status && (window.location.href = url ? decodeURIComponent(url).replace(/\'/g, "") : '/')
-        })
+      case 10625: message.info('用户绑定失败');break;
+      // case 10200: 
+      //   post('/login/login/force.do','user',{}).then(res=>{
+      //     let url =util.getUrlParam('url')
+      //     res.status && (window.location.href = url ? decodeURIComponent(url).replace(/\'/g, "") : '/')
+      //   })
         
     }
   }
