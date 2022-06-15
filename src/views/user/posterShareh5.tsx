@@ -22,7 +22,7 @@ export default class PosterShareh5 extends Component {
   star=async()=>{
     let posterId = util.getUrlParam('posterId')
     let uid = util.getUrlParam('uid')
-    axios({url:'/user/public/promote/poster/share.do', method:'post',data:{id:posterId,uid:uid},responseType:"arraybuffer",headers: { MODULE: 'user' }}).then(res=>{
+    axios({url:'/public/promote/poster/share.do', method:'post',data:{id:posterId,uid:uid},responseType:"arraybuffer",headers: { MODULE: 'user' }}).then(res=>{
       this.setState({
         imgUrl:this.getBase64(res.data)
       })
