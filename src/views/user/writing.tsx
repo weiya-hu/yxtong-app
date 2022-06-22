@@ -284,7 +284,7 @@ class Writing extends Component {
 	}
 	getNewsType = async () => {
 		const { status, body } = await newsCreationTypeList()
-		status && this.setState({ newsType: body })
+		status && this.setState({ newsType: body.splice(0,8) })
 	}
 	componentWillUnmount() {
 		this.clearImgs()
