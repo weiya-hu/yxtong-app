@@ -1,3 +1,17 @@
+## 简介
+
+本项目使用 react + ts 搭建，css 使用 scss，ui 框架 Ant Design，ajax 使用 axios，代码规范使用 eslint + prettier，store 使用 redux。
+
+其他插件：
+tinymce：富文本编辑器；
+echarts：可视化图表库；
+
+指令说明：
+"start": 启动开发服务器,
+"build": 打包，
+
+截止2022年7月12日此项目现在包含会员中心、资讯中心这两个系统，现有需求已开发完。
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

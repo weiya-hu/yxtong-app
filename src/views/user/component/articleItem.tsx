@@ -44,7 +44,9 @@ class ArticleItem extends Component<ArticleItemState> {
       newsType:[]
     }
     toEdit=(id)=>{
-      let event = window.event || arguments.callee.caller.arguments[0]
+      // let event = window.event || arguments.callee.caller.arguments[0]
+      let event = window.event
+
       event.stopPropagation();
       this.props.history.push('/app/user?componentId=71&editNewsId='+id)
     }
